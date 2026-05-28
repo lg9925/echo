@@ -1,8 +1,8 @@
 # Deploying Echo
 
-Target: **https://echo.hellowordhub.xyz/** on `ops@165.154.203.38`.
+Target: **https://echo.helloworldhub.xyz/** on `ops@165.154.203.38`.
 
-The cloud server already runs another service on `hellowordhub.xyz` (VLESS subscription panel). Echo lives on a **separate subdomain** so it doesn't touch the existing nginx vhost.
+The cloud server already runs another service on `helloworldhub.xyz` (VLESS subscription panel). Echo lives on a **separate subdomain** so it doesn't touch the existing nginx vhost.
 
 ---
 
@@ -13,13 +13,13 @@ The cloud server already runs another service on `hellowordhub.xyz` (VLESS subsc
 Add a DNS `A` record:
 
 ```
-echo.hellowordhub.xyz   A   165.154.203.38
+echo.helloworldhub.xyz   A   165.154.203.38
 ```
 
 Wait for it to propagate. Verify locally:
 
 ```bash
-dig +short echo.hellowordhub.xyz
+dig +short echo.helloworldhub.xyz
 # → 165.154.203.38
 ```
 
@@ -53,11 +53,11 @@ The deploy user (`ops`) needs read access to the GitHub repo. Easiest: add an SS
 
 ```bash
 # On the server, as ops:
-ssh-keygen -t ed25519 -C "ops@hellowordhub deploy" -f ~/.ssh/echo_deploy -N ""
+ssh-keygen -t ed25519 -C "ops@helloworldhub deploy" -f ~/.ssh/echo_deploy -N ""
 cat ~/.ssh/echo_deploy.pub
 # Copy the printed key, then on GitHub:
 #   https://github.com/lg9925/echo/settings/keys/new
-#   → paste, name it "ops@hellowordhub", check "Allow write access" only if you want server-side pushes (you don't), leave unchecked.
+#   → paste, name it "ops@helloworldhub", check "Allow write access" only if you want server-side pushes (you don't), leave unchecked.
 
 # Tell ssh which key to use for github.com:
 cat >> ~/.ssh/config <<'EOF'
@@ -94,8 +94,8 @@ cd /var/www/echo
 ### 6. nginx vhost
 
 ```bash
-sudo cp deploy/nginx/echo.hellowordhub.xyz.conf /etc/nginx/sites-available/
-sudo ln -s /etc/nginx/sites-available/echo.hellowordhub.xyz.conf /etc/nginx/sites-enabled/
+sudo cp deploy/nginx/echo.helloworldhub.xyz.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/echo.helloworldhub.xyz.conf /etc/nginx/sites-enabled/
 
 # Test config — this will FAIL because the SSL cert doesn't exist yet.
 sudo nginx -t
@@ -114,14 +114,14 @@ sudo systemctl reload nginx
 sudo apt install certbot python3-certbot-nginx
 
 # Sign + auto-edit nginx to use the new cert:
-sudo certbot --nginx -d echo.hellowordhub.xyz \
+sudo certbot --nginx -d echo.helloworldhub.xyz \
   --non-interactive --agree-tos -m you@example.com --redirect
 
 # Verify auto-renew timer is on:
 systemctl status certbot.timer
 ```
 
-Restore the explicit `ssl_certificate*` paths in `echo.hellowordhub.xyz.conf` to match what certbot wrote (or let certbot's auto-edit stand — both work).
+Restore the explicit `ssl_certificate*` paths in `echo.helloworldhub.xyz.conf` to match what certbot wrote (or let certbot's auto-edit stand — both work).
 
 ```bash
 sudo nginx -t && sudo systemctl reload nginx
@@ -130,7 +130,7 @@ sudo nginx -t && sudo systemctl reload nginx
 ### 8. Test
 
 ```bash
-curl -I https://echo.hellowordhub.xyz/
+curl -I https://echo.helloworldhub.xyz/
 # → 200 OK on /zh/index.html (or 301 → /zh/ then 200)
 ```
 
@@ -164,11 +164,11 @@ ssh ops@165.154.203.38 'cd /var/www/echo && ./deploy/deploy.sh'
 
 ## Updating nginx config
 
-If you edit `deploy/nginx/echo.hellowordhub.xyz.conf`:
+If you edit `deploy/nginx/echo.helloworldhub.xyz.conf`:
 
 ```bash
 # On the server, after deploy.sh has pulled new code:
-sudo cp /var/www/echo/deploy/nginx/echo.hellowordhub.xyz.conf /etc/nginx/sites-available/
+sudo cp /var/www/echo/deploy/nginx/echo.helloworldhub.xyz.conf /etc/nginx/sites-available/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -179,6 +179,6 @@ sudo systemctl reload nginx
 
 - **`pnpm: command not found`** during `deploy.sh`: corepack inactive or pnpm uninstalled. Re-run step 3.
 - **Build fails on server** with OOM: small VPS. Add swap (`sudo fallocate -l 2G /swapfile; sudo mkswap /swapfile; sudo swapon /swapfile`) and retry.
-- **PWA not installable**: confirm `https://echo.hellowordhub.xyz/sw.js` returns 200 and `/manifest.json` is valid JSON.
+- **PWA not installable**: confirm `https://echo.helloworldhub.xyz/sw.js` returns 200 and `/manifest.json` is valid JSON.
 - **Service worker stuck on old version**: `Cache-Control: no-cache` on `/sw.js` is set in nginx; a hard reload (Ctrl+Shift+R) should force the swap. If not, `chrome://serviceworker-internals/` → unregister.
 - **404 on every page**: check `try_files $uri $uri/ $uri.html /404.html;` is intact and `root /var/www/echo/out;` exists.
