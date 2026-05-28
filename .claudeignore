@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+*.log
+.DS_Store
+
+# Seed data is large and rarely needs full reads during exploration.
+# Read it explicitly via Read tool when you need to inspect content.
+public/seed/echo_seed_*.json

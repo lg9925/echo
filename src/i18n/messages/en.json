@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "Echo",
+    "tagline": "Sentence islands · Shadowing · Spaced repetition"
+  },
+  "nav": {
+    "home": "Home",
+    "review": "Review",
+    "settings": "Settings"
+  },
+  "home": {
+    "pickLanguage": "Pick a language",
+    "pickIsland": "Pick an island",
+    "noData": "No data loaded yet."
+  },
+  "languages": {
+    "de": "German"
+  },
+  "review": {
+    "title": "Review",
+    "dueBadge": "{n} due",
+    "noDue": "Nothing due today",
+    "open": "Start review",
+    "reveal": "Reveal",
+    "again": "Again",
+    "good": "Good",
+    "done": "Session done 🎉",
+    "remaining": "{n} left",
+    "empty": "No sentences to review yet — try an island first.",
+    "loading": "Loading…"
+  },
+  "player": {
+    "back": "Back",
+    "play": "Play",
+    "pause": "Pause",
+    "next": "Next",
+    "prev": "Previous",
+    "sentenceProgress": "{current} / {total}",
+    "mode": "Mode",
+    "modeBilingual": "Native + Target",
+    "modeTargetOnly": "Target only",
+    "rate": "Rate",
+    "pauseLabel": "Shadow pause",
+    "seconds": "{n}s",
+    "loop": "Loop range",
+    "loopAll": "All",
+    "loopRange": "Sentences {start} – {end}",
+    "currentSentence": "Current sentence",
+    "note": "Note",
+    "variants": "Variants",
+    "noVoice": "No German voice found, using default.",
+    "ttsUnsupported": "Your browser does not support Web Speech; audio disabled.",
+    "loading": "Loading…",
+    "empty": "This island has no sentences yet."
+  }
+}

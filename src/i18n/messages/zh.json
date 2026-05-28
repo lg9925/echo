@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "Echo",
+    "tagline": "句子岛 · 影子跟读 · 间隔重复"
+  },
+  "nav": {
+    "home": "首页",
+    "review": "复习",
+    "settings": "设置"
+  },
+  "home": {
+    "pickLanguage": "选择语言",
+    "pickIsland": "选择场景岛",
+    "noData": "数据未加载,稍后再试。"
+  },
+  "languages": {
+    "de": "德语"
+  },
+  "review": {
+    "title": "复习",
+    "dueBadge": "待复习 {n}",
+    "noDue": "今天没有待复习",
+    "open": "开始复习",
+    "reveal": "翻面",
+    "again": "再来",
+    "good": "记住了",
+    "done": "本轮搞定 🎉",
+    "remaining": "剩 {n} 张",
+    "empty": "还没有可复习的句子,先在岛里学几句。",
+    "loading": "加载中…"
+  },
+  "player": {
+    "back": "返回",
+    "play": "播放",
+    "pause": "暂停",
+    "next": "下一句",
+    "prev": "上一句",
+    "sentenceProgress": "{current} / {total}",
+    "mode": "模式",
+    "modeBilingual": "母语 + 外语",
+    "modeTargetOnly": "纯外语",
+    "rate": "语速",
+    "pauseLabel": "跟读停顿",
+    "seconds": "{n}s",
+    "loop": "循环范围",
+    "loopAll": "全部",
+    "loopRange": "第 {start} – {end} 句",
+    "currentSentence": "当前句",
+    "note": "说明",
+    "variants": "变体",
+    "noVoice": "未找到德语语音,使用默认。",
+    "ttsUnsupported": "你的浏览器不支持 Web Speech,无法播放音频。",
+    "loading": "加载中…",
+    "empty": "这个岛还没有句子。"
+  }
+}
