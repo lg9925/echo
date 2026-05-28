@@ -19,9 +19,11 @@ git reset --hard "@{u}"
 echo "  HEAD: $(git rev-parse --short HEAD) — $(git log -1 --format=%s)"
 echo
 
-# 2. Install deps (frozen lockfile = reproducible)
-echo "→ pnpm install --frozen-lockfile"
-pnpm install --frozen-lockfile
+# 2. Install deps. --frozen-lockfile = reproducible; --trust-lockfile
+# disables pnpm 11's minimumReleaseAge supply-chain check because we own
+# the lockfile via Git and have already vetted it locally.
+echo "→ pnpm install --frozen-lockfile --trust-lockfile"
+pnpm install --frozen-lockfile --trust-lockfile
 echo
 
 # 3. Build static export → ./out/
