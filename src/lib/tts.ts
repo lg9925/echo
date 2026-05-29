@@ -108,3 +108,10 @@ export function cancelAllSpeech(): void {
   if (typeof window === "undefined") return;
   window.speechSynthesis.cancel();
 }
+
+// Strip parenthetical annotations like "(南德/奥地利)" or "（dir / Ihnen）"
+// so TTS doesn't try to pronounce Chinese/meta notes mixed into a variant.
+// Handles both half-width "()" and full-width "（）" pairs.
+export function stripParentheticals(text: string): string {
+  return text.replace(/[（(][^)）]*[)）]/g, "").replace(/\s+/g, " ").trim();
+}

@@ -10,16 +10,19 @@ import {
 import { useTranslations } from "next-intl";
 import { listSentencesByIsland } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
-import { cancelAllSpeech, speak } from "@/lib/tts";
+import { cancelAllSpeech, speak, stripParentheticals } from "@/lib/tts";
 import {
   DEFAULT_SETTINGS,
+  loadPlayerSettings,
   type PlayerMode,
   type PlayerSettings,
   nextIndex,
   prevIndex,
+  savePlayerSettings,
   sleep,
 } from "@/lib/player";
 import type { Sentence } from "@/lib/types";
+import { TargetTokenized } from "./TargetTokenized";
 
 const NATIVE_LANG_BCP47 = "zh-CN";
 
@@ -50,6 +53,24 @@ export function ShadowPlayer({
   const [idx, setIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [settings, setSettings] = useState<PlayerSettings>(DEFAULT_SETTINGS);
+  const [playingVariantIdx, setPlayingVariantIdx] = useState<number | null>(
+    null,
+  );
+
+  // Restore persisted settings AFTER hydration (useState init can't, because
+  // SSR sees no localStorage and React reconciles against the SSR'd value).
+  useEffect(() => {
+    const persisted = loadPlayerSettings();
+    if (persisted !== DEFAULT_SETTINGS) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot localStorage rehydration after mount
+      setSettings(persisted);
+    }
+  }, []);
+
+  // Persist on every change.
+  useEffect(() => {
+    savePlayerSettings(settings);
+  }, [settings]);
   const ttsSupported = useSyncExternalStore(
     () => () => {},
     () => "speechSynthesis" in window,
@@ -117,9 +138,13 @@ export function ShadowPlayer({
       await sleep(gapSec * 1000, ctrl.signal);
       if (ctrl.signal.aborted) return;
 
-      setIdx((current) =>
-        nextIndex(current, sentences.length, settingsRef.current.loop),
-      );
+      if (settingsRef.current.autoAdvance) {
+        setIdx((current) =>
+          nextIndex(current, sentences.length, settingsRef.current.loop),
+        );
+      } else {
+        setIsPlaying(false);
+      }
     })();
 
     return () => {
@@ -151,22 +176,27 @@ export function ShadowPlayer({
 
   const onNext = useCallback(() => {
     if (!sentences) return;
+    cancelAllSpeech();
     setIdx((current) =>
       nextIndex(current, sentences.length, settingsRef.current.loop),
     );
-    cancelAllSpeech();
+    setIsPlaying(true);
   }, [sentences]);
 
   const onPrev = useCallback(() => {
     if (!sentences) return;
+    cancelAllSpeech();
     setIdx((current) =>
       prevIndex(current, sentences.length, settingsRef.current.loop),
     );
-    cancelAllSpeech();
+    setIsPlaying(true);
   }, [sentences]);
 
   const setMode = useCallback((mode: PlayerMode) => {
     setSettings((s) => ({ ...s, mode }));
+  }, []);
+  const setAutoAdvance = useCallback((autoAdvance: boolean) => {
+    setSettings((s) => ({ ...s, autoAdvance }));
   }, []);
   const setRate = useCallback((rate: number) => {
     setSettings((s) => ({ ...s, rate }));
@@ -174,6 +204,38 @@ export function ShadowPlayer({
   const setPauseSec = useCallback((pauseSec: number) => {
     setSettings((s) => ({ ...s, pauseSec }));
   }, []);
+  const setGapSec = useCallback((gapSec: number) => {
+    setSettings((s) => ({ ...s, gapSec }));
+  }, []);
+
+  const onTapWord = useCallback(
+    (word: string) => {
+      cancelAllSpeech();
+      setIsPlaying(false);
+      void speak(word, {
+        lang: targetBcp47(language),
+        rate: settingsRef.current.rate,
+      });
+    },
+    [language],
+  );
+
+  const speakVariant = useCallback(
+    async (text: string, i: number) => {
+      cancelAllSpeech();
+      setIsPlaying(false);
+      setPlayingVariantIdx(i);
+      try {
+        await speak(stripParentheticals(text), {
+          lang: targetBcp47(language),
+          rate: settingsRef.current.rate,
+        });
+      } finally {
+        setPlayingVariantIdx((current) => (current === i ? null : current));
+      }
+    },
+    [language],
+  );
 
   const sentence = sentences?.[idx];
   const total = sentences?.length ?? 0;
@@ -229,7 +291,7 @@ export function ShadowPlayer({
           </div>
           <div>
             <p className="text-xs text-zinc-500 mb-1">target</p>
-            <p className="text-2xl font-medium">{sentence.target}</p>
+            <TargetTokenized target={sentence.target} onTapWord={onTapWord} />
             {sentence.ipa && (
               <p className="text-sm text-zinc-500 font-mono mt-1">
                 /{sentence.ipa}/
@@ -257,9 +319,24 @@ export function ShadowPlayer({
               <summary className="text-xs text-zinc-500 cursor-pointer">
                 {t("variants")} ({sentence.variants.length})
               </summary>
-              <ul className="mt-2 space-y-1 list-disc list-inside text-zinc-600 dark:text-zinc-400">
+              <p className="text-xs text-zinc-500 mt-2">
+                {t("tapVariantHint")}
+              </p>
+              <ul className="mt-2 space-y-1">
                 {sentence.variants.map((v, i) => (
-                  <li key={i}>{v}</li>
+                  <li key={i}>
+                    <button
+                      type="button"
+                      onClick={() => speakVariant(v, i)}
+                      className={`block w-full text-left px-2 py-2 rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 ${
+                        playingVariantIdx === i
+                          ? "bg-zinc-100 dark:bg-zinc-900"
+                          : ""
+                      }`}
+                    >
+                      {v}
+                    </button>
+                  </li>
                 ))}
               </ul>
             </details>
@@ -293,6 +370,36 @@ export function ShadowPlayer({
       </div>
 
       <section className="space-y-4 text-sm">
+        <div>
+          <label className="block text-xs text-zinc-500 mb-2">
+            {t("advance")}
+          </label>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setAutoAdvance(true)}
+              className={`flex-1 px-3 py-2 rounded-lg border ${
+                settings.autoAdvance
+                  ? "border-zinc-900 dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900"
+                  : "border-zinc-200 dark:border-zinc-800"
+              }`}
+            >
+              {t("autoAdvance")}
+            </button>
+            <button
+              type="button"
+              onClick={() => setAutoAdvance(false)}
+              className={`flex-1 px-3 py-2 rounded-lg border ${
+                !settings.autoAdvance
+                  ? "border-zinc-900 dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900"
+                  : "border-zinc-200 dark:border-zinc-800"
+              }`}
+            >
+              {t("manualAdvance")}
+            </button>
+          </div>
+        </div>
+
         <div>
           <label className="block text-xs text-zinc-500 mb-2">
             {t("mode")}
@@ -353,6 +460,25 @@ export function ShadowPlayer({
             step="1"
             value={settings.pauseSec}
             onChange={(e) => setPauseSec(parseInt(e.target.value, 10))}
+            className="w-full"
+          />
+        </div>
+
+        <div className={settings.autoAdvance ? "" : "opacity-50"}>
+          <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
+            <span>{t("gapLabel")}</span>
+            <span className="tabular-nums">
+              {t("seconds", { n: settings.gapSec })}
+            </span>
+          </label>
+          <input
+            type="range"
+            min="1"
+            max="10"
+            step="1"
+            value={settings.gapSec}
+            onChange={(e) => setGapSec(parseInt(e.target.value, 10))}
+            disabled={!settings.autoAdvance}
             className="w-full"
           />
         </div>
