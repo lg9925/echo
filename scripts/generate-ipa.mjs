@@ -5,9 +5,17 @@
 // seedLoader will re-ingest.
 //
 // Usage:
-//   node scripts/generate-ipa.mjs            # idempotent: skips sentences with existing ipa
-//   node scripts/generate-ipa.mjs --force    # regenerate even if ipa already present
+//   node scripts/generate-ipa.mjs                  # idempotent: skips sentences with existing ipa
+//   node scripts/generate-ipa.mjs --force          # regenerate even if ipa already present
+//   node scripts/generate-ipa.mjs --lang de        # only process echo_seed_de.json
+//   node scripts/generate-ipa.mjs --lang de --force
 //   ESPEAK_NG_PATH=/path/to/espeak-ng node scripts/generate-ipa.mjs
+//
+// IMPORTANT: text is passed to espeak-ng via stdin (not argv) because on
+// Windows, Node's spawnSync re-encodes argv through the active code page,
+// which mangles non-ASCII characters like the German umlauts ü/ö/ä/ß.
+// "für" via argv → ɛf tˈeːr ɛɾ (letter-by-letter spelling fallback);
+// "für" via stdin (UTF-8) → fyːɾ (correct).
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -46,9 +54,10 @@ function locateEspeak() {
 }
 
 function ipaFor(espeak, voice, text) {
-  const result = spawnSync(espeak, ["-v", voice, "--ipa", "-q", text], {
+  const result = spawnSync(espeak, ["-v", voice, "--ipa", "-q"], {
     encoding: "utf8",
     windowsHide: true,
+    input: Buffer.from(text, "utf8"),
   });
   if (result.status !== 0) {
     throw new Error(
@@ -78,8 +87,17 @@ async function processFile(file, espeak, force) {
   return { file, touched, version: raw.version ?? 1 };
 }
 
+function parseLangFilter() {
+  const idx = process.argv.indexOf("--lang");
+  if (idx !== -1 && process.argv[idx + 1]) return process.argv[idx + 1];
+  const equals = process.argv.find((a) => a.startsWith("--lang="));
+  if (equals) return equals.slice("--lang=".length);
+  return null;
+}
+
 async function main() {
   const force = process.argv.includes("--force");
+  const langFilter = parseLangFilter();
   const espeak = locateEspeak();
   if (!espeak) {
     console.error(
@@ -90,11 +108,14 @@ async function main() {
   }
   console.error(`Using ${espeak}`);
 
-  const files = (await fs.readdir(SEED_DIR)).filter(
-    (f) => f.startsWith("echo_seed_") && f.endsWith(".json"),
-  );
+  const files = (await fs.readdir(SEED_DIR))
+    .filter((f) => f.startsWith("echo_seed_") && f.endsWith(".json"))
+    .filter((f) => !langFilter || f === `echo_seed_${langFilter}.json`);
   if (files.length === 0) {
-    console.error(`No seed files in ${SEED_DIR}`);
+    console.error(
+      `No seed files in ${SEED_DIR}` +
+        (langFilter ? ` matching --lang=${langFilter}` : ""),
+    );
     process.exit(1);
   }
 

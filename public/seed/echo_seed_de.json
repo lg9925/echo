@@ -79,7 +79,7 @@
             "Schön, Sie kennenzulernen.",
             "Hat mich gefreut!(告别时)"
           ],
-          "ipa": "ˌɛstsˌeːhˈɑːn dɪç kˈɛnəntsˌuːlɜnən"
+          "ipa": "ʃˈøːn dɪç kˈɛnəntsˌuːlɜnən"
         },
         {
           "native": "我叫……,你呢?",
@@ -94,7 +94,7 @@
             "Und wer bist du?",
             "Wie heißt du?"
           ],
-          "ipa": "ɪç hˈaɪə ˈʊnt duː"
+          "ipa": "ɪç hˈaɪsə ˈʊnt duː"
         },
         {
           "native": "你是哪里人?",
@@ -124,7 +124,7 @@
             "Mach's gut!",
             "Wir sehen uns!"
           ],
-          "ipa": "bɪs ˌɛspˈeːtˈeːɾ"
+          "ipa": "bɪs ʃpˈɛːtɜ"
         },
         {
           "native": "周末愉快!",
@@ -139,7 +139,7 @@
             "Erhol dich gut!",
             "Genieß das Wochenende!"
           ],
-          "ipa": "ˌɛstsˌeːhˈɑːnˈeːs vˈɔxənəndə"
+          "ipa": "ʃˈøːnəs vˈɔxənəndə"
         },
         {
           "native": "不好意思,你叫什么来着?",
@@ -175,7 +175,7 @@
             "Wir sind zu zweit.",
             "Hätten Sie einen Tisch frei?"
           ],
-          "ipa": "hˈaloː aɪn tˈɪʃ ˈɛf tˈeːrˈeːmɑː ˈɛɾ tsvˈaɪ bˈɪtə"
+          "ipa": "hˈaloː aɪn tˈɪʃ fyːɾ tsvˈaɪ bˈɪtə"
         },
         {
           "native": "能看一下菜单吗?",
@@ -190,7 +190,7 @@
             "Haben Sie eine Karte auf Englisch?",
             "Was können Sie empfehlen?"
           ],
-          "ipa": "kˈɑːntˈeː ɪç bˈɪtə diː kˈaɾtə hˈɑːbən"
+          "ipa": "kˈœntə ɪç bˈɪtə diː kˈaɾtə hˈɑːbən"
         },
         {
           "native": "我要点这个。",
@@ -220,7 +220,7 @@
             "Ein stilles Wasser, bitte.",
             "Können Sie mir ein Wasser bringen?"
           ],
-          "ipa": "ɪç hˈɑːtˈeː ɡˈɛɾn aɪn vˈasɜ"
+          "ipa": "ɪç hˌɛtə ɡˈɛɾn aɪn vˈasɜ"
         },
         {
           "native": "这道菜辣吗?",
@@ -280,7 +280,7 @@
             "Ich würde gern bezahlen.",
             "Bezahlen, bitte."
           ],
-          "ipa": "viːɾ ˈɛmçtˈeːn tsˈɑːlən bˈɪtə"
+          "ipa": "viːɾ mˈœçtən tsˈɑːlən bˈɪtə"
         },
         {
           "native": "一起付还是分开付?——一起。",
@@ -295,7 +295,7 @@
             "Alles zusammen, bitte.",
             "Wir zahlen getrennt."
           ],
-          "ipa": "tsuːzˈamən ˌoːdɜ ɡətɾˈɛnt tɾˈeːmɑː tsˈeː tsuːzˈamən bˈɪtə"
+          "ipa": "tsuːzˈamən ˌoːdɜ ɡətɾˈɛnt tsuːzˈamən bˈɪtə"
         },
         {
           "native": "不用找了。(含小费)",
@@ -406,7 +406,7 @@
             "Eine Papiertüte, bitte.",
             "Nein danke, ich hab eine dabei."
           ],
-          "ipa": "ɪç bɾˈaʊxə ˌaɪnə tˈeː tˈeːrˈeːmɑː tˈeː bˈɪtə"
+          "ipa": "ɪç bɾˈaʊxə ˌaɪnə tˈyːtə bˈɪtə"
         },
         {
           "native": "就这些了,谢谢。",
@@ -436,7 +436,7 @@
             "Eine kleine, bitte.",
             "Nein, passt schon."
           ],
-          "ipa": "ˈɛmçtˈeːn ziː ˌaɪnə tˈeː tˈeːrˈeːmɑː tˈeː tɾˈeːmɑː tsˈeː nˈaɪn dˈaŋkə"
+          "ipa": "mˈœçtən ziː ˌaɪnə tˈyːtə nˈaɪn dˈaŋkə"
         },
         {
           "native": "不好意思,这个过期了。",
@@ -471,5 +471,5 @@
       ]
     }
   ],
-  "version": 3
+  "version": 4
 }
