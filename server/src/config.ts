@@ -4,7 +4,7 @@
 
 // --- LLM task routing ---
 
-export type LlmProvider = "anthropic" | "openai" | "deepseek";
+export type LlmProvider = "anthropic" | "openai" | "deepseek" | "claude-cli";
 export type LlmTask = "authoring" | "gloss";
 
 export interface LlmRoute {
