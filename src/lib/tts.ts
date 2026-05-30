@@ -1,3 +1,16 @@
+import { apiFetchBlob } from "./api/client";
+import {
+  audioKey,
+  getCachedAudio,
+  putCachedAudio,
+  rateBucketFor,
+} from "./audioCache";
+
+// ─────────────────────────────────────────────────────────────────────────
+// SpeechSynthesis (fallback path). Kept intact: used when neural TTS is
+// unavailable (no token, offline + uncached, or server error).
+// ─────────────────────────────────────────────────────────────────────────
+
 let _voicesCache: SpeechSynthesisVoice[] | null = null;
 let _voicesPromise: Promise<SpeechSynthesisVoice[]> | null = null;
 
@@ -22,7 +35,6 @@ function loadVoices(): Promise<SpeechSynthesisVoice[]> {
       }
     };
     synth.addEventListener("voiceschanged", handler);
-    // Safety fallback: resolve empty after 3s so the app doesn't hang.
     setTimeout(() => {
       const v = synth.getVoices();
       _voicesCache = v;
@@ -57,21 +69,12 @@ export interface SpeakOptions {
   signal?: AbortSignal;
 }
 
-export async function speak(
-  text: string,
-  opts: SpeakOptions,
-): Promise<void> {
-  if (typeof window === "undefined") return;
-  if (opts.signal?.aborted) return;
-
-  const synth = window.speechSynthesis;
-  const voice = opts.voice ?? (await pickVoice(opts.lang));
-
+function speakViaSynthesis(text: string, opts: SpeakOptions): Promise<void> {
   return new Promise<void>((resolve) => {
+    const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = opts.lang;
     utterance.rate = opts.rate ?? 1;
-    if (voice) utterance.voice = voice;
 
     let settled = false;
     let safety: ReturnType<typeof setTimeout> | null = null;
@@ -91,27 +94,132 @@ export async function speak(
     utterance.onerror = finish;
     opts.signal?.addEventListener("abort", onAbort);
 
-    // Safety: if the browser produces no voices (e.g. some embedded Chromes),
-    // speak() may never fire end/error. Cap each utterance at a generous bound
-    // so the player loop doesn't hang.
+    // Safety: some embedded Chromes never fire end/error.
     const cap = Math.min(30000, Math.max(2000, text.length * 120));
     safety = setTimeout(() => {
       synth.cancel();
       finish();
     }, cap);
 
-    synth.speak(utterance);
+    void (async () => {
+      const voice = opts.voice ?? (await pickVoice(opts.lang));
+      if (voice) utterance.voice = voice;
+      synth.speak(utterance);
+    })();
   });
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Neural TTS (primary path): cache → server → play. Cache lives in IndexedDB,
+// so a clip is generated at most once and replays offline forever.
+// ─────────────────────────────────────────────────────────────────────────
+
+let currentAudio: HTMLAudioElement | null = null;
+
+// Fetch (if needed) and cache the clip for (text, lang, rate). Returns the blob.
+async function ensureCachedAudio(
+  text: string,
+  lang: string,
+  rate: number,
+  signal?: AbortSignal,
+): Promise<Blob> {
+  const { bucket, serverRate } = rateBucketFor(rate);
+  const key = audioKey({ lang, voiceBucket: "default", rateBucket: bucket, text });
+
+  const hit = await getCachedAudio(key);
+  if (hit) return hit.blob;
+
+  // Throws (no token / offline / server error) → speak() falls back.
+  const blob = await apiFetchBlob("/v1/tts", { text, lang, rate: serverRate }, signal);
+  await putCachedAudio({
+    key,
+    blob,
+    mime: blob.type || "audio/mpeg",
+    createdAt: Date.now(),
+  });
+  return blob;
+}
+
+function playBlob(
+  blob: Blob,
+  playbackRate: number,
+  signal?: AbortSignal,
+): Promise<void> {
+  return new Promise<void>((resolve) => {
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    audio.playbackRate = Math.min(2, Math.max(0.5, playbackRate));
+    // Time-stretch without pitch shift when supported.
+    (audio as HTMLAudioElement & { preservesPitch?: boolean }).preservesPitch = true;
+    currentAudio = audio;
+
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      signal?.removeEventListener("abort", onAbort);
+      URL.revokeObjectURL(url);
+      if (currentAudio === audio) currentAudio = null;
+      resolve();
+    };
+    const onAbort = () => {
+      audio.pause();
+      finish();
+    };
+
+    audio.onended = finish;
+    audio.onerror = finish;
+    signal?.addEventListener("abort", onAbort);
+    if (signal?.aborted) {
+      onAbort();
+      return;
+    }
+    audio.play().catch(finish);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Public API — unchanged signature & abort semantics.
+// ─────────────────────────────────────────────────────────────────────────
+
+export async function speak(text: string, opts: SpeakOptions): Promise<void> {
+  if (typeof window === "undefined") return;
+  if (opts.signal?.aborted) return;
+
+  const rate = opts.rate ?? 1;
+  const { serverRate } = rateBucketFor(rate);
+
+  try {
+    const blob = await ensureCachedAudio(text, opts.lang, rate, opts.signal);
+    await playBlob(blob, rate / serverRate, opts.signal);
+    return;
+  } catch {
+    // Neural unavailable — fall back to the browser's built-in voices.
+  }
+  if (opts.signal?.aborted) return;
+  await speakViaSynthesis(text, opts);
+}
+
+/** Generate + cache a clip without playing (e.g. when an inbox card is added). */
+export async function prewarmAudio(text: string, lang: string, rate = 1): Promise<void> {
+  try {
+    await ensureCachedAudio(text, lang, rate);
+  } catch {
+    // Best-effort; first real playback will generate it instead.
+  }
 }
 
 export function cancelAllSpeech(): void {
   if (typeof window === "undefined") return;
-  window.speechSynthesis.cancel();
+  window.speechSynthesis?.cancel();
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
 }
 
-// Strip parenthetical annotations like "(南德/奥地利)" or "（dir / Ihnen）"
-// so TTS doesn't try to pronounce Chinese/meta notes mixed into a variant.
-// Handles both half-width "()" and full-width "（）" pairs.
+// Strip parenthetical annotations like "(南德/奥地利)" so TTS doesn't read
+// Chinese/meta notes mixed into a variant. Handles half- and full-width pairs.
 export function stripParentheticals(text: string): string {
   return text.replace(/[（(][^)）]*[)）]/g, "").replace(/\s+/g, " ").trim();
 }

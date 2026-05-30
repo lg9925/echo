@@ -138,7 +138,103 @@ Visit in a browser. PWA install prompt should appear in Chrome's address bar.
 
 ---
 
+## Backend (API) — first-time setup
+
+The Phase-2 features (想说 / 想懂 / neural TTS) call a small **Node/Hono** server
+in `server/`. It runs as a systemd service on the same box and is reached at
+**https://api.echo.helloworldhub.xyz/**. The frontend never holds vendor keys —
+only the one shared token the server checks.
+
+### B1. DNS
+
+```
+api.echo.helloworldhub.xyz   A   165.154.203.38
+```
+
+### B2. Server-side secrets (env vars)
+
+Keys live in a root-only file loaded by systemd — **never** in the repo or the
+frontend.
+
+```bash
+sudo mkdir -p /etc/echo
+sudo install -m 600 /dev/null /etc/echo/echo-server.env
+
+# Generate the shared token (this is what you paste into the app's Settings page):
+openssl rand -hex 24
+
+sudo tee /etc/echo/echo-server.env >/dev/null <<'EOF'
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=                 # optional
+DEEPSEEK_API_KEY=               # optional
+ECHO_API_TOKEN=<paste the openssl output here>
+PORT=8787
+EOF
+sudo chmod 600 /etc/echo/echo-server.env
+```
+
+> Routing defaults (both 想说 and 想懂 → Claude) live in `server/src/config.ts`.
+> To switch a task to a cheaper provider without editing code, add e.g.
+> `LLM_GLOSS_PROVIDER=deepseek` / `LLM_GLOSS_MODEL=deepseek-chat` to this file.
+> TTS defaults to Edge-TTS (free, no key).
+
+### B3. Build the backend
+
+`deploy.sh` (run once already in step 5) installs the workspace and builds
+`server/dist/`. If you skipped it: `pnpm install --frozen-lockfile --trust-lockfile && pnpm --filter echo-server build`.
+
+### B4. systemd service
+
+```bash
+# Find your node path FIRST (fnm/nvm node is NOT at /usr/bin/node):
+which node    # e.g. /home/ops/.local/share/fnm/.../bin/node
+# Edit deploy/echo-server.service → set ExecStart to that node path if needed.
+
+sudo cp /var/www/echo/deploy/echo-server.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now echo-server
+systemctl status echo-server          # should be active (running)
+curl -s http://127.0.0.1:8787/health  # → {"ok":true,...}
+```
+
+### B5. Let `ops` restart it without a password (for deploy.sh)
+
+```bash
+echo 'ops ALL=(root) NOPASSWD: /bin/systemctl restart echo-server' | sudo tee /etc/sudoers.d/echo-server
+sudo chmod 440 /etc/sudoers.d/echo-server
+```
+
+### B6. nginx vhost + SSL
+
+```bash
+sudo cp /var/www/echo/deploy/nginx/api.echo.helloworldhub.xyz.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/api.echo.helloworldhub.xyz.conf /etc/nginx/sites-enabled/
+# Comment out the ssl_certificate* lines first so nginx starts on HTTP, then:
+sudo certbot --nginx -d api.echo.helloworldhub.xyz \
+  --non-interactive --agree-tos -m you@example.com --redirect
+sudo nginx -t && sudo systemctl reload nginx
+
+curl -s https://api.echo.helloworldhub.xyz/health   # → {"ok":true,...}
+```
+
+### B7. Point the app at the API
+
+In the app, open **Settings** → paste the `ECHO_API_TOKEN` value → **Test connection**
+should report success. (The API base defaults to `https://api.echo.helloworldhub.xyz`,
+baked in at build time by `deploy.sh`; leave the Settings "API base" field blank.)
+
+### Cost note
+
+Edge-TTS is free. Claude calls (想说/想懂) are ~1.4k in + ~0.7k out tokens each —
+on Sonnet roughly 1–2¢ per item. The frequent operation (TTS) costs nothing;
+the LLM completions are the only spend.
+
+---
+
 ## Each-time deploy
+
+`deploy.sh` now also rebuilds the backend (`server/dist/`), restarts the
+`echo-server` service, and bakes `NEXT_PUBLIC_API_URL` into the frontend build.
 
 After changes are committed and pushed:
 

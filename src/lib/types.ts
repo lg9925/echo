@@ -1,3 +1,9 @@
+import type {
+  ComposeResult,
+  GlossResult,
+  TargetLanguage,
+} from "./api/contracts";
+
 export interface Island {
   id: string;
   language: string;
@@ -59,4 +65,42 @@ export interface RawSeed {
   language_label?: string;
   version?: number;
   islands: RawIsland[];
+}
+
+// --- Phase 2: inbox + audio cache (Dexie v2) ---
+
+/** 想说 (say) = compose a sentence; 想懂 (understand) = gloss a word. */
+export type InboxKind = "say" | "understand";
+
+export type InboxStatus =
+  | "captured" // just dropped in, not processed
+  | "processing" // backend call in flight
+  | "ready" // result filled, awaiting user confirmation
+  | "error" // processing failed (retryable)
+  | "added"; // turned into a learning card
+
+export interface InboxItem {
+  id: string;
+  kind: InboxKind;
+  language: TargetLanguage;
+  /** What the user typed/spoke, verbatim. */
+  rawText: string;
+  inputMode: "text" | "voice";
+  status: InboxStatus;
+  createdAt: number;
+  updatedAt: number;
+  /** Filled when status reaches "ready". Shape depends on kind. */
+  result?: ComposeResult | GlossResult;
+  error?: string;
+  /** Set when status reaches "added". */
+  addedSentenceId?: string;
+  addedIslandId?: string;
+}
+
+/** Cached neural-TTS audio, keyed by hash(lang|voiceBucket|rateBucket|text). */
+export interface AudioCacheEntry {
+  key: string;
+  blob: Blob;
+  mime: string;
+  createdAt: number;
 }

@@ -1,0 +1,25 @@
+# Echo API server (LLM + TTS middle layers) — systemd unit.
+# Install: sudo cp deploy/echo-server.service /etc/systemd/system/
+#          sudo systemctl daemon-reload && sudo systemctl enable --now echo-server
+#
+# IMPORTANT: set ExecStart to your actual node path. With fnm/nvm, node is NOT
+# at /usr/bin/node — find it with `which node` and paste the full path below
+# (e.g. /home/ops/.local/share/fnm/node-versions/v24.*/installation/bin/node).
+
+[Unit]
+Description=Echo API server (compose / gloss / tts)
+After=network.target
+
+[Service]
+Type=simple
+User=ops
+Group=ops
+WorkingDirectory=/var/www/echo/server
+EnvironmentFile=/etc/echo/echo-server.env
+ExecStart=/usr/bin/env node /var/www/echo/server/dist/index.js
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

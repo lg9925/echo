@@ -6,7 +6,8 @@
   "nav": {
     "home": "Home",
     "review": "Review",
-    "settings": "Settings"
+    "settings": "Settings",
+    "inbox": "Inbox"
   },
   "home": {
     "pickLanguage": "Pick a language",
@@ -16,6 +17,63 @@
   "languages": {
     "de": "German",
     "en": "English"
+  },
+  "settings": {
+    "title": "Settings",
+    "back": "Back",
+    "apiSection": "Backend service",
+    "apiToken": "Access token",
+    "apiTokenHint": "The ECHO_API_TOKEN set on the server; used for compose / gloss / TTS calls.",
+    "apiTokenPlaceholder": "Paste your token",
+    "apiBase": "API base URL (optional)",
+    "apiBaseHint": "Leave blank to use the default. Set only for local dev or a different server.",
+    "save": "Save",
+    "saved": "Saved ✓",
+    "testConnection": "Test connection",
+    "testing": "Testing…",
+    "testOk": "Connected ✓",
+    "testFail": "Connection failed: {detail}",
+    "unreachable": "Cannot reach the server",
+    "needToken": "Enter an access token first"
+  },
+  "inbox": {
+    "title": "Inbox",
+    "back": "Back",
+    "empty": "Inbox is empty. Say something, or drop in a word you didn't get.",
+    "kindSay": "Say",
+    "kindUnderstand": "Understand",
+    "statusCaptured": "Pending",
+    "statusProcessing": "Processing…",
+    "statusReady": "Review",
+    "statusError": "Error",
+    "statusAdded": "Added",
+    "delete": "Delete",
+    "retry": "Retry",
+    "addToLearning": "Add to learning",
+    "openIsland": "Shadow it →",
+    "chooseIsland": "Add to which island",
+    "pickedIsland": "Picked-up words",
+    "frame": "Frame",
+    "literal": "Literal",
+    "note": "Note",
+    "variants": "Variants",
+    "meaning": "Meaning",
+    "example": "Example"
+  },
+  "capture": {
+    "say": "Say",
+    "understand": "Understand",
+    "language": "Target language",
+    "sayHint": "Say it in Chinese; we'll turn it into a natural phrase.",
+    "understandHint": "Drop a word/phrase you didn't get; we'll gloss it.",
+    "sayPlaceholder": "e.g. I'd like to book a ticket to Berlin",
+    "understandPlaceholder": "e.g. Entschuldigung",
+    "submit": "Add to inbox"
+  },
+  "voice": {
+    "start": "Voice input",
+    "stop": "Stop",
+    "listening": "Listening…"
   },
   "review": {
     "title": "Review",

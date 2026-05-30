@@ -6,7 +6,8 @@
   "nav": {
     "home": "首页",
     "review": "复习",
-    "settings": "设置"
+    "settings": "设置",
+    "inbox": "收件箱"
   },
   "home": {
     "pickLanguage": "选择语言",
@@ -16,6 +17,63 @@
   "languages": {
     "de": "德语",
     "en": "英语"
+  },
+  "settings": {
+    "title": "设置",
+    "back": "返回",
+    "apiSection": "后端服务",
+    "apiToken": "访问令牌",
+    "apiTokenHint": "服务器上设置的 ECHO_API_TOKEN,用于调用造句/查词/发音接口。",
+    "apiTokenPlaceholder": "粘贴你的令牌",
+    "apiBase": "接口地址(可选)",
+    "apiBaseHint": "留空使用默认。仅在本地调试或更换服务器时填写。",
+    "save": "保存",
+    "saved": "已保存 ✓",
+    "testConnection": "测试连接",
+    "testing": "测试中…",
+    "testOk": "连接成功 ✓",
+    "testFail": "连接失败:{detail}",
+    "unreachable": "无法连接到服务器",
+    "needToken": "请先填写访问令牌"
+  },
+  "inbox": {
+    "title": "收件箱",
+    "back": "返回",
+    "empty": "收件箱是空的。说点什么、或粘一个生词进来。",
+    "kindSay": "想说",
+    "kindUnderstand": "想懂",
+    "statusCaptured": "待处理",
+    "statusProcessing": "处理中…",
+    "statusReady": "待确认",
+    "statusError": "出错",
+    "statusAdded": "已加入",
+    "delete": "删除",
+    "retry": "重试",
+    "addToLearning": "加入学习",
+    "openIsland": "去跟读 →",
+    "chooseIsland": "归到哪个岛",
+    "pickedIsland": "捡来的词",
+    "frame": "句型",
+    "literal": "直译",
+    "note": "说明",
+    "variants": "变体",
+    "meaning": "含义",
+    "example": "例句"
+  },
+  "capture": {
+    "say": "想说",
+    "understand": "想懂",
+    "language": "目标语言",
+    "sayHint": "用中文说一句你想表达的话,稍后自动翻成地道说法。",
+    "understandHint": "贴一个没懂的外语词/短语,稍后自动给出含义和例句。",
+    "sayPlaceholder": "例如:我想订一张去柏林的票",
+    "understandPlaceholder": "例如:Entschuldigung",
+    "submit": "收入收件箱"
+  },
+  "voice": {
+    "start": "语音输入",
+    "stop": "停止",
+    "listening": "聆听中…"
   },
   "review": {
     "title": "复习",

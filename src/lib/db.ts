@@ -1,11 +1,20 @@
 import Dexie, { type EntityTable } from "dexie";
-import type { Island, ReviewState, Sentence, SeedMeta } from "./types";
+import type {
+  AudioCacheEntry,
+  InboxItem,
+  Island,
+  ReviewState,
+  Sentence,
+  SeedMeta,
+} from "./types";
 
 class EchoDB extends Dexie {
   islands!: EntityTable<Island, "id">;
   sentences!: EntityTable<Sentence, "id">;
   reviews!: EntityTable<ReviewState, "sentenceId">;
   meta!: EntityTable<SeedMeta, "key">;
+  inbox!: EntityTable<InboxItem, "id">;
+  audioCache!: EntityTable<AudioCacheEntry, "key">;
 
   constructor() {
     super("echo");
@@ -14,6 +23,12 @@ class EchoDB extends Dexie {
       sentences: "&id, islandId, language, [islandId+indexInIsland]",
       reviews: "&sentenceId, language, due, [language+due]",
       meta: "&key, language",
+    });
+    // v2 only adds tables; v1 tables are inherited untouched (reviews are
+    // never wiped). No upgrade fn needed — no data migration.
+    this.version(2).stores({
+      inbox: "&id, status, language, [status+language], createdAt",
+      audioCache: "&key, createdAt",
     });
   }
 }
