@@ -154,10 +154,18 @@ cd /var/www/echo
 
 That's it. No nginx reload needed unless the nginx config itself changed.
 
+> **Note (local SSH config):** on the maintainer's machine this host is
+> reachable via the `panel` alias in `~/.ssh/config` (it maps
+> `165.154.203.38` to the right `IdentityFile`). Plain `ssh ops@165.154.203.38`
+> won't pick up that key and fails with `Permission denied (publickey)`.
+> Use `ssh panel ...` from that machine.
+
 ### One-liner from your laptop
 
 ```bash
 ssh ops@165.154.203.38 'cd /var/www/echo && ./deploy/deploy.sh'
+# or, using the local ssh-config alias:
+ssh panel 'cd /var/www/echo && ./deploy/deploy.sh'
 ```
 
 ---
