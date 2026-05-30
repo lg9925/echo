@@ -5,10 +5,16 @@ import type {
   ComposeResult,
   GlossRequest,
   GlossResult,
+  ScenarioRequest,
+  ScenarioResult,
 } from "../contracts";
 import { getAdapter } from "./adapters";
-import { buildAuthoringPrompt, buildGlossPrompt } from "./prompts";
-import { composeSchema, glossSchema } from "./schema";
+import {
+  buildAuthoringPrompt,
+  buildGlossPrompt,
+  buildScenarioPrompt,
+} from "./prompts";
+import { composeSchema, glossSchema, scenarioSchema } from "./schema";
 
 // Pull a JSON object out of a model reply that may be wrapped in prose or a
 // ```json fence.
@@ -63,4 +69,8 @@ export function compose(req: ComposeRequest): Promise<ComposeResult> {
 
 export function gloss(req: GlossRequest): Promise<GlossResult> {
   return runStructured("gloss", buildGlossPrompt(req), glossSchema);
+}
+
+export function scenario(req: ScenarioRequest): Promise<ScenarioResult> {
+  return runStructured("scenario", buildScenarioPrompt(req), scenarioSchema);
 }

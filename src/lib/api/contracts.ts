@@ -44,6 +44,28 @@ export interface GlossResult {
   suggestedIslandName: string | null;
 }
 
+// --- /v1/scenario ("场景") ---
+
+export interface ScenarioRequest {
+  language: TargetLanguage;
+  description: string;
+}
+
+export interface ScenarioSentence {
+  native: string;
+  target: string;
+  frame: string;
+  literal: string;
+  note: string;
+  variants: string[];
+  ipa: string | null;
+}
+
+export interface ScenarioResult {
+  islandName: string;
+  sentences: ScenarioSentence[];
+}
+
 // --- /v1/tts (returns binary audio/mpeg) ---
 
 export interface TtsRequest {

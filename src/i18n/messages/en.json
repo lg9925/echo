@@ -42,6 +42,7 @@
     "empty": "Inbox is empty. Say something, or drop in a word you didn't get.",
     "kindSay": "Say",
     "kindUnderstand": "Understand",
+    "kindScenario": "Scenario",
     "statusCaptured": "Pending",
     "statusProcessing": "Processing…",
     "statusReady": "Review",
@@ -49,6 +50,7 @@
     "statusAdded": "Added",
     "delete": "Delete",
     "retry": "Retry",
+    "processingHint": "Generating… (scenarios can take a minute or two)",
     "addToLearning": "Add to learning",
     "openIsland": "Shadow it →",
     "chooseIsland": "Add to which island",
@@ -58,16 +60,22 @@
     "note": "Note",
     "variants": "Variants",
     "meaning": "Meaning",
-    "example": "Example"
+    "example": "Example",
+    "islandName": "Island name",
+    "sentenceCount": "{n} sentences",
+    "createIsland": "Create island"
   },
   "capture": {
     "say": "Say",
     "understand": "Understand",
+    "scenario": "Scenario",
     "language": "Target language",
     "sayHint": "Say it in Chinese; we'll turn it into a natural phrase.",
     "understandHint": "Drop a word/phrase you didn't get; we'll gloss it.",
+    "scenarioHint": "Describe a scene in one line; AI generates a whole island of sentences.",
     "sayPlaceholder": "e.g. I'd like to book a ticket to Berlin",
     "understandPlaceholder": "e.g. Entschuldigung",
+    "scenarioPlaceholder": "e.g. flying: from check-in all the way to customs",
     "submit": "Add to inbox"
   },
   "voice": {

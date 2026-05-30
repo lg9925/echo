@@ -2,7 +2,12 @@
 // a later step; this file is just capture + storage + queries.
 import { getDb } from "./db";
 import type { InboxItem, InboxKind } from "./types";
-import type { ComposeResult, GlossResult, TargetLanguage } from "./api/contracts";
+import type {
+  ComposeResult,
+  GlossResult,
+  ScenarioResult,
+  TargetLanguage,
+} from "./api/contracts";
 import { apiFetchJson } from "./api/client";
 
 export interface CaptureInput {
@@ -51,12 +56,17 @@ export async function deleteInboxItem(id: string): Promise<void> {
 }
 
 // Call the backend to fill in the result. captured/error → processing →
-// ready/error. Idempotent-ish: skips if already processing.
-export async function processInboxItem(id: string): Promise<void> {
+// ready/error. `onProgress` fires as soon as the item flips to "processing"
+// so the UI can reflect it immediately (the LLM call may take minutes).
+export async function processInboxItem(
+  id: string,
+  onProgress?: () => void,
+): Promise<void> {
   const item = await getInboxItem(id);
-  if (!item || item.status === "processing") return;
+  if (!item) return;
 
   await updateInboxItem(id, { status: "processing", error: undefined });
+  onProgress?.();
   try {
     if (item.kind === "say") {
       const result = await apiFetchJson<ComposeResult>("/v1/compose", {
@@ -64,10 +74,16 @@ export async function processInboxItem(id: string): Promise<void> {
         native: item.rawText,
       });
       await updateInboxItem(id, { status: "ready", result });
-    } else {
+    } else if (item.kind === "understand") {
       const result = await apiFetchJson<GlossResult>("/v1/gloss", {
         language: item.language,
         query: item.rawText,
+      });
+      await updateInboxItem(id, { status: "ready", result });
+    } else {
+      const result = await apiFetchJson<ScenarioResult>("/v1/scenario", {
+        language: item.language,
+        description: item.rawText,
       });
       await updateInboxItem(id, { status: "ready", result });
     }

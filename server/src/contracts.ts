@@ -55,6 +55,32 @@ export interface GlossResult {
   suggestedIslandName: string | null;
 }
 
+// --- /v1/scenario ("场景": 一句描述 → 一整串按流程排序的句子) ---
+
+export interface ScenarioRequest {
+  language: TargetLanguage;
+  /** 场景描述(中文),如 "坐飞机,从办理登机牌到出海关"。 */
+  description: string;
+}
+
+/** One card in a generated scenario island (same fields as a Sentence). */
+export interface ScenarioSentence {
+  native: string;
+  target: string;
+  frame: string;
+  literal: string;
+  note: string;
+  variants: string[];
+  ipa: string | null;
+}
+
+export interface ScenarioResult {
+  /** 场景岛名(中文),如 "机场流程"。 */
+  islandName: string;
+  /** 按流程顺序排列的句子,15+。 */
+  sentences: ScenarioSentence[];
+}
+
 // --- /v1/tts (returns binary audio/mpeg, not JSON) ---
 
 export interface TtsRequest {

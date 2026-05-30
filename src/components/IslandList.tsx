@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { countSentencesByIsland, listIslands } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
+import { islandHref } from "@/lib/cards";
 import type { Island } from "@/lib/types";
 
 interface IslandWithCount extends Island {
@@ -70,7 +71,7 @@ export function IslandList({
       {state.islands.map((isl) => (
         <li key={isl.id}>
           <a
-            href={`/${uiLocale}/shadow/${isl.id}/`}
+            href={islandHref(uiLocale, isl.id)}
             className="block w-full rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
           >
             <div className="flex items-baseline justify-between gap-3">

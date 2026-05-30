@@ -45,6 +45,10 @@ export function getDb(): EchoDB {
   return _db;
 }
 
+export async function getIsland(id: string): Promise<Island | undefined> {
+  return getDb().islands.get(id);
+}
+
 export async function listIslands(language: string): Promise<Island[]> {
   const db = getDb();
   return db.islands

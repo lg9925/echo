@@ -6,6 +6,7 @@ import { rateLimit } from "./ratelimit";
 import { PORT } from "./config";
 import composeRoute from "./routes/compose";
 import glossRoute from "./routes/gloss";
+import scenarioRoute from "./routes/scenario";
 import ttsRoute from "./routes/tts";
 
 const app = new Hono();
@@ -27,6 +28,7 @@ v1.get("/ping", (c) => c.json({ pong: true }));
 
 v1.route("/compose", composeRoute);
 v1.route("/gloss", glossRoute);
+v1.route("/scenario", scenarioRoute);
 v1.route("/tts", ttsRoute);
 
 app.route("/v1", v1);

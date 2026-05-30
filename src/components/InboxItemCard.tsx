@@ -3,16 +3,25 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import type { Island, InboxItem, InboxStatus } from "@/lib/types";
-import type { ComposeResult, GlossResult } from "@/lib/api/contracts";
+import type {
+  ComposeResult,
+  GlossResult,
+  ScenarioResult,
+  ScenarioSentence,
+} from "@/lib/api/contracts";
 import { deleteInboxItem, processInboxItem, updateInboxItem } from "@/lib/inbox";
 import { listIslands } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import {
   addSentenceToIsland,
+  addSentencesToIsland,
   composeToFields,
+  createScenarioIsland,
   getOrCreatePickedIsland,
   glossToFields,
+  islandHref,
   pickedIslandId,
+  scenarioToFieldsList,
 } from "@/lib/cards";
 import { prewarmAudio } from "@/lib/tts";
 
@@ -46,19 +55,24 @@ export function InboxItemCard({
 
   const pickedId = pickedIslandId(item.language);
 
-  // Auto-complete captured items in the background.
+  // Auto-complete in the background. Also picks up items stuck in "processing"
+  // (e.g. the page was reloaded mid-call) since inFlight resets per page load.
   useEffect(() => {
-    if (item.status !== "captured" || inFlight.has(item.id)) return;
+    const needsRun = item.status === "captured" || item.status === "processing";
+    if (!needsRun || inFlight.has(item.id)) return;
     inFlight.add(item.id);
-    processInboxItem(item.id).finally(() => {
+    // onChanged passed as onProgress → UI flips to "处理中…" the moment the
+    // call starts, instead of looking stuck on "待处理".
+    processInboxItem(item.id, onChanged).finally(() => {
       inFlight.delete(item.id);
       onChanged();
     });
   }, [item.id, item.status, onChanged]);
 
   // When ready, load island options and pick a sensible default.
+  // Scenario items create their own named island, so skip the picker.
   useEffect(() => {
-    if (item.status !== "ready") return;
+    if (item.status !== "ready" || item.kind === "scenario") return;
     let alive = true;
     // Ensure seed islands exist even if the user opened the inbox first.
     ensureSeedLoaded(item.language)
@@ -68,7 +82,8 @@ export function InboxItemCard({
         if (!alive) return;
         const seedIslands = all.filter((i) => i.id !== pickedId);
         setIslands(seedIslands);
-        const suggested = item.result?.suggestedIslandName?.trim().toLowerCase();
+        const result = item.result as ComposeResult | GlossResult | undefined;
+        const suggested = result?.suggestedIslandName?.trim().toLowerCase();
         const match = suggested
           ? seedIslands.find((i) => i.name.trim().toLowerCase() === suggested)
           : undefined;
@@ -77,7 +92,7 @@ export function InboxItemCard({
     return () => {
       alive = false;
     };
-  }, [item.status, item.language, item.result, pickedId]);
+  }, [item.status, item.kind, item.language, item.result, pickedId]);
 
   const statusLabel = {
     captured: t("statusCaptured"),
@@ -130,15 +145,36 @@ export function InboxItemCard({
     }
   }
 
+  async function buildScenarioIsland(name: string, sentences: ScenarioSentence[]) {
+    if (busy || sentences.length === 0) return;
+    setBusy(true);
+    try {
+      const island = await createScenarioIsland(item.language, name);
+      await addSentencesToIsland(island, scenarioToFieldsList(sentences));
+      await updateInboxItem(item.id, { status: "added", addedIslandId: island.id });
+      onChanged();
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <li className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 space-y-3">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 text-xs">
           <span className="font-medium">
-            {item.kind === "say" ? t("kindSay") : t("kindUnderstand")}
+            {item.kind === "say"
+              ? t("kindSay")
+              : item.kind === "understand"
+                ? t("kindUnderstand")
+                : t("kindScenario")}
           </span>
           <span className="text-zinc-500">{tLang(item.language)}</span>
-          <span className={`rounded-full px-2 py-0.5 ${STATUS_STYLES[item.status]}`}>
+          <span
+            className={`rounded-full px-2 py-0.5 ${STATUS_STYLES[item.status]} ${
+              item.status === "processing" ? "animate-pulse" : ""
+            }`}
+          >
             {statusLabel}
           </span>
         </div>
@@ -153,6 +189,8 @@ export function InboxItemCard({
 
       <p className="text-sm text-zinc-600 dark:text-zinc-400">{item.rawText}</p>
 
+      {item.status === "processing" && <ProcessingIndicator />}
+
       {item.status === "error" && (
         <div className="space-y-2">
           {item.error && <p className="text-xs text-red-500">{item.error}</p>}
@@ -166,23 +204,31 @@ export function InboxItemCard({
         </div>
       )}
 
-      {item.status === "ready" && item.result && (
-        <ResultPanel
-          item={item}
-          islands={islands}
-          pickedId={pickedId}
-          islandChoice={islandChoice}
-          onIslandChoice={setIslandChoice}
-          candidateIdx={candidateIdx}
-          onCandidateIdx={setCandidateIdx}
-          busy={busy}
-          onAdd={addToLearning}
-        />
-      )}
+      {item.status === "ready" &&
+        item.result &&
+        (item.kind === "scenario" ? (
+          <ScenarioPanel
+            result={item.result as ScenarioResult}
+            busy={busy}
+            onCreate={buildScenarioIsland}
+          />
+        ) : (
+          <ResultPanel
+            item={item}
+            islands={islands}
+            pickedId={pickedId}
+            islandChoice={islandChoice}
+            onIslandChoice={setIslandChoice}
+            candidateIdx={candidateIdx}
+            onCandidateIdx={setCandidateIdx}
+            busy={busy}
+            onAdd={addToLearning}
+          />
+        ))}
 
       {item.status === "added" && item.addedIslandId && (
         <a
-          href={`/${uiLocale}/shadow/${item.addedIslandId}/`}
+          href={islandHref(uiLocale, item.addedIslandId)}
           className="inline-block text-sm font-medium text-green-700 dark:text-green-400 underline-offset-4 hover:underline"
         >
           {t("openIsland")}
@@ -251,6 +297,93 @@ function ResultPanel({
       >
         {t("addToLearning")}
       </button>
+    </div>
+  );
+}
+
+function ScenarioPanel({
+  result,
+  busy,
+  onCreate,
+}: {
+  result: ScenarioResult;
+  busy: boolean;
+  onCreate: (name: string, sentences: ScenarioSentence[]) => void;
+}) {
+  const t = useTranslations("inbox");
+  const [name, setName] = useState(result.islandName);
+  // Local, editable copy — the user can drop sentences before building.
+  const [sentences, setSentences] = useState<ScenarioSentence[]>(result.sentences);
+
+  function removeAt(idx: number) {
+    setSentences((list) => list.filter((_, i) => i !== idx));
+  }
+
+  return (
+    <div className="space-y-3 border-t border-zinc-100 dark:border-zinc-800 pt-3">
+      <label className="block space-y-1">
+        <span className="text-xs text-zinc-500">{t("islandName")}</span>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1.5 text-sm"
+        />
+      </label>
+
+      <p className="text-xs text-zinc-500">
+        {t("sentenceCount", { n: sentences.length })}
+      </p>
+      <ol className="space-y-2 max-h-72 overflow-auto pr-1">
+        {sentences.map((s, i) => (
+          <li key={`${i}-${s.target}`} className="flex items-start gap-2 text-sm">
+            <span className="mt-0.5 w-5 shrink-0 text-right tabular-nums text-zinc-400">
+              {i + 1}
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-zinc-800 dark:text-zinc-200">{s.target}</p>
+              <p className="text-xs text-zinc-500">{s.native}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => removeAt(i)}
+              aria-label={t("delete")}
+              className="shrink-0 text-zinc-300 hover:text-red-500"
+            >
+              ✕
+            </button>
+          </li>
+        ))}
+      </ol>
+
+      <button
+        type="button"
+        onClick={() => onCreate(name, sentences)}
+        disabled={busy || sentences.length === 0}
+        className="w-full rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium disabled:opacity-50"
+      >
+        {t("createIsland")}
+      </button>
+    </div>
+  );
+}
+
+function ProcessingIndicator() {
+  const t = useTranslations("inbox");
+  const [sec, setSec] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setSec((s) => s + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const mm = Math.floor(sec / 60);
+  const ss = String(sec % 60).padStart(2, "0");
+  return (
+    <div className="flex items-center gap-2 text-xs text-blue-600 dark:text-blue-300">
+      <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
+      <span>{t("processingHint")}</span>
+      <span className="tabular-nums opacity-70">
+        {mm}:{ss}
+      </span>
     </div>
   );
 }

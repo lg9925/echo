@@ -42,6 +42,7 @@
     "empty": "收件箱是空的。说点什么、或粘一个生词进来。",
     "kindSay": "想说",
     "kindUnderstand": "想懂",
+    "kindScenario": "场景",
     "statusCaptured": "待处理",
     "statusProcessing": "处理中…",
     "statusReady": "待确认",
@@ -49,6 +50,7 @@
     "statusAdded": "已加入",
     "delete": "删除",
     "retry": "重试",
+    "processingHint": "AI 正在生成,请稍候…(场景较慢,可能要 1–2 分钟)",
     "addToLearning": "加入学习",
     "openIsland": "去跟读 →",
     "chooseIsland": "归到哪个岛",
@@ -58,16 +60,22 @@
     "note": "说明",
     "variants": "变体",
     "meaning": "含义",
-    "example": "例句"
+    "example": "例句",
+    "islandName": "岛名",
+    "sentenceCount": "{n} 句",
+    "createIsland": "建成岛"
   },
   "capture": {
     "say": "想说",
     "understand": "想懂",
+    "scenario": "场景",
     "language": "目标语言",
     "sayHint": "用中文说一句你想表达的话,稍后自动翻成地道说法。",
     "understandHint": "贴一个没懂的外语词/短语,稍后自动给出含义和例句。",
+    "scenarioHint": "用一句话描述一个场景,AI 会生成一整串句子、建成一个新岛。",
     "sayPlaceholder": "例如:我想订一张去柏林的票",
     "understandPlaceholder": "例如:Entschuldigung",
+    "scenarioPlaceholder": "例如:坐飞机,从办理登机牌一直到出海关",
     "submit": "收入收件箱"
   },
   "voice": {

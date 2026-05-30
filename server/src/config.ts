@@ -5,7 +5,7 @@
 // --- LLM task routing ---
 
 export type LlmProvider = "anthropic" | "openai" | "deepseek" | "claude-cli";
-export type LlmTask = "authoring" | "gloss";
+export type LlmTask = "authoring" | "gloss" | "scenario";
 
 export interface LlmRoute {
   provider: LlmProvider;
@@ -18,6 +18,8 @@ export interface LlmRoute {
 const DEFAULT_TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   authoring: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 1500 },
   gloss: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 1200 },
+  // Scenario generates 15+ cards in one go — needs a big output budget.
+  scenario: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 8192 },
 };
 
 // Optional per-task env override (no code change needed to switch a provider):
@@ -37,6 +39,7 @@ function withEnvOverride(task: LlmTask, base: LlmRoute): LlmRoute {
 export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   authoring: withEnvOverride("authoring", DEFAULT_TASK_ROUTING.authoring),
   gloss: withEnvOverride("gloss", DEFAULT_TASK_ROUTING.gloss),
+  scenario: withEnvOverride("scenario", DEFAULT_TASK_ROUTING.scenario),
 };
 
 // --- TTS routing ---

@@ -1,6 +1,7 @@
 import type {
   ComposeResult,
   GlossResult,
+  ScenarioResult,
   TargetLanguage,
 } from "./api/contracts";
 
@@ -69,8 +70,11 @@ export interface RawSeed {
 
 // --- Phase 2: inbox + audio cache (Dexie v2) ---
 
-/** 想说 (say) = compose a sentence; 想懂 (understand) = gloss a word. */
-export type InboxKind = "say" | "understand";
+/**
+ * 想说 (say) = compose a sentence; 想懂 (understand) = gloss a word;
+ * 场景 (scenario) = generate a whole island of sentences from a scene.
+ */
+export type InboxKind = "say" | "understand" | "scenario";
 
 export type InboxStatus =
   | "captured" // just dropped in, not processed
@@ -90,7 +94,7 @@ export interface InboxItem {
   createdAt: number;
   updatedAt: number;
   /** Filled when status reaches "ready". Shape depends on kind. */
-  result?: ComposeResult | GlossResult;
+  result?: ComposeResult | GlossResult | ScenarioResult;
   error?: string;
   /** Set when status reaches "added". */
   addedSentenceId?: string;

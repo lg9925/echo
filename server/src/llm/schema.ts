@@ -15,7 +15,8 @@ const article = z.preprocess((v) => {
   return v ?? null;
 }, z.enum(["der", "die", "das"]).nullable());
 
-export const composeSchema = z.object({
+// Fields shared by an authoring card and each scenario sentence.
+const cardShape = {
   native: z.string(),
   target: z.string(),
   frame: z.string(),
@@ -23,7 +24,16 @@ export const composeSchema = z.object({
   note: z.string(),
   variants: z.array(z.string()),
   ipa: nullableStr,
+};
+
+export const composeSchema = z.object({
+  ...cardShape,
   suggestedIslandName: nullableStr,
+});
+
+export const scenarioSchema = z.object({
+  islandName: z.string(),
+  sentences: z.array(z.object(cardShape)).min(1),
 });
 
 export const glossSchema = z.object({
