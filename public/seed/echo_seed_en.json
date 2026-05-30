@@ -1,0 +1,475 @@
+{
+  "language": "en",
+  "language_label": "英语",
+  "version": 1,
+  "islands": [
+    {
+      "name": "打招呼",
+      "order": 1,
+      "sentences": [
+        {
+          "native": "你好!/ 嗨!",
+          "target": "Hi!",
+          "frame": "Hi!(万能问候)",
+          "literal": "嗨",
+          "note": "最随意通用的问候,任何场合都行;比 Hello 更口语。",
+          "variants": [
+            "Hello!",
+            "Hey!",
+            "Hey there!",
+            "Hi there!",
+            "Howdy!(美式/偏俏皮)"
+          ],
+          "ipa": "haɪ"
+        },
+        {
+          "native": "早上好!",
+          "target": "Good morning!",
+          "frame": "Good ___!(morning / afternoon / evening)",
+          "literal": "好的 早晨",
+          "note": "早上见面用;白天用 Good afternoon,傍晚用 Good evening。注意 Good night 是睡前/道别,不用来打招呼。",
+          "variants": [
+            "Morning!",
+            "Good morning, everyone!(对一群人)",
+            "Morning, all!",
+            "A very good morning to you!",
+            "Top of the morning!(爱尔兰俏皮)"
+          ],
+          "ipa": "ɡʊd ˈmɔːrnɪŋ"
+        },
+        {
+          "native": "最近怎么样?",
+          "target": "How are you?",
+          "frame": "How are you ___?(doing / today)",
+          "literal": "怎么 是 你",
+          "note": "最常见寒暄;熟人之间也常说 How's it going? / What's up?。",
+          "variants": [
+            "How are you doing?",
+            "How's it going?",
+            "How are things?",
+            "What's up?",
+            "How have you been?(久别)"
+          ],
+          "ipa": "haʊ ɑːr juː"
+        },
+        {
+          "native": "我很好,谢谢,你呢?",
+          "target": "I'm good, thanks. And you?",
+          "frame": "I'm ___, thanks. And you?(good / fine / great)",
+          "literal": "我是 好,谢谢。还有 你?",
+          "note": "回答 How are you 的标准说法;口语 good / fine / great 都行。",
+          "variants": [
+            "I'm fine, thanks. How about you?",
+            "Pretty good, thanks!",
+            "Not bad, you?",
+            "Great, thanks for asking!",
+            "Can't complain. And yourself?"
+          ],
+          "ipa": "aɪm ɡʊd θæŋks ænd juː"
+        },
+        {
+          "native": "很高兴认识你。",
+          "target": "Nice to meet you.",
+          "frame": "Nice to ___ you.(meet / see)",
+          "literal": "高兴 去 见 你",
+          "note": "初次见面用 meet;再次见面改用 see。",
+          "variants": [
+            "Pleased to meet you.",
+            "Great to meet you.",
+            "Lovely to meet you.",
+            "It's a pleasure to meet you.(正式)",
+            "Nice meeting you.(道别时)"
+          ],
+          "ipa": "naɪs tə miːt juː"
+        },
+        {
+          "native": "好久不见!",
+          "target": "Long time no see!",
+          "frame": "Long time no see!",
+          "literal": "长 时间 没 见",
+          "note": "口语习惯说法,语法不规范但极常用;久别重逢时用。",
+          "variants": [
+            "It's been a while!",
+            "It's been ages!",
+            "Look who it is!",
+            "I haven't seen you in forever!",
+            "Where have you been hiding?"
+          ],
+          "ipa": "lɔːŋ taɪm noʊ siː"
+        },
+        {
+          "native": "你叫什么名字?",
+          "target": "What's your name?",
+          "frame": "What's your ___?(name / number)",
+          "literal": "什么是 你的 名字",
+          "note": "问名字;May I have your name? 更礼貌正式。",
+          "variants": [
+            "May I have your name?",
+            "Can I get your name?",
+            "Sorry, I didn't catch your name.",
+            "And you are…?",
+            "What should I call you?"
+          ],
+          "ipa": "wʌts jʊr neɪm"
+        },
+        {
+          "native": "我叫…/ 我是…",
+          "target": "I'm ___. / My name is ___.",
+          "frame": "My name is ___. / I'm ___.",
+          "literal": "我的 名字 是 ___",
+          "note": "自我介绍;口语里多用 I'm。",
+          "variants": [
+            "I'm ___.",
+            "My name's ___.",
+            "This is ___.(电话/介绍他人)",
+            "You can call me ___.",
+            "I go by ___.(常用名/昵称)"
+          ],
+          "ipa": "maɪ neɪm ɪz"
+        },
+        {
+          "native": "你是哪里人?",
+          "target": "Where are you from?",
+          "frame": "Where are you from?",
+          "literal": "哪里 是 你 来自",
+          "note": "问来历;回答用 I'm from ___。",
+          "variants": [
+            "Where do you come from?",
+            "Whereabouts are you from?",
+            "Are you from around here?",
+            "What part of the world are you from?",
+            "Where's home for you?"
+          ],
+          "ipa": "wɛr ɑːr juː frʌm"
+        },
+        {
+          "native": "回头见!/ 再见!",
+          "target": "See you later!",
+          "frame": "See you ___!(later / soon / tomorrow)",
+          "literal": "见 你 稍后",
+          "note": "随意道别;正式场合可用 Goodbye。",
+          "variants": [
+            "Bye!",
+            "See you soon!",
+            "Take care!",
+            "Catch you later!",
+            "Have a good one!(美式)"
+          ],
+          "ipa": "siː juː ˈleɪtər"
+        }
+      ]
+    },
+    {
+      "name": "餐厅点餐",
+      "order": 2,
+      "sentences": [
+        {
+          "native": "我想要一张两人桌。",
+          "target": "I'd like a table for two, please.",
+          "frame": "A table for ___, please.(two / three / four)",
+          "literal": "一张 桌子 给 两个,请",
+          "note": "I'd like = I would like,礼貌点餐/订位的常用开头。",
+          "variants": [
+            "Could we get a table for two?",
+            "Do you have a table for two?",
+            "Table for two, please.",
+            "A table for two, if possible.",
+            "Is there a table available for two?"
+          ],
+          "ipa": "aɪd laɪk ə ˈteɪbəl fɔːr tuː"
+        },
+        {
+          "native": "可以看一下菜单吗?",
+          "target": "Could I see the menu, please?",
+          "frame": "Could I ___, please?(see the menu / order)",
+          "literal": "可以 我 看 这 菜单,请",
+          "note": "Could I 比 Can I 更礼貌;点餐场景很实用。",
+          "variants": [
+            "Can I have the menu, please?",
+            "May I see the menu?",
+            "Could we get the menu?",
+            "Do you have a menu in English?",
+            "What's on the menu today?"
+          ],
+          "ipa": "kʊd aɪ siː ðə ˈmɛnjuː"
+        },
+        {
+          "native": "你们有什么推荐的吗?",
+          "target": "What do you recommend?",
+          "frame": "What do you recommend ___?(for a starter / here)",
+          "literal": "什么 做 你 推荐",
+          "note": "向服务员问招牌菜时常用。",
+          "variants": [
+            "What's good here?",
+            "Any recommendations?",
+            "What's your specialty?",
+            "What's popular here?",
+            "What would you suggest?"
+          ],
+          "ipa": "wʌt duː juː ˌrɛkəˈmɛnd"
+        },
+        {
+          "native": "我要一份这个。",
+          "target": "I'll have this one, please.",
+          "frame": "I'll have ___, please.(this / the chicken)",
+          "literal": "我将 有 这 一个,请",
+          "note": "点菜最常用句型;指着菜单说 this one 很方便。",
+          "variants": [
+            "I'll take this one.",
+            "Can I get this, please?",
+            "I'd like this one.",
+            "This one for me, please.",
+            "I'll go with this."
+          ],
+          "ipa": "aɪl hæv ðɪs wʌn"
+        },
+        {
+          "native": "我对花生过敏。",
+          "target": "I'm allergic to peanuts.",
+          "frame": "I'm allergic to ___.(peanuts / seafood / nuts)",
+          "literal": "我是 过敏的 对 花生",
+          "note": "点餐前主动告知过敏很重要;allergic 重音在第二个音节。",
+          "variants": [
+            "I have a peanut allergy.",
+            "I can't eat peanuts.",
+            "Does this contain peanuts?",
+            "Is this nut-free?",
+            "Please make sure there are no peanuts."
+          ],
+          "ipa": "aɪm əˈlɜːrdʒɪk tə ˈpiːnʌts"
+        },
+        {
+          "native": "可以给我来点水吗?",
+          "target": "Could I get some water, please?",
+          "frame": "Could I get some ___, please?(water / bread / napkins)",
+          "literal": "可以 我 拿 一些 水,请",
+          "note": "some 用于不可数/复数;加点东西时常用。对方可能反问 Still or sparkling?(平水还是气泡水)。",
+          "variants": [
+            "Can we have some water?",
+            "A glass of water, please.",
+            "Could you bring some water?",
+            "Some more water, please.",
+            "Tap water is fine, thanks.(自来水即可)"
+          ],
+          "ipa": "kʊd aɪ ɡɛt sʌm ˈwɔːtər"
+        },
+        {
+          "native": "这道菜里有什么?",
+          "target": "What's in this dish?",
+          "frame": "What's in ___?(this dish / the sauce)",
+          "literal": "什么 在 这 菜里",
+          "note": "问配料/做法;怕踩雷或有忌口时很有用。",
+          "variants": [
+            "What does this come with?",
+            "Is this spicy?",
+            "How is this prepared?",
+            "Does this have meat in it?",
+            "What kind of sauce is this?"
+          ],
+          "ipa": "wʌts ɪn ðɪs dɪʃ"
+        },
+        {
+          "native": "可以买单吗?",
+          "target": "Could we get the check, please?",
+          "frame": "Could we get the ___, please?(check / bill)",
+          "literal": "可以 我们 拿 这 账单,请",
+          "note": "美式说 check,英式说 bill;饭后举手示意服务员即可。",
+          "variants": [
+            "Can we have the bill, please?",
+            "The check, please.",
+            "We're ready to pay.",
+            "Could you bring the bill?",
+            "How much do we owe you?"
+          ],
+          "ipa": "kʊd wiː ɡɛt ðə tʃɛk"
+        },
+        {
+          "native": "可以刷卡吗?",
+          "target": "Can I pay by card?",
+          "frame": "Can I pay by ___?(card / cash)",
+          "literal": "可以 我 付 用 卡",
+          "note": "问支付方式;by card / in cash。",
+          "variants": [
+            "Do you take cards?",
+            "Can I pay with my phone?",
+            "Is cash okay?",
+            "Do you accept credit cards?",
+            "Can we split the bill?(AA 分账)"
+          ],
+          "ipa": "kæn aɪ peɪ baɪ kɑːrd"
+        },
+        {
+          "native": "太好吃了,谢谢!",
+          "target": "That was delicious, thank you!",
+          "frame": "That was ___!(delicious / amazing / lovely)",
+          "literal": "那 是 美味的,谢谢",
+          "note": "饭后称赞;离店时对服务员说很自然。",
+          "variants": [
+            "Everything was great, thanks!",
+            "The food was amazing!",
+            "We really enjoyed it!",
+            "Compliments to the chef!",
+            "That hit the spot!(很满足,口语)"
+          ],
+          "ipa": "ðæt wʌz dɪˈlɪʃəs"
+        }
+      ]
+    },
+    {
+      "name": "购物",
+      "order": 3,
+      "sentences": [
+        {
+          "native": "我只是随便看看。",
+          "target": "I'm just looking, thanks.",
+          "frame": "I'm just ___, thanks.(looking / browsing)",
+          "literal": "我是 只是 看,谢谢",
+          "note": "店员问 Can I help you? 时的礼貌回应,表示暂时不需要帮忙。",
+          "variants": [
+            "Just browsing, thanks.",
+            "I'm just having a look.",
+            "No thanks, just looking.",
+            "I'll let you know if I need help.",
+            "Just window-shopping.(只逛不买)"
+          ],
+          "ipa": "aɪm dʒʌst ˈlʊkɪŋ"
+        },
+        {
+          "native": "这个多少钱?",
+          "target": "How much is this?",
+          "frame": "How much is ___?(this / that one)",
+          "literal": "多少 是 这个",
+          "note": "问价最常用;复数用 How much are these?。",
+          "variants": [
+            "How much does this cost?",
+            "What's the price on this?",
+            "How much are these?",
+            "Could you tell me the price?",
+            "Is this on sale?"
+          ],
+          "ipa": "haʊ mʌtʃ ɪz ðɪs"
+        },
+        {
+          "native": "我可以试穿吗?",
+          "target": "Can I try this on?",
+          "frame": "Can I try ___ on?(this / these)",
+          "literal": "可以 我 试 这 上身",
+          "note": "试衣专用,try ... on 是固定搭配;问试衣间用 Where's the fitting room?。",
+          "variants": [
+            "Where's the fitting room?",
+            "Can I try these on?",
+            "Do you have a fitting room?",
+            "Is it okay to try this on?",
+            "I'd like to try this on, please."
+          ],
+          "ipa": "kæn aɪ traɪ ðɪs ɒn"
+        },
+        {
+          "native": "有大一号的吗?",
+          "target": "Do you have this in a bigger size?",
+          "frame": "Do you have this in ___?(a bigger size / blue / medium)",
+          "literal": "有 你 这个 在 更大 号",
+          "note": "问尺码/颜色;小一号用 a smaller size。",
+          "variants": [
+            "Do you have a larger size?",
+            "Does this come in a medium?",
+            "Do you have this in another color?",
+            "Is this the only size left?",
+            "Can you check the back for my size?"
+          ],
+          "ipa": "duː juː hæv ðɪs ɪn ə ˈbɪɡər saɪz"
+        },
+        {
+          "native": "可以便宜点吗?",
+          "target": "Can you give me a discount?",
+          "frame": "Can you ___?(give me a discount / do a better price)",
+          "literal": "可以 你 给 我 一个 折扣",
+          "note": "市场/小店可议价;正规商场一般不讲价。",
+          "variants": [
+            "Is there any discount?",
+            "Can you do a better price?",
+            "Any chance of a discount?",
+            "Is the price negotiable?",
+            "What's your best price?"
+          ],
+          "ipa": "kæn juː ɡɪv miː ə ˈdɪskaʊnt"
+        },
+        {
+          "native": "我要这个。",
+          "target": "I'll take this one.",
+          "frame": "I'll take ___.(this one / two / the red one)",
+          "literal": "我将 拿 这 一个",
+          "note": "决定购买时说;在购物语境里 take = 买下。",
+          "variants": [
+            "I'll get this one.",
+            "I'd like to buy this.",
+            "This one, please.",
+            "I'll take it.",
+            "Can I get this one?"
+          ],
+          "ipa": "aɪl teɪk ðɪs wʌn"
+        },
+        {
+          "native": "你们收卡吗?",
+          "target": "Do you take card?",
+          "frame": "Do you take ___?(card / cash / Apple Pay)",
+          "literal": "你 收 卡 吗",
+          "note": "结账问支付方式;take / accept 都可以。",
+          "variants": [
+            "Can I pay by card?",
+            "Do you accept cash?",
+            "Is contactless okay?",
+            "Can I tap to pay?(感应支付)",
+            "Do you take mobile payments?"
+          ],
+          "ipa": "duː juː teɪk kɑːrd"
+        },
+        {
+          "native": "可以给我个袋子吗?",
+          "target": "Could I get a bag, please?",
+          "frame": "Could I get a ___, please?(bag / receipt)",
+          "literal": "可以 我 拿 一个 袋子,请",
+          "note": "很多地方袋子收费,可能被反问要不要袋子。",
+          "variants": [
+            "Can I have a bag?",
+            "Do you have a bag?",
+            "A bag, please.",
+            "Could you put it in a bag?",
+            "Do I need to pay for the bag?"
+          ],
+          "ipa": "kʊd aɪ ɡɛt ə bæɡ"
+        },
+        {
+          "native": "我可以退货吗?",
+          "target": "Can I return this?",
+          "frame": "Can I ___ this?(return / exchange)",
+          "literal": "可以 我 退 这个",
+          "note": "退货用 return,换货用 exchange;通常需要 receipt(收据)。",
+          "variants": [
+            "I'd like to return this.",
+            "Can I exchange this?",
+            "Can I get a refund?",
+            "Do you accept returns?",
+            "What's your return policy?"
+          ],
+          "ipa": "kæn aɪ rɪˈtɜːrn ðɪs"
+        },
+        {
+          "native": "谢谢,我再考虑一下。",
+          "target": "Thanks, I'll think about it.",
+          "frame": "Thanks, I'll ___.(think about it / come back later)",
+          "literal": "谢谢,我将 考虑 它",
+          "note": "暂时不想买时的礼貌脱身说法。",
+          "variants": [
+            "I'll have a think about it.",
+            "Maybe next time, thanks.",
+            "Let me think it over.",
+            "I might come back later.",
+            "Thanks anyway."
+          ],
+          "ipa": "θæŋks aɪl θɪŋk əˈbaʊt ɪt"
+        }
+      ]
+    }
+  ]
+}

@@ -14,7 +14,8 @@
     "noData": "No data loaded yet."
   },
   "languages": {
-    "de": "German"
+    "de": "German",
+    "en": "English"
   },
   "review": {
     "title": "Review",

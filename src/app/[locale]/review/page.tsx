@@ -1,10 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { ReviewSession } from "@/components/ReviewSession";
+import { ReviewSessionRouter } from "@/components/ReviewSessionRouter";
 import { routing } from "@/i18n/routing";
-
-// For now the only target language is German. Phase 4+ can add a picker.
-const DEFAULT_TARGET_LANGUAGE = "de";
 
 export default async function ReviewPage({
   params,
@@ -17,7 +14,7 @@ export default async function ReviewPage({
   }
   setRequestLocale(locale);
 
-  return (
-    <ReviewSession language={DEFAULT_TARGET_LANGUAGE} uiLocale={locale} />
-  );
+  // The target learning language comes from the ?lang= query, read client-side
+  // by ReviewSessionRouter (static export can't read searchParams server-side).
+  return <ReviewSessionRouter uiLocale={locale} />;
 }

@@ -2,6 +2,10 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { IslandList } from "@/components/IslandList";
 import { ReviewQueueBadge } from "@/components/ReviewQueueBadge";
 
+// Target learning languages, in display order. Each needs a matching
+// public/seed/echo_seed_<code>.json and a languages.<code> i18n key.
+const TARGET_LANGS = ["de", "en"] as const;
+
 export default async function HomePage({
   params,
 }: {
@@ -33,14 +37,17 @@ export default async function HomePage({
         </a>
       </header>
 
-      <ReviewQueueBadge language="de" uiLocale={locale} />
-
-      <section>
-        <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300 mb-3">
-          {tLang("de")} — {t("pickIsland")}
-        </h2>
-        <IslandList language="de" uiLocale={locale} />
-      </section>
+      {TARGET_LANGS.map((lang) => (
+        <section key={lang} className="space-y-3">
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
+              {tLang(lang)} — {t("pickIsland")}
+            </h2>
+            <ReviewQueueBadge language={lang} uiLocale={locale} />
+          </div>
+          <IslandList language={lang} uiLocale={locale} />
+        </section>
+      ))}
     </main>
   );
 }
