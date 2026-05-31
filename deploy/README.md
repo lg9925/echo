@@ -279,6 +279,87 @@ sudo systemctl reload nginx
 
 ---
 
+## Local on-device testing via Cloudflare Tunnel
+
+To test on a phone (real iOS audio, PWA install, neural TTS) **without deploying**,
+expose the local dev servers under `echo.helloworldhub.xyz` through a Cloudflare
+Tunnel. The domain temporarily points at your laptop instead of the VPS — so the
+production site is paused while this is active.
+
+**How it routes:** one tunnel hostname, split by path. `/v1/*` and `/health` go to
+the backend (`localhost:8787`); everything else goes to `next dev`
+(`localhost:3000`). Because it's the *same origin*, no CORS, no second subdomain,
+no `NEXT_PUBLIC_API_URL` rebuild — the phone just sets the API base in Settings.
+
+This reuses the existing `cloudflared` tunnel (the one already serving
+`console-dev.cz12.net`); `helloworldhub.xyz` must be in the **same Cloudflare
+account** as that tunnel.
+
+### Config already in the repo / machine
+
+- `~/.cloudflared/config.yml` — two `echo.helloworldhub.xyz` ingress rules
+  (path `^/(v1|health)(/|$)` → `:8787`, else → `:3000`), added above the
+  `http_status:404` catch-all, leaving the `console-dev` rule untouched.
+- `next.config.ts` — `allowedDevOrigins: ["echo.helloworldhub.xyz"]` so `next dev`
+  accepts requests proxied from the domain (dev-only; no effect on the export).
+
+Validate the ingress after any edit:
+
+```powershell
+cloudflared tunnel ingress validate
+cloudflared tunnel ingress rule https://echo.helloworldhub.xyz/v1/tts   # → backend
+cloudflared tunnel ingress rule https://echo.helloworldhub.xyz/zh/      # → frontend
+```
+
+### Turn it on
+
+1. **Pause prod / repoint DNS** (Cloudflare dashboard → `helloworldhub.xyz` → DNS):
+   delete the `echo` **A** record pointing to the VPS (`165.154.203.38`), then
+   create the tunnel route:
+
+   ```powershell
+   cloudflared tunnel route dns e7689629-6e2d-4c20-9dec-fb1b885ae66e echo.helloworldhub.xyz
+   ```
+
+   (Or add it by hand: CNAME `echo` → `e7689629-6e2d-4c20-9dec-fb1b885ae66e.cfargotunnel.com`,
+   proxied/orange.) The old A record must be gone first, or `route dns` errors with
+   "record already exists". `echo` is a single-level subdomain, so Universal SSL
+   covers it — no extra cert.
+
+2. **Reload the tunnel** (admin PowerShell — `cloudflared` runs as a Windows
+   service):
+
+   ```powershell
+   Restart-Service cloudflared
+   ```
+
+   This blips `console-dev.cz12.net` for a few seconds; pick a safe moment.
+
+3. **Run both local servers:** backend on `:8787` (`pnpm --filter echo-server dev`
+   or however you run it) and `pnpm dev` for the frontend on `:3000`.
+
+4. **On the device:** open `https://echo.helloworldhub.xyz`, go to **Settings**:
+   - **API base** → `https://echo.helloworldhub.xyz`
+   - **Token** → your local `ECHO_API_TOKEN` (e.g. `testtoken` from `server/.env`)
+   - **Test connection** should pass.
+
+   Desktop dev at `localhost:3000` is unaffected — it keeps using the default
+   `localhost:8787` and needs no API-base override.
+
+### Turn it off / restore prod
+
+In the Cloudflare dashboard, delete the `echo` CNAME and add the A record back:
+
+```
+echo.helloworldhub.xyz   A   165.154.203.38
+```
+
+Stopping `pnpm dev` also takes the local site offline (the tunnel ingress just
+returns errors until DNS is restored). While the tunnel is up your `:3000`/`:8787`
+are reachable from the internet, gated only by the `ECHO_API_TOKEN`.
+
+---
+
 ## Troubleshooting
 
 - **`pnpm: command not found`** during `deploy.sh`: corepack inactive or pnpm uninstalled. Re-run step 3.
