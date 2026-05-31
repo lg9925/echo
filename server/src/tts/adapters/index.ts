@@ -4,10 +4,12 @@ import { edgeAdapter } from "./edge";
 import { openaiTtsAdapter } from "./openai";
 import { googleTtsAdapter } from "./google";
 import { elevenlabsTtsAdapter } from "./elevenlabs";
+import { geminiTtsAdapter } from "./gemini";
 
 // Registry. Adding a vendor = import its adapter + one line here.
 const TTS_ADAPTERS: Record<TtsProvider, TtsAdapter> = {
   edge: edgeAdapter,
+  gemini: geminiTtsAdapter,
   openai: openaiTtsAdapter,
   google: googleTtsAdapter,
   elevenlabs: elevenlabsTtsAdapter,

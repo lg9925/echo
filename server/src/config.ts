@@ -50,16 +50,24 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
 
 // --- TTS routing ---
 
-export type TtsProvider = "edge" | "openai" | "google" | "elevenlabs";
+export type TtsProvider = "edge" | "openai" | "google" | "elevenlabs" | "gemini";
 
+// Switch the default TTS provider via the TTS_PROVIDER env var (no code change),
+// e.g. TTS_PROVIDER=gemini. Defaults to the free Edge-TTS.
 export const TTS_ROUTING: { default: TtsProvider } = {
-  default: "edge",
+  default: (process.env.TTS_PROVIDER as TtsProvider) || "edge",
 };
 
-// Per-language × per-provider voice presets. `edge` is the only one wired up;
-// the rest are placeholders the stub adapters read once you supply keys.
+// Gemini TTS model (preview). Override with GEMINI_TTS_MODEL. Uses GEMINI_API_KEY.
+export const GEMINI_TTS_MODEL =
+  process.env.GEMINI_TTS_MODEL ?? "gemini-3.1-flash-tts-preview";
+
+// Per-language × per-provider voice presets. `edge` (free) and `gemini` are
+// wired up; openai/google/elevenlabs are placeholders the stubs read once keyed.
+// Gemini TTS voices are prebuilt names (Kore/Puck/Charon/Aoede/…), multilingual.
 export interface VoicePreset {
   edge: string;
+  gemini?: string;
   openai?: string;
   google?: string;
   elevenlabs?: string;
@@ -68,18 +76,21 @@ export interface VoicePreset {
 export const VOICE_PRESETS: Record<string, VoicePreset> = {
   de: {
     edge: "de-DE-KatjaNeural",
+    gemini: "Kore",
     openai: "alloy",
     google: "de-DE-Neural2-F",
     elevenlabs: "",
   },
   en: {
     edge: "en-US-AriaNeural",
+    gemini: "Kore",
     openai: "alloy",
     google: "en-US-Neural2-F",
     elevenlabs: "",
   },
   zh: {
     edge: "zh-CN-XiaoxiaoNeural",
+    gemini: "Kore",
     openai: "alloy",
     google: "cmn-CN-Neural2-A",
     elevenlabs: "",
