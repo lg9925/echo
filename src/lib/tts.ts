@@ -1,4 +1,5 @@
 import { apiFetchBlob } from "./api/client";
+import { getApiToken } from "./settings";
 import {
   audioKey,
   getCachedAudio,
@@ -62,6 +63,34 @@ export async function pickVoice(
   return voices.find((v) => v.lang.toLowerCase().startsWith(prefix));
 }
 
+// Synchronous voice pick (no await) — iOS needs synth.speak() called inside the
+// user gesture, so the fallback can't wait on the async voiceschanged event.
+function pickVoiceSync(lang: string): SpeechSynthesisVoice | undefined {
+  if (typeof window === "undefined") return undefined;
+  const voices = _voicesCache ?? window.speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) return undefined;
+  const prefix = lang.split("-")[0]!.toLowerCase();
+  return (
+    voices.find((v) => v.lang.toLowerCase() === lang.toLowerCase()) ??
+    voices.find((v) => v.lang.toLowerCase().startsWith(prefix))
+  );
+}
+
+let _speechUnlocked = false;
+// iOS only allows the FIRST speechSynthesis.speak() from within a user gesture;
+// afterwards programmatic calls (the play loop) are allowed. Call this
+// synchronously from gesture handlers (e.g. the Play button).
+export function unlockSpeech(): void {
+  if (_speechUnlocked || typeof window === "undefined") return;
+  if (!("speechSynthesis" in window)) return;
+  try {
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(" "));
+    _speechUnlocked = true;
+  } catch {
+    /* ignore */
+  }
+}
+
 export interface SpeakOptions {
   lang: string;
   rate?: number;
@@ -101,11 +130,11 @@ function speakViaSynthesis(text: string, opts: SpeakOptions): Promise<void> {
       finish();
     }, cap);
 
-    void (async () => {
-      const voice = opts.voice ?? (await pickVoice(opts.lang));
-      if (voice) utterance.voice = voice;
-      synth.speak(utterance);
-    })();
+    // Pick the voice synchronously and speak immediately — staying inside the
+    // caller's user gesture so iOS actually produces sound.
+    const voice = opts.voice ?? pickVoiceSync(opts.lang);
+    if (voice) utterance.voice = voice;
+    synth.speak(utterance);
   });
 }
 
@@ -187,16 +216,22 @@ export async function speak(text: string, opts: SpeakOptions): Promise<void> {
   if (opts.signal?.aborted) return;
 
   const rate = opts.rate ?? 1;
-  const { serverRate } = rateBucketFor(rate);
 
-  try {
-    const blob = await ensureCachedAudio(text, opts.lang, rate, opts.signal);
-    await playBlob(blob, rate / serverRate, opts.signal);
-    return;
-  } catch {
-    // Neural unavailable — fall back to the browser's built-in voices.
+  // Only try neural TTS when a token is configured. Without one the request is
+  // doomed, and the extra awaits would push the SpeechSynthesis fallback out of
+  // the user-gesture window — iOS then stays silent. Skipping keeps the
+  // fallback synchronous inside the tap.
+  if (getApiToken()) {
+    const { serverRate } = rateBucketFor(rate);
+    try {
+      const blob = await ensureCachedAudio(text, opts.lang, rate, opts.signal);
+      await playBlob(blob, rate / serverRate, opts.signal);
+      return;
+    } catch {
+      // Neural unavailable — fall back to the browser's built-in voices.
+    }
+    if (opts.signal?.aborted) return;
   }
-  if (opts.signal?.aborted) return;
   await speakViaSynthesis(text, opts);
 }
 

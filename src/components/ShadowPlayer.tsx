@@ -10,7 +10,7 @@ import {
 import { useTranslations } from "next-intl";
 import { listSentencesByIsland } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
-import { cancelAllSpeech, speak, stripParentheticals } from "@/lib/tts";
+import { cancelAllSpeech, speak, stripParentheticals, unlockSpeech } from "@/lib/tts";
 import {
   DEFAULT_SETTINGS,
   loadPlayerSettings,
@@ -171,11 +171,13 @@ export function ShadowPlayer({
   }, [isPlaying]);
 
   const onPlayPause = useCallback(() => {
+    unlockSpeech(); // iOS: unlock SpeechSynthesis inside the tap gesture
     setIsPlaying((p) => !p);
   }, []);
 
   const onNext = useCallback(() => {
     if (!sentences) return;
+    unlockSpeech();
     cancelAllSpeech();
     setIdx((current) =>
       nextIndex(current, sentences.length, settingsRef.current.loop),
@@ -185,6 +187,7 @@ export function ShadowPlayer({
 
   const onPrev = useCallback(() => {
     if (!sentences) return;
+    unlockSpeech();
     cancelAllSpeech();
     setIdx((current) =>
       prevIndex(current, sentences.length, settingsRef.current.loop),
