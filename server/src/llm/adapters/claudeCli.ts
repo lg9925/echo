@@ -46,6 +46,9 @@ export const claudeCliAdapter: LlmAdapter = {
             cliModel(model),
             "--system-prompt-file",
             sysFile,
+            // Trim cold-start: skip global MCP health-checks and session writes.
+            "--strict-mcp-config",
+            "--no-session-persistence",
           ],
           { cwd: tmpdir(), stdio: ["pipe", "pipe", "pipe"] },
         );
