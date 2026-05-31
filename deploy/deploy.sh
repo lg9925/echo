@@ -31,14 +31,21 @@ echo "→ pnpm install --frozen-lockfile --trust-lockfile"
 pnpm install --frozen-lockfile --trust-lockfile
 echo
 
-# 3. Build the backend (echo-server) → server/dist/, then restart it.
+# 3. Build the backend (echo-server) → server/dist/, then restart it IF the
+#    systemd unit is installed. Frontend-first deploys (before the §B backend
+#    setup) skip the restart gracefully instead of aborting.
 echo "→ pnpm --filter echo-server build"
 pnpm --filter echo-server build
 echo
-echo "→ restart echo-server (systemd)"
-# Needs a sudoers entry so 'ops' can restart without a password — see deploy/README.md.
-sudo systemctl restart echo-server
-echo "  echo-server: $(systemctl is-active echo-server)"
+if [ -f /etc/systemd/system/echo-server.service ]; then
+  echo "→ restart echo-server (systemd)"
+  # Needs a sudoers entry so 'ops' can restart without a password — see deploy/README.md §B5.
+  sudo systemctl restart echo-server
+  echo "  echo-server: $(systemctl is-active echo-server)"
+else
+  echo "→ echo-server systemd unit not installed — skipping backend restart"
+  echo "  (inbox / scenario / neural TTS need the backend; see deploy/README.md §B)"
+fi
 echo
 
 # 4. Build static export → ./out/  (NEXT_PUBLIC_API_URL inlined here)
