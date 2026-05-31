@@ -12,7 +12,9 @@
   "home": {
     "pickLanguage": "Pick a language",
     "pickIsland": "Pick an island",
-    "noData": "No data loaded yet."
+    "noData": "No data loaded yet.",
+    "deleteIsland": "Delete",
+    "confirmDeleteIsland": "Delete \"{name}\" and all its sentences and review progress?"
   },
   "languages": {
     "de": "German",
@@ -64,7 +66,9 @@
     "example": "Example",
     "islandName": "Island name",
     "sentenceCount": "{n} sentences",
-    "createIsland": "Create island"
+    "createIsland": "Create island",
+    "regenerate": "Regenerate",
+    "scenarioDescription": "Scene description"
   },
   "capture": {
     "say": "Say",

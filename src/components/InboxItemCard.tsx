@@ -112,13 +112,27 @@ export function InboxItemCard({
     onChanged();
   }
 
-  async function retry() {
-    await processInboxItem(item.id, {
-      onStatus: onChanged,
-      onProgress: (p) => setProgress(p.sentences),
-    });
+  // Manual re-run (retry after error / regenerate a scenario). Optionally
+  // swap in an edited description first. Guarded by inFlight so it can't
+  // double-fire with the auto-process effect once status flips to processing.
+  function reprocess(description?: string) {
+    if (inFlight.has(item.id)) return;
+    inFlight.add(item.id);
     setProgress(null);
-    onChanged();
+    void (async () => {
+      const next = description?.trim();
+      if (next && next !== item.rawText) {
+        await updateInboxItem(item.id, { rawText: next });
+      }
+      await processInboxItem(item.id, {
+        onStatus: onChanged,
+        onProgress: (p) => setProgress(p.sentences),
+      });
+    })().finally(() => {
+      inFlight.delete(item.id);
+      setProgress(null);
+      onChanged();
+    });
   }
 
   async function addToLearning() {
@@ -205,7 +219,7 @@ export function InboxItemCard({
           {item.error && <p className="text-xs text-red-500">{item.error}</p>}
           <button
             type="button"
-            onClick={retry}
+            onClick={() => reprocess()}
             className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-1.5 text-sm"
           >
             {t("retry")}
@@ -218,8 +232,10 @@ export function InboxItemCard({
         (item.kind === "scenario" ? (
           <ScenarioPanel
             result={item.result as ScenarioResult}
+            defaultDescription={item.rawText}
             busy={busy}
             onCreate={buildScenarioIsland}
+            onRegenerate={reprocess}
           />
         ) : (
           <ResultPanel
@@ -312,24 +328,53 @@ function ResultPanel({
 
 function ScenarioPanel({
   result,
+  defaultDescription,
   busy,
   onCreate,
+  onRegenerate,
 }: {
   result: ScenarioResult;
+  defaultDescription: string;
   busy: boolean;
   onCreate: (name: string, sentences: ScenarioSentence[]) => void;
+  onRegenerate: (description: string) => void;
 }) {
   const t = useTranslations("inbox");
   const [name, setName] = useState(result.islandName);
-  // Local, editable copy — the user can drop sentences before building.
+  const [description, setDescription] = useState(defaultDescription);
+  // Local, editable copy — drop or edit sentences before building.
   const [sentences, setSentences] = useState<ScenarioSentence[]>(result.sentences);
 
   function removeAt(idx: number) {
     setSentences((list) => list.filter((_, i) => i !== idx));
   }
+  function editAt(idx: number, patch: Partial<ScenarioSentence>) {
+    setSentences((list) => list.map((s, i) => (i === idx ? { ...s, ...patch } : s)));
+  }
 
   return (
     <div className="space-y-3 border-t border-zinc-100 dark:border-zinc-800 pt-3">
+      {/* Edit the description and regenerate a fresh version. */}
+      <label className="block space-y-1">
+        <span className="text-xs text-zinc-500">{t("scenarioDescription")}</span>
+        <div className="flex items-start gap-2">
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={1}
+            className="flex-1 resize-none rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1.5 text-sm"
+          />
+          <button
+            type="button"
+            onClick={() => onRegenerate(description)}
+            disabled={busy || !description.trim()}
+            className="shrink-0 rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-1.5 text-sm disabled:opacity-50"
+          >
+            {t("regenerate")}
+          </button>
+        </div>
+      </label>
+
       <label className="block space-y-1">
         <span className="text-xs text-zinc-500">{t("islandName")}</span>
         <input
@@ -343,21 +388,29 @@ function ScenarioPanel({
       <p className="text-xs text-zinc-500">
         {t("sentenceCount", { n: sentences.length })}
       </p>
-      <ol className="space-y-2 max-h-72 overflow-auto pr-1">
+      <ol className="space-y-2 max-h-80 overflow-auto pr-1">
         {sentences.map((s, i) => (
-          <li key={`${i}-${s.target}`} className="flex items-start gap-2 text-sm">
-            <span className="mt-0.5 w-5 shrink-0 text-right tabular-nums text-zinc-400">
+          <li key={i} className="flex items-start gap-2 text-sm">
+            <span className="mt-2 w-5 shrink-0 text-right tabular-nums text-zinc-400">
               {i + 1}
             </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-zinc-800 dark:text-zinc-200">{s.target}</p>
-              <p className="text-xs text-zinc-500">{s.native}</p>
+            <div className="min-w-0 flex-1 space-y-1">
+              <input
+                value={s.target}
+                onChange={(e) => editAt(i, { target: e.target.value })}
+                className="w-full rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-2 py-1 text-zinc-800 dark:text-zinc-200"
+              />
+              <input
+                value={s.native}
+                onChange={(e) => editAt(i, { native: e.target.value })}
+                className="w-full rounded-md border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800 bg-transparent px-2 py-0.5 text-xs text-zinc-500"
+              />
             </div>
             <button
               type="button"
               onClick={() => removeAt(i)}
               aria-label={t("delete")}
-              className="shrink-0 text-zinc-300 hover:text-red-500"
+              className="mt-1 shrink-0 text-zinc-300 hover:text-red-500"
             >
               ✕
             </button>

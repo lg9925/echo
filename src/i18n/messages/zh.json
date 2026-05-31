@@ -12,7 +12,9 @@
   "home": {
     "pickLanguage": "选择语言",
     "pickIsland": "选择场景岛",
-    "noData": "数据未加载,稍后再试。"
+    "noData": "数据未加载,稍后再试。",
+    "deleteIsland": "删除",
+    "confirmDeleteIsland": "删除「{name}」及其所有句子和复习进度?"
   },
   "languages": {
     "de": "德语",
@@ -64,7 +66,9 @@
     "example": "例句",
     "islandName": "岛名",
     "sentenceCount": "{n} 句",
-    "createIsland": "建成岛"
+    "createIsland": "建成岛",
+    "regenerate": "重新生成",
+    "scenarioDescription": "场景描述"
   },
   "capture": {
     "say": "想说",

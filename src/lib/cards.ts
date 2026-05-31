@@ -129,6 +129,21 @@ export async function createScenarioIsland(
   return island;
 }
 
+/** Delete a user island and everything tied to it: its sentences and their
+ *  spaced-repetition records. Guarded to user islands so seed islands are safe. */
+export async function deleteIsland(islandId: string): Promise<void> {
+  if (!isUserIslandId(islandId)) return;
+  const db = getDb();
+  const sentenceIds = (
+    await db.sentences.where("islandId").equals(islandId).primaryKeys()
+  ) as string[];
+  await db.transaction("rw", db.islands, db.sentences, db.reviews, async () => {
+    await db.reviews.bulkDelete(sentenceIds);
+    await db.sentences.where("islandId").equals(islandId).delete();
+    await db.islands.delete(islandId);
+  });
+}
+
 export function scenarioToFieldsList(
   sentences: ScenarioSentence[],
 ): SentenceFields[] {
