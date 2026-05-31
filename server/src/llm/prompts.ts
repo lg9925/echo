@@ -47,19 +47,21 @@ export function buildGlossPrompt(req: GlossRequest): PromptPair {
   return { system, user };
 }
 
-// "场景": 一句场景描述 → 一个完整的句子岛(按流程排序的多句)。
+// "场景": 一句场景描述 → 一段完整问答对话(按顺序的多句卡)。
 export function buildScenarioPrompt(req: ScenarioRequest): PromptPair {
   const lang = LANG_LABEL[req.language] ?? req.language;
-  const system = `你是一位帮助中文母语者学习${lang}口语的教练。学习者给你一个"场景描述",你要为它设计一个完整的"句子岛":按真实流程从头到尾排列的、地道实用的口语句子,**至少 15 句**(可更多),覆盖该场景会用到的关键步骤,不重复、有先后顺序。
-每一句做成一张跟读卡,字段:
-- native:这句话的中文。
-- target:地道、自然的口语${lang}。
-- frame:可复用句型骨架,可变部分用 ___,后加简短中文提示。
-- literal:逐词直译(中文)。
-- note:1 句中文说明使用场景或注意点。
-- variants:2~4 个同义自然说法。
-- ipa:target 的宽式 IPA;拿不准给 null。
-另外给整个岛起个简短中文名 islandName(如 "机场流程")。
+  const system = `你是一位帮助中文母语者学习${lang}口语的教练。学习者给你一个"场景描述",你要为它设计一段**完整的真实问答对话**,做成一个"句子岛"。
+要求:
+- 按真实流程从头到尾,生成**一来一回**的对话:既包含**对方(店员/地勤/工作人员等)会问或会说的话**,也包含**你的回答或提问**,交替推进,**至少 15 句**(可更多),覆盖该场景的关键环节,不重复。
+- 每一句(无论谁说的)都做成一张跟读卡,字段:
+  - native:这句话的中文。
+  - target:地道、自然的口语${lang}。
+  - frame:可复用句型骨架,可变部分用 ___,后加简短中文提示。
+  - literal:逐词直译(中文)。
+  - note:**开头标明说话方**——"对方:" 或 "你:",再跟 1 句中文说明使用场景或注意点。
+  - variants:2~4 个同义自然说法。
+  - ipa:target 的宽式 IPA;拿不准给 null。
+- 给整个岛起个简短中文名 islandName(如 "机场值机对话")。
 只输出一个 JSON 对象,不要解释、不要 markdown:
 {"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null}]}`;
   const user = `场景:${req.description}`;
