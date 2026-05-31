@@ -159,163 +159,260 @@
       ]
     },
     {
-      "name": "饭店",
+      "name": "饭店对话",
       "order": 2,
       "sentences": [
         {
-          "native": "您好,要一张两人桌。",
-          "target": "Hallo, ein Tisch für zwei, bitte.",
-          "frame": "Ein Tisch für ___, bitte.(zwei / drei)",
-          "literal": "一张 桌子 为 二,请",
-          "note": "der Tisch(阳性)。进餐厅要位子最简洁的口语。",
+          "native": "您好!请问您有预订吗?",
+          "target": "Guten Tag! Haben Sie reserviert?",
+          "frame": "Haben Sie ___?(reserviert / einen Tisch)",
+          "literal": "好的 天!有 您 预订了",
+          "note": "对方:领位/服务员的开场白,先问有没有预订。",
           "variants": [
-            "Haben Sie einen Tisch für zwei?",
-            "Einen Tisch für zwei Personen, bitte.",
-            "Ist hier noch frei?",
-            "Wir sind zu zweit.",
-            "Hätten Sie einen Tisch frei?"
+            "Haben Sie eine Reservierung?",
+            "Auf welchen Namen, bitte?",
+            "Für wie viele Personen?"
           ],
-          "ipa": "hˈaloː aɪn tˈɪʃ fyːɾ tsvˈaɪ bˈɪtə"
+          "ipa": "ɡˈuːtən tˈɑːk hˌɑːbən ziː rˌeːzɛɾvˈiːɾt"
         },
         {
-          "native": "能看一下菜单吗?",
+          "native": "没有,我们没预订。要一张两人桌,谢谢。",
+          "target": "Nein, wir haben nicht reserviert. Ein Tisch für zwei, bitte.",
+          "frame": "Ein Tisch für ___, bitte.(zwei / drei)",
+          "literal": "不,我们 有 没 预订。一张 桌子 为 二,请",
+          "note": "你:告知没预订并说明人数。der Tisch(阳性)。",
+          "variants": [
+            "Wir sind zu zweit.",
+            "Hätten Sie einen Tisch frei?",
+            "Einen Tisch für zwei Personen, bitte."
+          ],
+          "ipa": "nˈaɪn viːɾ hˌɑːbən nˈɪçt rˌeːzɛɾvˈiːɾt aɪn tˈɪʃ fyːɾ tsvˈaɪ bˈɪtə"
+        },
+        {
+          "native": "当然。请跟我来。",
+          "target": "Natürlich. Folgen Sie mir bitte.",
+          "frame": "Folgen Sie mir bitte.(请跟我来)",
+          "literal": "当然。跟随 您 我(与格)请",
+          "note": "对方:领位时的固定说法。",
+          "variants": [
+            "Kommen Sie bitte mit.",
+            "Hier entlang, bitte.",
+            "Ich zeige Ihnen den Tisch."
+          ],
+          "ipa": "nɑːtˈyːɾlɪç fˈɔlɡən ziː miːɾ bˈɪtə"
+        },
+        {
+          "native": "这是您的桌子。想喝点什么?",
+          "target": "Hier ist Ihr Tisch. Was möchten Sie trinken?",
+          "frame": "Was möchten Sie ___?(trinken / essen)",
+          "literal": "这里 是 您的 桌子。什么 想 您 喝",
+          "note": "对方:入座后先问饮品,德国餐厅常先点喝的。",
+          "variants": [
+            "Was darf ich Ihnen zu trinken bringen?",
+            "Möchten Sie schon etwas trinken?",
+            "Darf ich Ihnen ein Getränk bringen?"
+          ],
+          "ipa": "hˈiːɾ ɪst iːɾ tˈɪʃ vˈas mˈœçtən ziː tɾˈɪŋkən"
+        },
+        {
+          "native": "我要一杯无气泡水,谢谢。",
+          "target": "Ich hätte gern ein stilles Wasser, bitte.",
+          "frame": "Ich hätte gern ___, bitte.(ein Wasser / einen Kaffee)",
+          "literal": "我 有(虚拟)乐意 一 无气泡的 水,请",
+          "note": "你:点饮品。德国水分 still(无气)和 mit Kohlensäure(带气),要付费。",
+          "variants": [
+            "Einmal stilles Wasser, bitte.",
+            "Ein Wasser ohne Kohlensäure, bitte.",
+            "Für mich einen Kaffee, bitte."
+          ],
+          "ipa": "ɪç hˌɛtə ɡˈɛɾn aɪn ʃtˈɪləs vˈasɜ bˈɪtə"
+        },
+        {
+          "native": "能给我看一下菜单吗?",
           "target": "Könnte ich bitte die Karte haben?",
           "frame": "Könnte ich bitte ___ haben?",
           "literal": "能(虚拟) 我 请 菜单 有",
-          "note": "die (Speise)karte(阴性)= 菜单。“Könnte ich ... haben?” 很礼貌。",
+          "note": "你:要菜单。die (Speise)karte(阴性)。“Könnte ich …?” 很礼貌。",
           "variants": [
             "Die Karte, bitte.",
-            "Kann ich die Speisekarte sehen?",
-            "Könnten wir die Karte bekommen?",
             "Haben Sie eine Karte auf Englisch?",
-            "Was können Sie empfehlen?"
+            "Könnten wir die Karte bekommen?"
           ],
           "ipa": "kˈœntə ɪç bˈɪtə diː kˈaɾtə hˈɑːbən"
         },
         {
-          "native": "我要点这个。",
-          "target": "Ich nehme das hier.",
-          "frame": "Ich nehme ___.(das hier / die Suppe)",
-          "literal": "我 拿 这 这里",
-          "note": "点菜时指着菜单说 “das hier”(这个)最实用,不用会读菜名。",
+          "native": "给您。今日推荐是烤猪肉。",
+          "target": "Hier, bitte. Unsere Tagesempfehlung ist der Schweinebraten.",
+          "frame": "Unsere Tagesempfehlung ist ___.",
+          "literal": "这里,请。我们的 当日推荐 是 这 烤猪肉",
+          "note": "对方:递菜单并介绍当日推荐(Tagesempfehlung / Tagesgericht)。",
           "variants": [
-            "Ich hätte gern das hier.",
-            "Für mich bitte das.",
-            "Ich möchte das, bitte.",
-            "Das nehme ich.",
-            "Einmal das hier, bitte."
+            "Das Tagesgericht ist heute Gulasch.",
+            "Kann ich Ihnen etwas empfehlen?",
+            "Unser Klassiker ist das Schnitzel."
           ],
-          "ipa": "ɪç nˈeːmə das hˈiːɾ"
+          "ipa": "hˈiːɾ bˈɪtə ˌʊnzrə tˈɑɡeːzˌɛmpfeːlˌʊŋ ɪst dɛɾ ʃvˌaɪnɛbɾˈɑːtən"
         },
         {
-          "native": "我想要一杯水。",
-          "target": "Ich hätte gern ein Wasser.",
-          "frame": "Ich hätte gern ___.(ein Wasser / einen Kaffee)",
-          "literal": "我 有(虚拟)乐意 一 水",
-          "note": "das Wasser(中性)。德国餐厅水要付费,常被问 “mit oder ohne Kohlensäure”(带不带气)。",
+          "native": "您有什么推荐吗?",
+          "target": "Was können Sie empfehlen?",
+          "frame": "Was können Sie ___?(empfehlen)",
+          "literal": "什么 能 您 推荐",
+          "note": "你:请服务员推荐。",
           "variants": [
-            "Einmal Wasser, bitte.",
-            "Ich möchte ein Wasser, bitte.",
-            "Ein Glas Wasser, bitte.",
-            "Ein stilles Wasser, bitte.",
-            "Können Sie mir ein Wasser bringen?"
+            "Was ist hier besonders gut?",
+            "Was essen die meisten Leute?",
+            "Was würden Sie nehmen?"
           ],
-          "ipa": "ɪç hˌɛtə ɡˈɛɾn aɪn vˈasɜ"
+          "ipa": "vˈas kˌœnən ziː ɛmpfˈeːlən"
         },
         {
           "native": "这道菜辣吗?",
           "target": "Ist das scharf?",
           "frame": "Ist das ___?(scharf / vegetarisch)",
           "literal": "是 这 辣",
-          "note": "点菜前确认;素食问 “Ist das vegetarisch?”。",
+          "note": "你:点前确认;素食问 “Ist das vegetarisch?”。",
           "variants": [
             "Ist das sehr scharf?",
-            "Enthält das Fleisch?",
             "Ist da Schweinefleisch drin?",
-            "Ist das vegetarisch?",
             "Hat das Nüsse?(过敏时)"
           ],
           "ipa": "ɪst das ʃˈaɾf"
         },
         {
-          "native": "太好吃了!",
-          "target": "Das schmeckt super!",
-          "frame": "Das schmeckt ___!(super / lecker / gut)",
-          "literal": "这 尝起来 超棒",
-          "note": "夸菜好吃的口语;“lecker” = 好吃,德国人常用。",
+          "native": "不辣。您要点餐了吗?",
+          "target": "Nein, das ist nicht scharf. Möchten Sie schon bestellen?",
+          "frame": "Möchten Sie schon ___?(bestellen)",
+          "literal": "不,这 是 不 辣。想 您 已经 点餐",
+          "note": "对方:回答并问是否点餐。",
           "variants": [
-            "Das ist echt lecker!",
-            "Mhh, sehr lecker!",
-            "Das schmeckt richtig gut!",
-            "Total lecker!",
-            "Das ist köstlich!"
+            "Was darf es sein?",
+            "Haben Sie schon gewählt?",
+            "Was hätten Sie gern?"
           ],
-          "ipa": "das ʃmˈɛkt zˈuːpɜ"
+          "ipa": "nˈaɪn das ɪst nˈɪçt ʃˈaɾf mˈœçtən ziː ʃˌoːn bəʃtˈɛlən"
         },
         {
-          "native": "不好意思!(招呼服务员)",
-          "target": "Entschuldigung!",
-          "frame": "Entschuldigung!(招呼/道歉万能)",
-          "literal": "抱歉",
-          "note": "德国不喊 “Kellner!”,招呼服务员就用 “Entschuldigung!” 或举手。",
+          "native": "我要点这个,谢谢。",
+          "target": "Ich nehme das hier, bitte.",
+          "frame": "Ich nehme ___.(das hier / die Suppe)",
+          "literal": "我 拿 这 这里,请",
+          "note": "你:点菜时指着菜单说 “das hier” 最实用,不用会读菜名。",
           "variants": [
-            "Hallo, entschuldigen Sie?",
-            "Entschuldigung, könnten Sie kurz?",
-            "Können wir bestellen?",
-            "Wir würden gern bestellen.",
-            "Entschuldigung, hier bitte!"
+            "Ich hätte gern das hier.",
+            "Einmal das, bitte.",
+            "Das nehme ich."
           ],
-          "ipa": "ɛntʃˈʊldɪɡˌʊŋ"
+          "ipa": "ɪç nˈeːmə das hˈiːɾ bˈɪtə"
         },
         {
-          "native": "我们买单。",
+          "native": "好的。还要别的吗?",
+          "target": "Gern. Sonst noch etwas?",
+          "frame": "Sonst noch ___?(etwas)",
+          "literal": "乐意。此外 还 某物",
+          "note": "对方:确认并追问是否还要别的。",
+          "variants": [
+            "Möchten Sie eine Vorspeise?",
+            "Und zu trinken noch etwas?",
+            "Darf es noch etwas sein?"
+          ],
+          "ipa": "ɡˈɛɾn zˈɔnst nɔx ˈɛtvɑːs"
+        },
+        {
+          "native": "就这些,谢谢。",
+          "target": "Das ist alles, danke.",
+          "frame": "Das ist alles.(点餐/结账收尾)",
+          "literal": "这 是 全部,谢谢",
+          "note": "你:表示点完了。",
+          "variants": [
+            "Das wär's, danke.",
+            "Nein, das reicht, danke.",
+            "Erst mal das, danke."
+          ],
+          "ipa": "das ɪst ˈaləs dˈaŋkə"
+        },
+        {
+          "native": "合您口味吗?",
+          "target": "Hat es geschmeckt?",
+          "frame": "Hat es ___?(geschmeckt)",
+          "literal": "有 它 尝起来(过去分词)",
+          "note": "对方:饭后服务员常这样问。",
+          "variants": [
+            "Hat alles gepasst?",
+            "War alles in Ordnung?",
+            "Wie war das Essen?"
+          ],
+          "ipa": "hat ɛs ɡəʃmˈɛkt"
+        },
+        {
+          "native": "嗯,非常好吃,谢谢!",
+          "target": "Ja, das schmeckt super, danke!",
+          "frame": "Das schmeckt ___!(super / lecker)",
+          "literal": "是,这 尝起来 超棒,谢谢",
+          "note": "你:称赞菜好吃。“lecker” = 好吃,德国人常用。",
+          "variants": [
+            "Es war sehr lecker, danke!",
+            "Hat super geschmeckt!",
+            "Alles war köstlich!"
+          ],
+          "ipa": "jˈɑː das ʃmˈɛkt zˈuːpɜ dˈaŋkə"
+        },
+        {
+          "native": "我们想买单,谢谢。",
           "target": "Wir möchten zahlen, bitte.",
           "frame": "Wir möchten ___.(zahlen / bestellen)",
           "literal": "我们 想 付,请",
-          "note": "结账标准说法;也可只说 “Zahlen, bitte!”。",
+          "note": "你:结账。德国不喊服务员,举手或说 “Entschuldigung” 招呼。",
           "variants": [
             "Die Rechnung, bitte.",
             "Zahlen, bitte!",
-            "Können wir bitte zahlen?",
-            "Ich würde gern bezahlen.",
-            "Bezahlen, bitte."
+            "Könnten wir bitte zahlen?"
           ],
           "ipa": "viːɾ mˈœçtən tsˈɑːlən bˈɪtə"
         },
         {
-          "native": "一起付还是分开付?——一起。",
-          "target": "Zusammen oder getrennt? – Zusammen, bitte.",
+          "native": "一起付还是分开付?",
+          "target": "Zusammen oder getrennt?",
           "frame": "Zusammen oder getrennt?",
-          "literal": "一起 或者 分开?",
-          "note": "服务员结账常问;zusammen 一起,getrennt 各付各的。",
+          "literal": "一起 或者 分开",
+          "note": "对方:结账时几乎必问。zusammen 一起,getrennt 各付各的。",
           "variants": [
-            "Getrennt, bitte.",
-            "Zusammen, bitte.",
-            "Jeder zahlt für sich.",
-            "Alles zusammen, bitte.",
-            "Wir zahlen getrennt."
+            "Zahlen Sie zusammen?",
+            "Getrennt oder alles zusammen?",
+            "Wie möchten Sie zahlen?"
           ],
-          "ipa": "tsuːzˈamən ˌoːdɜ ɡətɾˈɛnt tsuːzˈamən bˈɪtə"
+          "ipa": "tsuːzˈamən ˌoːdɜ ɡətɾˈɛnt"
         },
         {
-          "native": "不用找了。(含小费)",
-          "target": "Stimmt so.",
-          "frame": "Stimmt so.(付款给小费时)",
-          "literal": "对 这样",
-          "note": "给小费的标准说法——付钱时说 “Stimmt so.” 表示零头不用找。德国小费一般凑整或加约 5–10%。",
+          "native": "一起付。不用找了。",
+          "target": "Zusammen, bitte. Stimmt so.",
+          "frame": "Stimmt so.(付款时给小费/不用找)",
+          "literal": "一起,请。对 这样",
+          "note": "你:“Stimmt so.” 表示零头不用找(含小费)。德国小费一般凑整或加 5–10%。",
           "variants": [
-            "Machen Sie 20.",
-            "Der Rest ist für Sie.",
-            "Passt so, danke.",
-            "Stimmt so, danke!",
-            "20 Euro, bitte."
+            "Getrennt, bitte.",
+            "Machen Sie 50.",
+            "Der Rest ist für Sie."
           ],
-          "ipa": "ʃtˈɪmt zˈoː"
+          "ipa": "tsuːzˈamən bˈɪtə ʃtˈɪmt zˈoː"
+        },
+        {
+          "native": "非常感谢!祝您晚上愉快!",
+          "target": "Vielen Dank! Schönen Abend noch!",
+          "frame": "Schönen ___ noch!(Abend / Tag)",
+          "literal": "许多 谢!美好的 晚上 还",
+          "note": "对方:告别祝福。回一句 “Danke, ebenfalls!”(您也是)。",
+          "variants": [
+            "Danke, ebenfalls!",
+            "Auf Wiedersehen!",
+            "Kommen Sie gut nach Hause!"
+          ],
+          "ipa": "fˈiːlən dˈaŋk ʃˈøːnən ˈɑːbənt nɔx"
         }
       ]
     },
     {
-      "name": "超市",
+      "name": "超市对话",
       "order": 3,
       "sentences": [
         {
@@ -323,153 +420,198 @@
           "target": "Entschuldigung, wo finde ich die Milch?",
           "frame": "Wo finde ich ___?(die Milch / das Brot)",
           "literal": "抱歉,哪里 找到 我 牛奶",
-          "note": "die Milch(阴性)。问商品位置最常用。",
+          "note": "你:问商品位置最常用。die Milch(阴性)。",
           "variants": [
-            "Wo gibt es hier Milch?",
             "Wo steht die Milch?",
             "In welchem Gang ist die Milch?",
-            "Haben Sie Milch?",
-            "Wo finde ich Brot?"
+            "Wo gibt es hier Brot?"
           ],
           "ipa": "ɛntʃˈʊldɪɡˌʊŋ vˌoː fˈɪndə ɪç diː mˈɪlç"
         },
         {
-          "native": "你们有……吗?",
-          "target": "Haben Sie ...?",
-          "frame": "Haben Sie ___?(Tomaten / frisches Brot)",
-          "literal": "有 您……",
-          "note": "问有没有某商品。",
+          "native": "牛奶在冷藏货架,第三排。",
+          "target": "Die Milch ist im Kühlregal, Gang drei.",
+          "frame": "Das ist in ___.(Gang drei / im Kühlregal)",
+          "literal": "这 牛奶 是 在 冷藏货架,通道 三",
+          "note": "对方:店员指方向。der Gang = 货架通道。",
           "variants": [
-            "Gibt es hier ...?",
-            "Führen Sie ...?",
-            "Haben Sie zufällig ...?",
-            "Wo bekomme ich ...?",
-            "Ist das hier irgendwo?"
+            "Gleich da hinten links.",
+            "Im hinteren Bereich, beim Käse.",
+            "Folgen Sie einfach dem Schild."
           ],
-          "ipa": "hˈɑːbən ziː"
+          "ipa": "diː mˈɪlç ɪst ɪm kˌyːlreːɡˈɑːl ɡˈaŋ dɾˈaɪ"
+        },
+        {
+          "native": "你们也有无乳糖牛奶吗?",
+          "target": "Haben Sie auch laktosefreie Milch?",
+          "frame": "Haben Sie auch ___?(laktosefreie Milch)",
+          "literal": "有 您 也 无乳糖的 牛奶",
+          "note": "你:问特定商品。laktosefrei = 无乳糖,glutenfrei = 无麸质。",
+          "variants": [
+            "Haben Sie glutenfreie Sachen?",
+            "Wo finde ich vegane Produkte?",
+            "Gibt es das auch in Bio?"
+          ],
+          "ipa": "hˌɑːbən ziː ˌaʊx lˈaktoːzɛfrˌaɪə mˈɪlç"
+        },
+        {
+          "native": "有,就在旁边。",
+          "target": "Ja, gleich daneben.",
+          "frame": "Gleich ___.(daneben / da vorne)",
+          "literal": "是,马上 旁边",
+          "note": "对方:店员告知就在附近。",
+          "variants": [
+            "Ja, direkt neben der normalen Milch.",
+            "Das haben wir, einen Moment.",
+            "Tut mir leid, das ist gerade aus."
+          ],
+          "ipa": "jˈɑː ɡlˈaɪç dɑːnˈeːbən"
         },
         {
           "native": "这个多少钱?",
-          "target": "Was kostet das?",
+          "target": "Was kostet das hier?",
           "frame": "Was kostet ___?(das / der Käse)",
-          "literal": "什么 花费 这",
-          "note": "问价格最简单的说法;也可 “Wie viel kostet das?”。",
+          "literal": "什么 花费 这 这里",
+          "note": "你:问价格最简单的说法。",
           "variants": [
             "Wie viel kostet das?",
-            "Was macht das?",
             "Wie teuer ist das?",
-            "Was kosten die?",
-            "Was kostet das hier?"
+            "Was kosten die?"
           ],
-          "ipa": "vˈas kˈɔstət das"
+          "ipa": "vˈas kˈɔstət das hˈiːɾ"
         },
         {
-          "native": "我在找无乳糖牛奶。",
-          "target": "Ich suche laktosefreie Milch.",
-          "frame": "Ich suche ___.(laktosefreie Milch)",
-          "literal": "我 寻找 无乳糖的 牛奶",
-          "note": "“Ich suche ...” = 我在找……,问店员很自然。",
+          "native": "一共2.9欧。",
+          "target": "Das macht zwei Euro neunzig.",
+          "frame": "Das macht ___ Euro.",
+          "literal": "这 做 二 欧元 九十",
+          "note": "对方:报价。德语价格读法 “zwei neunzig” 也常见。",
           "variants": [
-            "Ich suche nach Brot.",
-            "Haben Sie auch glutenfreie Sachen?",
-            "Wo finde ich vegane Produkte?",
-            "Ich brauche noch Eier.",
-            "Wo sind die Getränke?"
+            "Zwei Euro neunzig, bitte.",
+            "Das kostet 2,90 Euro.",
+            "Der ist im Angebot."
           ],
-          "ipa": "ɪç zˈuːxə lˈaktoːzɛfrˌaɪə mˈɪlç"
+          "ipa": "das mˈaxt tsvˈaɪ ˈɔøroː nˈɔøntsɪç"
+        },
+        {
+          "native": "您好!有积分卡吗?",
+          "target": "Hallo! Haben Sie eine Payback-Karte?",
+          "frame": "Haben Sie eine ___?(Payback-Karte / Kundenkarte)",
+          "literal": "你好!有 您 一 积分卡",
+          "note": "对方:收银员开场常问积分卡(Payback/Kundenkarte)。",
+          "variants": [
+            "Sammeln Sie Punkte?",
+            "Haben Sie eine Kundenkarte?",
+            "Hallo, alles gefunden?"
+          ],
+          "ipa": "hˈaloː hˌɑːbən ziː ˌaɪnə pˈɛɪbakkˈaɾtə"
+        },
+        {
+          "native": "没有,谢谢。",
+          "target": "Nein, danke.",
+          "frame": "Nein, danke.(婉拒)",
+          "literal": "不,谢谢",
+          "note": "你:婉拒积分卡。",
+          "variants": [
+            "Nein, hab ich nicht.",
+            "Brauche ich nicht, danke.",
+            "Diesmal nicht, danke."
+          ],
+          "ipa": "nˈaɪn dˈaŋkə"
+        },
+        {
+          "native": "您要袋子吗?",
+          "target": "Möchten Sie eine Tüte?",
+          "frame": "Möchten Sie ___?(eine Tüte)",
+          "literal": "想 您 一 袋子",
+          "note": "对方:德国袋子要另付钱,收银常问。die Tüte(阴性)。",
+          "variants": [
+            "Brauchen Sie eine Tüte?",
+            "Tüte dazu?",
+            "Haben Sie eine eigene Tasche?"
+          ],
+          "ipa": "mˈœçtən ziː ˌaɪnə tˈyːtə"
+        },
+        {
+          "native": "要一个,谢谢。",
+          "target": "Ja, eine bitte.",
+          "frame": "Ja, ___ bitte.(eine / zwei)",
+          "literal": "是,一个 请",
+          "note": "你:要一个袋子。不要就说 “Nein, ich hab eine dabei.”。",
+          "variants": [
+            "Eine große, bitte.",
+            "Nein danke, ich hab eine dabei.",
+            "Eine Papiertüte, bitte."
+          ],
+          "ipa": "jˈɑː ˌaɪnə bˈɪtə"
         },
         {
           "native": "我可以刷卡吗?",
           "target": "Kann ich mit Karte zahlen?",
           "frame": "Kann ich mit ___ zahlen?(Karte / bar)",
           "literal": "能 我 用 卡 付",
-          "note": "die Karte(阴性)。德国不少小店只收现金(bar),问一下保险。",
+          "note": "你:问支付方式。德国不少小店只收现金(bar),问一下保险。",
           "variants": [
             "Nehmen Sie Karte?",
-            "Kann ich bar zahlen?",
-            "Geht das mit Kreditkarte?",
-            "Akzeptieren Sie Karte?",
-            "Nur bar? Okay."
+            "Geht das kontaktlos?",
+            "Kann ich bar zahlen?"
           ],
           "ipa": "kˌan ɪç mɪt kˈaɾtə tsˈɑːlən"
         },
         {
-          "native": "我需要一个袋子。",
-          "target": "Ich brauche eine Tüte, bitte.",
-          "frame": "Ich brauche ___, bitte.(eine Tüte)",
-          "literal": "我 需要 一 袋子,请",
-          "note": "die Tüte(阴性)。德国超市袋子要另付钱。",
+          "native": "可以,也能感应支付。一共18.5欧。",
+          "target": "Ja, kontaktlos geht auch. Das macht 18,50 Euro.",
+          "frame": "Das macht ___ Euro.",
+          "literal": "是,非接触 行 也。这 做 18.50 欧元",
+          "note": "对方:确认可刷卡并报总价。kontaktlos = 感应/非接触支付。",
           "variants": [
-            "Eine Tüte, bitte.",
-            "Haben Sie Tüten?",
-            "Eine große Tüte, bitte.",
-            "Eine Papiertüte, bitte.",
-            "Nein danke, ich hab eine dabei."
+            "Nur bar, tut mir leid.",
+            "Bitte stecken Sie die Karte ein.",
+            "Achtzehn Euro fünfzig, bitte."
           ],
-          "ipa": "ɪç bɾˈaʊxə ˌaɪnə tˈyːtə bˈɪtə"
-        },
-        {
-          "native": "就这些了,谢谢。",
-          "target": "Das ist alles, danke.",
-          "frame": "Das ist alles.(结账时)",
-          "literal": "这 是 全部,谢谢",
-          "note": "收银员问 “Sonst noch etwas?”(还要别的吗)时这样回。",
-          "variants": [
-            "Das wär's, danke.",
-            "Nein, das ist alles.",
-            "Das reicht, danke.",
-            "Sonst nichts, danke.",
-            "Ja, das ist alles."
-          ],
-          "ipa": "das ɪst ˈaləs dˈaŋkə"
-        },
-        {
-          "native": "您要袋子吗?——不用,谢谢。",
-          "target": "Möchten Sie eine Tüte? – Nein, danke.",
-          "frame": "Möchten Sie ___? – Nein, danke.",
-          "literal": "想要 您 一 袋子?——不,谢谢",
-          "note": "收银台常听到的一问一答,提前听熟。",
-          "variants": [
-            "Brauchen Sie eine Tüte? – Nein, danke.",
-            "Ja, bitte eine.",
-            "Nein, ich hab selbst eine.",
-            "Eine kleine, bitte.",
-            "Nein, passt schon."
-          ],
-          "ipa": "mˈœçtən ziː ˌaɪnə tˈyːtə nˈaɪn dˈaŋkə"
-        },
-        {
-          "native": "不好意思,这个过期了。",
-          "target": "Entschuldigung, das ist abgelaufen.",
-          "frame": "Das ist ___.(abgelaufen / kaputt)",
-          "literal": "抱歉,这 是 过期了",
-          "note": "“abgelaufen” = 过了保质期。",
-          "variants": [
-            "Das Datum ist abgelaufen.",
-            "Kann ich das umtauschen?",
-            "Das ist leider kaputt.",
-            "Die Verpackung ist beschädigt.",
-            "Das ist nicht mehr gut."
-          ],
-          "ipa": "ɛntʃˈʊldɪɡˌʊŋ das ɪst ˈapɡəlˌaʊfən"
+          "ipa": "jˈɑː kɔntˈaktloːs ɡˈeːt ˌaʊx das mˈaxt ˈaxtseːn kˌɔmɑː fˈʏnf nˈʊl ˈɔøroː"
         },
         {
           "native": "我要小票,谢谢。",
           "target": "Den Kassenbon, bitte.",
           "frame": "___, bitte.(Den Kassenbon / Die Quittung)",
           "literal": "小票(宾格),请",
-          "note": "der Kassenbon(阳性)→ 宾格 den。“Quittung” 也指收据。",
+          "note": "你:要小票。der Kassenbon(阳性)→ 宾格 den;“Quittung” 也指收据。",
           "variants": [
             "Kann ich den Bon haben?",
             "Die Quittung, bitte.",
-            "Mit Bon, bitte.",
-            "Brauche ich den Bon? Ja, bitte.",
             "Nein, ohne Bon, danke."
           ],
           "ipa": "deːn kˈasənbˌoːn bˈɪtə"
+        },
+        {
+          "native": "给您。祝您愉快!",
+          "target": "Bitte schön. Einen schönen Tag noch!",
+          "frame": "Einen schönen ___ noch!(Tag / Abend)",
+          "literal": "请 好。一个 美好的 天 还",
+          "note": "对方:收银员道别。回一句 “Danke, ebenfalls!”。",
+          "variants": [
+            "Hier ist Ihr Bon.",
+            "Vielen Dank, tschüss!",
+            "Auf Wiedersehen!"
+          ],
+          "ipa": "bˈɪtə ʃˈøːn ˌaɪnən ʃˈøːnən tˈɑːk nɔx"
+        },
+        {
+          "native": "谢谢,您也是!",
+          "target": "Danke, ebenfalls!",
+          "frame": "Danke, ebenfalls!(回祝)",
+          "literal": "谢谢,同样地",
+          "note": "你:回应对方的祝福,最自然的收尾。",
+          "variants": [
+            "Danke, Ihnen auch!",
+            "Tschüss, schönen Tag!",
+            "Danke schön, auf Wiedersehen!"
+          ],
+          "ipa": "dˈaŋkə ˈeːbənfˌals"
         }
       ]
     }
   ],
-  "version": 4
+  "version": 6
 }
