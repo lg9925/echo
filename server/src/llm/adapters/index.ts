@@ -5,6 +5,7 @@ import { openaiAdapter } from "./openai";
 import { deepseekAdapter } from "./deepseek";
 import { claudeCliAdapter } from "./claudeCli";
 import { geminiAdapter } from "./gemini";
+import { geminiCliAdapter } from "./geminiCli";
 
 // The registry. Adding a vendor = import its adapter and add one line here.
 const ADAPTERS: Record<LlmProvider, LlmAdapter> = {
@@ -13,6 +14,7 @@ const ADAPTERS: Record<LlmProvider, LlmAdapter> = {
   deepseek: deepseekAdapter,
   "claude-cli": claudeCliAdapter,
   gemini: geminiAdapter,
+  "gemini-cli": geminiCliAdapter,
 };
 
 export function getAdapter(provider: LlmProvider): LlmAdapter {
