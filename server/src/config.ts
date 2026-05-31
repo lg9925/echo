@@ -76,14 +76,14 @@ export interface VoicePreset {
 export const VOICE_PRESETS: Record<string, VoicePreset> = {
   de: {
     edge: "de-DE-KatjaNeural",
-    gemini: "Kore",
+    gemini: "Charon",
     openai: "alloy",
     google: "de-DE-Neural2-F",
     elevenlabs: "",
   },
   en: {
     edge: "en-US-AriaNeural",
-    gemini: "Kore",
+    gemini: "Aoede",
     openai: "alloy",
     google: "en-US-Neural2-F",
     elevenlabs: "",
