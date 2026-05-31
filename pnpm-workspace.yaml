@@ -5,8 +5,12 @@ allowBuilds:
   '@swc/core': true
   sharp: true
   unrs-resolver: true
+  esbuild: true
+  msedge-tts: true
 onlyBuiltDependencies:
   - "@parcel/watcher"
   - "@swc/core"
   - sharp
   - unrs-resolver
+  - esbuild
+  - msedge-tts
