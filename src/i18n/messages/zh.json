@@ -51,6 +51,7 @@
     "delete": "删除",
     "retry": "重试",
     "processingHint": "AI 正在生成,请稍候…(场景较慢,可能要 1–2 分钟)",
+    "processingScenario": "正在生成对话…已 {n} 句",
     "addToLearning": "加入学习",
     "openIsland": "去跟读 →",
     "chooseIsland": "归到哪个岛",

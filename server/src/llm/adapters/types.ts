@@ -12,4 +12,13 @@ export interface LlmCompleteParams {
 export interface LlmAdapter {
   readonly name: LlmProvider;
   complete(params: LlmCompleteParams): Promise<string>;
+  /**
+   * Optional streaming variant: calls `onText` with the accumulated text as it
+   * arrives, and resolves with the final full text. Providers that don't
+   * implement it fall back to the non-streaming path (one final chunk).
+   */
+  completeStream?(
+    params: LlmCompleteParams,
+    onText: (textSoFar: string) => void,
+  ): Promise<string>;
 }

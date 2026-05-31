@@ -74,3 +74,41 @@ export function gloss(req: GlossRequest): Promise<GlossResult> {
 export function scenario(req: ScenarioRequest): Promise<ScenarioResult> {
   return runStructured("scenario", buildScenarioPrompt(req), scenarioSchema);
 }
+
+// Streaming variant: `onText` receives the accumulated raw text as it streams
+// (the route derives progress from it). Falls back to the non-streaming path
+// for providers without completeStream. Final result is still validated.
+async function runStructuredStream<S extends z.ZodTypeAny>(
+  task: LlmTask,
+  prompt: { system: string; user: string },
+  schema: S,
+  onText: (textSoFar: string) => void,
+): Promise<z.infer<S>> {
+  const route = TASK_ROUTING[task];
+  const adapter = getAdapter(route.provider);
+  if (!adapter.completeStream) {
+    return runStructured(task, prompt, schema);
+  }
+  const raw = await adapter.completeStream(
+    {
+      system: prompt.system,
+      user: prompt.user,
+      model: route.model,
+      maxTokens: route.maxTokens,
+    },
+    onText,
+  );
+  try {
+    return schema.parse(JSON.parse(extractJson(raw)));
+  } catch {
+    // Streamed output didn't validate — fall back to one clean (non-stream) try.
+    return runStructured(task, prompt, schema);
+  }
+}
+
+export function scenarioStream(
+  req: ScenarioRequest,
+  onText: (textSoFar: string) => void,
+): Promise<ScenarioResult> {
+  return runStructuredStream("scenario", buildScenarioPrompt(req), scenarioSchema, onText);
+}

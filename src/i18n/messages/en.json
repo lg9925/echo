@@ -51,6 +51,7 @@
     "delete": "Delete",
     "retry": "Retry",
     "processingHint": "Generating… (scenarios can take a minute or two)",
+    "processingScenario": "Generating dialogue… {n} so far",
     "addToLearning": "Add to learning",
     "openIsland": "Shadow it →",
     "chooseIsland": "Add to which island",

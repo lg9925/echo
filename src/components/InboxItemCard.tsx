@@ -52,6 +52,7 @@ export function InboxItemCard({
   const [islandChoice, setIslandChoice] = useState<string>("");
   const [candidateIdx, setCandidateIdx] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
 
   const pickedId = pickedIslandId(item.language);
 
@@ -61,10 +62,14 @@ export function InboxItemCard({
     const needsRun = item.status === "captured" || item.status === "processing";
     if (!needsRun || inFlight.has(item.id)) return;
     inFlight.add(item.id);
-    // onChanged passed as onProgress → UI flips to "处理中…" the moment the
-    // call starts, instead of looking stuck on "待处理".
-    processInboxItem(item.id, onChanged).finally(() => {
+    // onStatus → UI flips to "处理中…" the moment the call starts; onProgress →
+    // live scenario sentence count (streamed), instead of a blank wait.
+    processInboxItem(item.id, {
+      onStatus: onChanged,
+      onProgress: (p) => setProgress(p.sentences),
+    }).finally(() => {
       inFlight.delete(item.id);
+      setProgress(null);
       onChanged();
     });
   }, [item.id, item.status, onChanged]);
@@ -108,7 +113,11 @@ export function InboxItemCard({
   }
 
   async function retry() {
-    await processInboxItem(item.id);
+    await processInboxItem(item.id, {
+      onStatus: onChanged,
+      onProgress: (p) => setProgress(p.sentences),
+    });
+    setProgress(null);
     onChanged();
   }
 
@@ -189,7 +198,7 @@ export function InboxItemCard({
 
       <p className="text-sm text-zinc-600 dark:text-zinc-400">{item.rawText}</p>
 
-      {item.status === "processing" && <ProcessingIndicator />}
+      {item.status === "processing" && <ProcessingIndicator sentences={progress} />}
 
       {item.status === "error" && (
         <div className="space-y-2">
@@ -368,7 +377,7 @@ function ScenarioPanel({
   );
 }
 
-function ProcessingIndicator() {
+function ProcessingIndicator({ sentences }: { sentences: number | null }) {
   const t = useTranslations("inbox");
   const [sec, setSec] = useState(0);
   useEffect(() => {
@@ -380,7 +389,9 @@ function ProcessingIndicator() {
   return (
     <div className="flex items-center gap-2 text-xs text-blue-600 dark:text-blue-300">
       <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
-      <span>{t("processingHint")}</span>
+      <span>
+        {sentences && sentences > 0 ? t("processingScenario", { n: sentences }) : t("processingHint")}
+      </span>
       <span className="tabular-nums opacity-70">
         {mm}:{ss}
       </span>

@@ -8,7 +8,14 @@ import type {
   ScenarioResult,
   TargetLanguage,
 } from "./api/contracts";
-import { apiFetchJson } from "./api/client";
+import { apiFetchJson, apiFetchSSE } from "./api/client";
+
+export interface ProcessHooks {
+  /** Fired the moment the item flips to "processing" (so the UI updates). */
+  onStatus?: () => void;
+  /** Scenario streaming progress: how many sentences generated so far. */
+  onProgress?: (p: { sentences: number }) => void;
+}
 
 export interface CaptureInput {
   kind: InboxKind;
@@ -60,13 +67,13 @@ export async function deleteInboxItem(id: string): Promise<void> {
 // so the UI can reflect it immediately (the LLM call may take minutes).
 export async function processInboxItem(
   id: string,
-  onProgress?: () => void,
+  hooks?: ProcessHooks,
 ): Promise<void> {
   const item = await getInboxItem(id);
   if (!item) return;
 
   await updateInboxItem(id, { status: "processing", error: undefined });
-  onProgress?.();
+  hooks?.onStatus?.();
   try {
     if (item.kind === "say") {
       const result = await apiFetchJson<ComposeResult>("/v1/compose", {
@@ -81,10 +88,15 @@ export async function processInboxItem(
       });
       await updateInboxItem(id, { status: "ready", result });
     } else {
-      const result = await apiFetchJson<ScenarioResult>("/v1/scenario", {
-        language: item.language,
-        description: item.rawText,
-      });
+      // Scenario is long — stream progress (live sentence count).
+      const result = await apiFetchSSE<ScenarioResult>(
+        "/v1/scenario/stream",
+        { language: item.language, description: item.rawText },
+        (data) => {
+          const p = data as { sentences?: number };
+          if (typeof p.sentences === "number") hooks?.onProgress?.({ sentences: p.sentences });
+        },
+      );
       await updateInboxItem(id, { status: "ready", result });
     }
   } catch (e) {
