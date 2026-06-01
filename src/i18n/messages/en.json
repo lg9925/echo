@@ -44,7 +44,8 @@
     "import": "Import backup",
     "importing": "Importing…",
     "importDone": "Imported: {islands} islands, {sentences} sentences, {reviews} review records. Refresh to see them.",
-    "importError": "Import failed: {detail}"
+    "importError": "Import failed: {detail}",
+    "advancedSection": "Advanced (backend connection · not needed for normal use)"
   },
   "inbox": {
     "title": "Inbox",
@@ -122,6 +123,7 @@
     "advance": "Advance",
     "autoAdvance": "Auto",
     "manualAdvance": "Manual",
+    "advancedControls": "Advanced (rate / pauses)",
     "rate": "Rate",
     "pauseLabel": "Shadow pause",
     "gapLabel": "After-target pause",

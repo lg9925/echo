@@ -135,65 +135,6 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
 
       <section className="space-y-5">
         <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
-          {t("apiSection")}
-        </h2>
-
-        <label className="block space-y-1.5">
-          <span className="text-sm font-medium">{t("apiToken")}</span>
-          <input
-            type="password"
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-            placeholder={t("apiTokenPlaceholder")}
-            autoComplete="off"
-            className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono"
-          />
-          <span className="text-xs text-zinc-500">{t("apiTokenHint")}</span>
-        </label>
-
-        <label className="block space-y-1.5">
-          <span className="text-sm font-medium">{t("apiBase")}</span>
-          <input
-            type="text"
-            value={base}
-            onChange={(e) => setBase(e.target.value)}
-            placeholder={DEFAULT_API_BASE}
-            autoComplete="off"
-            className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono"
-          />
-          <span className="text-xs text-zinc-500">{t("apiBaseHint")}</span>
-        </label>
-
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={save}
-            className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium"
-          >
-            {savedFlash ? t("saved") : t("save")}
-          </button>
-          <button
-            type="button"
-            onClick={runTest}
-            disabled={test.kind === "testing"}
-            className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-medium disabled:opacity-50"
-          >
-            {test.kind === "testing" ? t("testing") : t("testConnection")}
-          </button>
-        </div>
-
-        {test.kind === "ok" && (
-          <p className="text-sm text-green-600 dark:text-green-400">{t("testOk")}</p>
-        )}
-        {test.kind === "fail" && (
-          <p className="text-sm text-red-600 dark:text-red-400">
-            {t("testFail", { detail: test.detail })}
-          </p>
-        )}
-      </section>
-
-      <section className="space-y-5">
-        <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
           {t("backupSection")}
         </h2>
         <p className="text-sm text-zinc-500">{t("backupHint")}</p>
@@ -239,6 +180,68 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
           </p>
         )}
       </section>
+
+      {/* Backend connection: developer/advanced, collapsed by default (原则一). */}
+      <details className="rounded-lg border border-zinc-200 dark:border-zinc-800 p-4">
+        <summary className="cursor-pointer select-none text-sm font-medium text-zinc-500">
+          {t("advancedSection")}
+        </summary>
+
+        <div className="mt-5 space-y-5">
+          <label className="block space-y-1.5">
+            <span className="text-sm font-medium">{t("apiToken")}</span>
+            <input
+              type="password"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              placeholder={t("apiTokenPlaceholder")}
+              autoComplete="off"
+              className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono"
+            />
+            <span className="text-xs text-zinc-500">{t("apiTokenHint")}</span>
+          </label>
+
+          <label className="block space-y-1.5">
+            <span className="text-sm font-medium">{t("apiBase")}</span>
+            <input
+              type="text"
+              value={base}
+              onChange={(e) => setBase(e.target.value)}
+              placeholder={DEFAULT_API_BASE}
+              autoComplete="off"
+              className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono"
+            />
+            <span className="text-xs text-zinc-500">{t("apiBaseHint")}</span>
+          </label>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={save}
+              className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium"
+            >
+              {savedFlash ? t("saved") : t("save")}
+            </button>
+            <button
+              type="button"
+              onClick={runTest}
+              disabled={test.kind === "testing"}
+              className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-medium disabled:opacity-50"
+            >
+              {test.kind === "testing" ? t("testing") : t("testConnection")}
+            </button>
+          </div>
+
+          {test.kind === "ok" && (
+            <p className="text-sm text-green-600 dark:text-green-400">{t("testOk")}</p>
+          )}
+          {test.kind === "fail" && (
+            <p className="text-sm text-red-600 dark:text-red-400">
+              {t("testFail", { detail: test.detail })}
+            </p>
+          )}
+        </div>
+      </details>
     </main>
   );
 }

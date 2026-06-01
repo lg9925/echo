@@ -527,58 +527,65 @@ export function ShadowPlayer({
           </div>
         </div>
 
-        <div>
-          <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
-            <span>{t("rate")}</span>
-            <span className="tabular-nums">{settings.rate.toFixed(1)}x</span>
-          </label>
-          <input
-            type="range"
-            min="0.6"
-            max="1.4"
-            step="0.1"
-            value={settings.rate}
-            onChange={(e) => setRate(parseFloat(e.target.value))}
-            className="w-full"
-          />
-        </div>
+        {/* Fine-tuning sliders — good defaults, hidden by default (原则一). */}
+        <details className="space-y-4">
+          <summary className="cursor-pointer select-none text-xs text-zinc-500">
+            {t("advancedControls")}
+          </summary>
 
-        <div>
-          <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
-            <span>{t("pauseLabel")}</span>
-            <span className="tabular-nums">
-              {t("seconds", { n: settings.pauseSec })}
-            </span>
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="8"
-            step="1"
-            value={settings.pauseSec}
-            onChange={(e) => setPauseSec(parseInt(e.target.value, 10))}
-            className="w-full"
-          />
-        </div>
+          <div>
+            <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
+              <span>{t("rate")}</span>
+              <span className="tabular-nums">{settings.rate.toFixed(1)}x</span>
+            </label>
+            <input
+              type="range"
+              min="0.6"
+              max="1.4"
+              step="0.1"
+              value={settings.rate}
+              onChange={(e) => setRate(parseFloat(e.target.value))}
+              className="w-full"
+            />
+          </div>
 
-        <div className={settings.autoAdvance ? "" : "opacity-50"}>
-          <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
-            <span>{t("gapLabel")}</span>
-            <span className="tabular-nums">
-              {t("seconds", { n: settings.gapSec })}
-            </span>
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="10"
-            step="1"
-            value={settings.gapSec}
-            onChange={(e) => setGapSec(parseInt(e.target.value, 10))}
-            disabled={!settings.autoAdvance}
-            className="w-full"
-          />
-        </div>
+          <div>
+            <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
+              <span>{t("pauseLabel")}</span>
+              <span className="tabular-nums">
+                {t("seconds", { n: settings.pauseSec })}
+              </span>
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="8"
+              step="1"
+              value={settings.pauseSec}
+              onChange={(e) => setPauseSec(parseInt(e.target.value, 10))}
+              className="w-full"
+            />
+          </div>
+
+          <div className={settings.autoAdvance ? "" : "opacity-50"}>
+            <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
+              <span>{t("gapLabel")}</span>
+              <span className="tabular-nums">
+                {t("seconds", { n: settings.gapSec })}
+              </span>
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+              value={settings.gapSec}
+              onChange={(e) => setGapSec(parseInt(e.target.value, 10))}
+              disabled={!settings.autoAdvance}
+              className="w-full"
+            />
+          </div>
+        </details>
       </section>
     </main>
   );

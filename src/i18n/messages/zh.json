@@ -44,7 +44,8 @@
     "import": "导入备份",
     "importing": "导入中…",
     "importDone": "已导入:{islands} 个岛、{sentences} 句、{reviews} 条复习进度。刷新页面后查看。",
-    "importError": "导入失败:{detail}"
+    "importError": "导入失败:{detail}",
+    "advancedSection": "高级设置(后端连接 · 普通使用无需改)"
   },
   "inbox": {
     "title": "收件箱",
@@ -122,6 +123,7 @@
     "advance": "推进方式",
     "autoAdvance": "自动",
     "manualAdvance": "手动",
+    "advancedControls": "高级(语速 / 停顿)",
     "rate": "语速",
     "pauseLabel": "跟读停顿",
     "gapLabel": "外语后停顿",
