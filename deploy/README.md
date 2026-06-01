@@ -387,6 +387,27 @@ data) — you'll just re-enter the token + API base.
 > already-installed worker, so the stale one keeps running. The kill-switch is what
 > actually removes it.
 
+### Gotcha: long LLM calls hit Cloudflare's ~100s edge timeout (524)
+
+Cloudflare's edge has a fixed **~100s** response timeout (it returns **524** past
+that) and it is **not configurable** off the Enterprise plan. Scenario generation
+(15+ sentences) on `claude-cli` + sonnet takes ~160s, so over the tunnel it 524s
+before finishing — even though it works fine on `localhost` and worked in prod
+(nginx `proxy_read_timeout` was bumped to 180s there).
+
+The SSE stream *does* keep the connection alive **as long as data keeps flowing**
+(progress events reset the idle clock). The 524 hits when nothing reaches the edge
+for 100s — e.g. sonnet spending >100s before its first token.
+
+Dev fix: route scenario to a faster model in `server/.env`:
+
+```
+LLM_SCENARIO_MODEL=haiku   # ~50s, streams steadily, completes under the limit
+```
+
+`想说` (authoring) and `想懂` (gloss) are small/fast and stay on sonnet. Production
+keeps sonnet (it doesn't go through Cloudflare). Restart the backend after editing.
+
 ### Turn it off / restore prod
 
 In the Cloudflare dashboard, delete the `echo` CNAME and add the A record back:
