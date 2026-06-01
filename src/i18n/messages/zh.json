@@ -36,7 +36,15 @@
     "testOk": "连接成功 ✓",
     "testFail": "连接失败:{detail}",
     "unreachable": "无法连接到服务器",
-    "needToken": "请先填写访问令牌"
+    "needToken": "请先填写访问令牌",
+    "backupSection": "数据备份",
+    "backupHint": "把所有岛、句子、复习进度导出成一个文件保存好。本地数据一旦丢失即无法找回——音频不含在内,可由发音功能重新生成。",
+    "export": "导出备份",
+    "exporting": "导出中…",
+    "import": "导入备份",
+    "importing": "导入中…",
+    "importDone": "已导入:{islands} 个岛、{sentences} 句、{reviews} 条复习进度。刷新页面后查看。",
+    "importError": "导入失败:{detail}"
   },
   "inbox": {
     "title": "收件箱",

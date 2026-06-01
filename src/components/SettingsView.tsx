@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   DEFAULT_API_BASE,
@@ -10,12 +10,27 @@ import {
   setApiToken,
 } from "@/lib/settings";
 import { ApiClientError, checkAuth, checkHealth } from "@/lib/api/client";
+import {
+  backupToBlob,
+  exportBackup,
+  importBackup,
+  parseBackupFile,
+  suggestedFilename,
+  type ImportSummary,
+} from "@/lib/backup";
 
 type TestState =
   | { kind: "idle" }
   | { kind: "testing" }
   | { kind: "ok" }
   | { kind: "fail"; detail: string };
+
+type BackupState =
+  | { kind: "idle" }
+  | { kind: "exporting" }
+  | { kind: "importing" }
+  | { kind: "imported"; summary: ImportSummary }
+  | { kind: "error"; detail: string };
 
 export function SettingsView({ uiLocale }: { uiLocale: string }) {
   const t = useTranslations("settings");
@@ -24,6 +39,8 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
   const [base, setBase] = useState("");
   const [savedFlash, setSavedFlash] = useState(false);
   const [test, setTest] = useState<TestState>({ kind: "idle" });
+  const [backup, setBackup] = useState<BackupState>({ kind: "idle" });
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Hydrate from localStorage after mount (useState init can't — SSR sees no
   // localStorage and React reconciles against the SSR'd value).
@@ -63,6 +80,44 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
             ? e.message
             : String(e);
       setTest({ kind: "fail", detail });
+    }
+  }
+
+  async function runExport() {
+    setBackup({ kind: "exporting" });
+    try {
+      const file = await exportBackup();
+      const blob = backupToBlob(file);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = suggestedFilename(file);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setBackup({ kind: "idle" });
+    } catch (e) {
+      setBackup({ kind: "error", detail: e instanceof Error ? e.message : String(e) });
+    }
+  }
+
+  async function onImportFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const input = e.currentTarget;
+    const file = input.files?.[0];
+    input.value = ""; // allow re-importing the same file
+    if (!file) return;
+    setBackup({ kind: "importing" });
+    try {
+      const text = await file.text();
+      const parsed = parseBackupFile(text);
+      const summary = await importBackup(parsed);
+      setBackup({ kind: "imported", summary });
+    } catch (err) {
+      setBackup({
+        kind: "error",
+        detail: err instanceof Error ? err.message : String(err),
+      });
     }
   }
 
@@ -133,6 +188,54 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
         {test.kind === "fail" && (
           <p className="text-sm text-red-600 dark:text-red-400">
             {t("testFail", { detail: test.detail })}
+          </p>
+        )}
+      </section>
+
+      <section className="space-y-5">
+        <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
+          {t("backupSection")}
+        </h2>
+        <p className="text-sm text-zinc-500">{t("backupHint")}</p>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={runExport}
+            disabled={backup.kind === "exporting" || backup.kind === "importing"}
+            className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium disabled:opacity-50"
+          >
+            {backup.kind === "exporting" ? t("exporting") : t("export")}
+          </button>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={backup.kind === "exporting" || backup.kind === "importing"}
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-medium disabled:opacity-50"
+          >
+            {backup.kind === "importing" ? t("importing") : t("import")}
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json,.json"
+            onChange={onImportFile}
+            className="hidden"
+          />
+        </div>
+
+        {backup.kind === "imported" && (
+          <p className="text-sm text-green-600 dark:text-green-400">
+            {t("importDone", {
+              islands: backup.summary.islands,
+              sentences: backup.summary.sentences,
+              reviews: backup.summary.reviews,
+            })}
+          </p>
+        )}
+        {backup.kind === "error" && (
+          <p className="text-sm text-red-600 dark:text-red-400">
+            {t("importError", { detail: backup.detail })}
           </p>
         )}
       </section>
