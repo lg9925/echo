@@ -366,6 +366,27 @@ cloudflared --config "C:\Users\lg992\.cloudflared\service-config.yml" tunnel ing
    Desktop dev at `localhost:3000` is unaffected — it keeps using the default
    `localhost:8787` and needs no API-base override.
 
+### Gotcha: stale production service worker
+
+If a device (or browser) visited the **production** `echo.helloworldhub.xyz`
+before, the prod build's Serwist service worker is still registered on that
+origin. Dev mode ships no SW, so the stale prod SW keeps intercepting navigations
+and serving cached prod HTML/chunks into the freshly compiled dev bundle — which
+shows up as **React hydration mismatches** ("a tree hydrated but some attributes …
+didn't match") and generally stale/broken pages.
+
+Remediation: while the domain points at dev, `public/sw.js` is replaced with a
+**kill-switch worker** (git-ignored; a real `pnpm build` regenerates the genuine
+one). On its next update check the browser picks it up, wipes all Cache Storage,
+unregisters itself, and reloads — so each client self-heals after **a reload or
+two**. It does **not** touch IndexedDB, so the inbox / audio cache / Settings
+survive. If a device is stubborn, clear that site's data once (Settings → website
+data) — you'll just re-enter the token + API base.
+
+> Don't merely `rm public/sw.js`: a 404 on the SW script does **not** unregister an
+> already-installed worker, so the stale one keeps running. The kill-switch is what
+> actually removes it.
+
 ### Turn it off / restore prod
 
 In the Cloudflare dashboard, delete the `echo` CNAME and add the A record back:
