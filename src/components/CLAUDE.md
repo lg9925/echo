@@ -7,6 +7,7 @@
 - **No direct DB access.** Components import query helpers from `@/lib/db`, not Dexie itself.
 - **No direct TTS access.** Components import `speak()` from `@/lib/tts`, not `window.speechSynthesis`.
 - **No business logic in JSX.** Algorithms (scheduling, state machines) live in `src/lib/`. Components dispatch and render.
+- **No direct backend access.** Components reach the server only through `src/lib/inbox.ts` (capture/process) and `src/lib/api/*`. Never `fetch` the backend directly from a component, and never embed an API token in component code — the token lives in `settings` and the lib client reads it.
 
 ## Naming
 
