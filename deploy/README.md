@@ -295,42 +295,62 @@ This reuses the existing `cloudflared` tunnel (the one already serving
 `console-dev.cz12.net`); `helloworldhub.xyz` must be in the **same Cloudflare
 account** as that tunnel.
 
-### Config already in the repo / machine
+### Config (where it actually lives)
 
-- `~/.cloudflared/config.yml` — two `echo.helloworldhub.xyz` ingress rules
-  (path `^/(v1|health)(/|$)` → `:8787`, else → `:3000`), added above the
-  `http_status:404` catch-all, leaving the `console-dev` rule untouched.
+- **`cloudflared` runs as a Windows service** under LocalSystem, so it reads its
+  config from the *system profile* — **not** your user home. Confirm the path:
+
+  ```powershell
+  (Get-CimInstance Win32_Service -Filter "Name='cloudflared'").PathName
+  # → ... --config "C:\Windows\System32\config\systemprofile\.cloudflared\config.yml" ... tunnel run
+  ```
+
+  That file holds the `console-dev` ingress; the echo rules must be added to **it**.
+  Editing `C:\Users\<you>\.cloudflared\config.yml` has **no effect** — the service
+  never reads that copy. The two rules go in above the `http_status:404` catch-all,
+  leaving `console-dev` untouched:
+
+  ```yaml
+    - hostname: echo.helloworldhub.xyz
+      path: ^/(v1|health)(/|$)
+      service: http://localhost:8787
+    - hostname: echo.helloworldhub.xyz
+      service: http://localhost:3000
+  ```
+
+  The system-profile file needs admin to write. Keep a staging copy at
+  `C:\Users\lg992\.cloudflared\service-config.yml` (the full desired config, with
+  `credentials-file` pointing at the system-profile `.json`) and apply it with the
+  one-liner in step 2.
 - `next.config.ts` — `allowedDevOrigins: ["echo.helloworldhub.xyz"]` so `next dev`
   accepts requests proxied from the domain (dev-only; no effect on the export).
 
-Validate the ingress after any edit:
+Validate ingress syntax after editing the staging file:
 
 ```powershell
-cloudflared tunnel ingress validate
-cloudflared tunnel ingress rule https://echo.helloworldhub.xyz/v1/tts   # → backend
-cloudflared tunnel ingress rule https://echo.helloworldhub.xyz/zh/      # → frontend
+cloudflared --config "C:\Users\lg992\.cloudflared\service-config.yml" tunnel ingress validate
 ```
 
 ### Turn it on
 
 1. **Pause prod / repoint DNS** (Cloudflare dashboard → `helloworldhub.xyz` → DNS):
-   delete the `echo` **A** record pointing to the VPS (`165.154.203.38`), then
-   create the tunnel route:
+   delete the `echo` **A** record pointing to the VPS (`165.154.203.38`), then add a
+   **CNAME** by hand:
+
+   - Name `echo` → Target `e7689629-6e2d-4c20-9dec-fb1b885ae66e.cfargotunnel.com`
+   - Proxy status **Proxied (orange)**
+
+   > Don't use `cloudflared tunnel route dns …` for this: the local `cert.pem` is
+   > authorized for the **cz12.net** zone only, so it mangles the name into
+   > `echo.helloworldhub.xyz.cz12.net` (and litters that junk record in cz12.net).
+   > The manual CNAME works because the tunnel is in the same account. `echo` is a
+   > single-level subdomain, so Universal SSL covers it — no extra cert.
+
+2. **Apply the echo rules to the service config + reload** (admin PowerShell, one
+   line — backs up, overwrites from the staging file, restarts):
 
    ```powershell
-   cloudflared tunnel route dns e7689629-6e2d-4c20-9dec-fb1b885ae66e echo.helloworldhub.xyz
-   ```
-
-   (Or add it by hand: CNAME `echo` → `e7689629-6e2d-4c20-9dec-fb1b885ae66e.cfargotunnel.com`,
-   proxied/orange.) The old A record must be gone first, or `route dns` errors with
-   "record already exists". `echo` is a single-level subdomain, so Universal SSL
-   covers it — no extra cert.
-
-2. **Reload the tunnel** (admin PowerShell — `cloudflared` runs as a Windows
-   service):
-
-   ```powershell
-   Restart-Service cloudflared
+   $c="C:\Windows\System32\config\systemprofile\.cloudflared\config.yml"; Copy-Item $c "$c.bak-echo" -Force; Copy-Item "C:\Users\lg992\.cloudflared\service-config.yml" $c -Force; Restart-Service cloudflared
    ```
 
    This blips `console-dev.cz12.net` for a few seconds; pick a safe moment.
