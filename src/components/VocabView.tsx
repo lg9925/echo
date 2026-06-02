@@ -7,6 +7,7 @@ import {
   getOrCreatePickedIsland,
   islandHref,
 } from "@/lib/cards";
+import { listIslands } from "@/lib/db";
 import {
   addVocab,
   deleteVocab,
@@ -14,9 +15,11 @@ import {
   updateVocab,
   vocabToCard,
 } from "@/lib/vocab";
-import { prewarmAudio } from "@/lib/tts";
+import { prewarmAudio, speak } from "@/lib/tts";
+import { targetBcp47 } from "@/lib/lang";
+import { KeywordExtractor } from "./KeywordExtractor";
 import type { TargetLanguage } from "@/lib/api/contracts";
-import type { VocabEntry } from "@/lib/types";
+import type { Island, VocabEntry } from "@/lib/types";
 
 export function VocabView({
   uiLocale,
@@ -29,6 +32,11 @@ export function VocabView({
   const [entries, setEntries] = useState<VocabEntry[] | null>(null);
   const [term, setTerm] = useState("");
   const [meaning, setMeaning] = useState("");
+  const [islands, setIslands] = useState<Island[]>([]);
+  const [extractIslandId, setExtractIslandId] = useState(() => {
+    if (typeof window === "undefined") return "";
+    return new URLSearchParams(window.location.search).get("island") ?? "";
+  });
 
   const load = useCallback(async () => {
     setEntries(await listVocab(language));
@@ -38,6 +46,16 @@ export function VocabView({
     // eslint-disable-next-line react-hooks/set-state-in-effect -- async load after mount
     load();
   }, [load]);
+
+  useEffect(() => {
+    let alive = true;
+    void listIslands(language).then((list) => {
+      if (alive) setIslands(list);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [language]);
 
   async function add() {
     if (!term.trim()) return;
@@ -93,6 +111,35 @@ export function VocabView({
           {t("add")}
         </button>
       </div>
+
+      {islands.length > 0 && (
+        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-3 space-y-2">
+          <label className="block space-y-1">
+            <span className="text-xs text-zinc-500">{t("extractFromIsland")}</span>
+            <select
+              value={extractIslandId}
+              onChange={(e) => setExtractIslandId(e.target.value)}
+              className="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1.5 text-sm"
+            >
+              <option value="">{t("pickIsland")}</option>
+              {islands.map((i) => (
+                <option key={i.id} value={i.id}>
+                  {i.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {extractIslandId && (
+            <KeywordExtractor
+              key={extractIslandId}
+              language={language}
+              islandId={extractIslandId}
+              islandName={islands.find((i) => i.id === extractIslandId)?.name ?? ""}
+              onMerged={load}
+            />
+          )}
+        </div>
+      )}
 
       {entries && entries.length === 0 && (
         <p className="text-sm text-zinc-500">{t("empty")}</p>
@@ -155,7 +202,18 @@ function VocabRow({
   return (
     <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 space-y-2 bg-white dark:bg-zinc-950">
       <div className="flex items-baseline justify-between gap-3">
-        <span className="text-lg font-medium">{entry.term}</span>
+        <span className="flex items-baseline gap-2 min-w-0">
+          <span className="text-lg font-medium">{entry.term}</span>
+          <button
+            type="button"
+            onClick={() => void speak(entry.term, { lang: targetBcp47(language) })}
+            aria-label={t("play")}
+            title={t("play")}
+            className="shrink-0 text-sm text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+          >
+            ▶
+          </button>
+        </span>
         <button
           type="button"
           onClick={remove}

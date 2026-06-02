@@ -16,7 +16,10 @@
     "noData": "数据未加载,稍后再试。",
     "deleteIsland": "删除",
     "confirmDeleteIsland": "删除「{name}」及其所有句子和复习进度?",
-    "editIsland": "编辑"
+    "editIsland": "编辑",
+    "islandDue": "复习 {n}",
+    "islandReviewTitle": "复习本岛",
+    "extractTitle": "提取关键词到字词表"
   },
   "languages": {
     "de": "德语",
@@ -159,7 +162,10 @@
     "added": "已加入 ✓",
     "pickedIsland": "捡来的词",
     "collect": "收进字词表",
-    "collected": "已收进字词表 ✓"
+    "collected": "已收进字词表 ✓",
+    "extractFromIsland": "从某个岛提取关键词",
+    "pickIsland": "选一个岛…",
+    "play": "发音"
   },
   "editor": {
     "back": "返回",
@@ -199,6 +205,7 @@
     "kwApplying": "正在加入…",
     "kwDone": "已加入字词表 {n} 词。",
     "kwFailed": "提取失败:{detail}",
+    "kwEmpty": "这个岛还没有句子,先加几句。",
     "addVariant": "+ 加变体",
     "removeVariant": "删除变体",
     "toVocab": "入表",

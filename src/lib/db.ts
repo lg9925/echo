@@ -133,6 +133,27 @@ export async function getReview(
   return db.reviews.get(sentenceId);
 }
 
+/** Per-island count of cards due-or-new (no review yet) for the hub badges.
+ *  One pass over the language's sentences + reviews; grouped by islandId. */
+export async function dueCountsByIsland(
+  language: string,
+  nowMs: number,
+): Promise<Record<string, number>> {
+  const [sentences, reviews] = await Promise.all([
+    listAllSentences(language),
+    listAllReviews(language),
+  ]);
+  const reviewById = new Map(reviews.map((r) => [r.sentenceId, r]));
+  const counts: Record<string, number> = {};
+  for (const s of sentences) {
+    const r = reviewById.get(s.id);
+    if (!r || r.due <= nowMs) {
+      counts[s.islandId] = (counts[s.islandId] ?? 0) + 1;
+    }
+  }
+  return counts;
+}
+
 export async function upsertReview(state: ReviewState): Promise<void> {
   const db = getDb();
   await db.reviews.put(state);

@@ -16,7 +16,10 @@
     "noData": "No data loaded yet.",
     "deleteIsland": "Delete",
     "confirmDeleteIsland": "Delete \"{name}\" and all its sentences and review progress?",
-    "editIsland": "Edit"
+    "editIsland": "Edit",
+    "islandDue": "Review {n}",
+    "islandReviewTitle": "Review this island",
+    "extractTitle": "Extract key words to your word list"
   },
   "languages": {
     "de": "German",
@@ -159,7 +162,10 @@
     "added": "Added ✓",
     "pickedIsland": "Picked-up words",
     "collect": "Add to words",
-    "collected": "Added to words ✓"
+    "collected": "Added to words ✓",
+    "extractFromIsland": "Extract key words from an island",
+    "pickIsland": "Pick an island…",
+    "play": "Play"
   },
   "editor": {
     "back": "Back",
@@ -199,6 +205,7 @@
     "kwApplying": "Adding…",
     "kwDone": "Added {n} words.",
     "kwFailed": "Extraction failed: {detail}",
+    "kwEmpty": "This island has no sentences yet.",
     "addVariant": "+ Add variant",
     "removeVariant": "Remove variant",
     "toVocab": "+words",

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReviewSession } from "@/components/ReviewSession";
+import { getIsland } from "@/lib/db";
 
 const DEFAULT_TARGET_LANGUAGE = "de";
 
@@ -19,6 +20,25 @@ export function ReviewSessionRouter({ uiLocale }: { uiLocale: string }) {
     const lang = new URLSearchParams(window.location.search).get("lang");
     return lang ?? DEFAULT_TARGET_LANGUAGE;
   });
+  // Optional island scope: ?island=<id> → review only that island.
+  const [islandId] = useState(() => {
+    if (typeof window === "undefined") return "";
+    return new URLSearchParams(window.location.search).get("island") ?? "";
+  });
+  const [islandName, setIslandName] = useState("");
+  useEffect(() => {
+    if (!islandId) return;
+    void getIsland(islandId).then((i) => {
+      if (i) setIslandName(i.name);
+    });
+  }, [islandId]);
 
-  return <ReviewSession language={language} uiLocale={uiLocale} />;
+  return (
+    <ReviewSession
+      language={language}
+      uiLocale={uiLocale}
+      islandId={islandId || undefined}
+      islandName={islandName || undefined}
+    />
+  );
 }

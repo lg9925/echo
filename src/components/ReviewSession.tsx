@@ -6,22 +6,14 @@ import {
   getReview,
   listAllReviews,
   listAllSentences,
+  listSentencesByIsland,
   upsertReview,
 } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import { freshState, schedule } from "@/lib/sr";
 import { cancelAllSpeech, speak } from "@/lib/tts";
+import { targetBcp47 } from "@/lib/lang";
 import type { Sentence } from "@/lib/types";
-
-const TARGET_LANG_MAP: Record<string, string> = {
-  de: "de-DE",
-  en: "en-US",
-  fr: "fr-FR",
-};
-
-function targetBcp47(language: string): string {
-  return TARGET_LANG_MAP[language] ?? language;
-}
 
 interface DeckItem {
   sentence: Sentence;
@@ -31,9 +23,13 @@ interface DeckItem {
 export function ReviewSession({
   language,
   uiLocale,
+  islandId,
+  islandName,
 }: {
   language: string;
   uiLocale: string;
+  islandId?: string;
+  islandName?: string;
 }) {
   const t = useTranslations("review");
   const [queue, setQueue] = useState<DeckItem[] | null>(null);
@@ -46,7 +42,7 @@ export function ReviewSession({
       try {
         await ensureSeedLoaded(language);
         const [sentences, reviews] = await Promise.all([
-          listAllSentences(language),
+          islandId ? listSentencesByIsland(islandId) : listAllSentences(language),
           listAllReviews(language),
         ]);
         const reviewById = new Map(reviews.map((r) => [r.sentenceId, r]));
@@ -77,7 +73,7 @@ export function ReviewSession({
       cancelled = true;
       cancelAllSpeech();
     };
-  }, [language]);
+  }, [language, islandId]);
 
   const current = queue?.[0];
 
@@ -141,14 +137,17 @@ export function ReviewSession({
 
   return (
     <main className="flex flex-1 flex-col gap-6 px-4 py-6 max-w-2xl mx-auto w-full">
-      <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between gap-3">
         <a
           href={`/${uiLocale}/`}
-          className="text-sm text-zinc-500 hover:underline underline-offset-4"
+          className="text-sm text-zinc-500 hover:underline underline-offset-4 shrink-0"
         >
           ← {t("title")}
         </a>
-        <span className="text-sm text-zinc-500 tabular-nums">
+        {islandName && (
+          <span className="text-sm font-medium truncate">{islandName}</span>
+        )}
+        <span className="text-sm text-zinc-500 tabular-nums shrink-0">
           {t("remaining", { n: queue.length })}
         </span>
       </header>
