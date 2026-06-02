@@ -169,6 +169,28 @@ async function ensureCachedAudio(
   return blob;
 }
 
+export interface ClipResult {
+  blob: Blob;
+  /** What to set as audio.playbackRate to hit the requested rate. The server
+   *  bakes `serverRate` (1, or 0.7 for slow); the rest is time-stretch. */
+  effectiveRate: number;
+}
+
+// Neural clip + the playbackRate to reach the requested speed. Used by the
+// shadowing playback engine (playback.ts), which owns ONE persistent audio
+// element instead of going through playBlob's per-clip element. Throws on
+// no-token / offline / server error so the caller can decide how to degrade.
+export async function fetchClipBlob(
+  text: string,
+  lang: string,
+  rate = 1,
+  signal?: AbortSignal,
+): Promise<ClipResult> {
+  const { serverRate } = rateBucketFor(rate);
+  const blob = await ensureCachedAudio(text, lang, rate, signal);
+  return { blob, effectiveRate: rate / serverRate };
+}
+
 function playBlob(
   blob: Blob,
   playbackRate: number,
@@ -222,10 +244,14 @@ export async function speak(text: string, opts: SpeakOptions): Promise<void> {
   // the user-gesture window — iOS then stays silent. Skipping keeps the
   // fallback synchronous inside the tap.
   if (getApiToken()) {
-    const { serverRate } = rateBucketFor(rate);
     try {
-      const blob = await ensureCachedAudio(text, opts.lang, rate, opts.signal);
-      await playBlob(blob, rate / serverRate, opts.signal);
+      const { blob, effectiveRate } = await fetchClipBlob(
+        text,
+        opts.lang,
+        rate,
+        opts.signal,
+      );
+      await playBlob(blob, effectiveRate, opts.signal);
       return;
     } catch {
       // Neural unavailable — fall back to the browser's built-in voices.

@@ -11,6 +11,19 @@ import { useTranslations } from "next-intl";
 import { listSentencesByIsland } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import { cancelAllSpeech, speak, stripParentheticals, unlockSpeech } from "@/lib/tts";
+import { getApiToken } from "@/lib/settings";
+import {
+  getServerSnapshot as pbGetServerSnapshot,
+  getSnapshot as pbGetSnapshot,
+  next as pbNext,
+  pause as pbPause,
+  prev as pbPrev,
+  resume as pbResume,
+  start as pbStart,
+  stop as pbStop,
+  subscribe as pbSubscribe,
+  updateSettings as pbUpdateSettings,
+} from "@/lib/playback";
 import {
   DEFAULT_SETTINGS,
   loadPlayerSettings,
@@ -50,12 +63,32 @@ export function ShadowPlayer({
   const t = useTranslations("player");
   const [sentences, setSentences] = useState<Sentence[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [idx, setIdx] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // Local state drives the synth fallback (no token). The neural engine has its
+  // own store; `idx`/`isPlaying` below normalise the two so the UI is one path.
+  const [localIdx, setLocalIdx] = useState(0);
+  const [localPlaying, setLocalPlaying] = useState(false);
   const [settings, setSettings] = useState<PlayerSettings>(DEFAULT_SETTINGS);
   const [playingVariantIdx, setPlayingVariantIdx] = useState<number | null>(
     null,
   );
+
+  // Neural engine (background-capable + MediaSession) when a TTS token exists;
+  // otherwise the SpeechSynthesis fallback loop below. Decided after mount to
+  // avoid an SSR/client hydration mismatch on localStorage.
+  const [engineEnabled, setEngineEnabled] = useState(false);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot token check after mount (SSR has no localStorage)
+    setEngineEnabled(!!getApiToken());
+  }, []);
+  const engineState = useSyncExternalStore(
+    pbSubscribe,
+    pbGetSnapshot,
+    pbGetServerSnapshot,
+  );
+  const idx = engineEnabled ? engineState.sentenceIdx : localIdx;
+  const isPlaying = engineEnabled
+    ? engineState.status === "playing"
+    : localPlaying;
 
   // Restore persisted settings AFTER hydration (useState init can't, because
   // SSR sees no localStorage and React reconciles against the SSR'd value).
@@ -101,16 +134,19 @@ export function ShadowPlayer({
     };
   }, [islandId, language]);
 
-  // Play loop — re-runs whenever (isPlaying, idx, sentences) changes.
+  // Synth fallback loop (no token) — re-runs on (localPlaying, localIdx,
+  // sentences). The neural path is driven by the engine instead. SpeechSynthesis
+  // can't play backgrounded, so this stays the simple setTimeout-gapped loop.
   useEffect(() => {
-    if (!isPlaying) return;
-    if (!sentences || !sentences[idx]) return;
+    if (engineEnabled) return;
+    if (!localPlaying) return;
+    if (!sentences || !sentences[localIdx]) return;
 
     const ctrl = new AbortController();
     const targetLang = targetBcp47(language);
 
     (async () => {
-      const current = sentences[idx]!;
+      const current = sentences[localIdx]!;
       const { rate, pauseSec, gapSec, mode } = settingsRef.current;
 
       if (mode === "bilingual") {
@@ -139,11 +175,11 @@ export function ShadowPlayer({
       if (ctrl.signal.aborted) return;
 
       if (settingsRef.current.autoAdvance) {
-        setIdx((current) =>
+        setLocalIdx((current) =>
           nextIndex(current, sentences.length, settingsRef.current.loop),
         );
       } else {
-        setIsPlaying(false);
+        setLocalPlaying(false);
       }
     })();
 
@@ -151,7 +187,20 @@ export function ShadowPlayer({
       ctrl.abort();
       cancelAllSpeech();
     };
-  }, [isPlaying, idx, sentences, language]);
+  }, [engineEnabled, localPlaying, localIdx, sentences, language]);
+
+  // Push live settings changes into the engine (rate lands on the next clip;
+  // mode/pause/gap on the next sentence).
+  useEffect(() => {
+    if (engineEnabled) pbUpdateSettings(settings);
+  }, [engineEnabled, settings]);
+
+  // Tear the engine down when leaving the player.
+  useEffect(() => {
+    return () => {
+      pbStop();
+    };
+  }, []);
 
   // Wake Lock: keep screen on while playing (best-effort; iOS often refuses).
   useEffect(() => {
@@ -170,30 +219,69 @@ export function ShadowPlayer({
     };
   }, [isPlaying]);
 
+  // Must run inside the tap gesture (iOS unlocks the audio element on the first
+  // gesture-initiated play()).
+  const startEngine = useCallback(
+    (startIdx: number) => {
+      if (!sentences) return;
+      pbStart({
+        sentences,
+        settings: settingsRef.current,
+        nativeLang: NATIVE_LANG_BCP47,
+        targetLang: targetBcp47(language),
+        islandName,
+        startIdx,
+      });
+    },
+    [sentences, language, islandName],
+  );
+
   const onPlayPause = useCallback(() => {
+    if (engineEnabled) {
+      if (engineState.status === "playing") pbPause();
+      else if (engineState.status === "paused") pbResume();
+      else startEngine(idx);
+      return;
+    }
     unlockSpeech(); // iOS: unlock SpeechSynthesis inside the tap gesture
-    setIsPlaying((p) => !p);
-  }, []);
+    setLocalPlaying((p) => !p);
+  }, [engineEnabled, engineState.status, idx, startEngine]);
 
   const onNext = useCallback(() => {
     if (!sentences) return;
+    if (engineEnabled) {
+      if (engineState.status === "idle") {
+        startEngine(nextIndex(idx, sentences.length, settingsRef.current.loop));
+      } else {
+        pbNext();
+      }
+      return;
+    }
     unlockSpeech();
     cancelAllSpeech();
-    setIdx((current) =>
+    setLocalIdx((current) =>
       nextIndex(current, sentences.length, settingsRef.current.loop),
     );
-    setIsPlaying(true);
-  }, [sentences]);
+    setLocalPlaying(true);
+  }, [engineEnabled, engineState.status, idx, sentences, startEngine]);
 
   const onPrev = useCallback(() => {
     if (!sentences) return;
+    if (engineEnabled) {
+      if (engineState.status === "idle") {
+        startEngine(prevIndex(idx, sentences.length, settingsRef.current.loop));
+      } else {
+        pbPrev();
+      }
+      return;
+    }
     unlockSpeech();
     cancelAllSpeech();
-    setIdx((current) =>
+    setLocalIdx((current) =>
       prevIndex(current, sentences.length, settingsRef.current.loop),
     );
-    setIsPlaying(true);
-  }, [sentences]);
+    setLocalPlaying(true);
+  }, [engineEnabled, engineState.status, idx, sentences, startEngine]);
 
   const setMode = useCallback((mode: PlayerMode) => {
     setSettings((s) => ({ ...s, mode }));
@@ -211,22 +299,28 @@ export function ShadowPlayer({
     setSettings((s) => ({ ...s, gapSec }));
   }, []);
 
+  const stopForOneShot = useCallback(() => {
+    if (engineEnabled) pbPause();
+    else {
+      cancelAllSpeech();
+      setLocalPlaying(false);
+    }
+  }, [engineEnabled]);
+
   const onTapWord = useCallback(
     (word: string) => {
-      cancelAllSpeech();
-      setIsPlaying(false);
+      stopForOneShot();
       void speak(word, {
         lang: targetBcp47(language),
         rate: settingsRef.current.rate,
       });
     },
-    [language],
+    [language, stopForOneShot],
   );
 
   const speakVariant = useCallback(
     async (text: string, i: number) => {
-      cancelAllSpeech();
-      setIsPlaying(false);
+      stopForOneShot();
       setPlayingVariantIdx(i);
       try {
         await speak(stripParentheticals(text), {
@@ -237,7 +331,7 @@ export function ShadowPlayer({
         setPlayingVariantIdx((current) => (current === i ? null : current));
       }
     },
-    [language],
+    [language, stopForOneShot],
   );
 
   const sentence = sentences?.[idx];
@@ -433,58 +527,65 @@ export function ShadowPlayer({
           </div>
         </div>
 
-        <div>
-          <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
-            <span>{t("rate")}</span>
-            <span className="tabular-nums">{settings.rate.toFixed(1)}x</span>
-          </label>
-          <input
-            type="range"
-            min="0.6"
-            max="1.4"
-            step="0.1"
-            value={settings.rate}
-            onChange={(e) => setRate(parseFloat(e.target.value))}
-            className="w-full"
-          />
-        </div>
+        {/* Fine-tuning sliders — good defaults, hidden by default (原则一). */}
+        <details className="space-y-4">
+          <summary className="cursor-pointer select-none text-xs text-zinc-500">
+            {t("advancedControls")}
+          </summary>
 
-        <div>
-          <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
-            <span>{t("pauseLabel")}</span>
-            <span className="tabular-nums">
-              {t("seconds", { n: settings.pauseSec })}
-            </span>
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="8"
-            step="1"
-            value={settings.pauseSec}
-            onChange={(e) => setPauseSec(parseInt(e.target.value, 10))}
-            className="w-full"
-          />
-        </div>
+          <div>
+            <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
+              <span>{t("rate")}</span>
+              <span className="tabular-nums">{settings.rate.toFixed(1)}x</span>
+            </label>
+            <input
+              type="range"
+              min="0.6"
+              max="1.4"
+              step="0.1"
+              value={settings.rate}
+              onChange={(e) => setRate(parseFloat(e.target.value))}
+              className="w-full"
+            />
+          </div>
 
-        <div className={settings.autoAdvance ? "" : "opacity-50"}>
-          <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
-            <span>{t("gapLabel")}</span>
-            <span className="tabular-nums">
-              {t("seconds", { n: settings.gapSec })}
-            </span>
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="10"
-            step="1"
-            value={settings.gapSec}
-            onChange={(e) => setGapSec(parseInt(e.target.value, 10))}
-            disabled={!settings.autoAdvance}
-            className="w-full"
-          />
-        </div>
+          <div>
+            <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
+              <span>{t("pauseLabel")}</span>
+              <span className="tabular-nums">
+                {t("seconds", { n: settings.pauseSec })}
+              </span>
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="8"
+              step="1"
+              value={settings.pauseSec}
+              onChange={(e) => setPauseSec(parseInt(e.target.value, 10))}
+              className="w-full"
+            />
+          </div>
+
+          <div className={settings.autoAdvance ? "" : "opacity-50"}>
+            <label className="flex items-baseline justify-between text-xs text-zinc-500 mb-1">
+              <span>{t("gapLabel")}</span>
+              <span className="tabular-nums">
+                {t("seconds", { n: settings.gapSec })}
+              </span>
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+              value={settings.gapSec}
+              onChange={(e) => setGapSec(parseInt(e.target.value, 10))}
+              disabled={!settings.autoAdvance}
+              className="w-full"
+            />
+          </div>
+        </details>
       </section>
     </main>
   );

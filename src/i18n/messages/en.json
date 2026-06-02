@@ -36,7 +36,16 @@
     "testOk": "Connected ✓",
     "testFail": "Connection failed: {detail}",
     "unreachable": "Cannot reach the server",
-    "needToken": "Enter an access token first"
+    "needToken": "Enter an access token first",
+    "backupSection": "Data backup",
+    "backupHint": "Export all your islands, sentences and review progress to a file and keep it safe. Local data can't be recovered once lost — audio isn't included (it regenerates from text).",
+    "export": "Export backup",
+    "exporting": "Exporting…",
+    "import": "Import backup",
+    "importing": "Importing…",
+    "importDone": "Imported: {islands} islands, {sentences} sentences, {reviews} review records. Refresh to see them.",
+    "importError": "Import failed: {detail}",
+    "advancedSection": "Advanced (backend connection · not needed for normal use)"
   },
   "inbox": {
     "title": "Inbox",
@@ -114,6 +123,7 @@
     "advance": "Advance",
     "autoAdvance": "Auto",
     "manualAdvance": "Manual",
+    "advancedControls": "Advanced (rate / pauses)",
     "rate": "Rate",
     "pauseLabel": "Shadow pause",
     "gapLabel": "After-target pause",

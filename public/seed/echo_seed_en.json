@@ -1,7 +1,7 @@
 {
   "language": "en",
   "language_label": "英语",
-  "version": 3,
+  "version": 4,
   "islands": [
     {
       "name": "打招呼",
@@ -31,9 +31,9 @@
           "variants": [
             "Morning!",
             "Good morning, everyone!(对一群人)",
-            "Morning, all!",
+            "Morning, guys!",
             "A very good morning to you!",
-            "Top of the morning!(爱尔兰俏皮)"
+            "Rise and shine!(俏皮)"
           ],
           "ipa": "ɡʊd ˈmɔːrnɪŋ"
         },
@@ -76,7 +76,7 @@
           "variants": [
             "Pleased to meet you.",
             "Great to meet you.",
-            "Lovely to meet you.",
+            "Good to meet you.",
             "It's a pleasure to meet you.(正式)",
             "Nice meeting you.(道别时)"
           ],
@@ -135,7 +135,7 @@
           "note": "问来历;回答用 I'm from ___。",
           "variants": [
             "Where do you come from?",
-            "Whereabouts are you from?",
+            "Where'd you grow up?",
             "Are you from around here?",
             "What part of the world are you from?",
             "Where's home for you?"
@@ -170,7 +170,7 @@
           "literal": "嗨 那里!做 你 有 一 预订",
           "note": "对方:领位员的开场白。",
           "variants": [
-            "Welcome! Do you have a booking?",
+            "Welcome! You got a reservation?",
             "How many in your party?",
             "Table for how many?"
           ],
@@ -463,7 +463,7 @@
           "note": "对方:报价并说明是否打折(on sale)。",
           "variants": [
             "It's twenty bucks.",
-            "That's full price, I'm afraid.",
+            "Sorry, that's full price.",
             "There's twenty percent off today."
           ],
           "ipa": "ðæt wˈʌnz twˈɛntifˈaɪv dˈɑːlɚz ɪts ˌɔn sˈeɪl"
@@ -488,7 +488,7 @@
           "literal": "当然,这 试衣间 是 正 在 那边",
           "note": "对方:指引试衣间方向。",
           "variants": [
-            "The changing rooms are at the back.",
+            "The dressing rooms are in the back.",
             "Just to your left.",
             "I'll show you the way."
           ],
@@ -548,16 +548,16 @@
         },
         {
           "native": "收,刷卡或感应都行。",
-          "target": "Yes, card or contactless is fine.",
-          "frame": "___ is fine.(card / cash / contactless)",
-          "literal": "是,卡 或 非接触 是 可以",
-          "note": "对方:确认支付方式。contactless = 感应/碰一下支付。",
+          "target": "Yes, card or tap to pay is fine.",
+          "frame": "___ is fine.(card / cash / tap)",
+          "literal": "是,卡 或 感应 是 可以",
+          "note": "对方:确认支付方式。美国口语把感应/碰一下支付直接说成 tap 或 tap to pay,基本不说 contactless。",
           "variants": [
             "Sure, you can tap to pay.",
             "We take all major cards.",
-            "Cash only, I'm afraid."
+            "Sorry, cash only."
           ],
-          "ipa": "jˈɛs kˈɑːɹd ɔːɹ kˈɑːntæktləs ɪz fˈaɪn"
+          "ipa": "jˈɛs kˈɑːɹd ɔːɹ tˈæp tə pˈeɪ ɪz fˈaɪn"
         },
         {
           "native": "可以给我个袋子吗?",
@@ -619,7 +619,7 @@
           "note": "你:回应对方的祝福,自然收尾。",
           "variants": [
             "Thank you so much!",
-            "Cheers, bye!",
+            "Thanks again, bye!",
             "Thanks for your help!"
           ],
           "ipa": "θˈæŋks juː tˈuː"

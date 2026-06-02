@@ -1,0 +1,160 @@
+// Data backup: export/import all learning data as a single JSON file.
+//
+// Local-first means local data loss = everything gone, so this is a bottom-line
+// feature (project principle 六). No React here — SettingsView calls these.
+//
+// What's IN the file: islands, sentences, reviews (SR progress), seed meta,
+// inbox items, and player settings — across ALL languages.
+// What's OUT, by design:
+//   - audio blobs: regenerable from text via TTS; keeping them out keeps the
+//     file small (the IndexedDB `audioCache` table is skipped entirely).
+//   - the API token / base: secrets never travel in a portable file.
+
+import { getDb } from "./db";
+import {
+  DEFAULT_SETTINGS,
+  loadPlayerSettings,
+  savePlayerSettings,
+  type PlayerSettings,
+} from "./player";
+import type {
+  InboxItem,
+  Island,
+  ReviewState,
+  SeedMeta,
+  Sentence,
+} from "./types";
+
+export const BACKUP_FORMAT = "echo-backup";
+export const BACKUP_VERSION = 1;
+
+export interface BackupFile {
+  format: typeof BACKUP_FORMAT;
+  version: number;
+  exportedAt: number;
+  data: {
+    islands: Island[];
+    sentences: Sentence[]; // audio is null in storage; no binary travels
+    reviews: ReviewState[];
+    meta: SeedMeta[];
+    inbox: InboxItem[];
+    playerSettings: PlayerSettings | null;
+  };
+}
+
+export interface ImportSummary {
+  islands: number;
+  sentences: number;
+  reviews: number;
+  meta: number;
+  inbox: number;
+  playerSettings: boolean;
+}
+
+/** Read every table (all languages) + player settings into a backup object. */
+export async function exportBackup(): Promise<BackupFile> {
+  const db = getDb();
+  const [islands, sentences, reviews, meta, inbox] = await Promise.all([
+    db.islands.toArray(),
+    db.sentences.toArray(),
+    db.reviews.toArray(),
+    db.meta.toArray(),
+    db.inbox.toArray(),
+  ]);
+  return {
+    format: BACKUP_FORMAT,
+    version: BACKUP_VERSION,
+    exportedAt: Date.now(),
+    data: {
+      islands,
+      sentences,
+      reviews,
+      meta,
+      inbox,
+      playerSettings: loadPlayerSettings(),
+    },
+  };
+}
+
+export function backupToBlob(file: BackupFile): Blob {
+  return new Blob([JSON.stringify(file, null, 2)], {
+    type: "application/json",
+  });
+}
+
+/** e.g. echo-backup-20260601-143005.json (local time, from exportedAt). */
+export function suggestedFilename(file: BackupFile): string {
+  const d = new Date(file.exportedAt);
+  const p = (n: number) => String(n).padStart(2, "0");
+  const stamp =
+    `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}` +
+    `-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`;
+  return `echo-backup-${stamp}.json`;
+}
+
+/** Parse + validate a backup file's text. Throws on anything unexpected. */
+export function parseBackupFile(text: string): BackupFile {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    throw new Error("not valid JSON");
+  }
+  if (typeof parsed !== "object" || parsed === null) {
+    throw new Error("not a backup file");
+  }
+  const obj = parsed as Partial<BackupFile>;
+  if (obj.format !== BACKUP_FORMAT) {
+    throw new Error("not an Echo backup file");
+  }
+  if (typeof obj.version !== "number" || obj.version > BACKUP_VERSION) {
+    throw new Error(`unsupported backup version: ${String(obj.version)}`);
+  }
+  if (typeof obj.data !== "object" || obj.data === null) {
+    throw new Error("backup file has no data");
+  }
+  const d = obj.data as Partial<BackupFile["data"]>;
+  for (const key of ["islands", "sentences", "reviews", "meta", "inbox"] as const) {
+    if (!Array.isArray(d[key])) {
+      throw new Error(`backup file is missing "${key}"`);
+    }
+  }
+  return obj as BackupFile;
+}
+
+/**
+ * Merge a backup into IndexedDB by primary key (upsert). Records present in the
+ * file overwrite/restore; extra records already on this device are kept — never
+ * deleted. Safe for both "restore after loss" and "move to a new device".
+ */
+export async function importBackup(file: BackupFile): Promise<ImportSummary> {
+  const db = getDb();
+  const { islands, sentences, reviews, meta, inbox, playerSettings } = file.data;
+
+  await db.transaction(
+    "rw",
+    [db.islands, db.sentences, db.reviews, db.meta, db.inbox],
+    async () => {
+      await db.islands.bulkPut(islands);
+      await db.sentences.bulkPut(sentences);
+      await db.reviews.bulkPut(reviews);
+      await db.meta.bulkPut(meta);
+      await db.inbox.bulkPut(inbox);
+    },
+  );
+
+  let appliedSettings = false;
+  if (playerSettings) {
+    savePlayerSettings({ ...DEFAULT_SETTINGS, ...playerSettings });
+    appliedSettings = true;
+  }
+
+  return {
+    islands: islands.length,
+    sentences: sentences.length,
+    reviews: reviews.length,
+    meta: meta.length,
+    inbox: inbox.length,
+    playerSettings: appliedSettings,
+  };
+}

@@ -6,6 +6,12 @@ import type {
 
 const LANG_LABEL: Record<string, string> = { de: "德语", en: "英语" };
 
+// Models love to quote Chinese glosses with straight double-quotes (e.g.
+// 字面"…"), which are unescaped and abort JSON.parse mid-string. Force full-width
+// 「」 instead. Shared by all tasks so the rule can't drift between prompts.
+const JSON_QUOTE_RULE =
+  '注意:JSON 字符串值内部严禁出现英文双引号 ";若需引号(如标注字面意思)一律改用中文「」。输出必须是能被 JSON.parse 直接解析的合法 JSON。';
+
 export interface PromptPair {
   system: string;
   user: string;
@@ -26,7 +32,8 @@ export function buildAuthoringPrompt(req: ComposeRequest): PromptPair {
 - ipa:target 的宽式 IPA 音标;拿不准就给 null。
 - suggestedIslandName:给这句话归类的主题/场景名(简短中文,如 "点餐"、"问路"、"寒暄")。
 只输出一个 JSON 对象,不要任何解释、不要 markdown 代码块。字段:
-{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null,"suggestedIslandName":string}`;
+{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null,"suggestedIslandName":string}
+${JSON_QUOTE_RULE}`;
   const user = `中文:${req.native}`;
   return { system, user };
 }
@@ -42,7 +49,8 @@ export function buildGlossPrompt(req: GlossRequest): PromptPair {
 - example:用最可能的候选造一个自然例句(target=${lang},native=中文翻译)。
 - suggestedIslandName:归类主题名(简短中文)。
 只输出一个 JSON 对象,不要解释、不要 markdown。字段:
-{"meaning":string,"candidates":[{"target":string,"pos":string|null,"article":"der"|"die"|"das"|null,"note":string|null}],"example":{"target":string,"native":string},"suggestedIslandName":string}`;
+{"meaning":string,"candidates":[{"target":string,"pos":string|null,"article":"der"|"die"|"das"|null,"note":string|null}],"example":{"target":string,"native":string},"suggestedIslandName":string}
+${JSON_QUOTE_RULE}`;
   const user = `${lang}词/短语:${req.query}`;
   return { system, user };
 }
@@ -63,7 +71,8 @@ export function buildScenarioPrompt(req: ScenarioRequest): PromptPair {
   - ipa:target 的宽式 IPA;拿不准给 null。
 - 给整个岛起个简短中文名 islandName(如 "机场值机对话")。
 只输出一个 JSON 对象,不要解释、不要 markdown:
-{"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null}]}`;
+{"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null}]}
+${JSON_QUOTE_RULE}`;
   const user = `场景:${req.description}`;
   return { system, user };
 }

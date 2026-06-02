@@ -25,6 +25,12 @@ export function audioKey(parts: {
   return `${short}|${parts.voiceBucket}|${parts.rateBucket}|${parts.text}`;
 }
 
+// Key for a generated silence clip of N seconds. The `__silence__` namespace
+// can't collide with a real TTS key (audioKey always has a lang segment first).
+export function silenceKey(seconds: number): string {
+  return `__silence__|${Math.round(seconds * 10) / 10}`;
+}
+
 export async function getCachedAudio(key: string): Promise<AudioCacheEntry | undefined> {
   return getDb().audioCache.get(key);
 }
