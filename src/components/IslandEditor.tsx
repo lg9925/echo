@@ -12,6 +12,8 @@ import {
   updateSentence,
 } from "@/lib/cards";
 import { prewarmAudio } from "@/lib/tts";
+import { apiFetchJson } from "@/lib/api/client";
+import type { ComposeResult, TargetLanguage } from "@/lib/api/contracts";
 import type { Island, Sentence } from "@/lib/types";
 
 const EMPTY_FIELDS = {
@@ -223,6 +225,9 @@ function SentenceRow({
   const [variants, setVariants] = useState<string[]>(sentence.variants);
   const [savedFlash, setSavedFlash] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [regenBusy, setRegenBusy] = useState(false);
+  const [regenFlash, setRegenFlash] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
 
   async function save() {
     setBusy(true);
@@ -258,6 +263,34 @@ function SentenceRow({
     setBusy(true);
     await moveSentence(sentence.id, targetIslandId);
     onMovedOut(sentence.id);
+  }
+
+  // Regenerate the card from its meaning via the authoring task (strong model).
+  // Fills the fields in place; native is kept as the anchor. User reviews + saves.
+  async function regenerate() {
+    if (!native.trim()) return;
+    setBusy(true);
+    setRegenBusy(true);
+    setAiError(null);
+    try {
+      const r = await apiFetchJson<ComposeResult>("/v1/compose", {
+        language: sentence.language as TargetLanguage,
+        native: native.trim(),
+      });
+      setTarget(r.target);
+      setFrame(r.frame);
+      setLiteral(r.literal);
+      setNote(r.note);
+      setIpa(r.ipa ?? "");
+      setVariants(r.variants);
+      setRegenFlash(true);
+      window.setTimeout(() => setRegenFlash(false), 2500);
+    } catch (e) {
+      setAiError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(false);
+      setRegenBusy(false);
+    }
   }
 
   return (
@@ -362,14 +395,25 @@ function SentenceRow({
       </div>
 
       <div className="flex items-center justify-between gap-3 pt-1">
-        <button
-          type="button"
-          onClick={save}
-          disabled={busy}
-          className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium disabled:opacity-50"
-        >
-          {savedFlash ? t("saved") : t("save")}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={save}
+            disabled={busy}
+            className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium disabled:opacity-50"
+          >
+            {savedFlash ? t("saved") : t("save")}
+          </button>
+          <button
+            type="button"
+            onClick={regenerate}
+            disabled={busy || !native.trim()}
+            title={t("regenerateHint")}
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-300 disabled:opacity-40"
+          >
+            {regenBusy ? t("regenerating") : t("regenerate")}
+          </button>
+        </div>
         {otherIslands.length > 0 && (
           <select
             value=""
@@ -387,6 +431,17 @@ function SentenceRow({
           </select>
         )}
       </div>
+
+      {regenFlash && (
+        <p className="text-xs text-green-600 dark:text-green-400">
+          {t("regenerated")}
+        </p>
+      )}
+      {aiError && (
+        <p className="text-xs text-red-600 dark:text-red-400">
+          {t("regenerateFailed", { detail: aiError })}
+        </p>
+      )}
     </div>
   );
 }
