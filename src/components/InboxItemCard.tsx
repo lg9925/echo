@@ -8,7 +8,9 @@ import type {
   GlossResult,
   ScenarioResult,
   ScenarioSentence,
+  TargetLanguage,
 } from "@/lib/api/contracts";
+import { upsertVocab } from "@/lib/vocab";
 import { deleteInboxItem, processInboxItem, updateInboxItem } from "@/lib/inbox";
 import { listIslands } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
@@ -293,6 +295,7 @@ function ResultPanel({
       ) : (
         <GlossPreview
           result={item.result as GlossResult}
+          language={item.language}
           candidateIdx={candidateIdx}
           onCandidateIdx={onCandidateIdx}
         />
@@ -484,14 +487,30 @@ function ComposePreview({ result }: { result: ComposeResult }) {
 
 function GlossPreview({
   result,
+  language,
   candidateIdx,
   onCandidateIdx,
 }: {
   result: GlossResult;
+  language: TargetLanguage;
   candidateIdx: number;
   onCandidateIdx: (i: number) => void;
 }) {
   const t = useTranslations("inbox");
+  const tv = useTranslations("vocab");
+  const [collected, setCollected] = useState(false);
+
+  async function collect() {
+    const c = result.candidates[candidateIdx];
+    if (!c) return;
+    const meaning = [result.meaning, c.pos, c.note].filter(Boolean).join(" · ");
+    await upsertVocab(language, c.target, meaning, [
+      { sentenceId: null, islandId: null, text: result.example.target },
+    ]);
+    setCollected(true);
+    window.setTimeout(() => setCollected(false), 2000);
+  }
+
   return (
     <div className="space-y-2">
       <Field label={t("meaning")} value={result.meaning} />
@@ -518,6 +537,13 @@ function GlossPreview({
         {result.example.target}
         <span className="text-zinc-400"> — {result.example.native}</span>
       </p>
+      <button
+        type="button"
+        onClick={collect}
+        className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-300"
+      >
+        {collected ? tv("collected") : tv("collect")}
+      </button>
     </div>
   );
 }

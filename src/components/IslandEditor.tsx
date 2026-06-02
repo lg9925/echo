@@ -13,7 +13,7 @@ import {
   updateSentence,
 } from "@/lib/cards";
 import { prewarmAudio } from "@/lib/tts";
-import { mergeKeywords } from "@/lib/vocab";
+import { mergeKeywords, upsertVocab } from "@/lib/vocab";
 import { apiFetchJson } from "@/lib/api/client";
 import type {
   ComposeResult,
@@ -459,6 +459,18 @@ function SentenceRow({
   const [regenBusy, setRegenBusy] = useState(false);
   const [regenFlash, setRegenFlash] = useState(false);
   const [aiError, setAiError] = useState<string | null>(null);
+  const [vocabFlash, setVocabFlash] = useState<number | null>(null);
+
+  async function addVariantToVocab(text: string) {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    const idx = variants.indexOf(text);
+    await upsertVocab(sentence.language, trimmed, "", [
+      { sentenceId: sentence.id, islandId: sentence.islandId, text: sentence.target },
+    ]);
+    setVocabFlash(idx);
+    window.setTimeout(() => setVocabFlash((c) => (c === idx ? null : c)), 1500);
+  }
 
   async function save() {
     setBusy(true);
@@ -604,6 +616,15 @@ function SentenceRow({
                   setVariants((arr) => arr.map((x, j) => (j === i ? e.target.value : x)))
                 }
               />
+              <button
+                type="button"
+                onClick={() => addVariantToVocab(v)}
+                disabled={!v.trim()}
+                title={t("toVocab")}
+                className="shrink-0 rounded-md border border-zinc-200 dark:border-zinc-800 px-2 text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 disabled:opacity-30"
+              >
+                {vocabFlash === i ? "✓" : t("toVocab")}
+              </button>
               <button
                 type="button"
                 onClick={() => setVariants((arr) => arr.filter((_, j) => j !== i))}

@@ -201,6 +201,7 @@
     "kwFailed": "Extraction failed: {detail}",
     "addVariant": "+ Add variant",
     "removeVariant": "Remove variant",
+    "toVocab": "+words",
     "fNative": "Native",
     "fTarget": "Target",
     "fFrame": "Frame",

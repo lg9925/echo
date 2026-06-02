@@ -201,6 +201,7 @@
     "kwFailed": "提取失败:{detail}",
     "addVariant": "+ 加变体",
     "removeVariant": "删除变体",
+    "toVocab": "入表",
     "fNative": "中文",
     "fTarget": "外语",
     "fFrame": "句型",
