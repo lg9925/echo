@@ -2,11 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { getIsland, listSentencesByIsland } from "@/lib/db";
+import { getIsland, listIslands, listSentencesByIsland } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import {
   addSentenceToIsland,
   deleteSentence,
+  moveSentence,
   reorderSentences,
   updateSentence,
 } from "@/lib/cards";
@@ -35,7 +36,12 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
   });
   const [state, setState] = useState<
     | { kind: "loading" }
-    | { kind: "ready"; island: Island; sentences: Sentence[] }
+    | {
+        kind: "ready";
+        island: Island;
+        sentences: Sentence[];
+        otherIslands: Island[];
+      }
     | { kind: "notfound" }
   >({ kind: "loading" });
 
@@ -58,7 +64,10 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
         return;
       }
       const sentences = await listSentencesByIsland(islandId);
-      if (alive) setState({ kind: "ready", island, sentences });
+      const otherIslands = (await listIslands(island.language)).filter(
+        (i) => i.id !== islandId,
+      );
+      if (alive) setState({ kind: "ready", island, sentences, otherIslands });
     })();
     return () => {
       alive = false;
@@ -116,7 +125,7 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
     );
   }
 
-  const { island, sentences } = state;
+  const { island, sentences, otherIslands } = state;
 
   return (
     <main className="flex flex-1 flex-col gap-5 px-4 py-6 max-w-2xl mx-auto w-full">
@@ -146,6 +155,8 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
                 sentence={s}
                 onDeleted={onDeleted}
                 onMove={move}
+                onMovedOut={onDeleted}
+                otherIslands={otherIslands}
                 isFirst={i === 0}
                 isLast={i === sentences.length - 1}
               />
@@ -188,6 +199,8 @@ function SentenceRow({
   sentence,
   onDeleted,
   onMove,
+  onMovedOut,
+  otherIslands,
   isFirst,
   isLast,
 }: {
@@ -195,6 +208,8 @@ function SentenceRow({
   sentence: Sentence;
   onDeleted: (id: string) => void;
   onMove: (id: string, dir: -1 | 1) => void;
+  onMovedOut: (id: string) => void;
+  otherIslands: Island[];
   isFirst: boolean;
   isLast: boolean;
 }) {
@@ -236,6 +251,13 @@ function SentenceRow({
     setBusy(true);
     await deleteSentence(sentence.id);
     onDeleted(sentence.id);
+  }
+
+  async function moveTo(targetIslandId: string) {
+    if (!targetIslandId) return;
+    setBusy(true);
+    await moveSentence(sentence.id, targetIslandId);
+    onMovedOut(sentence.id);
   }
 
   return (
@@ -339,7 +361,7 @@ function SentenceRow({
         </button>
       </div>
 
-      <div className="flex items-center gap-3 pt-1">
+      <div className="flex items-center justify-between gap-3 pt-1">
         <button
           type="button"
           onClick={save}
@@ -348,6 +370,22 @@ function SentenceRow({
         >
           {savedFlash ? t("saved") : t("save")}
         </button>
+        {otherIslands.length > 0 && (
+          <select
+            value=""
+            onChange={(e) => moveTo(e.target.value)}
+            disabled={busy}
+            aria-label={t("moveTo")}
+            className="rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1.5 text-xs text-zinc-500 max-w-[10rem] disabled:opacity-50"
+          >
+            <option value="">{t("moveTo")}</option>
+            {otherIslands.map((isl) => (
+              <option key={isl.id} value={isl.id}>
+                {isl.name}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
     </div>
   );

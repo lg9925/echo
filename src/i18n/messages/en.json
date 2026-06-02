@@ -155,6 +155,7 @@
     "addSentence": "+ Add sentence",
     "moveUp": "Move up",
     "moveDown": "Move down",
+    "moveTo": "Move to…",
     "addVariant": "+ Add variant",
     "removeVariant": "Remove variant",
     "fNative": "Native",

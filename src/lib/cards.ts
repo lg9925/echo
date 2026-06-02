@@ -176,6 +176,43 @@ export async function deleteSentence(id: string): Promise<void> {
   });
 }
 
+/** Move a sentence to another island: append it at the end of the target and
+ *  close the gap in the source. The id never changes, so the spaced-repetition
+ *  record follows automatically. Caller should keep source/target same-language. */
+export async function moveSentence(
+  id: string,
+  targetIslandId: string,
+): Promise<void> {
+  const db = getDb();
+  const sentence = await db.sentences.get(id);
+  if (!sentence || sentence.islandId === targetIslandId) return;
+  const target = await db.islands.get(targetIslandId);
+  if (!target) return;
+  const sourceIslandId = sentence.islandId;
+  await db.transaction("rw", db.sentences, async () => {
+    const targetCount = await db.sentences
+      .where("islandId")
+      .equals(targetIslandId)
+      .count();
+    await db.sentences.update(id, {
+      islandId: targetIslandId,
+      islandOrder: target.order,
+      indexInIsland: targetCount,
+    });
+    const rest = await db.sentences
+      .where("[islandId+indexInIsland]")
+      .between([sourceIslandId, -Infinity], [sourceIslandId, Infinity])
+      .sortBy("indexInIsland");
+    await Promise.all(
+      rest.map((s, i) =>
+        s.indexInIsland === i
+          ? Promise.resolve(0)
+          : db.sentences.update(s.id, { indexInIsland: i }),
+      ),
+    );
+  });
+}
+
 /** Persist a new sentence order: assign indexInIsland by position. Pass the
  *  island's full sentence ids in the desired order. */
 export async function reorderSentences(
