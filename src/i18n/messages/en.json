@@ -14,7 +14,8 @@
     "pickIsland": "Pick an island",
     "noData": "No data loaded yet.",
     "deleteIsland": "Delete",
-    "confirmDeleteIsland": "Delete \"{name}\" and all its sentences and review progress?"
+    "confirmDeleteIsland": "Delete \"{name}\" and all its sentences and review progress?",
+    "editIsland": "Edit"
   },
   "languages": {
     "de": "German",
@@ -139,5 +140,26 @@
     "ttsUnsupported": "Your browser does not support Web Speech; audio disabled.",
     "loading": "Loading…",
     "empty": "This island has no sentences yet."
+  },
+  "editor": {
+    "back": "Back",
+    "loading": "Loading…",
+    "notfound": "Island not found.",
+    "empty": "This island has no sentences yet.",
+    "hint": "Changes save to this device; audio regenerates from the new text.",
+    "count": "{n} sentences",
+    "save": "Save",
+    "saved": "Saved ✓",
+    "deleteSentence": "Delete sentence",
+    "confirmDeleteSentence": "Delete this sentence? Its review progress is removed too.",
+    "addVariant": "+ Add variant",
+    "removeVariant": "Remove variant",
+    "fNative": "Native",
+    "fTarget": "Target",
+    "fFrame": "Frame",
+    "fLiteral": "Literal",
+    "fNote": "Note",
+    "fIpa": "IPA",
+    "fVariants": "Variants"
   }
 }

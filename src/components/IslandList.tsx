@@ -80,6 +80,14 @@ export function IslandList({
               <span className="text-xs text-zinc-500">{isl.sentenceCount}</span>
             </div>
           </a>
+          <a
+            href={`/${uiLocale}/edit/?id=${encodeURIComponent(isl.id)}`}
+            aria-label={t("editIsland")}
+            title={t("editIsland")}
+            className="shrink-0 flex items-center rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:border-zinc-300"
+          >
+            ✎
+          </a>
           {isUserIslandId(isl.id) && (
             <button
               type="button"

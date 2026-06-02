@@ -144,6 +144,38 @@ export async function deleteIsland(islandId: string): Promise<void> {
   });
 }
 
+/** Edit a sentence's content in place. The id never changes, so its
+ *  spaced-repetition record stays attached. */
+export async function updateSentence(
+  id: string,
+  patch: Partial<SentenceFields>,
+): Promise<void> {
+  await getDb().sentences.update(id, patch);
+}
+
+/** Delete one sentence: drop its review record too, then close the index gap so
+ *  the remaining sentences stay contiguous. Works for seed and user islands. */
+export async function deleteSentence(id: string): Promise<void> {
+  const db = getDb();
+  const sentence = await db.sentences.get(id);
+  if (!sentence) return;
+  await db.transaction("rw", db.sentences, db.reviews, async () => {
+    await db.reviews.delete(id);
+    await db.sentences.delete(id);
+    const rest = await db.sentences
+      .where("[islandId+indexInIsland]")
+      .between([sentence.islandId, -Infinity], [sentence.islandId, Infinity])
+      .sortBy("indexInIsland");
+    await Promise.all(
+      rest.map((s, i) =>
+        s.indexInIsland === i
+          ? Promise.resolve(0)
+          : db.sentences.update(s.id, { indexInIsland: i }),
+      ),
+    );
+  });
+}
+
 export function scenarioToFieldsList(
   sentences: ScenarioSentence[],
 ): SentenceFields[] {
