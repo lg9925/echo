@@ -81,6 +81,33 @@ export interface ScenarioResult {
   sentences: ScenarioSentence[];
 }
 
+// --- /v1/split ("拆岛": 过大的岛 → 2–3 个子岛分组建议) ---
+
+export interface SplitInputSentence {
+  native: string;
+  target: string;
+}
+
+export interface SplitRequest {
+  language: TargetLanguage;
+  /** 当前岛名(中文)。 */
+  islandName: string;
+  /** 岛内全部句子,顺序与下标一致。 */
+  sentences: SplitInputSentence[];
+}
+
+export interface SplitGroup {
+  /** 子岛名,用分组标签,如 "酒店/入住"。 */
+  subIslandName: string;
+  /** 属于这个子岛的句子下标(对应请求里 sentences 的顺序)。 */
+  indices: number[];
+}
+
+export interface SplitResult {
+  /** 2–3 个子岛,按流程顺序;并集覆盖全部句子、互不重叠。 */
+  groups: SplitGroup[];
+}
+
 // --- /v1/tts (returns binary audio/mpeg, not JSON) ---
 
 export interface TtsRequest {

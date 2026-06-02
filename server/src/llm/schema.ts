@@ -36,6 +36,17 @@ export const scenarioSchema = z.object({
   sentences: z.array(z.object(cardShape)).min(1),
 });
 
+export const splitSchema = z.object({
+  groups: z
+    .array(
+      z.object({
+        subIslandName: z.string(),
+        indices: z.array(z.number().int()).min(1),
+      }),
+    )
+    .min(2),
+});
+
 export const glossSchema = z.object({
   meaning: z.string(),
   candidates: z

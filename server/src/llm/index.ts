@@ -7,14 +7,22 @@ import type {
   GlossResult,
   ScenarioRequest,
   ScenarioResult,
+  SplitRequest,
+  SplitResult,
 } from "../contracts";
 import { getAdapter } from "./adapters";
 import {
   buildAuthoringPrompt,
   buildGlossPrompt,
   buildScenarioPrompt,
+  buildSplitPrompt,
 } from "./prompts";
-import { composeSchema, glossSchema, scenarioSchema } from "./schema";
+import {
+  composeSchema,
+  glossSchema,
+  scenarioSchema,
+  splitSchema,
+} from "./schema";
 
 // Pull a JSON object out of a model reply that may be wrapped in prose or a
 // ```json fence.
@@ -73,6 +81,10 @@ export function gloss(req: GlossRequest): Promise<GlossResult> {
 
 export function scenario(req: ScenarioRequest): Promise<ScenarioResult> {
   return runStructured("scenario", buildScenarioPrompt(req), scenarioSchema);
+}
+
+export function split(req: SplitRequest): Promise<SplitResult> {
+  return runStructured("split", buildSplitPrompt(req), splitSchema);
 }
 
 // Streaming variant: `onText` receives the accumulated raw text as it streams

@@ -2,6 +2,7 @@ import type {
   ComposeRequest,
   GlossRequest,
   ScenarioRequest,
+  SplitRequest,
 } from "../contracts";
 
 const LANG_LABEL: Record<string, string> = { de: "德语", en: "英语" };
@@ -74,5 +75,24 @@ export function buildScenarioPrompt(req: ScenarioRequest): PromptPair {
 {"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null}]}
 ${JSON_QUOTE_RULE}`;
   const user = `场景:${req.description}`;
+  return { system, user };
+}
+
+// "拆岛": 一个过大的岛 → 把现有句子分成 2–3 个子岛(只重新分组,不改写句子)。
+export function buildSplitPrompt(req: SplitRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const system = `你是一位课程设计师,帮中文母语者把一个过大的${lang}"句子岛"拆成更易"一天背完"的子岛。
+给你一个岛名和它的全部句子(已按顺序编号),你要把这些句子**重新分组**成 2–3 个子岛——只分组,**绝不改写、增删句子**。
+要求:
+- 每个子岛聚焦一个清晰的小场景/环节,理想 8–12 句;子岛名用**分组标签**形式,如 "酒店/入住"、"酒店/退房"。
+- 尽量顺着原有流程切分,使每个子岛内部自成一段连贯小对话,别从中间生硬截断。
+- 分组的下标并集必须**覆盖全部句子、互不重叠**(每句恰好归入一个子岛)。
+只输出一个 JSON 对象,不要解释、不要 markdown:
+{"groups":[{"subIslandName":string,"indices":number[]}]}
+${JSON_QUOTE_RULE}`;
+  const list = req.sentences
+    .map((s, i) => `${i}. ${s.native} | ${s.target}`)
+    .join("\n");
+  const user = `岛名:${req.islandName}(共 ${req.sentences.length} 句)\n${list}`;
   return { system, user };
 }

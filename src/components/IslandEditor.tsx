@@ -6,6 +6,7 @@ import { getIsland, listIslands, listSentencesByIsland } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import {
   addSentenceToIsland,
+  createScenarioIsland,
   deleteSentence,
   moveSentence,
   reorderSentences,
@@ -13,7 +14,12 @@ import {
 } from "@/lib/cards";
 import { prewarmAudio } from "@/lib/tts";
 import { apiFetchJson } from "@/lib/api/client";
-import type { ComposeResult, TargetLanguage } from "@/lib/api/contracts";
+import type {
+  ComposeResult,
+  SplitGroup,
+  SplitResult,
+  TargetLanguage,
+} from "@/lib/api/contracts";
 import type { Island, Sentence } from "@/lib/types";
 
 const EMPTY_FIELDS = {
@@ -46,6 +52,14 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
       }
     | { kind: "notfound" }
   >({ kind: "loading" });
+
+  const [splitState, setSplitState] = useState<
+    | { kind: "idle" }
+    | { kind: "loading" }
+    | { kind: "ready"; groups: SplitGroup[] }
+    | { kind: "applying" }
+    | { kind: "error"; detail: string }
+  >({ kind: "idle" });
 
   useEffect(() => {
     let alive = true;
@@ -129,6 +143,47 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
 
   const { island, sentences, otherIslands } = state;
 
+  async function requestSplit() {
+    setSplitState({ kind: "loading" });
+    try {
+      const r = await apiFetchJson<SplitResult>("/v1/split", {
+        language: island.language as TargetLanguage,
+        islandName: island.name,
+        sentences: sentences.map((s) => ({ native: s.native, target: s.target })),
+      });
+      setSplitState({ kind: "ready", groups: r.groups });
+    } catch (e) {
+      setSplitState({ kind: "error", detail: e instanceof Error ? e.message : String(e) });
+    }
+  }
+
+  // Keep the first group in this island; move the rest into new sub-islands.
+  // ids are mapped up front (stable across moves), so order of moving is safe.
+  async function applySplit(groups: SplitGroup[]) {
+    setSplitState({ kind: "applying" });
+    try {
+      for (let g = 1; g < groups.length; g++) {
+        const ids = groups[g]!.indices
+          .map((idx) => sentences[idx]?.id)
+          .filter((x): x is string => Boolean(x));
+        if (ids.length === 0) continue;
+        const sub = await createScenarioIsland(
+          island.language as TargetLanguage,
+          groups[g]!.subIslandName,
+        );
+        for (const id of ids) await moveSentence(id, sub.id);
+      }
+      const fresh = await listSentencesByIsland(island.id);
+      const others = (await listIslands(island.language)).filter(
+        (i) => i.id !== island.id,
+      );
+      setState({ kind: "ready", island, sentences: fresh, otherIslands: others });
+      setSplitState({ kind: "idle" });
+    } catch (e) {
+      setSplitState({ kind: "error", detail: e instanceof Error ? e.message : String(e) });
+    }
+  }
+
   return (
     <main className="flex flex-1 flex-col gap-5 px-4 py-6 max-w-2xl mx-auto w-full">
       <header className="flex items-baseline justify-between gap-3">
@@ -145,6 +200,53 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
       </header>
 
       <p className="text-xs text-zinc-500">{t("hint")}</p>
+
+      {splitState.kind === "loading" && (
+        <p className="text-sm text-zinc-500">{t("splitLoading")}</p>
+      )}
+      {splitState.kind === "applying" && (
+        <p className="text-sm text-zinc-500">{t("splitApplying")}</p>
+      )}
+      {splitState.kind === "error" && (
+        <p className="text-sm text-red-600 dark:text-red-400">
+          {t("splitFailed", { detail: splitState.detail })}
+        </p>
+      )}
+      {splitState.kind === "ready" && (
+        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 space-y-3">
+          <p className="text-sm font-medium">{t("splitTitle")}</p>
+          <ul className="space-y-1 text-sm">
+            {splitState.groups.map((g, i) => (
+              <li key={i}>
+                <span className="font-medium">{g.subIslandName}</span>
+                <span className="text-zinc-500">
+                  {" · "}
+                  {t("count", { n: g.indices.length })}
+                </span>
+                {i === 0 && (
+                  <span className="text-xs text-zinc-400"> {t("splitStays")}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => applySplit(splitState.groups)}
+              className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium"
+            >
+              {t("splitApply")}
+            </button>
+            <button
+              type="button"
+              onClick={() => setSplitState({ kind: "idle" })}
+              className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm"
+            >
+              {t("splitCancel")}
+            </button>
+          </div>
+        </div>
+      )}
 
       {sentences.length === 0 ? (
         <p className="text-sm text-zinc-500">{t("empty")}</p>
@@ -167,13 +269,25 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
         </ul>
       )}
 
-      <button
-        type="button"
-        onClick={() => addSentence(island)}
-        className="self-start rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 hover:border-zinc-400"
-      >
-        {t("addSentence")}
-      </button>
+      <div className="flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => addSentence(island)}
+          className="rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 hover:border-zinc-400"
+        >
+          {t("addSentence")}
+        </button>
+        {sentences.length > 12 && splitState.kind === "idle" && (
+          <button
+            type="button"
+            onClick={requestSplit}
+            title={t("splitHint")}
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm text-zinc-600 dark:text-zinc-300"
+          >
+            {t("splitSuggest")}
+          </button>
+        )}
+      </div>
     </main>
   );
 }

@@ -66,6 +66,28 @@ export interface ScenarioResult {
   sentences: ScenarioSentence[];
 }
 
+// --- /v1/split ("拆岛") ---
+
+export interface SplitInputSentence {
+  native: string;
+  target: string;
+}
+
+export interface SplitRequest {
+  language: TargetLanguage;
+  islandName: string;
+  sentences: SplitInputSentence[];
+}
+
+export interface SplitGroup {
+  subIslandName: string;
+  indices: number[];
+}
+
+export interface SplitResult {
+  groups: SplitGroup[];
+}
+
 // --- /v1/tts (returns binary audio/mpeg) ---
 
 export interface TtsRequest {
