@@ -1,6 +1,7 @@
 import type {
   ComposeRequest,
   GlossRequest,
+  KeywordsRequest,
   ScenarioRequest,
   SplitRequest,
 } from "../contracts";
@@ -89,6 +90,27 @@ export function buildSplitPrompt(req: SplitRequest): PromptPair {
 - 分组的下标并集必须**覆盖全部句子、互不重叠**(每句恰好归入一个子岛)。
 只输出一个 JSON 对象,不要解释、不要 markdown:
 {"groups":[{"subIslandName":string,"indices":number[]}]}
+${JSON_QUOTE_RULE}`;
+  const list = req.sentences
+    .map((s, i) => `${i}. ${s.native} | ${s.target}`)
+    .join("\n");
+  const user = `岛名:${req.islandName}(共 ${req.sentences.length} 句)\n${list}`;
+  return { system, user };
+}
+
+// "提取关键词": 一个岛的句子 → 对学习者最有用的关键词/短语 + 释义 + 出处。
+export function buildKeywordsPrompt(req: KeywordsRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const system = `你是一位${lang}词汇老师。给你一个"句子岛"的全部句子(已编号),
+请挑出对中文母语学习者**最有学习价值的关键词/常用短语**(约 8–15 个),做成字词表。
+要求:
+- 只挑实词与地道常用表达(名词/动词/形容词/固定搭配等);**跳过太基础的功能词**(冠词、代词、介词等)。
+- term:该词的规范写法;${lang}若是名词请带冠词(如 "der Bahnhof")。
+- meaning:简洁中文释义。
+- indices:这个词出现在**哪些句子**的下标(可多个;就是上面编号)。
+- 不要重复:同一个词只出一条,把它出现的所有下标都列上。
+只输出一个 JSON 对象,不要解释、不要 markdown:
+{"keywords":[{"term":string,"meaning":string,"indices":number[]}]}
 ${JSON_QUOTE_RULE}`;
   const list = req.sentences
     .map((s, i) => `${i}. ${s.native} | ${s.target}`)

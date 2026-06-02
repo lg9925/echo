@@ -47,6 +47,18 @@ export const splitSchema = z.object({
     .min(2),
 });
 
+export const keywordsSchema = z.object({
+  keywords: z
+    .array(
+      z.object({
+        term: z.string(),
+        meaning: z.string(),
+        indices: z.array(z.number().int()),
+      }),
+    )
+    .min(1),
+});
+
 export const glossSchema = z.object({
   meaning: z.string(),
   candidates: z

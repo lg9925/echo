@@ -9,6 +9,8 @@ import type {
   ScenarioResult,
   SplitRequest,
   SplitResult,
+  KeywordsRequest,
+  KeywordsResult,
 } from "../contracts";
 import { getAdapter } from "./adapters";
 import {
@@ -16,12 +18,14 @@ import {
   buildGlossPrompt,
   buildScenarioPrompt,
   buildSplitPrompt,
+  buildKeywordsPrompt,
 } from "./prompts";
 import {
   composeSchema,
   glossSchema,
   scenarioSchema,
   splitSchema,
+  keywordsSchema,
 } from "./schema";
 
 // Pull a JSON object out of a model reply that may be wrapped in prose or a
@@ -85,6 +89,10 @@ export function scenario(req: ScenarioRequest): Promise<ScenarioResult> {
 
 export function split(req: SplitRequest): Promise<SplitResult> {
   return runStructured("split", buildSplitPrompt(req), splitSchema);
+}
+
+export function keywords(req: KeywordsRequest): Promise<KeywordsResult> {
+  return runStructured("keywords", buildKeywordsPrompt(req), keywordsSchema);
 }
 
 // Streaming variant: `onText` receives the accumulated raw text as it streams

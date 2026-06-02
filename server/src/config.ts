@@ -11,7 +11,12 @@ export type LlmProvider =
   | "claude-cli"
   | "gemini"
   | "gemini-cli";
-export type LlmTask = "authoring" | "gloss" | "scenario" | "split";
+export type LlmTask =
+  | "authoring"
+  | "gloss"
+  | "scenario"
+  | "split"
+  | "keywords";
 
 export interface LlmRoute {
   provider: LlmProvider;
@@ -29,6 +34,8 @@ const DEFAULT_TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   // Split just groups existing sentences (returns names + indices) — cheap; a
   // good candidate for a cheaper model later via LLM_SPLIT_PROVIDER.
   split: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 1500 },
+  // Keywords extracts an island's key words + meanings + which sentences.
+  keywords: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 2000 },
 };
 
 // Optional per-task env override (no code change needed to switch a provider):
@@ -50,6 +57,7 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   gloss: withEnvOverride("gloss", DEFAULT_TASK_ROUTING.gloss),
   scenario: withEnvOverride("scenario", DEFAULT_TASK_ROUTING.scenario),
   split: withEnvOverride("split", DEFAULT_TASK_ROUTING.split),
+  keywords: withEnvOverride("keywords", DEFAULT_TASK_ROUTING.keywords),
 };
 
 // --- TTS routing ---

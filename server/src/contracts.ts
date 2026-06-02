@@ -108,6 +108,27 @@ export interface SplitResult {
   groups: SplitGroup[];
 }
 
+// --- /v1/keywords ("提取关键词": 一个岛的句子 → 关键词 + 释义 + 出处) ---
+
+export interface KeywordsRequest {
+  language: TargetLanguage;
+  islandName: string;
+  sentences: { native: string; target: string }[];
+}
+
+export interface KeywordItem {
+  /** 关键词/短语(外语;名词带冠词)。 */
+  term: string;
+  /** 中文释义。 */
+  meaning: string;
+  /** 出现在哪些句子(下标,对应请求里 sentences 的顺序)。 */
+  indices: number[];
+}
+
+export interface KeywordsResult {
+  keywords: KeywordItem[];
+}
+
 // --- /v1/tts (returns binary audio/mpeg, not JSON) ---
 
 export interface TtsRequest {
