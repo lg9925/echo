@@ -1,7 +1,9 @@
 import type {
   ComposeRequest,
   GlossRequest,
+  KeywordsRequest,
   ScenarioRequest,
+  SplitRequest,
 } from "../contracts";
 
 const LANG_LABEL: Record<string, string> = { de: "德语", en: "英语" };
@@ -74,5 +76,45 @@ export function buildScenarioPrompt(req: ScenarioRequest): PromptPair {
 {"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null}]}
 ${JSON_QUOTE_RULE}`;
   const user = `场景:${req.description}`;
+  return { system, user };
+}
+
+// "拆岛": 一个过大的岛 → 把现有句子分成 2–3 个子岛(只重新分组,不改写句子)。
+export function buildSplitPrompt(req: SplitRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const system = `你是一位课程设计师,帮中文母语者把一个过大的${lang}"句子岛"拆成更易"一天背完"的子岛。
+给你一个岛名和它的全部句子(已按顺序编号),你要把这些句子**重新分组**成 2–3 个子岛——只分组,**绝不改写、增删句子**。
+要求:
+- 每个子岛聚焦一个清晰的小场景/环节,理想 8–12 句;子岛名用**分组标签**形式,如 "酒店/入住"、"酒店/退房"。
+- 尽量顺着原有流程切分,使每个子岛内部自成一段连贯小对话,别从中间生硬截断。
+- 分组的下标并集必须**覆盖全部句子、互不重叠**(每句恰好归入一个子岛)。
+只输出一个 JSON 对象,不要解释、不要 markdown:
+{"groups":[{"subIslandName":string,"indices":number[]}]}
+${JSON_QUOTE_RULE}`;
+  const list = req.sentences
+    .map((s, i) => `${i}. ${s.native} | ${s.target}`)
+    .join("\n");
+  const user = `岛名:${req.islandName}(共 ${req.sentences.length} 句)\n${list}`;
+  return { system, user };
+}
+
+// "提取关键词": 一个岛的句子 → 对学习者最有用的关键词/短语 + 释义 + 出处。
+export function buildKeywordsPrompt(req: KeywordsRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const system = `你是一位${lang}词汇老师。给你一个"句子岛"的全部句子(已编号),
+请挑出对中文母语学习者**最有学习价值的关键词/常用短语**(约 8–15 个),做成字词表。
+要求:
+- 只挑实词与地道常用表达(名词/动词/形容词/固定搭配等);**跳过太基础的功能词**(冠词、代词、介词等)。
+- term:该词的规范写法;${lang}若是名词请带冠词(如 "der Bahnhof")。
+- meaning:简洁中文释义。
+- indices:这个词出现在**哪些句子**的下标(可多个;就是上面编号)。
+- 不要重复:同一个词只出一条,把它出现的所有下标都列上。
+只输出一个 JSON 对象,不要解释、不要 markdown:
+{"keywords":[{"term":string,"meaning":string,"indices":number[]}]}
+${JSON_QUOTE_RULE}`;
+  const list = req.sentences
+    .map((s, i) => `${i}. ${s.native} | ${s.target}`)
+    .join("\n");
+  const user = `岛名:${req.islandName}(共 ${req.sentences.length} 句)\n${list}`;
   return { system, user };
 }

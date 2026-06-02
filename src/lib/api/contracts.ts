@@ -66,6 +66,46 @@ export interface ScenarioResult {
   sentences: ScenarioSentence[];
 }
 
+// --- /v1/split ("拆岛") ---
+
+export interface SplitInputSentence {
+  native: string;
+  target: string;
+}
+
+export interface SplitRequest {
+  language: TargetLanguage;
+  islandName: string;
+  sentences: SplitInputSentence[];
+}
+
+export interface SplitGroup {
+  subIslandName: string;
+  indices: number[];
+}
+
+export interface SplitResult {
+  groups: SplitGroup[];
+}
+
+// --- /v1/keywords ("提取关键词") ---
+
+export interface KeywordsRequest {
+  language: TargetLanguage;
+  islandName: string;
+  sentences: { native: string; target: string }[];
+}
+
+export interface KeywordItem {
+  term: string;
+  meaning: string;
+  indices: number[];
+}
+
+export interface KeywordsResult {
+  keywords: KeywordItem[];
+}
+
 // --- /v1/tts (returns binary audio/mpeg) ---
 
 export interface TtsRequest {

@@ -34,20 +34,10 @@ import {
   savePlayerSettings,
   sleep,
 } from "@/lib/player";
+import { NATIVE_LANG_BCP47, targetBcp47 } from "@/lib/lang";
 import type { Sentence } from "@/lib/types";
 import { TargetTokenized } from "./TargetTokenized";
-
-const NATIVE_LANG_BCP47 = "zh-CN";
-
-const TARGET_LANG_MAP: Record<string, string> = {
-  de: "de-DE",
-  en: "en-US",
-  fr: "fr-FR",
-};
-
-function targetBcp47(language: string): string {
-  return TARGET_LANG_MAP[language] ?? language;
-}
+import { KeywordExtractor } from "./KeywordExtractor";
 
 export function ShadowPlayer({
   islandId,
@@ -375,6 +365,12 @@ export function ShadowPlayer({
           {t("sentenceProgress", { current: idx + 1, total })}
         </span>
       </header>
+
+      <KeywordExtractor
+        language={language}
+        islandId={islandId}
+        islandName={islandName}
+      />
 
       {!ttsSupported && (
         <p className="text-sm text-amber-600">{t("ttsUnsupported")}</p>

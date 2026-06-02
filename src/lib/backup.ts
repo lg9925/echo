@@ -23,6 +23,7 @@ import type {
   ReviewState,
   SeedMeta,
   Sentence,
+  VocabEntry,
 } from "./types";
 
 export const BACKUP_FORMAT = "echo-backup";
@@ -38,6 +39,7 @@ export interface BackupFile {
     reviews: ReviewState[];
     meta: SeedMeta[];
     inbox: InboxItem[];
+    vocab: VocabEntry[];
     playerSettings: PlayerSettings | null;
   };
 }
@@ -48,18 +50,20 @@ export interface ImportSummary {
   reviews: number;
   meta: number;
   inbox: number;
+  vocab: number;
   playerSettings: boolean;
 }
 
 /** Read every table (all languages) + player settings into a backup object. */
 export async function exportBackup(): Promise<BackupFile> {
   const db = getDb();
-  const [islands, sentences, reviews, meta, inbox] = await Promise.all([
+  const [islands, sentences, reviews, meta, inbox, vocab] = await Promise.all([
     db.islands.toArray(),
     db.sentences.toArray(),
     db.reviews.toArray(),
     db.meta.toArray(),
     db.inbox.toArray(),
+    db.vocab.toArray(),
   ]);
   return {
     format: BACKUP_FORMAT,
@@ -71,6 +75,7 @@ export async function exportBackup(): Promise<BackupFile> {
       reviews,
       meta,
       inbox,
+      vocab,
       playerSettings: loadPlayerSettings(),
     },
   };
@@ -119,6 +124,8 @@ export function parseBackupFile(text: string): BackupFile {
       throw new Error(`backup file is missing "${key}"`);
     }
   }
+  // vocab was added later — older backups won't have it; default to empty.
+  if (!Array.isArray(d.vocab)) d.vocab = [];
   return obj as BackupFile;
 }
 
@@ -129,17 +136,19 @@ export function parseBackupFile(text: string): BackupFile {
  */
 export async function importBackup(file: BackupFile): Promise<ImportSummary> {
   const db = getDb();
-  const { islands, sentences, reviews, meta, inbox, playerSettings } = file.data;
+  const { islands, sentences, reviews, meta, inbox, vocab, playerSettings } =
+    file.data;
 
   await db.transaction(
     "rw",
-    [db.islands, db.sentences, db.reviews, db.meta, db.inbox],
+    [db.islands, db.sentences, db.reviews, db.meta, db.inbox, db.vocab],
     async () => {
       await db.islands.bulkPut(islands);
       await db.sentences.bulkPut(sentences);
       await db.reviews.bulkPut(reviews);
       await db.meta.bulkPut(meta);
       await db.inbox.bulkPut(inbox);
+      await db.vocab.bulkPut(vocab ?? []);
     },
   );
 
@@ -155,6 +164,7 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     reviews: reviews.length,
     meta: meta.length,
     inbox: inbox.length,
+    vocab: (vocab ?? []).length,
     playerSettings: appliedSettings,
   };
 }

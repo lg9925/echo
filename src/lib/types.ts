@@ -108,3 +108,27 @@ export interface AudioCacheEntry {
   mime: string;
   createdAt: number;
 }
+
+// --- Phase 3f: vocabulary (字词表) — Dexie v3 ---
+
+/** A context where a vocab term appears: links back to a sentence (with a text
+ *  snapshot so the context survives even if the sentence is edited/deleted). */
+export interface VocabRef {
+  sentenceId: string | null;
+  islandId: string | null;
+  text: string | null;
+}
+
+/**
+ * 字词表 entry: a key word/phrase the user is collecting, centered on the
+ * islands it appears in. An index, NOT a review card — it only becomes a card
+ * when the user explicitly "adds to learning".
+ */
+export interface VocabEntry {
+  id: string;
+  language: string;
+  term: string;
+  meaning: string;
+  refs: VocabRef[];
+  createdAt: number;
+}
