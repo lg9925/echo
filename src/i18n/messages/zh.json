@@ -7,7 +7,8 @@
     "home": "首页",
     "review": "复习",
     "settings": "设置",
-    "inbox": "收件箱"
+    "inbox": "收件箱",
+    "vocab": "字词表"
   },
   "home": {
     "pickLanguage": "选择语言",
@@ -140,6 +141,25 @@
     "ttsUnsupported": "你的浏览器不支持 Web Speech,无法播放音频。",
     "loading": "加载中…",
     "empty": "这个岛还没有句子。"
+  },
+  "vocab": {
+    "title": "字词表",
+    "back": "返回",
+    "count": "{n} 词",
+    "empty": "字词表还是空的。先在某个岛「提取关键词」,或在这里手动加词。",
+    "term": "词",
+    "termPlaceholder": "外语词/短语",
+    "meaning": "释义",
+    "meaningPlaceholder": "中文释义/笔记(可空)",
+    "add": "加词",
+    "delete": "删除",
+    "confirmDelete": "从字词表删除这个词?",
+    "source": "出处",
+    "addToLearning": "加入学习",
+    "added": "已加入 ✓",
+    "pickedIsland": "捡来的词",
+    "collect": "收进字词表",
+    "collected": "已收进字词表 ✓"
   },
   "editor": {
     "back": "返回",

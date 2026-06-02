@@ -6,6 +6,7 @@ import type {
   ReviewState,
   Sentence,
   SeedMeta,
+  VocabEntry,
 } from "./types";
 
 class EchoDB extends Dexie {
@@ -15,6 +16,7 @@ class EchoDB extends Dexie {
   meta!: EntityTable<SeedMeta, "key">;
   inbox!: EntityTable<InboxItem, "id">;
   audioCache!: EntityTable<AudioCacheEntry, "key">;
+  vocab!: EntityTable<VocabEntry, "id">;
 
   constructor() {
     super("echo");
@@ -29,6 +31,10 @@ class EchoDB extends Dexie {
     this.version(2).stores({
       inbox: "&id, status, language, [status+language], createdAt",
       audioCache: "&key, createdAt",
+    });
+    // v3 adds the 字词表 (vocab) — additive, no migration.
+    this.version(3).stores({
+      vocab: "&id, language, [language+term], [language+createdAt]",
     });
   }
 }
@@ -135,4 +141,21 @@ export async function upsertReview(state: ReviewState): Promise<void> {
 export async function getMeta(key: string): Promise<SeedMeta | undefined> {
   const db = getDb();
   return db.meta.get(key);
+}
+
+export async function listVocab(language: string): Promise<VocabEntry[]> {
+  const db = getDb();
+  return db.vocab
+    .where("[language+createdAt]")
+    .between([language, Dexie.minKey], [language, Dexie.maxKey])
+    .reverse()
+    .toArray();
+}
+
+export async function findVocabByTerm(
+  language: string,
+  term: string,
+): Promise<VocabEntry | undefined> {
+  const db = getDb();
+  return db.vocab.where("[language+term]").equals([language, term]).first();
 }

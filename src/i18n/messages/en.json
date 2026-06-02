@@ -7,7 +7,8 @@
     "home": "Home",
     "review": "Review",
     "settings": "Settings",
-    "inbox": "Inbox"
+    "inbox": "Inbox",
+    "vocab": "Words"
   },
   "home": {
     "pickLanguage": "Pick a language",
@@ -140,6 +141,25 @@
     "ttsUnsupported": "Your browser does not support Web Speech; audio disabled.",
     "loading": "Loading…",
     "empty": "This island has no sentences yet."
+  },
+  "vocab": {
+    "title": "Words",
+    "back": "Back",
+    "count": "{n} words",
+    "empty": "No words yet. Use “Extract key words” on an island, or add one here.",
+    "term": "Word",
+    "termPlaceholder": "Word / phrase",
+    "meaning": "Meaning",
+    "meaningPlaceholder": "Meaning / note (optional)",
+    "add": "Add",
+    "delete": "Delete",
+    "confirmDelete": "Remove this word from your list?",
+    "source": "Source",
+    "addToLearning": "Add to learning",
+    "added": "Added ✓",
+    "pickedIsland": "Picked-up words",
+    "collect": "Add to words",
+    "collected": "Added to words ✓"
   },
   "editor": {
     "back": "Back",
