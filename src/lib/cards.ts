@@ -176,6 +176,19 @@ export async function deleteSentence(id: string): Promise<void> {
   });
 }
 
+/** Persist a new sentence order: assign indexInIsland by position. Pass the
+ *  island's full sentence ids in the desired order. */
+export async function reorderSentences(
+  orderedIds: string[],
+): Promise<void> {
+  const db = getDb();
+  await db.transaction("rw", db.sentences, async () => {
+    await Promise.all(
+      orderedIds.map((id, i) => db.sentences.update(id, { indexInIsland: i })),
+    );
+  });
+}
+
 export function scenarioToFieldsList(
   sentences: ScenarioSentence[],
 ): SentenceFields[] {

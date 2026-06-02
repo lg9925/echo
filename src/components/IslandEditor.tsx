@@ -4,9 +4,24 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { getIsland, listSentencesByIsland } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
-import { deleteSentence, updateSentence } from "@/lib/cards";
+import {
+  addSentenceToIsland,
+  deleteSentence,
+  reorderSentences,
+  updateSentence,
+} from "@/lib/cards";
 import { prewarmAudio } from "@/lib/tts";
 import type { Island, Sentence } from "@/lib/types";
+
+const EMPTY_FIELDS = {
+  native: "",
+  target: "",
+  ipa: null,
+  frame: "",
+  literal: "",
+  note: "",
+  variants: [],
+};
 
 // Edits one island's sentences (seed or user). Reads ?id= client-side, loads
 // from IndexedDB, writes back via updateSentence/deleteSentence. The sentence id
@@ -58,6 +73,28 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
     );
   }, []);
 
+  // Swap a sentence with its neighbour and persist the new order. Rows are keyed
+  // by id, so React keeps each row's unsaved edits as they move.
+  const move = useCallback((id: string, dir: -1 | 1) => {
+    setState((s) => {
+      if (s.kind !== "ready") return s;
+      const arr = [...s.sentences];
+      const i = arr.findIndex((x) => x.id === id);
+      const j = i + dir;
+      if (i < 0 || j < 0 || j >= arr.length) return s;
+      [arr[i], arr[j]] = [arr[j]!, arr[i]!];
+      void reorderSentences(arr.map((x) => x.id));
+      return { ...s, sentences: arr };
+    });
+  }, []);
+
+  const addSentence = useCallback(async (island: Island) => {
+    const sentence = await addSentenceToIsland(island, EMPTY_FIELDS);
+    setState((s) =>
+      s.kind === "ready" ? { ...s, sentences: [...s.sentences, sentence] } : s,
+    );
+  }, []);
+
   if (state.kind === "loading") {
     return (
       <main className="flex flex-1 items-center justify-center p-12">
@@ -104,11 +141,26 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
         <ul className="space-y-4">
           {sentences.map((s, i) => (
             <li key={s.id}>
-              <SentenceRow index={i} sentence={s} onDeleted={onDeleted} />
+              <SentenceRow
+                index={i}
+                sentence={s}
+                onDeleted={onDeleted}
+                onMove={move}
+                isFirst={i === 0}
+                isLast={i === sentences.length - 1}
+              />
             </li>
           ))}
         </ul>
       )}
+
+      <button
+        type="button"
+        onClick={() => addSentence(island)}
+        className="self-start rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 hover:border-zinc-400"
+      >
+        {t("addSentence")}
+      </button>
     </main>
   );
 }
@@ -135,10 +187,16 @@ function SentenceRow({
   index,
   sentence,
   onDeleted,
+  onMove,
+  isFirst,
+  isLast,
 }: {
   index: number;
   sentence: Sentence;
   onDeleted: (id: string) => void;
+  onMove: (id: string, dir: -1 | 1) => void;
+  isFirst: boolean;
+  isLast: boolean;
 }) {
   const t = useTranslations("editor");
   const [target, setTarget] = useState(sentence.target);
@@ -183,7 +241,29 @@ function SentenceRow({
   return (
     <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 space-y-3 bg-white dark:bg-zinc-950">
       <div className="flex items-center justify-between">
-        <span className="text-xs text-zinc-400 tabular-nums">#{index + 1}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-zinc-400 tabular-nums">#{index + 1}</span>
+          <button
+            type="button"
+            onClick={() => onMove(sentence.id, -1)}
+            disabled={busy || isFirst}
+            aria-label={t("moveUp")}
+            title={t("moveUp")}
+            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 disabled:opacity-30"
+          >
+            ▲
+          </button>
+          <button
+            type="button"
+            onClick={() => onMove(sentence.id, 1)}
+            disabled={busy || isLast}
+            aria-label={t("moveDown")}
+            title={t("moveDown")}
+            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 disabled:opacity-30"
+          >
+            ▼
+          </button>
+        </div>
         <button
           type="button"
           onClick={remove}
