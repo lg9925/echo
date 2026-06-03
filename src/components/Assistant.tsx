@@ -3,25 +3,19 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { apiFetchJson } from "@/lib/api/client";
-import {
-  addSentenceToIsland,
-  getOrCreatePickedIsland,
-  islandHref,
-} from "@/lib/cards";
+import { islandHref } from "@/lib/cards";
 import {
   addToInbox,
   autoBuildScenarioIsland,
   getInboxItem,
   processInboxItem,
 } from "@/lib/inbox";
-import { upsertVocab } from "@/lib/vocab";
-import { profileForRequest } from "@/lib/profile";
 import type { AskResult, TargetLanguage } from "@/lib/api/contracts";
 import { MicButton } from "./MicButton";
+import { AskAnswer } from "./AskAnswer";
 
-type AskExample = { target: string; native: string };
-type AskWord = { term: string; meaning: string };
+type AskExample = AskResult["examples"][number];
+type AskWord = AskResult["words"][number];
 
 type Turn =
   | { role: "user"; text: string }
@@ -64,21 +58,35 @@ export function Assistant() {
     setBusy(true);
     try {
       if (mode === "ask") {
-        const r = await apiFetchJson<AskResult>("/v1/ask", {
+        // Ask now persists too: route through the inbox so every Q&A is a
+        // reviewable record. processInboxItem handles the profile and never
+        // throws (sets status=error instead), so check the item afterward.
+        const item = await addToInbox({
+          kind: "ask",
           language: lang,
-          question: text,
-          profile: profileForRequest(lang),
+          rawText: text,
+          inputMode: "text",
         });
-        setTurns((ts) => [
-          ...ts,
-          {
-            role: "answer",
-            text: r.answer,
-            examples: r.examples ?? [],
-            words: r.words ?? [],
-            lang,
-          },
-        ]);
+        await processInboxItem(item.id);
+        const done = await getInboxItem(item.id);
+        if (done?.status === "ready" && done.result) {
+          const r = done.result as AskResult;
+          setTurns((ts) => [
+            ...ts,
+            {
+              role: "answer",
+              text: r.answer,
+              examples: r.examples ?? [],
+              words: r.words ?? [],
+              lang,
+            },
+          ]);
+        } else {
+          setTurns((ts) => [
+            ...ts,
+            { role: "error", text: done?.error || "ask failed" },
+          ]);
+        }
       } else {
         // Route island generation through the inbox so it leaves a persistent
         // trail (captured→processing→ready→added) and survives mid-exit: if the
@@ -102,7 +110,12 @@ export function Assistant() {
           if (built) {
             setTurns((ts) => [
               ...ts,
-              { role: "island", islandId: built.islandId, islandName: built.islandName, lang },
+              ...built.islands.map((isl) => ({
+                role: "island" as const,
+                islandId: isl.id,
+                islandName: isl.name,
+                lang,
+              })),
             ]);
           }
         } else {
@@ -199,7 +212,7 @@ export function Assistant() {
           }
           if (turn.role === "answer") {
             return (
-              <AnswerTurn
+              <AskAnswer
                 key={i}
                 text={turn.text}
                 examples={turn.examples}
@@ -267,102 +280,6 @@ export function Assistant() {
           {t("send")}
         </button>
       </div>
-    </div>
-  );
-}
-
-// A Q&A answer: the prose explanation plus the savable bits the model pulled out
-// — example sentences (one-tap into the picked-up island) and key words (one-tap
-// into 字词表). The Q itself isn't persisted (ask = ask a tutor, not a record);
-// only what the learner deliberately saves lands in their existing surfaces.
-function AnswerTurn({
-  text,
-  examples,
-  words,
-  lang,
-}: {
-  text: string;
-  examples: AskExample[];
-  words: AskWord[];
-  lang: TargetLanguage;
-}) {
-  const t = useTranslations("assistant");
-  const tInbox = useTranslations("inbox");
-  const [savedEx, setSavedEx] = useState<Set<number>>(new Set());
-  const [savedWord, setSavedWord] = useState<Set<number>>(new Set());
-
-  async function addExample(idx: number, ex: AskExample) {
-    if (savedEx.has(idx)) return;
-    const island = await getOrCreatePickedIsland(lang, tInbox("pickedIsland"));
-    await addSentenceToIsland(island, {
-      native: ex.native,
-      target: ex.target,
-      ipa: null,
-      frame: "",
-      literal: "",
-      note: "",
-      variants: [],
-    });
-    setSavedEx((s) => new Set(s).add(idx));
-  }
-
-  async function collectWord(idx: number, w: AskWord) {
-    if (savedWord.has(idx)) return;
-    await upsertVocab(lang, w.term, w.meaning, []);
-    setSavedWord((s) => new Set(s).add(idx));
-  }
-
-  return (
-    <div className="space-y-2 text-zinc-700 dark:text-zinc-300">
-      <p className="whitespace-pre-wrap">{text}</p>
-
-      {examples.length > 0 && (
-        <ul className="space-y-1.5">
-          {examples.map((ex, idx) => (
-            <li
-              key={idx}
-              className="flex items-start gap-2 rounded-lg bg-zinc-50 dark:bg-zinc-900 px-2.5 py-1.5"
-            >
-              <span className="min-w-0 flex-1">
-                <span className="font-medium">{ex.target}</span>
-                <span className="block text-xs text-zinc-500">{ex.native}</span>
-              </span>
-              <button
-                type="button"
-                onClick={() => addExample(idx, ex)}
-                disabled={savedEx.has(idx)}
-                className="shrink-0 rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-xs text-zinc-600 dark:text-zinc-300 disabled:opacity-50"
-              >
-                {savedEx.has(idx) ? t("saved") : t("addExample")}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {words.length > 0 && (
-        <ul className="space-y-1.5">
-          {words.map((w, idx) => (
-            <li
-              key={idx}
-              className="flex items-start gap-2 rounded-lg bg-zinc-50 dark:bg-zinc-900 px-2.5 py-1.5"
-            >
-              <span className="min-w-0 flex-1">
-                <span className="font-medium">{w.term}</span>
-                <span className="block text-xs text-zinc-500">{w.meaning}</span>
-              </span>
-              <button
-                type="button"
-                onClick={() => collectWord(idx, w)}
-                disabled={savedWord.has(idx)}
-                className="shrink-0 rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-xs text-zinc-600 dark:text-zinc-300 disabled:opacity-50"
-              >
-                {savedWord.has(idx) ? t("saved") : t("collectWord")}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }

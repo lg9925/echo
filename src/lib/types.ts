@@ -1,4 +1,5 @@
 import type {
+  AskResult,
   ComposeResult,
   GlossResult,
   ScenarioResult,
@@ -72,9 +73,10 @@ export interface RawSeed {
 
 /**
  * 想说 (say) = compose a sentence; 想懂 (understand) = gloss a word;
- * 场景 (scenario) = generate a whole island of sentences from a scene.
+ * 场景 (scenario) = generate a whole island of sentences from a scene;
+ * 提问 (ask) = free-form Q&A kept as a reviewable record.
  */
-export type InboxKind = "say" | "understand" | "scenario";
+export type InboxKind = "say" | "understand" | "scenario" | "ask";
 
 export type InboxStatus =
   | "captured" // just dropped in, not processed
@@ -94,11 +96,14 @@ export interface InboxItem {
   createdAt: number;
   updatedAt: number;
   /** Filled when status reaches "ready". Shape depends on kind. */
-  result?: ComposeResult | GlossResult | ScenarioResult;
+  result?: ComposeResult | GlossResult | ScenarioResult | AskResult;
   error?: string;
   /** Set when status reaches "added". */
   addedSentenceId?: string;
   addedIslandId?: string;
+  /** A scenario can split into several sub-islands; all their ids land here
+   *  (addedIslandId stays = the first, for back-compat). */
+  addedIslandIds?: string[];
 }
 
 /** Cached neural-TTS audio, keyed by hash(lang|voiceBucket|rateBucket|text). */

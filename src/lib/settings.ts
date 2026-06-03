@@ -5,11 +5,18 @@
 
 const TOKEN_KEY = "echo:apiToken";
 const BASE_KEY = "echo:apiBase";
+const MAX_ISLAND_KEY = "echo:maxIslandSentences";
 
 // Build-time default. `deploy.sh` sets NEXT_PUBLIC_API_URL before `pnpm build`;
 // static export inlines it. Falls back to the production subdomain.
 export const DEFAULT_API_BASE =
   process.env.NEXT_PUBLIC_API_URL ?? "https://api.echo.helloworldhub.xyz";
+
+// 一个岛的句子上限 —— 也是生成场景时自动拆子岛的阈值。默认 10:初学者一天能背完、
+// 又不把间隔重复的复习量压垮的甜点区(宪法 原则三:8–12,软上限 15)。
+export const DEFAULT_MAX_ISLAND_SENTENCES = 10;
+export const MIN_ISLAND_SENTENCES = 6;
+export const MAX_ISLAND_SENTENCES = 15;
 
 function read(key: string): string {
   if (typeof window === "undefined") return "";
@@ -43,4 +50,16 @@ export function setApiBaseOverride(base: string): void {
 /** The base actually used for requests: override if set, else the default. */
 export function resolveApiBase(): string {
   return getApiBaseOverride() || DEFAULT_API_BASE;
+}
+
+/** Max sentences per island = the auto-split threshold for generated scenarios.
+ *  Clamped to [MIN, MAX]; falls back to the default if unset/garbage. */
+export function getMaxIslandSentences(): number {
+  const raw = parseInt(read(MAX_ISLAND_KEY), 10);
+  if (!Number.isFinite(raw)) return DEFAULT_MAX_ISLAND_SENTENCES;
+  return Math.min(MAX_ISLAND_SENTENCES, Math.max(MIN_ISLAND_SENTENCES, raw));
+}
+
+export function setMaxIslandSentences(n: number): void {
+  write(MAX_ISLAND_KEY, String(n));
 }

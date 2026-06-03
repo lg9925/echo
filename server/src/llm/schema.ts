@@ -33,7 +33,9 @@ export const composeSchema = z.object({
 
 export const scenarioSchema = z.object({
   islandName: z.string(),
-  sentences: z.array(z.object(cardShape)).min(1),
+  sentences: z
+    .array(z.object({ ...cardShape, group: nullableStr }))
+    .min(1),
 });
 
 export const splitSchema = z.object({

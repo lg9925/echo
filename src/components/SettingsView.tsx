@@ -4,10 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   DEFAULT_API_BASE,
+  DEFAULT_MAX_ISLAND_SENTENCES,
+  MAX_ISLAND_SENTENCES,
+  MIN_ISLAND_SENTENCES,
   getApiBaseOverride,
   getApiToken,
+  getMaxIslandSentences,
   setApiBaseOverride,
   setApiToken,
+  setMaxIslandSentences,
 } from "@/lib/settings";
 import { ApiClientError, checkAuth, checkHealth } from "@/lib/api/client";
 import {
@@ -37,6 +42,7 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
 
   const [token, setToken] = useState("");
   const [base, setBase] = useState("");
+  const [maxSentences, setMaxSentences] = useState(DEFAULT_MAX_ISLAND_SENTENCES);
   const [savedFlash, setSavedFlash] = useState(false);
   const [test, setTest] = useState<TestState>({ kind: "idle" });
   const [backup, setBackup] = useState<BackupState>({ kind: "idle" });
@@ -48,7 +54,13 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot localStorage rehydration after mount
     setToken(getApiToken());
     setBase(getApiBaseOverride());
+    setMaxSentences(getMaxIslandSentences());
   }, []);
+
+  function changeMax(n: number) {
+    setMaxSentences(n);
+    setMaxIslandSentences(n);
+  }
 
   function save() {
     setApiToken(token);
@@ -132,6 +144,30 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
           {t("back")}
         </a>
       </header>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
+          {t("learningSection")}
+        </h2>
+        <label className="block space-y-1.5">
+          <span className="text-sm font-medium">{t("maxIsland")}</span>
+          <select
+            value={maxSentences}
+            onChange={(e) => changeMax(Number(e.target.value))}
+            className="block w-24 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm"
+          >
+            {Array.from(
+              { length: MAX_ISLAND_SENTENCES - MIN_ISLAND_SENTENCES + 1 },
+              (_, i) => MIN_ISLAND_SENTENCES + i,
+            ).map((n) => (
+              <option key={n} value={n}>
+                {n}
+              </option>
+            ))}
+          </select>
+          <span className="text-xs text-zinc-500">{t("maxIslandHint")}</span>
+        </label>
+      </section>
 
       <section className="space-y-5">
         <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
