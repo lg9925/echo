@@ -110,6 +110,7 @@ playback is being moved to a cached-audio + MediaSession path — see roadmap.)
 |---|---|
 | `pnpm dev` | Local dev at `http://localhost:3000` |
 | `pnpm build` | `next build --webpack` (Serwist PWA service worker) → static export in `out/` |
+| `pnpm serve` | Serve the built `out/` on `:3000` (`scripts/serve-out.mjs`, zero-dep) |
 | `pnpm lint` | ESLint |
 | `pnpm typecheck` | `tsc --noEmit` |
 | `pnpm gen:ipa` | Regenerate IPA data (`scripts/generate-ipa.mjs`) |
@@ -117,6 +118,20 @@ playback is being moved to a cached-audio + MediaSession path — see roadmap.)
 
 The backend lives in `server/` and has its own `package.json` — see
 `server/CLAUDE.md` for how to run it.
+
+### Production = this machine behind a Cloudflare tunnel
+
+Production is **not** a hosted deploy — it's this local machine exposed via a
+Cloudflare tunnel. The tunnel routes `echo.helloworldhub.xyz` → `localhost:3000`
+(frontend) and `…/v1` + `/health` → `localhost:8787` (backend).
+
+**Deploy = `pnpm build && pnpm serve`.** Serve the real static `out/`, never
+`next dev`: dev mode sets Serwist `disable: NODE_ENV==='development'`, so it ships
+**no service worker** and can't replace a stale SW already cached on a device.
+The built `out/sw.js` has `skipWaiting + clientsClaim` (see `src/app/sw.ts`) and
+NetworkFirst navigations, so a rebuild propagates to devices on next reload
+without anyone clearing caches. Redeploy: stop `pnpm serve`, `pnpm build`,
+start `pnpm serve` again (same `:3000`, no tunnel reconfig).
 
 ## Where things live (nested CLAUDE.md — loaded on demand)
 

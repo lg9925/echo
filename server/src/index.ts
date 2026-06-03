@@ -10,6 +10,7 @@ import glossRoute from "./routes/gloss";
 import scenarioRoute from "./routes/scenario";
 import splitRoute from "./routes/split";
 import keywordsRoute from "./routes/keywords";
+import askRoute from "./routes/ask";
 import ttsRoute from "./routes/tts";
 
 const app = new Hono();
@@ -34,6 +35,7 @@ v1.route("/gloss", glossRoute);
 v1.route("/scenario", scenarioRoute);
 v1.route("/split", splitRoute);
 v1.route("/keywords", keywordsRoute);
+v1.route("/ask", askRoute);
 v1.route("/tts", ttsRoute);
 
 app.route("/v1", v1);

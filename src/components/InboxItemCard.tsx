@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import type { Island, InboxItem, InboxStatus } from "@/lib/types";
 import type {
+  AskResult,
   ComposeResult,
   GlossResult,
   ScenarioResult,
@@ -11,8 +12,10 @@ import type {
   TargetLanguage,
 } from "@/lib/api/contracts";
 import { upsertVocab } from "@/lib/vocab";
+import { AskAnswer } from "./AskAnswer";
 import { deleteInboxItem, processInboxItem, updateInboxItem } from "@/lib/inbox";
 import { listIslands } from "@/lib/db";
+import { getMaxIslandSentences } from "@/lib/settings";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import {
   addSentenceToIsland,
@@ -21,6 +24,7 @@ import {
   createScenarioIsland,
   getOrCreatePickedIsland,
   glossToFields,
+  groupScenario,
   islandHref,
   pickedIslandId,
   scenarioToFieldsList,
@@ -77,9 +81,11 @@ export function InboxItemCard({
   }, [item.id, item.status, onChanged]);
 
   // When ready, load island options and pick a sensible default.
-  // Scenario items create their own named island, so skip the picker.
+  // Scenario items create their own named island; ask items have no card to
+  // place — both skip the picker.
   useEffect(() => {
-    if (item.status !== "ready" || item.kind === "scenario") return;
+    if (item.status !== "ready" || item.kind === "scenario" || item.kind === "ask")
+      return;
     let alive = true;
     // Ensure seed islands exist even if the user opened the inbox first.
     ensureSeedLoaded(item.language)
@@ -101,13 +107,16 @@ export function InboxItemCard({
     };
   }, [item.status, item.kind, item.language, item.result, pickedId]);
 
-  const statusLabel = {
-    captured: t("statusCaptured"),
-    processing: t("statusProcessing"),
-    ready: t("statusReady"),
-    error: t("statusError"),
-    added: t("statusAdded"),
-  }[item.status];
+  const statusLabel =
+    item.kind === "ask" && item.status === "ready"
+      ? t("statusAnswered")
+      : {
+          captured: t("statusCaptured"),
+          processing: t("statusProcessing"),
+          ready: t("statusReady"),
+          error: t("statusError"),
+          added: t("statusAdded"),
+        }[item.status];
 
   async function remove() {
     await deleteInboxItem(item.id);
@@ -174,9 +183,19 @@ export function InboxItemCard({
     if (busy || sentences.length === 0) return;
     setBusy(true);
     try {
-      const island = await createScenarioIsland(item.language, name);
-      await addSentencesToIsland(island, scenarioToFieldsList(sentences));
-      await updateInboxItem(item.id, { status: "added", addedIslandId: island.id });
+      // Split into sub-islands of ≤max (原则三) by the model's sub-scene groups.
+      const groups = groupScenario(sentences, name, getMaxIslandSentences());
+      const ids: string[] = [];
+      for (const g of groups) {
+        const island = await createScenarioIsland(item.language, g.name);
+        await addSentencesToIsland(island, scenarioToFieldsList(g.sentences));
+        ids.push(island.id);
+      }
+      await updateInboxItem(item.id, {
+        status: "added",
+        addedIslandId: ids[0],
+        addedIslandIds: ids,
+      });
       onChanged();
     } finally {
       setBusy(false);
@@ -192,7 +211,9 @@ export function InboxItemCard({
               ? t("kindSay")
               : item.kind === "understand"
                 ? t("kindUnderstand")
-                : t("kindScenario")}
+                : item.kind === "ask"
+                  ? t("kindAsk")
+                  : t("kindScenario")}
           </span>
           <span className="text-zinc-500">{tLang(item.language)}</span>
           <span
@@ -239,6 +260,15 @@ export function InboxItemCard({
             onCreate={buildScenarioIsland}
             onRegenerate={reprocess}
           />
+        ) : item.kind === "ask" ? (
+          <div className="border-t border-zinc-100 dark:border-zinc-800 pt-3 text-sm">
+            <AskAnswer
+              text={(item.result as AskResult).answer}
+              examples={(item.result as AskResult).examples ?? []}
+              words={(item.result as AskResult).words ?? []}
+              lang={item.language}
+            />
+          </div>
         ) : (
           <ResultPanel
             item={item}
@@ -253,15 +283,58 @@ export function InboxItemCard({
           />
         ))}
 
-      {item.status === "added" && item.addedIslandId && (
-        <a
-          href={islandHref(uiLocale, item.addedIslandId)}
-          className="inline-block text-sm font-medium text-green-700 dark:text-green-400 underline-offset-4 hover:underline"
-        >
-          {t("openIsland")}
-        </a>
+      {item.status === "added" && (item.addedIslandIds?.length || item.addedIslandId) && (
+        <AddedIslandLinks
+          ids={item.addedIslandIds ?? (item.addedIslandId ? [item.addedIslandId] : [])}
+          language={item.language}
+          uiLocale={uiLocale}
+        />
       )}
     </li>
+  );
+}
+
+// Links to the island(s) a finished item produced. A scenario can split into
+// several sub-islands, so load their names and link each.
+function AddedIslandLinks({
+  ids,
+  language,
+  uiLocale,
+}: {
+  ids: string[];
+  language: TargetLanguage;
+  uiLocale: string;
+}) {
+  const t = useTranslations("inbox");
+  const [names, setNames] = useState<Record<string, string>>({});
+  const idsKey = ids.join(",");
+
+  useEffect(() => {
+    let alive = true;
+    const wanted = idsKey ? idsKey.split(",") : [];
+    listIslands(language).then((all) => {
+      if (!alive) return;
+      const m: Record<string, string> = {};
+      for (const isl of all) if (wanted.includes(isl.id)) m[isl.id] = isl.name;
+      setNames(m);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [idsKey, language]);
+
+  return (
+    <div className="flex flex-wrap gap-x-4 gap-y-1">
+      {ids.map((id) => (
+        <a
+          key={id}
+          href={islandHref(uiLocale, id)}
+          className="inline-block text-sm font-medium text-green-700 dark:text-green-400 underline-offset-4 hover:underline"
+        >
+          {names[id] ? `${names[id]} →` : t("openIsland")}
+        </a>
+      ))}
+    </div>
   );
 }
 

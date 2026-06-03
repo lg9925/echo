@@ -240,6 +240,55 @@ export function scenarioToFieldsList(
   }));
 }
 
+export interface ScenarioGroup {
+  name: string;
+  sentences: ScenarioSentence[];
+}
+
+/** Partition a generated scenario into sub-islands (原则三: small islands). The
+ *  model tags each sentence with a `group` sub-scene label; we make one island
+ *  per label, preserving first-seen order. A single/unlabelled scene stays one
+ *  island named `islandName`. `max` is a hard cap — any group bigger than it is
+ *  chunked into `名 (1)`, `名 (2)`… so no island ever exceeds the limit. */
+export function groupScenario(
+  sentences: ScenarioSentence[],
+  islandName: string,
+  max: number,
+): ScenarioGroup[] {
+  const order: string[] = [];
+  const byLabel = new Map<string, ScenarioSentence[]>();
+  for (const s of sentences) {
+    const label = (s.group ?? "").trim();
+    if (!byLabel.has(label)) {
+      byLabel.set(label, []);
+      order.push(label);
+    }
+    byLabel.get(label)!.push(s);
+  }
+
+  const single = order.length <= 1;
+  const cap = max > 0 ? max : DEFAULT_GROUP_CAP;
+  const out: ScenarioGroup[] = [];
+  for (const label of order) {
+    const list = byLabel.get(label)!;
+    const baseName = single ? islandName : label || islandName;
+    if (list.length <= cap) {
+      out.push({ name: baseName, sentences: list });
+      continue;
+    }
+    const chunks = Math.ceil(list.length / cap);
+    for (let i = 0; i < chunks; i++) {
+      out.push({
+        name: `${baseName} (${i + 1})`,
+        sentences: list.slice(i * cap, (i + 1) * cap),
+      });
+    }
+  }
+  return out;
+}
+
+const DEFAULT_GROUP_CAP = 10;
+
 // --- result → SentenceFields mappers ---
 
 export function composeToFields(r: ComposeResult): SentenceFields {

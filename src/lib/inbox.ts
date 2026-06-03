@@ -3,6 +3,7 @@
 import { getDb } from "./db";
 import type { InboxItem, InboxKind } from "./types";
 import type {
+  AskResult,
   ComposeResult,
   GlossResult,
   ScenarioResult,
@@ -10,6 +11,13 @@ import type {
 } from "./api/contracts";
 import { apiFetchJson, apiFetchSSE } from "./api/client";
 import { profileForRequest } from "./profile";
+import { getMaxIslandSentences } from "./settings";
+import {
+  addSentencesToIsland,
+  createScenarioIsland,
+  groupScenario,
+  scenarioToFieldsList,
+} from "./cards";
 
 export interface ProcessHooks {
   /** Fired the moment the item flips to "processing" (so the UI updates). */
@@ -63,6 +71,39 @@ export async function deleteInboxItem(id: string): Promise<void> {
   await getDb().inbox.delete(id);
 }
 
+// Build island(s) from a "ready" scenario item and mark it "added". Used by the
+// assistant to keep its one-step flow while leaving a full inbox trail
+// (captured→processing→ready→added). A big scene is split into sub-islands of
+// ≤max sentences (原则三), one per sub-scene group. The inbox card has its own
+// build path that lets the user edit/drop sentences first; this one builds the
+// result as-is.
+export async function autoBuildScenarioIsland(
+  id: string,
+): Promise<{ islands: { id: string; name: string }[] } | null> {
+  const item = await getInboxItem(id);
+  if (!item || item.kind !== "scenario" || item.status !== "ready" || !item.result) {
+    return null;
+  }
+  const result = item.result as ScenarioResult;
+  const groups = groupScenario(
+    result.sentences,
+    result.islandName,
+    getMaxIslandSentences(),
+  );
+  const created: { id: string; name: string }[] = [];
+  for (const g of groups) {
+    const island = await createScenarioIsland(item.language, g.name);
+    await addSentencesToIsland(island, scenarioToFieldsList(g.sentences));
+    created.push({ id: island.id, name: island.name });
+  }
+  await updateInboxItem(id, {
+    status: "added",
+    addedIslandId: created[0]?.id,
+    addedIslandIds: created.map((c) => c.id),
+  });
+  return { islands: created };
+}
+
 // Call the backend to fill in the result. captured/error → processing →
 // ready/error. `onProgress` fires as soon as the item flips to "processing"
 // so the UI can reflect it immediately (the LLM call may take minutes).
@@ -89,6 +130,13 @@ export async function processInboxItem(
         query: item.rawText,
       });
       await updateInboxItem(id, { status: "ready", result });
+    } else if (item.kind === "ask") {
+      const result = await apiFetchJson<AskResult>("/v1/ask", {
+        language: item.language,
+        question: item.rawText,
+        profile: profileForRequest(item.language),
+      });
+      await updateInboxItem(id, { status: "ready", result });
     } else {
       // Scenario is long — stream progress (live sentence count).
       const result = await apiFetchSSE<ScenarioResult>(
@@ -97,6 +145,7 @@ export async function processInboxItem(
           language: item.language,
           description: item.rawText,
           profile: profileForRequest(item.language),
+          maxPerIsland: getMaxIslandSentences(),
         },
         (data) => {
           const p = data as { sentences?: number };

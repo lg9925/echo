@@ -33,7 +33,9 @@ export const composeSchema = z.object({
 
 export const scenarioSchema = z.object({
   islandName: z.string(),
-  sentences: z.array(z.object(cardShape)).min(1),
+  sentences: z
+    .array(z.object({ ...cardShape, group: nullableStr }))
+    .min(1),
 });
 
 export const splitSchema = z.object({
@@ -45,6 +47,17 @@ export const splitSchema = z.object({
       }),
     )
     .min(2),
+});
+
+export const askSchema = z.object({
+  answer: z.string(),
+  // Optional savable bits the learner can one-tap into their islands / 字词表.
+  examples: z
+    .array(z.object({ target: z.string(), native: z.string() }))
+    .default([]),
+  words: z
+    .array(z.object({ term: z.string(), meaning: z.string() }))
+    .default([]),
 });
 
 export const keywordsSchema = z.object({

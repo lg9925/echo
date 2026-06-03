@@ -61,6 +61,8 @@ export interface ScenarioRequest {
   language: TargetLanguage;
   description: string;
   profile?: LearnerProfile;
+  /** 每个子岛的句子上限(默认 10);生成时按子场景拆,每组不超过它。 */
+  maxPerIsland?: number;
 }
 
 export interface ScenarioSentence {
@@ -71,6 +73,8 @@ export interface ScenarioSentence {
   note: string;
   variants: string[];
   ipa: string | null;
+  /** 子场景分组名(如 "药店/问诊");用于把大场景拆成多个 ≤max 的子岛。 */
+  group?: string | null;
 }
 
 export interface ScenarioResult {
@@ -118,6 +122,22 @@ export interface KeywordItem {
 
 export interface KeywordsResult {
   keywords: KeywordItem[];
+}
+
+// --- /v1/ask ("随手助手" Q&A) ---
+
+export interface AskRequest {
+  language: TargetLanguage;
+  question: string;
+  profile?: LearnerProfile;
+}
+
+export interface AskResult {
+  answer: string;
+  /** 可一键「加入学习」的例句(target=外语,native=中文)。 */
+  examples: { target: string; native: string }[];
+  /** 可一键「收进字词表」的关键词(term=外语,meaning=中文释义)。 */
+  words: { term: string; meaning: string }[];
 }
 
 // --- /v1/tts (returns binary audio/mpeg) ---

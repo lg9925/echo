@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "cross-env SERWIST_SUPPRESS_TURBOPACK_WARNING=1 next build --webpack",
     "start": "next start",
+    "serve": "node scripts/serve-out.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "gen:ipa": "node scripts/generate-ipa.mjs",

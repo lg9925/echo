@@ -1,4 +1,5 @@
 import type {
+  AskRequest,
   ComposeRequest,
   GlossRequest,
   KeywordsRequest,
@@ -73,9 +74,11 @@ ${JSON_QUOTE_RULE}`;
 // "场景": 一句场景描述 → 一段完整问答对话(按顺序的多句卡)。
 export function buildScenarioPrompt(req: ScenarioRequest): PromptPair {
   const lang = LANG_LABEL[req.language] ?? req.language;
-  const system = `你是一位帮助中文母语者学习${lang}口语的教练。学习者给你一个"场景描述",你要为它设计一段**完整的真实问答对话**,做成一个"句子岛"。
+  const max = req.maxPerIsland && req.maxPerIsland > 0 ? req.maxPerIsland : 10;
+  const system = `你是一位帮助中文母语者学习${lang}口语的教练。学习者给你一个"场景描述",你要为它设计一段**完整的真实问答对话**,做成"句子岛"。
 要求:
-- 按真实流程从头到尾,生成**一来一回**的对话:既包含**对方(店员/地勤/工作人员等)会问或会说的话**,也包含**你的回答或提问**,交替推进,**至少 15 句**(可更多),覆盖该场景的关键环节,不重复。
+- 按真实流程从头到尾,生成**一来一回**的对话:既包含**对方(店员/地勤/工作人员等)会问或会说的话**,也包含**你的回答或提问**,交替推进,**约 12–18 句**,覆盖该场景的关键环节,不重复。
+- **岛要小,便于一天背完**:把整段对话按真实**子场景**切分,**每个子场景最多 ${max} 句**。给每一句标一个 group(子场景名,用分组标签写法,如 "药店/问诊" "药店/付款");同一子场景的句子用**完全相同**的 group。若整段对话本就 ≤ ${max} 句,所有句子用同一个 group。子场景按流程先后排列,句子也按流程顺序。
 - 每一句(无论谁说的)都做成一张跟读卡,字段:
   - native:这句话的中文。
   - target:地道、自然的口语${lang}。
@@ -84,9 +87,10 @@ export function buildScenarioPrompt(req: ScenarioRequest): PromptPair {
   - note:**开头标明说话方**——"对方:" 或 "你:",再跟 1 句中文说明使用场景或注意点。
   - variants:2~4 个同义自然说法。
   - ipa:target 的宽式 IPA;拿不准给 null。
-- 给整个岛起个简短中文名 islandName(如 "机场值机对话")。
+  - group:该句所属子场景名(见上)。
+- 给整体起个简短中文名 islandName(如 "机场值机");子场景的 group 在它基础上细分。
 只输出一个 JSON 对象,不要解释、不要 markdown:
-{"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null}]}
+{"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null,"group":string}]}
 ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const user = `场景:${req.description}`;
   return { system, user };
@@ -108,6 +112,24 @@ ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
     .map((s, i) => `${i}. ${s.native} | ${s.target}`)
     .join("\n");
   const user = `岛名:${req.islandName}(共 ${req.sentences.length} 句)\n${list}`;
+  return { system, user };
+}
+
+// "随手助手": 学习者随口问的问题 → 简洁中文解答。
+export function buildAskPrompt(req: AskRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const system = `你是一位${lang}学习助手,帮助中文母语者。用**中文**简洁回答学习者的问题——
+解释清楚、口语化,需要时举 1–3 个**地道**的${lang}例句(每个例句后用括号附中文)。
+不要长篇大论、不要教科书腔;直接给有用的答案。
+另外,把答案里**值得保存的内容**单独抽出来(供学习者一键收藏):
+- examples:完整的${lang}例句(target=${lang}原句,native=中文),0–3 条,没有就给 []。
+- words:关键${lang}词/短语(term=规范写法,名词带冠词;meaning=简洁中文释义),0–5 个,没有就给 []。
+- answer 是给人读的解释;examples/words 是从中抽出的、可独立成卡的条目,别只是复述 answer。
+只输出一个 JSON 对象,不要解释、不要 markdown 代码块:
+{"answer":string,"examples":[{"target":string,"native":string}],"words":[{"term":string,"meaning":string}]}
+answer 内可用普通换行与简单 Markdown(列表/加粗)。
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
+  const user = `问题:${req.question}`;
   return { system, user };
 }
 
