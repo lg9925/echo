@@ -68,8 +68,8 @@ Echo 是一款个性化外语学习 PWA(已上线 echo.helloworldhub.xyz),
 
 ## 现在做
 
-当前聚焦在路线图第 1 步(稳定版)。完整路线图(会随时调整,不属于宪法)见
-[`docs/ROADMAP.md`](docs/ROADMAP.md)。
+当前聚焦在路线图第 4 步(画像 + 学习目标)。第 1–3 步(稳定版 / 整理 / 内容管理)已完成。
+完整路线图(会随时调整,不属于宪法)见 [`docs/ROADMAP.md`](docs/ROADMAP.md)。
 
 ---
 
