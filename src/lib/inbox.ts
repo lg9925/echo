@@ -9,6 +9,7 @@ import type {
   TargetLanguage,
 } from "./api/contracts";
 import { apiFetchJson, apiFetchSSE } from "./api/client";
+import { profileForRequest } from "./profile";
 
 export interface ProcessHooks {
   /** Fired the moment the item flips to "processing" (so the UI updates). */
@@ -79,6 +80,7 @@ export async function processInboxItem(
       const result = await apiFetchJson<ComposeResult>("/v1/compose", {
         language: item.language,
         native: item.rawText,
+        profile: profileForRequest(item.language),
       });
       await updateInboxItem(id, { status: "ready", result });
     } else if (item.kind === "understand") {
@@ -91,7 +93,11 @@ export async function processInboxItem(
       // Scenario is long — stream progress (live sentence count).
       const result = await apiFetchSSE<ScenarioResult>(
         "/v1/scenario/stream",
-        { language: item.language, description: item.rawText },
+        {
+          language: item.language,
+          description: item.rawText,
+          profile: profileForRequest(item.language),
+        },
         (data) => {
           const p = data as { sentences?: number };
           if (typeof p.sentences === "number") hooks?.onProgress?.({ sentences: p.sentences });

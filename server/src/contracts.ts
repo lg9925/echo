@@ -6,12 +6,23 @@
 
 export type TargetLanguage = "de" | "en";
 
+// --- 学习画像(可选的生成 context,按目标语言)---
+
+export type CefrLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+
+export interface LearnerProfile {
+  level: CefrLevel | null;
+  /** 自由文本背景/目标:职业、兴趣、在跟的教材、想考的级别…… */
+  background: string;
+}
+
 // --- /v1/compose ("想说": 中文 → 地道外语跟读卡) ---
 
 export interface ComposeRequest {
   language: TargetLanguage;
   /** 用户说的中文。 */
   native: string;
+  profile?: LearnerProfile;
 }
 
 /** Maps 1:1 onto the fields of a learning card (see src/lib/types.ts Sentence). */
@@ -61,6 +72,7 @@ export interface ScenarioRequest {
   language: TargetLanguage;
   /** 场景描述(中文),如 "坐飞机,从办理登机牌到出海关"。 */
   description: string;
+  profile?: LearnerProfile;
 }
 
 /** One card in a generated scenario island (same fields as a Sentence). */
@@ -94,6 +106,7 @@ export interface SplitRequest {
   islandName: string;
   /** 岛内全部句子,顺序与下标一致。 */
   sentences: SplitInputSentence[];
+  profile?: LearnerProfile;
 }
 
 export interface SplitGroup {
@@ -114,6 +127,7 @@ export interface KeywordsRequest {
   language: TargetLanguage;
   islandName: string;
   sentences: { native: string; target: string }[];
+  profile?: LearnerProfile;
 }
 
 export interface KeywordItem {

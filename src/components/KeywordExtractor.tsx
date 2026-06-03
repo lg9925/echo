@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { listSentencesByIsland } from "@/lib/db";
 import { mergeKeywords } from "@/lib/vocab";
+import { profileForRequest } from "@/lib/profile";
 import { apiFetchJson } from "@/lib/api/client";
 import type {
   KeywordItem,
@@ -51,6 +52,7 @@ export function KeywordExtractor({
         language: language as TargetLanguage,
         islandName,
         sentences: sentences.map((s) => ({ native: s.native, target: s.target })),
+        profile: profileForRequest(language),
       });
       setKwState({ kind: "ready", items: r.keywords, keep: r.keywords.map(() => true) });
     } catch (e) {

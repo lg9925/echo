@@ -27,6 +27,7 @@ route.post("/", async (c) => {
       language: body.language,
       islandName: body.islandName,
       sentences: body.sentences,
+      profile: body.profile,
     });
     return c.json(result);
   } catch (e) {

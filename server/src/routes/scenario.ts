@@ -9,7 +9,7 @@ function parseBody(body: Partial<ScenarioRequest>): ScenarioRequest | null {
   if (!body.description?.trim() || (body.language !== "de" && body.language !== "en")) {
     return null;
   }
-  return { language: body.language, description: body.description };
+  return { language: body.language, description: body.description, profile: body.profile };
 }
 
 // Non-streaming: returns the final card JSON.
