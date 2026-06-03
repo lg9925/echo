@@ -10,6 +10,11 @@ import type {
 } from "./api/contracts";
 import { apiFetchJson, apiFetchSSE } from "./api/client";
 import { profileForRequest } from "./profile";
+import {
+  addSentencesToIsland,
+  createScenarioIsland,
+  scenarioToFieldsList,
+} from "./cards";
 
 export interface ProcessHooks {
   /** Fired the moment the item flips to "processing" (so the UI updates). */
@@ -61,6 +66,24 @@ export async function updateInboxItem(
 
 export async function deleteInboxItem(id: string): Promise<void> {
   await getDb().inbox.delete(id);
+}
+
+// Build a fresh island from a "ready" scenario item and mark it "added". Used by
+// the assistant to keep its one-step flow while leaving a full inbox trail
+// (captured→processing→ready→added). The inbox card has its own build path that
+// lets the user edit/drop sentences first; this one builds the result as-is.
+export async function autoBuildScenarioIsland(
+  id: string,
+): Promise<{ islandId: string; islandName: string } | null> {
+  const item = await getInboxItem(id);
+  if (!item || item.kind !== "scenario" || item.status !== "ready" || !item.result) {
+    return null;
+  }
+  const result = item.result as ScenarioResult;
+  const island = await createScenarioIsland(item.language, result.islandName);
+  await addSentencesToIsland(island, scenarioToFieldsList(result.sentences));
+  await updateInboxItem(id, { status: "added", addedIslandId: island.id });
+  return { islandId: island.id, islandName: island.name };
 }
 
 // Call the backend to fill in the result. captured/error → processing →

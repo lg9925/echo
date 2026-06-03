@@ -49,6 +49,13 @@ export const splitSchema = z.object({
 
 export const askSchema = z.object({
   answer: z.string(),
+  // Optional savable bits the learner can one-tap into their islands / 字词表.
+  examples: z
+    .array(z.object({ target: z.string(), native: z.string() }))
+    .default([]),
+  words: z
+    .array(z.object({ term: z.string(), meaning: z.string() }))
+    .default([]),
 });
 
 export const keywordsSchema = z.object({

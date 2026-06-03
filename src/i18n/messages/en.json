@@ -159,7 +159,11 @@
     "generating": "Generating… {n} sentences",
     "thinking": "Thinking…",
     "islandDone": "Created \"{name}\".",
-    "goPractice": "Practice →"
+    "goPractice": "Practice →",
+    "viewInInbox": "View in inbox",
+    "addExample": "Add to learning",
+    "collectWord": "Add to words",
+    "saved": "Added ✓"
   },
   "profile": {
     "title": "Learning profile",

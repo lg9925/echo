@@ -118,8 +118,12 @@ export function buildAskPrompt(req: AskRequest): PromptPair {
   const system = `你是一位${lang}学习助手,帮助中文母语者。用**中文**简洁回答学习者的问题——
 解释清楚、口语化,需要时举 1–3 个**地道**的${lang}例句(每个例句后用括号附中文)。
 不要长篇大论、不要教科书腔;直接给有用的答案。
+另外,把答案里**值得保存的内容**单独抽出来(供学习者一键收藏):
+- examples:完整的${lang}例句(target=${lang}原句,native=中文),0–3 条,没有就给 []。
+- words:关键${lang}词/短语(term=规范写法,名词带冠词;meaning=简洁中文释义),0–5 个,没有就给 []。
+- answer 是给人读的解释;examples/words 是从中抽出的、可独立成卡的条目,别只是复述 answer。
 只输出一个 JSON 对象,不要解释、不要 markdown 代码块:
-{"answer":string}
+{"answer":string,"examples":[{"target":string,"native":string}],"words":[{"term":string,"meaning":string}]}
 answer 内可用普通换行与简单 Markdown(列表/加粗)。
 ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const user = `问题:${req.question}`;

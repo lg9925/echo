@@ -3,25 +3,36 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { apiFetchJson, apiFetchSSE } from "@/lib/api/client";
+import { apiFetchJson } from "@/lib/api/client";
 import {
-  addSentencesToIsland,
-  createScenarioIsland,
+  addSentenceToIsland,
+  getOrCreatePickedIsland,
   islandHref,
-  scenarioToFieldsList,
 } from "@/lib/cards";
+import {
+  addToInbox,
+  autoBuildScenarioIsland,
+  getInboxItem,
+  processInboxItem,
+} from "@/lib/inbox";
+import { upsertVocab } from "@/lib/vocab";
 import { profileForRequest } from "@/lib/profile";
-import type {
-  AskResult,
-  ScenarioResult,
-  TargetLanguage,
-} from "@/lib/api/contracts";
+import type { AskResult, TargetLanguage } from "@/lib/api/contracts";
 import { MicButton } from "./MicButton";
+
+type AskExample = { target: string; native: string };
+type AskWord = { term: string; meaning: string };
 
 type Turn =
   | { role: "user"; text: string }
-  | { role: "answer"; text: string }
-  | { role: "island"; islandId: string; islandName: string }
+  | {
+      role: "answer";
+      text: string;
+      examples: AskExample[];
+      words: AskWord[];
+      lang: TargetLanguage;
+    }
+  | { role: "island"; islandId: string; islandName: string; lang: TargetLanguage }
   | { role: "error"; text: string };
 
 const LANGS: TargetLanguage[] = ["de", "en"];
@@ -58,23 +69,48 @@ export function Assistant() {
           question: text,
           profile: profileForRequest(lang),
         });
-        setTurns((ts) => [...ts, { role: "answer", text: r.answer }]);
-      } else {
-        setProgress(0);
-        const r = await apiFetchSSE<ScenarioResult>(
-          "/v1/scenario/stream",
-          { language: lang, description: text, profile: profileForRequest(lang) },
-          (data) => {
-            const p = data as { sentences?: number };
-            if (typeof p.sentences === "number") setProgress(p.sentences);
-          },
-        );
-        const island = await createScenarioIsland(lang, r.islandName);
-        await addSentencesToIsland(island, scenarioToFieldsList(r.sentences));
         setTurns((ts) => [
           ...ts,
-          { role: "island", islandId: island.id, islandName: island.name },
+          {
+            role: "answer",
+            text: r.answer,
+            examples: r.examples ?? [],
+            words: r.words ?? [],
+            lang,
+          },
         ]);
+      } else {
+        // Route island generation through the inbox so it leaves a persistent
+        // trail (captured→processing→ready→added) and survives mid-exit: if the
+        // panel closes before this finishes, the item is recoverable in the
+        // inbox (its card auto-resumes captured/processing items). processInbox-
+        // Item handles the profile + streaming and never throws — it sets the
+        // item's status to error instead, so we check the item afterward.
+        setProgress(0);
+        const item = await addToInbox({
+          kind: "scenario",
+          language: lang,
+          rawText: text,
+          inputMode: "text",
+        });
+        await processInboxItem(item.id, {
+          onProgress: (p) => setProgress(p.sentences),
+        });
+        const done = await getInboxItem(item.id);
+        if (done?.status === "ready") {
+          const built = await autoBuildScenarioIsland(item.id);
+          if (built) {
+            setTurns((ts) => [
+              ...ts,
+              { role: "island", islandId: built.islandId, islandName: built.islandName, lang },
+            ]);
+          }
+        } else {
+          setTurns((ts) => [
+            ...ts,
+            { role: "error", text: done?.error || "generation failed" },
+          ]);
+        }
       }
     } catch (e) {
       setTurns((ts) => [
@@ -163,9 +199,13 @@ export function Assistant() {
           }
           if (turn.role === "answer") {
             return (
-              <p key={i} className="whitespace-pre-wrap text-zinc-700 dark:text-zinc-300">
-                {turn.text}
-              </p>
+              <AnswerTurn
+                key={i}
+                text={turn.text}
+                examples={turn.examples}
+                words={turn.words}
+                lang={turn.lang}
+              />
             );
           }
           if (turn.role === "island") {
@@ -177,6 +217,13 @@ export function Assistant() {
                   className="text-blue-600 dark:text-blue-400 hover:underline underline-offset-4"
                 >
                   {t("goPractice")}
+                </a>
+                {" · "}
+                <a
+                  href={`/${uiLocale}/${turn.lang}/inbox/`}
+                  className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:underline underline-offset-4"
+                >
+                  {t("viewInInbox")}
                 </a>
               </p>
             );
@@ -220,6 +267,102 @@ export function Assistant() {
           {t("send")}
         </button>
       </div>
+    </div>
+  );
+}
+
+// A Q&A answer: the prose explanation plus the savable bits the model pulled out
+// — example sentences (one-tap into the picked-up island) and key words (one-tap
+// into 字词表). The Q itself isn't persisted (ask = ask a tutor, not a record);
+// only what the learner deliberately saves lands in their existing surfaces.
+function AnswerTurn({
+  text,
+  examples,
+  words,
+  lang,
+}: {
+  text: string;
+  examples: AskExample[];
+  words: AskWord[];
+  lang: TargetLanguage;
+}) {
+  const t = useTranslations("assistant");
+  const tInbox = useTranslations("inbox");
+  const [savedEx, setSavedEx] = useState<Set<number>>(new Set());
+  const [savedWord, setSavedWord] = useState<Set<number>>(new Set());
+
+  async function addExample(idx: number, ex: AskExample) {
+    if (savedEx.has(idx)) return;
+    const island = await getOrCreatePickedIsland(lang, tInbox("pickedIsland"));
+    await addSentenceToIsland(island, {
+      native: ex.native,
+      target: ex.target,
+      ipa: null,
+      frame: "",
+      literal: "",
+      note: "",
+      variants: [],
+    });
+    setSavedEx((s) => new Set(s).add(idx));
+  }
+
+  async function collectWord(idx: number, w: AskWord) {
+    if (savedWord.has(idx)) return;
+    await upsertVocab(lang, w.term, w.meaning, []);
+    setSavedWord((s) => new Set(s).add(idx));
+  }
+
+  return (
+    <div className="space-y-2 text-zinc-700 dark:text-zinc-300">
+      <p className="whitespace-pre-wrap">{text}</p>
+
+      {examples.length > 0 && (
+        <ul className="space-y-1.5">
+          {examples.map((ex, idx) => (
+            <li
+              key={idx}
+              className="flex items-start gap-2 rounded-lg bg-zinc-50 dark:bg-zinc-900 px-2.5 py-1.5"
+            >
+              <span className="min-w-0 flex-1">
+                <span className="font-medium">{ex.target}</span>
+                <span className="block text-xs text-zinc-500">{ex.native}</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => addExample(idx, ex)}
+                disabled={savedEx.has(idx)}
+                className="shrink-0 rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-xs text-zinc-600 dark:text-zinc-300 disabled:opacity-50"
+              >
+                {savedEx.has(idx) ? t("saved") : t("addExample")}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {words.length > 0 && (
+        <ul className="space-y-1.5">
+          {words.map((w, idx) => (
+            <li
+              key={idx}
+              className="flex items-start gap-2 rounded-lg bg-zinc-50 dark:bg-zinc-900 px-2.5 py-1.5"
+            >
+              <span className="min-w-0 flex-1">
+                <span className="font-medium">{w.term}</span>
+                <span className="block text-xs text-zinc-500">{w.meaning}</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => collectWord(idx, w)}
+                disabled={savedWord.has(idx)}
+                className="shrink-0 rounded-md border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-xs text-zinc-600 dark:text-zinc-300 disabled:opacity-50"
+              >
+                {savedWord.has(idx) ? t("saved") : t("collectWord")}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

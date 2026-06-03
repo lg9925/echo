@@ -155,6 +155,10 @@ export interface AskRequest {
 export interface AskResult {
   /** 中文解答,可含 Markdown 与地道例句。 */
   answer: string;
+  /** 可一键「加入学习」的例句(target=外语,native=中文)。 */
+  examples: { target: string; native: string }[];
+  /** 可一键「收进字词表」的关键词(term=外语,meaning=中文释义)。 */
+  words: { term: string; meaning: string }[];
 }
 
 // --- /v1/tts (returns binary audio/mpeg, not JSON) ---

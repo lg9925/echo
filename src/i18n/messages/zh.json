@@ -159,7 +159,11 @@
     "generating": "正在生成…已 {n} 句",
     "thinking": "正在思考…",
     "islandDone": "已生成「{name}」。",
-    "goPractice": "去跟读 →"
+    "goPractice": "去跟读 →",
+    "viewInInbox": "在收件箱查看",
+    "addExample": "加入学习",
+    "collectWord": "收进字词表",
+    "saved": "已加入 ✓"
   },
   "profile": {
     "title": "学习画像",
