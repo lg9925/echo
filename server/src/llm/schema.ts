@@ -47,6 +47,10 @@ export const splitSchema = z.object({
     .min(2),
 });
 
+export const askSchema = z.object({
+  answer: z.string(),
+});
+
 export const keywordsSchema = z.object({
   keywords: z
     .array(

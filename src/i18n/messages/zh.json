@@ -146,6 +146,21 @@
     "loading": "加载中…",
     "empty": "这个岛还没有句子。"
   },
+  "assistant": {
+    "title": "随手助手",
+    "close": "关闭",
+    "modeIsland": "生成岛",
+    "modeAsk": "提问",
+    "islandHint": "用一句话描述一个场景,我帮你生成一整串句子、建成一个新岛。",
+    "askHint": "随便问关于德语/英语的问题,我用中文解答、给地道例句。",
+    "islandPlaceholder": "例如:在邮局寄一个包裹",
+    "askPlaceholder": "例如:der/die/das 怎么记?",
+    "send": "发送",
+    "generating": "正在生成…已 {n} 句",
+    "thinking": "正在思考…",
+    "islandDone": "已生成「{name}」。",
+    "goPractice": "去跟读 →"
+  },
   "profile": {
     "title": "学习画像",
     "back": "返回",

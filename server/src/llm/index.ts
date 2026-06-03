@@ -11,6 +11,8 @@ import type {
   SplitResult,
   KeywordsRequest,
   KeywordsResult,
+  AskRequest,
+  AskResult,
 } from "../contracts";
 import { getAdapter } from "./adapters";
 import {
@@ -19,6 +21,7 @@ import {
   buildScenarioPrompt,
   buildSplitPrompt,
   buildKeywordsPrompt,
+  buildAskPrompt,
 } from "./prompts";
 import {
   composeSchema,
@@ -26,6 +29,7 @@ import {
   scenarioSchema,
   splitSchema,
   keywordsSchema,
+  askSchema,
 } from "./schema";
 
 // Pull a JSON object out of a model reply that may be wrapped in prose or a
@@ -93,6 +97,10 @@ export function split(req: SplitRequest): Promise<SplitResult> {
 
 export function keywords(req: KeywordsRequest): Promise<KeywordsResult> {
   return runStructured("keywords", buildKeywordsPrompt(req), keywordsSchema);
+}
+
+export function ask(req: AskRequest): Promise<AskResult> {
+  return runStructured("ask", buildAskPrompt(req), askSchema);
 }
 
 // Streaming variant: `onText` receives the accumulated raw text as it streams

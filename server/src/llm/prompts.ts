@@ -1,4 +1,5 @@
 import type {
+  AskRequest,
   ComposeRequest,
   GlossRequest,
   KeywordsRequest,
@@ -108,6 +109,20 @@ ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
     .map((s, i) => `${i}. ${s.native} | ${s.target}`)
     .join("\n");
   const user = `岛名:${req.islandName}(共 ${req.sentences.length} 句)\n${list}`;
+  return { system, user };
+}
+
+// "随手助手": 学习者随口问的问题 → 简洁中文解答。
+export function buildAskPrompt(req: AskRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const system = `你是一位${lang}学习助手,帮助中文母语者。用**中文**简洁回答学习者的问题——
+解释清楚、口语化,需要时举 1–3 个**地道**的${lang}例句(每个例句后用括号附中文)。
+不要长篇大论、不要教科书腔;直接给有用的答案。
+只输出一个 JSON 对象,不要解释、不要 markdown 代码块:
+{"answer":string}
+answer 内可用普通换行与简单 Markdown(列表/加粗)。
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
+  const user = `问题:${req.question}`;
   return { system, user };
 }
 

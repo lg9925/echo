@@ -120,6 +120,18 @@ export interface KeywordsResult {
   keywords: KeywordItem[];
 }
 
+// --- /v1/ask ("随手助手" Q&A) ---
+
+export interface AskRequest {
+  language: TargetLanguage;
+  question: string;
+  profile?: LearnerProfile;
+}
+
+export interface AskResult {
+  answer: string;
+}
+
 // --- /v1/tts (returns binary audio/mpeg) ---
 
 export interface TtsRequest {

@@ -146,6 +146,21 @@
     "loading": "Loading…",
     "empty": "This island has no sentences yet."
   },
+  "assistant": {
+    "title": "Assistant",
+    "close": "Close",
+    "modeIsland": "New island",
+    "modeAsk": "Ask",
+    "islandHint": "Describe a scene in one line and I'll generate a whole set of sentences as a new island.",
+    "askHint": "Ask anything about German/English — I'll answer in Chinese with idiomatic examples.",
+    "islandPlaceholder": "e.g. mailing a parcel at the post office",
+    "askPlaceholder": "e.g. how do I remember der/die/das?",
+    "send": "Send",
+    "generating": "Generating… {n} sentences",
+    "thinking": "Thinking…",
+    "islandDone": "Created \"{name}\".",
+    "goPractice": "Practice →"
+  },
   "profile": {
     "title": "Learning profile",
     "back": "Back",

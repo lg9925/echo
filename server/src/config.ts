@@ -16,7 +16,8 @@ export type LlmTask =
   | "gloss"
   | "scenario"
   | "split"
-  | "keywords";
+  | "keywords"
+  | "ask";
 
 export interface LlmRoute {
   provider: LlmProvider;
@@ -36,6 +37,8 @@ const DEFAULT_TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   split: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 1500 },
   // Keywords extracts an island's key words + meanings + which sentences.
   keywords: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 2000 },
+  // Ask = the 随手助手 Q&A: a short Chinese answer to a learner question.
+  ask: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 1200 },
 };
 
 // Optional per-task env override (no code change needed to switch a provider):
@@ -58,6 +61,7 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   scenario: withEnvOverride("scenario", DEFAULT_TASK_ROUTING.scenario),
   split: withEnvOverride("split", DEFAULT_TASK_ROUTING.split),
   keywords: withEnvOverride("keywords", DEFAULT_TASK_ROUTING.keywords),
+  ask: withEnvOverride("ask", DEFAULT_TASK_ROUTING.ask),
 };
 
 // --- TTS routing ---

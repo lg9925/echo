@@ -143,6 +143,20 @@ export interface KeywordsResult {
   keywords: KeywordItem[];
 }
 
+// --- /v1/ask ("随手助手": 学习者的问题 → 中文解答) ---
+
+export interface AskRequest {
+  language: TargetLanguage;
+  /** 学习者的问题(中文/混合),如 "der/die/das 怎么记"。 */
+  question: string;
+  profile?: LearnerProfile;
+}
+
+export interface AskResult {
+  /** 中文解答,可含 Markdown 与地道例句。 */
+  answer: string;
+}
+
 // --- /v1/tts (returns binary audio/mpeg, not JSON) ---
 
 export interface TtsRequest {
