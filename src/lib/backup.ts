@@ -17,6 +17,8 @@ import {
   savePlayerSettings,
   type PlayerSettings,
 } from "./player";
+import { getProfile, saveProfile } from "./profile";
+import type { LearnerProfile } from "./api/contracts";
 import type {
   InboxItem,
   Island,
@@ -40,6 +42,7 @@ export interface BackupFile {
     meta: SeedMeta[];
     inbox: InboxItem[];
     vocab: VocabEntry[];
+    profiles: Record<string, LearnerProfile>;
     playerSettings: PlayerSettings | null;
   };
 }
@@ -51,7 +54,21 @@ export interface ImportSummary {
   meta: number;
   inbox: number;
   vocab: number;
+  profiles: number;
   playerSettings: boolean;
+}
+
+// All per-language profiles in localStorage (keys echo:profile:<lang>).
+// Language-agnostic so adding a language never needs a backup change.
+function collectProfiles(): Record<string, LearnerProfile> {
+  const out: Record<string, LearnerProfile> = {};
+  if (typeof window === "undefined") return out;
+  const prefix = "echo:profile:";
+  for (let i = 0; i < window.localStorage.length; i++) {
+    const k = window.localStorage.key(i);
+    if (k?.startsWith(prefix)) out[k.slice(prefix.length)] = getProfile(k.slice(prefix.length));
+  }
+  return out;
 }
 
 /** Read every table (all languages) + player settings into a backup object. */
@@ -76,6 +93,7 @@ export async function exportBackup(): Promise<BackupFile> {
       meta,
       inbox,
       vocab,
+      profiles: collectProfiles(),
       playerSettings: loadPlayerSettings(),
     },
   };
@@ -126,6 +144,8 @@ export function parseBackupFile(text: string): BackupFile {
   }
   // vocab was added later — older backups won't have it; default to empty.
   if (!Array.isArray(d.vocab)) d.vocab = [];
+  // profiles added later too — default to none.
+  if (typeof d.profiles !== "object" || d.profiles === null) d.profiles = {};
   return obj as BackupFile;
 }
 
@@ -136,7 +156,7 @@ export function parseBackupFile(text: string): BackupFile {
  */
 export async function importBackup(file: BackupFile): Promise<ImportSummary> {
   const db = getDb();
-  const { islands, sentences, reviews, meta, inbox, vocab, playerSettings } =
+  const { islands, sentences, reviews, meta, inbox, vocab, profiles, playerSettings } =
     file.data;
 
   await db.transaction(
@@ -152,6 +172,11 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     },
   );
 
+  const profileEntries = Object.entries(profiles ?? {});
+  for (const [lang, p] of profileEntries) {
+    saveProfile(lang, { level: p.level ?? null, background: p.background ?? "" });
+  }
+
   let appliedSettings = false;
   if (playerSettings) {
     savePlayerSettings({ ...DEFAULT_SETTINGS, ...playerSettings });
@@ -165,6 +190,7 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     meta: meta.length,
     inbox: inbox.length,
     vocab: (vocab ?? []).length,
+    profiles: profileEntries.length,
     playerSettings: appliedSettings,
   };
 }

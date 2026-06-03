@@ -8,7 +8,8 @@
     "review": "Review",
     "settings": "Settings",
     "inbox": "Inbox",
-    "vocab": "Words"
+    "vocab": "Words",
+    "profile": "Profile"
   },
   "home": {
     "pickLanguage": "Pick a language",
@@ -144,6 +145,18 @@
     "ttsUnsupported": "Your browser does not support Web Speech; audio disabled.",
     "loading": "Loading…",
     "empty": "This island has no sentences yet."
+  },
+  "profile": {
+    "title": "Learning profile",
+    "back": "Back",
+    "hint": "A lightweight profile so AI sentences/scenarios fit your level and background. Stored on this device; included in backups.",
+    "level": "Current level (CEFR)",
+    "levelNone": "Not set (let AI judge)",
+    "background": "Background / goal",
+    "backgroundPlaceholder": "e.g. I'm a doctor and want to talk to patients in German; following Menschen A2; prepping for Goethe B1.",
+    "backgroundHint": "Profession, interests, the textbook you follow, the exam you're aiming for…",
+    "save": "Save",
+    "saved": "Saved ✓"
   },
   "vocab": {
     "title": "Words",

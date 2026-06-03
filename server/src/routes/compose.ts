@@ -15,7 +15,11 @@ route.post("/", async (c) => {
     return c.json({ error: "missing_fields", detail: "need {language:'de'|'en', native}" }, 400);
   }
   try {
-    const result = await compose({ language: body.language, native: body.native });
+    const result = await compose({
+      language: body.language,
+      native: body.native,
+      profile: body.profile,
+    });
     return c.json(result);
   } catch (e) {
     return c.json({ error: "llm_failed", detail: e instanceof Error ? e.message : String(e) }, 502);

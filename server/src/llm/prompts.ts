@@ -2,11 +2,24 @@ import type {
   ComposeRequest,
   GlossRequest,
   KeywordsRequest,
+  LearnerProfile,
   ScenarioRequest,
   SplitRequest,
 } from "../contracts";
 
 const LANG_LABEL: Record<string, string> = { de: "德语", en: "英语" };
+
+// Optional learner profile → a generation-context line appended to a system
+// prompt. Empty profile → "" (no effect). Prompt wording stays here (核心层).
+function buildProfileBlock(p?: LearnerProfile): string {
+  if (!p) return "";
+  const parts: string[] = [];
+  if (p.level) parts.push(`CEFR 水平:${p.level}`);
+  const bg = p.background?.trim();
+  if (bg) parts.push(`背景与目标:${bg}`);
+  if (parts.length === 0) return "";
+  return `\n学习者画像(据此调整词汇与句式难度、主题贴合度;别超纲太多、别偏离背景):${parts.join(";")}。`;
+}
 
 // Models love to quote Chinese glosses with straight double-quotes (e.g.
 // 字面"…"), which are unescaped and abort JSON.parse mid-string. Force full-width
@@ -35,7 +48,7 @@ export function buildAuthoringPrompt(req: ComposeRequest): PromptPair {
 - suggestedIslandName:给这句话归类的主题/场景名(简短中文,如 "点餐"、"问路"、"寒暄")。
 只输出一个 JSON 对象,不要任何解释、不要 markdown 代码块。字段:
 {"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null,"suggestedIslandName":string}
-${JSON_QUOTE_RULE}`;
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const user = `中文:${req.native}`;
   return { system, user };
 }
@@ -74,7 +87,7 @@ export function buildScenarioPrompt(req: ScenarioRequest): PromptPair {
 - 给整个岛起个简短中文名 islandName(如 "机场值机对话")。
 只输出一个 JSON 对象,不要解释、不要 markdown:
 {"islandName":string,"sentences":[{"native":string,"target":string,"frame":string,"literal":string,"note":string,"variants":string[],"ipa":string|null}]}
-${JSON_QUOTE_RULE}`;
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const user = `场景:${req.description}`;
   return { system, user };
 }
@@ -90,7 +103,7 @@ export function buildSplitPrompt(req: SplitRequest): PromptPair {
 - 分组的下标并集必须**覆盖全部句子、互不重叠**(每句恰好归入一个子岛)。
 只输出一个 JSON 对象,不要解释、不要 markdown:
 {"groups":[{"subIslandName":string,"indices":number[]}]}
-${JSON_QUOTE_RULE}`;
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const list = req.sentences
     .map((s, i) => `${i}. ${s.native} | ${s.target}`)
     .join("\n");
@@ -111,7 +124,7 @@ export function buildKeywordsPrompt(req: KeywordsRequest): PromptPair {
 - 不要重复:同一个词只出一条,把它出现的所有下标都列上。
 只输出一个 JSON 对象,不要解释、不要 markdown:
 {"keywords":[{"term":string,"meaning":string,"indices":number[]}]}
-${JSON_QUOTE_RULE}`;
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const list = req.sentences
     .map((s, i) => `${i}. ${s.native} | ${s.target}`)
     .join("\n");

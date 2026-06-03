@@ -5,11 +5,22 @@
 
 export type TargetLanguage = "de" | "en";
 
+// --- learner profile (optional generation context, per target language) ---
+
+export type CefrLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+
+export interface LearnerProfile {
+  level: CefrLevel | null;
+  /** Free-text background/goal: profession, interests, textbook, target exam… */
+  background: string;
+}
+
 // --- /v1/compose ("想说") ---
 
 export interface ComposeRequest {
   language: TargetLanguage;
   native: string;
+  profile?: LearnerProfile;
 }
 
 export interface ComposeResult {
@@ -49,6 +60,7 @@ export interface GlossResult {
 export interface ScenarioRequest {
   language: TargetLanguage;
   description: string;
+  profile?: LearnerProfile;
 }
 
 export interface ScenarioSentence {
@@ -77,6 +89,7 @@ export interface SplitRequest {
   language: TargetLanguage;
   islandName: string;
   sentences: SplitInputSentence[];
+  profile?: LearnerProfile;
 }
 
 export interface SplitGroup {
@@ -94,6 +107,7 @@ export interface KeywordsRequest {
   language: TargetLanguage;
   islandName: string;
   sentences: { native: string; target: string }[];
+  profile?: LearnerProfile;
 }
 
 export interface KeywordItem {

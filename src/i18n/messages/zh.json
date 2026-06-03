@@ -8,7 +8,8 @@
     "review": "复习",
     "settings": "设置",
     "inbox": "收件箱",
-    "vocab": "字词表"
+    "vocab": "字词表",
+    "profile": "学习画像"
   },
   "home": {
     "pickLanguage": "选择语言",
@@ -144,6 +145,18 @@
     "ttsUnsupported": "你的浏览器不支持 Web Speech,无法播放音频。",
     "loading": "加载中…",
     "empty": "这个岛还没有句子。"
+  },
+  "profile": {
+    "title": "学习画像",
+    "back": "返回",
+    "hint": "填一份轻量画像,AI 造句/生成场景时会照着你的水平和背景来。只存在本机,可随备份导出。",
+    "level": "当前水平(CEFR)",
+    "levelNone": "不设(让 AI 自己拿捏)",
+    "background": "背景 / 目标",
+    "backgroundPlaceholder": "例如:我是医生,想用德语和病人沟通;在跟《Menschen A2》;准备考歌德 B1。",
+    "backgroundHint": "职业、兴趣、在跟的教材、想考的级别……都可以写。",
+    "save": "保存",
+    "saved": "已保存 ✓"
   },
   "vocab": {
     "title": "字词表",

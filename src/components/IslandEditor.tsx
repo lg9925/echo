@@ -14,6 +14,7 @@ import {
 } from "@/lib/cards";
 import { prewarmAudio } from "@/lib/tts";
 import { upsertVocab } from "@/lib/vocab";
+import { profileForRequest } from "@/lib/profile";
 import { apiFetchJson } from "@/lib/api/client";
 import { KeywordExtractor } from "./KeywordExtractor";
 import type {
@@ -152,6 +153,7 @@ export function IslandEditor({ uiLocale }: { uiLocale: string }) {
         language: island.language as TargetLanguage,
         islandName: island.name,
         sentences: sentences.map((s) => ({ native: s.native, target: s.target })),
+        profile: profileForRequest(island.language),
       });
       setSplitState({ kind: "ready", groups: r.groups });
     } catch (e) {
@@ -412,6 +414,7 @@ function SentenceRow({
       const r = await apiFetchJson<ComposeResult>("/v1/compose", {
         language: sentence.language as TargetLanguage,
         native: native.trim(),
+        profile: profileForRequest(sentence.language),
       });
       setTarget(r.target);
       setFrame(r.frame);
