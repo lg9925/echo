@@ -2,14 +2,8 @@
 // a later step; this file is just capture + storage + queries.
 import { getDb } from "./db";
 import type { InboxItem, InboxKind } from "./types";
-import type {
-  AskResult,
-  ComposeResult,
-  GlossResult,
-  ScenarioResult,
-  TargetLanguage,
-} from "./api/contracts";
-import { apiFetchJson, apiFetchSSE } from "./api/client";
+import type { JobTask, ScenarioResult, TargetLanguage } from "./api/contracts";
+import { pollJob, submitJob } from "./api/client";
 import { profileForRequest } from "./profile";
 import { getMaxIslandSentences } from "./settings";
 import {
@@ -104,9 +98,54 @@ export async function autoBuildScenarioIsland(
   return { islands: created };
 }
 
-// Call the backend to fill in the result. captured/error → processing →
-// ready/error. `onProgress` fires as soon as the item flips to "processing"
-// so the UI can reflect it immediately (the LLM call may take minutes).
+// Map an inbox item to the backend job (task + request body). Each kind reuses
+// the existing LLM task; the queue just runs it in the background.
+function jobSpecFor(item: InboxItem): { task: JobTask; input: unknown } {
+  switch (item.kind) {
+    case "say":
+      return {
+        task: "compose",
+        input: {
+          language: item.language,
+          native: item.rawText,
+          profile: profileForRequest(item.language),
+        },
+      };
+    case "understand":
+      return {
+        task: "gloss",
+        input: { language: item.language, query: item.rawText },
+      };
+    case "ask":
+      return {
+        task: "ask",
+        input: {
+          language: item.language,
+          question: item.rawText,
+          profile: profileForRequest(item.language),
+        },
+      };
+    case "scenario":
+      return {
+        task: "scenario",
+        input: {
+          language: item.language,
+          description: item.rawText,
+          profile: profileForRequest(item.language),
+          maxPerIsland: getMaxIslandSentences(),
+        },
+      };
+  }
+}
+
+function onPoll(hooks?: ProcessHooks) {
+  return (progress: number) => hooks?.onProgress?.({ sentences: progress });
+}
+
+// Submit the item as a background job, persist its jobId (so a reload/disconnect
+// can resume polling instead of regenerating), then poll to completion.
+// captured/error → processing → ready/error. The job keeps running server-side
+// even if this page goes away; resumeInboxItem() picks it back up.
 export async function processInboxItem(
   id: string,
   hooks?: ProcessHooks,
@@ -114,46 +153,39 @@ export async function processInboxItem(
   const item = await getInboxItem(id);
   if (!item) return;
 
-  await updateInboxItem(id, { status: "processing", error: undefined });
+  await updateInboxItem(id, { status: "processing", error: undefined, jobId: undefined });
   hooks?.onStatus?.();
   try {
-    if (item.kind === "say") {
-      const result = await apiFetchJson<ComposeResult>("/v1/compose", {
-        language: item.language,
-        native: item.rawText,
-        profile: profileForRequest(item.language),
-      });
-      await updateInboxItem(id, { status: "ready", result });
-    } else if (item.kind === "understand") {
-      const result = await apiFetchJson<GlossResult>("/v1/gloss", {
-        language: item.language,
-        query: item.rawText,
-      });
-      await updateInboxItem(id, { status: "ready", result });
-    } else if (item.kind === "ask") {
-      const result = await apiFetchJson<AskResult>("/v1/ask", {
-        language: item.language,
-        question: item.rawText,
-        profile: profileForRequest(item.language),
-      });
-      await updateInboxItem(id, { status: "ready", result });
-    } else {
-      // Scenario is long — stream progress (live sentence count).
-      const result = await apiFetchSSE<ScenarioResult>(
-        "/v1/scenario/stream",
-        {
-          language: item.language,
-          description: item.rawText,
-          profile: profileForRequest(item.language),
-          maxPerIsland: getMaxIslandSentences(),
-        },
-        (data) => {
-          const p = data as { sentences?: number };
-          if (typeof p.sentences === "number") hooks?.onProgress?.({ sentences: p.sentences });
-        },
-      );
-      await updateInboxItem(id, { status: "ready", result });
-    }
+    const { task, input } = jobSpecFor(item);
+    const jobId = await submitJob(task, input);
+    await updateInboxItem(id, { jobId }); // persist for resume
+    const result = await pollJob<NonNullable<InboxItem["result"]>>(jobId, onPoll(hooks));
+    await updateInboxItem(id, { status: "ready", result });
+  } catch (e) {
+    await updateInboxItem(id, {
+      status: "error",
+      error: e instanceof Error ? e.message : String(e),
+    });
+  }
+}
+
+// Resume an item left "processing" with a known jobId (page was reloaded or the
+// assistant panel closed mid-run). Polls the SAME server-side job — no
+// regeneration. If the job is gone/errored (e.g. server restarted → reaper),
+// it surfaces as an error the user can retry. Falls back to a fresh run if
+// there's no jobId to resume.
+export async function resumeInboxItem(
+  id: string,
+  hooks?: ProcessHooks,
+): Promise<void> {
+  const item = await getInboxItem(id);
+  if (!item) return;
+  if (!item.jobId) return processInboxItem(id, hooks);
+
+  hooks?.onStatus?.();
+  try {
+    const result = await pollJob<NonNullable<InboxItem["result"]>>(item.jobId, onPoll(hooks));
+    await updateInboxItem(id, { status: "ready", result });
   } catch (e) {
     await updateInboxItem(id, {
       status: "error",
