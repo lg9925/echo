@@ -200,6 +200,8 @@ export interface RoutingTaskState {
 export interface RoutingProviderInfo {
   provider: LlmProviderName;
   configured: boolean;
+  /** Curated model menu for this provider (first = sensible default). */
+  models: string[];
 }
 
 export interface RoutingState {

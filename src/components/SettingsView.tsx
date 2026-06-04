@@ -356,6 +356,20 @@ function RoutingRow({
 
   const dirty = provider !== task.provider || model !== task.model;
 
+  // Models to offer for the chosen provider (+ the current one, so an env/custom
+  // value is never hidden). Switching provider snaps the model to that
+  // provider's default — so the user never types a model string they'd have to guess.
+  const current = providers.find((p) => p.provider === provider);
+  const modelOptions = current
+    ? [...new Set([...current.models, model].filter(Boolean))]
+    : [model].filter(Boolean);
+
+  function changeProvider(next: typeof provider) {
+    setProvider(next);
+    const def = providers.find((p) => p.provider === next)?.models[0];
+    if (def) setModel(def);
+  }
+
   async function apply() {
     setBusy(true);
     try {
@@ -383,7 +397,7 @@ function RoutingRow({
       </span>
       <select
         value={provider}
-        onChange={(e) => setProvider(e.target.value as typeof provider)}
+        onChange={(e) => changeProvider(e.target.value as typeof provider)}
         className="rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs"
       >
         {providers.map((p) => (
@@ -393,12 +407,17 @@ function RoutingRow({
           </option>
         ))}
       </select>
-      <input
+      <select
         value={model}
         onChange={(e) => setModel(e.target.value)}
-        spellCheck={false}
         className="min-w-0 flex-1 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs font-mono"
-      />
+      >
+        {modelOptions.map((m) => (
+          <option key={m} value={m}>
+            {m}
+          </option>
+        ))}
+      </select>
       <button
         type="button"
         onClick={apply}

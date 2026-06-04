@@ -229,6 +229,8 @@ export interface RoutingProviderInfo {
   provider: LlmProviderName;
   /** Whether the provider's credential is present server-side. */
   configured: boolean;
+  /** Curated model menu for this provider (first = sensible default). */
+  models: string[];
 }
 
 export interface RoutingState {

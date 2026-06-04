@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import type { LlmProvider, LlmTask } from "../config";
+import { PROVIDER_MODELS, type LlmProvider, type LlmTask } from "../config";
 import { getRouteOverride, resolveRoute, setRouteOverride } from "../routing";
 
 // Admin: read/switch which provider+model serves each LLM task, at runtime
@@ -47,6 +47,7 @@ route.get("/", (c) => {
     providers: PROVIDERS.map((provider) => ({
       provider,
       configured: providerConfigured(provider),
+      models: PROVIDER_MODELS[provider],
     })),
   });
 });
