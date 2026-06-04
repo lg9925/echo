@@ -122,16 +122,35 @@ The backend lives in `server/` and has its own `package.json` — see
 ### Production = this machine behind a Cloudflare tunnel
 
 Production is **not** a hosted deploy — it's this local machine exposed via a
-Cloudflare tunnel. The tunnel routes `echo.helloworldhub.xyz` → `localhost:3000`
-(frontend) and `…/v1` + `/health` → `localhost:8787` (backend).
+Cloudflare tunnel. The tunnel (Windows service config at
+`C:\Users\<user>\.cloudflared\service-config.yml`) routes
+`echo.helloworldhub.xyz` → `localhost:3000` (frontend) and `…/v1` + `/health` →
+`localhost:8787` (backend). The domain is `.xyz`, not `.com`.
 
-**Deploy = `pnpm build && pnpm serve`.** Serve the real static `out/`, never
-`next dev`: dev mode sets Serwist `disable: NODE_ENV==='development'`, so it ships
-**no service worker** and can't replace a stale SW already cached on a device.
-The built `out/sw.js` has `skipWaiting + clientsClaim` (see `src/app/sw.ts`) and
-NetworkFirst navigations, so a rebuild propagates to devices on next reload
-without anyone clearing caches. Redeploy: stop `pnpm serve`, `pnpm build`,
-start `pnpm serve` again (same `:3000`, no tunnel reconfig).
+**Two long-running processes ARE the production server. Both must stay up in
+persistent terminals (or as auto-start tasks) — not in a transient shell/agent
+session, or production goes down when that session ends:**
+
+| Process | Command | Serves |
+|---|---|---|
+| Frontend | `pnpm serve` (repo root) | static `out/` on `:3000` (`scripts/serve-out.mjs`) |
+| Backend | `pnpm dev` (in `server/`) | Hono API + async job queue on `:8787` |
+
+The frontend tier is the **only** correct way to serve prod — **never `next dev`**:
+dev mode sets Serwist `disable: NODE_ENV==='development'`, so it ships **no service
+worker** and can't replace a stale SW already cached on a device. The built
+`out/sw.js` has `skipWaiting + clientsClaim` (see `src/app/sw.ts`) and NetworkFirst
+navigations, so a rebuild propagates to devices on next reload without anyone
+clearing caches.
+
+**Deploy / redeploy:**
+- Frontend code change → `pnpm build`, then restart `pnpm serve` (same `:3000`, no tunnel reconfig). The static server reads `out/` from disk per request, so a rebuild is picked up live; restart only if it was stopped.
+- Backend code change → `tsx watch` (via `pnpm dev`) auto-reloads on `src/` edits.
+- **`server/.env` change → must restart the backend** (`.env` is read once at startup via `env.ts`). This is how LLM model routing (`LLM_<TASK>_PROVIDER/MODEL`) is applied — see `server/CLAUDE.md`.
+
+Caveat: an agent/CLI session that starts these in the background keeps them alive
+only for that session. For real uptime, run them in your own always-open
+terminals or wire them to a Windows startup task.
 
 ## Where things live (nested CLAUDE.md — loaded on demand)
 

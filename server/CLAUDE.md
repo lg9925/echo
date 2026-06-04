@@ -70,5 +70,7 @@ copy so its static build has no dependency on this package.
 
 ## Running it
 
-- Hono app in `index.ts`. `/health` is public; everything under `/v1` is rate-limited + token-gated (`/v1/ping`, `/compose`, `/gloss`, `/scenario`, `/scenario/stream`, `/tts`).
-- Port from `PORT` env (default `8787`). It has its own `package.json` / `tsconfig.json` — run it from inside `server/`.
+- Hono app in `index.ts`. `/health` is public; everything under `/v1` is rate-limited + token-gated (`/v1/ping`, `/compose`, `/gloss`, `/scenario`, `/scenario/stream`, `/jobs`, `/tts`).
+- Port from `PORT` env (default `8787`). It has its own `package.json` / `tsconfig.json` — run it from inside `server/` (`pnpm dev` = `tsx watch src/index.ts`).
+- **This process IS production** (behind the Cloudflare tunnel) — it must run in a persistent terminal / auto-start task, not a transient session. See root `CLAUDE.md` → "Production = this machine behind a Cloudflare tunnel".
+- **`.env` is read once at startup** (`env.ts`). `tsx watch` reloads on `src/` edits but **not** on `.env` edits — change LLM routing or any env var, then **restart the backend** to apply it.
