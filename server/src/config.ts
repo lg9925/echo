@@ -64,6 +64,18 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   ask: withEnvOverride("ask", DEFAULT_TASK_ROUTING.ask),
 };
 
+// Curated model menu per provider, so the UI offers a dropdown instead of asking
+// the user to guess a model string (原则一). First entry = a sensible default.
+// The current value is always shown too (union), so env/custom models aren't lost.
+export const PROVIDER_MODELS: Record<LlmProvider, string[]> = {
+  anthropic: ["claude-sonnet-4-6", "claude-opus-4-8", "claude-haiku-4-5-20251001"],
+  "claude-cli": ["sonnet", "opus", "haiku"],
+  openai: ["gpt-4o", "gpt-4o-mini"],
+  deepseek: ["deepseek-chat", "deepseek-reasoner"],
+  gemini: ["gemini-2.5-flash", "gemini-2.5-pro"],
+  "gemini-cli": ["gemini-2.5-flash", "gemini-2.5-pro"],
+};
+
 // --- TTS routing ---
 
 export type TtsProvider = "edge" | "openai" | "google" | "elevenlabs" | "gemini";

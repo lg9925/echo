@@ -54,7 +54,18 @@
     "importing": "Importing…",
     "importDone": "Imported: {islands} islands, {sentences} sentences, {reviews} review records. Refresh to see them.",
     "importError": "Import failed: {detail}",
-    "advancedSection": "Advanced (backend connection · not needed for normal use)"
+    "advancedSection": "Advanced (backend connection · not needed for normal use)",
+    "routingSection": "Model routing",
+    "routingHint": "Switch the provider / model for each AI task — applies live, no restart. Leave model blank for the provider's default. Keys stay server-side.",
+    "routingApply": "Apply",
+    "routingReset": "Default",
+    "providerUnconfigured": "not configured",
+    "task_authoring": "Compose (Say)",
+    "task_gloss": "Gloss (Understand)",
+    "task_scenario": "Scenario",
+    "task_split": "Split",
+    "task_keywords": "Keywords",
+    "task_ask": "Assistant Q&A"
   },
   "inbox": {
     "title": "Inbox",

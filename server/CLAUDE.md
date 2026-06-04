@@ -17,8 +17,9 @@ principle 五 (可插拔的中间层) — read that in the root `CLAUDE.md` for 
 ## Task routing (`config.ts` → `TASK_ROUTING`)
 
 - Tasks: `authoring` (`/v1/compose` "想说"), `gloss` (`/v1/gloss` "想懂"), `scenario` (`/v1/scenario`), `split` (`/v1/split` 拆岛), `keywords` (`/v1/keywords` 字词表关键词提取).
-- **Code default: all → `anthropic` / `claude-sonnet-4-6`.** The constitution's intent is to send high-frequency/batch work to a cheaper model; we get there **without code changes** via per-task env overrides:
-  - `LLM_<TASK>_PROVIDER` + `LLM_<TASK>_MODEL`, e.g. `LLM_GLOSS_PROVIDER=deepseek LLM_GLOSS_MODEL=deepseek-chat`.
+- **Code default: all → `anthropic` / `claude-sonnet-4-6`.** Three layers resolve the route for a task, in order: **runtime override (DB) → env (`LLM_<TASK>_PROVIDER`/`_MODEL`) → code default**. `config.ts` computes the env/default snapshot at startup; `routing.ts` (`resolveRoute(task)`) layers the runtime override on top. `llm/index.ts` calls `resolveRoute(task)` per request — so **switching a task's model takes effect live, no restart**.
+  - Env (startup, server-wide): `LLM_GLOSS_PROVIDER=deepseek LLM_GLOSS_MODEL=deepseek-chat`.
+  - Runtime (live, persisted in `routing_overrides`): `GET/PUT /v1/routing` — backs the app's advanced-settings "模型路由". `maxTokens` always stays the per-task default (not user-chosen). Keys never cross this API; only provider/model **names**.
 - `scenario` uses `maxTokens: 8192` (it generates 15+ cards in one go).
 - `llm/index.ts` `runStructured()` is the provider-agnostic engine: send prompt → `extractJson` → zod-validate → on failure, feed the error back and retry once. `scenarioStream()` is the streaming variant (falls back to non-stream if the adapter has no `completeStream`).
 

@@ -171,6 +171,50 @@ export interface JobState {
   error?: string;
 }
 
+// --- /v1/routing (admin: switch which provider+model serves each task) ---
+
+export type LlmTaskName =
+  | "authoring"
+  | "gloss"
+  | "scenario"
+  | "split"
+  | "keywords"
+  | "ask";
+
+export type LlmProviderName =
+  | "anthropic"
+  | "openai"
+  | "deepseek"
+  | "claude-cli"
+  | "gemini"
+  | "gemini-cli";
+
+export interface RoutingTaskState {
+  task: LlmTaskName;
+  provider: LlmProviderName;
+  model: string;
+  maxTokens: number;
+  overridden: boolean;
+}
+
+export interface RoutingProviderInfo {
+  provider: LlmProviderName;
+  configured: boolean;
+  /** Curated model menu for this provider (first = sensible default). */
+  models: string[];
+}
+
+export interface RoutingState {
+  tasks: RoutingTaskState[];
+  providers: RoutingProviderInfo[];
+}
+
+export interface RoutingUpdate {
+  task: LlmTaskName;
+  provider?: string;
+  model?: string;
+}
+
 // --- /v1/tts (returns binary audio/mpeg) ---
 
 export interface TtsRequest {

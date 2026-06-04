@@ -1,6 +1,13 @@
 // Thin client for echo-server. No React. Reads the base + token from settings.
 import { getApiToken, resolveApiBase } from "../settings";
-import type { ApiError, JobState, JobSubmitResult, JobTask } from "./contracts";
+import type {
+  ApiError,
+  JobState,
+  JobSubmitResult,
+  JobTask,
+  RoutingState,
+  RoutingUpdate,
+} from "./contracts";
 
 export class ApiClientError extends Error {
   constructor(
@@ -137,6 +144,31 @@ export async function apiGetJson<T>(path: string, signal?: AbortSignal): Promise
   });
   if (!res.ok) throw await toApiError(res);
   return (await res.json()) as T;
+}
+
+/** PUT JSON, get JSON back. Throws ApiClientError on any non-2xx. */
+export async function apiPutJson<T>(path: string, body: unknown): Promise<T> {
+  const res = await fetch(url(path), {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${requireToken()}`,
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw await toApiError(res);
+  return (await res.json()) as T;
+}
+
+// --- LLM model routing (admin): read the per-task provider/model and switch it
+// at runtime (no backend restart). Backs the advanced-settings "model选择". ---
+
+export function getRouting(signal?: AbortSignal): Promise<RoutingState> {
+  return apiGetJson<RoutingState>("/v1/routing", signal);
+}
+
+export function setRouting(update: RoutingUpdate): Promise<unknown> {
+  return apiPutJson("/v1/routing", update);
 }
 
 // --- Async jobs: submit a slow task, then poll for the result. This is how the
