@@ -95,6 +95,9 @@ export interface InboxItem {
   status: InboxStatus;
   createdAt: number;
   updatedAt: number;
+  /** Backend job id while a slow task runs (set on "processing"); lets a
+   *  reload/disconnect resume polling the same server-side job. */
+  jobId?: string;
   /** Filled when status reaches "ready". Shape depends on kind. */
   result?: ComposeResult | GlossResult | ScenarioResult | AskResult;
   error?: string;

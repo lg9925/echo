@@ -13,7 +13,12 @@ import type {
 } from "@/lib/api/contracts";
 import { upsertVocab } from "@/lib/vocab";
 import { AskAnswer } from "./AskAnswer";
-import { deleteInboxItem, processInboxItem, updateInboxItem } from "@/lib/inbox";
+import {
+  deleteInboxItem,
+  processInboxItem,
+  resumeInboxItem,
+  updateInboxItem,
+} from "@/lib/inbox";
 import { listIslands } from "@/lib/db";
 import { getMaxIslandSentences } from "@/lib/settings";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
@@ -62,15 +67,20 @@ export function InboxItemCard({
 
   const pickedId = pickedIslandId(item.language);
 
-  // Auto-complete in the background. Also picks up items stuck in "processing"
-  // (e.g. the page was reloaded mid-call) since inFlight resets per page load.
+  // Auto-complete in the background. Items stuck in "processing" after a reload
+  // resume polling the SAME server-side job (resumeInboxItem) instead of
+  // regenerating; fresh "captured" items submit a new job (processInboxItem).
   useEffect(() => {
     const needsRun = item.status === "captured" || item.status === "processing";
     if (!needsRun || inFlight.has(item.id)) return;
     inFlight.add(item.id);
+    const run =
+      item.status === "processing" && item.jobId
+        ? resumeInboxItem
+        : processInboxItem;
     // onStatus → UI flips to "处理中…" the moment the call starts; onProgress →
-    // live scenario sentence count (streamed), instead of a blank wait.
-    processInboxItem(item.id, {
+    // live scenario sentence count, instead of a blank wait.
+    run(item.id, {
       onStatus: onChanged,
       onProgress: (p) => setProgress(p.sentences),
     }).finally(() => {
@@ -78,7 +88,7 @@ export function InboxItemCard({
       setProgress(null);
       onChanged();
     });
-  }, [item.id, item.status, onChanged]);
+  }, [item.id, item.status, item.jobId, onChanged]);
 
   // When ready, load island options and pick a sensible default.
   // Scenario items create their own named island; ask items have no card to

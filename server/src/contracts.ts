@@ -165,6 +165,39 @@ export interface AskResult {
   words: { term: string; meaning: string }[];
 }
 
+// --- /v1/jobs (async queue: submit a slow task → poll for the result) ---
+
+/** Tasks that can run as a background job. Each `input` is that task's request
+ *  body and each `result` is its *Result type (carried untyped over the wire). */
+export type JobTask =
+  | "compose"
+  | "gloss"
+  | "scenario"
+  | "split"
+  | "keywords"
+  | "ask";
+
+export interface JobSubmitRequest {
+  task: JobTask;
+  input: unknown;
+}
+
+export interface JobSubmitResult {
+  jobId: string;
+}
+
+export type JobStatus = "queued" | "running" | "done" | "error";
+
+export interface JobState {
+  status: JobStatus;
+  /** Scenario sentence count so far (0 for other tasks). */
+  progress: number;
+  /** Present when status === "done"; shape = the task's *Result. */
+  result?: unknown;
+  /** Present when status === "error". */
+  error?: string;
+}
+
 // --- /v1/tts (returns binary audio/mpeg, not JSON) ---
 
 export interface TtsRequest {

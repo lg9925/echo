@@ -18,6 +18,12 @@ function clientKey(forwarded: string | undefined, real: string | undefined): str
 }
 
 export const rateLimit: MiddlewareHandler = async (c, next) => {
+  // Job-status polling is cheap and intentionally frequent (every few seconds
+  // for a minute+). Exempt it so a normal poll loop never trips the per-IP cap.
+  if (c.req.method === "GET" && c.req.path.startsWith("/v1/jobs/")) {
+    return next();
+  }
+
   const key = clientKey(
     c.req.header("x-forwarded-for"),
     c.req.header("x-real-ip"),

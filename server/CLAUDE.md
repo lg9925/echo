@@ -22,24 +22,27 @@ principle 五 (可插拔的中间层) — read that in the root `CLAUDE.md` for 
 - `scenario` uses `maxTokens: 8192` (it generates 15+ cards in one go).
 - `llm/index.ts` `runStructured()` is the provider-agnostic engine: send prompt → `extractJson` → zod-validate → on failure, feed the error back and retry once. `scenarioStream()` is the streaming variant (falls back to non-stream if the adapter has no `completeStream`).
 
-### ⚠️ Cloudflare-tunnel timeout (production routing gotcha)
+## Async jobs (`/v1/jobs`) + DB
 
-Production currently = this local backend exposed via a **Cloudflare tunnel, whose
-edge has a FIXED ~100s timeout (524)**. Our tasks don't stream useful bytes, so a
-slow LLM run outruns the tunnel and the **browser sees `Load failed`** (not a
-clean HTTP error — the connection is dropped). Symptoms hit `scenario`, `keywords`,
-`split`; `compose` (single sentence, ~40s) stays under the cap. The production
-`.env` routes the slow tasks to fast models to fit under 100s (see `.env.example`):
+Production = this local backend behind a **Cloudflare tunnel with a FIXED ~100s
+edge timeout (524)**. A slow LLM run held in one request outruns it → the browser
+sees `Load failed`. **The async job queue solves this properly** (and replaces the
+old "route slow tasks to fast models" workaround):
 
-- `scenario` → **Gemini Flash** (`LLM_SCENARIO_PROVIDER=gemini`, `LLM_SCENARIO_MODEL=gemini-2.5-flash`).
-  haiku is fast but **flakes** (returns prose, not JSON); sonnet is reliable but ~160s → 524. Gemini Flash is fast *and* reliable, and `GEMINI_API_KEY` is already set (TTS). Note: this key's project has `gemini-2.5-flash`, **not** `2.0-flash` (404). The gemini LLM adapter is the OpenAI-compat endpoint and **does not stream** → scenario loses its live progress count, but finishes in ~28s.
-- `keywords` / `split` → **haiku** (`LLM_KEYWORDS_MODEL=haiku`, `LLM_SPLIT_MODEL=haiku`) — small JSON, ~25s, reliable enough.
-- `compose` (想说) keeps the **strong** model (content quality; single sentence is fast).
+- `POST /v1/jobs {task, input}` → creates a row, fire-and-forgets `runJob()`, returns `{jobId}` immediately.
+- `GET /v1/jobs/:id` → `{status, progress, result?, error?}`. The client **polls** this (every ~3s) — each request is short, so the tunnel never times out, while the LLM runs server-side and the result is **held in the DB** until fetched (a client that disconnected mid-run gets it on reconnect; the inbox persists the `jobId` and resumes the same job after a reload).
+- `routes/jobs.ts` → `jobs.ts` (`createJob`/`getJobState`/`runJob`) → **dispatches to the existing `llm/index.ts` functions** (`compose`/`gloss`/`scenario`/`split`/`keywords`/`ask`). It adds **no** task types and owns **no** prompts — boundary rule intact (原则五). `scenario` streams internally and writes the sentence count to the row's `progress`.
+- `GET /v1/jobs/:id` is **exempt from the per-IP rate limit** (`ratelimit.ts`) — polling is cheap and intentionally frequent.
+- **Because of this, all tasks can use STRONG models again** (原则二). Production `.env` routes everything to `claude-cli` (free + strong); the only reason to pick a fast model now is speed-over-quality (e.g. scenario → gemini ~28s vs claude-cli 2–4 min). `compose` was always fast/strong.
 
-Sturdier long-term options if the tunnel stays: DeepSeek for the batch tasks, or
-send SSE keep-alive bytes so a sonnet stream survives past 100s. `.env` is
-git-ignored, so this routing lives only in the running env — a real deploy
-(systemd `EnvironmentFile`) must replicate it.
+**DB layer (`db.ts`)** — `@libsql/client` (pure JS, no native build). `url =
+TURSO_DATABASE_URL || "file:./data/echo.db"`: unset → a **local file** (zero
+setup); set the two `TURSO_*` env vars → hosted Turso, no code change. `initDb()`
+creates the `jobs` table and reaps any `queued`/`running` job left by a previous
+process (a fire-and-forget `runJob` can't survive a restart). Rows carry a
+`user_id` (constant `"owner"` for now) so the per-user system is a drop-in (原则四).
+`.env` is git-ignored — a real deploy (systemd `EnvironmentFile`) must replicate
+the routing + `TURSO_*`.
 
 ## Adding a vendor
 
