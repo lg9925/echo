@@ -6,6 +6,7 @@ import { auth } from "./auth";
 import { rateLimit } from "./ratelimit";
 import { PORT } from "./config";
 import { initDb } from "./db";
+import { loadRouteOverrides } from "./routing";
 import composeRoute from "./routes/compose";
 import glossRoute from "./routes/gloss";
 import scenarioRoute from "./routes/scenario";
@@ -13,6 +14,7 @@ import splitRoute from "./routes/split";
 import keywordsRoute from "./routes/keywords";
 import askRoute from "./routes/ask";
 import jobsRoute from "./routes/jobs";
+import routingRoute from "./routes/routing";
 import ttsRoute from "./routes/tts";
 
 const app = new Hono();
@@ -39,12 +41,15 @@ v1.route("/split", splitRoute);
 v1.route("/keywords", keywordsRoute);
 v1.route("/ask", askRoute);
 v1.route("/jobs", jobsRoute);
+v1.route("/routing", routingRoute);
 v1.route("/tts", ttsRoute);
 
 app.route("/v1", v1);
 
-// Ready the DB (jobs table + reaper) before accepting traffic.
+// Ready the DB (jobs + routing tables) and load runtime routing overrides before
+// accepting traffic.
 await initDb();
+await loadRouteOverrides();
 
 serve({ fetch: app.fetch, port: PORT }, (info) => {
   console.log(`echo-server listening on http://127.0.0.1:${info.port}`);

@@ -54,7 +54,18 @@
     "importing": "导入中…",
     "importDone": "已导入:{islands} 个岛、{sentences} 句、{reviews} 条复习进度。刷新页面后查看。",
     "importError": "导入失败:{detail}",
-    "advancedSection": "高级设置(后端连接 · 普通使用无需改)"
+    "advancedSection": "高级设置(后端连接 · 普通使用无需改)",
+    "routingSection": "模型路由",
+    "routingHint": "为每个 AI 任务切换 provider / 模型,改完即时生效、无需重启。模型留空则用该 provider 默认。密钥只在服务端。",
+    "routingApply": "应用",
+    "routingReset": "默认",
+    "providerUnconfigured": "未配置",
+    "task_authoring": "造句(想说)",
+    "task_gloss": "查词(想懂)",
+    "task_scenario": "场景生成",
+    "task_split": "拆岛",
+    "task_keywords": "关键词",
+    "task_ask": "随手提问"
   },
   "inbox": {
     "title": "收件箱",

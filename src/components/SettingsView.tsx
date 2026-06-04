@@ -14,7 +14,18 @@ import {
   setApiToken,
   setMaxIslandSentences,
 } from "@/lib/settings";
-import { ApiClientError, checkAuth, checkHealth } from "@/lib/api/client";
+import {
+  ApiClientError,
+  checkAuth,
+  checkHealth,
+  getRouting,
+  setRouting,
+} from "@/lib/api/client";
+import type {
+  RoutingProviderInfo,
+  RoutingState,
+  RoutingTaskState,
+} from "@/lib/api/contracts";
 import {
   backupToBlob,
   exportBackup,
@@ -276,8 +287,134 @@ export function SettingsView({ uiLocale }: { uiLocale: string }) {
               {t("testFail", { detail: test.detail })}
             </p>
           )}
+
+          <ModelRouting />
         </div>
       </details>
     </main>
+  );
+}
+
+// Advanced: switch which provider+model serves each AI task. Changes apply live
+// (the backend resolves routing per call) — no restart. Hidden inside the
+// advanced section (原则一). Keys never leave the server; we only pick names.
+function ModelRouting() {
+  const t = useTranslations("settings");
+  const [state, setState] = useState<RoutingState | null>(null);
+  const [error, setError] = useState(false);
+
+  async function load() {
+    try {
+      setState(await getRouting());
+      setError(false);
+    } catch {
+      setError(true);
+    }
+  }
+
+  useEffect(() => {
+    // Needs a token; fails quietly if unset/unreachable (the section just hides).
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot load after mount
+    void load();
+  }, []);
+
+  if (error || !state) return null;
+
+  return (
+    <div className="space-y-3 border-t border-zinc-100 dark:border-zinc-800 pt-5">
+      <div>
+        <h3 className="text-sm font-medium">{t("routingSection")}</h3>
+        <p className="text-xs text-zinc-500">{t("routingHint")}</p>
+      </div>
+      <div className="space-y-3">
+        {state.tasks.map((task) => (
+          <RoutingRow
+            key={task.task}
+            task={task}
+            providers={state.providers}
+            onChanged={load}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RoutingRow({
+  task,
+  providers,
+  onChanged,
+}: {
+  task: RoutingTaskState;
+  providers: RoutingProviderInfo[];
+  onChanged: () => void | Promise<void>;
+}) {
+  const t = useTranslations("settings");
+  const [provider, setProvider] = useState(task.provider);
+  const [model, setModel] = useState(task.model);
+  const [busy, setBusy] = useState(false);
+
+  const dirty = provider !== task.provider || model !== task.model;
+
+  async function apply() {
+    setBusy(true);
+    try {
+      await setRouting({ task: task.task, provider, model });
+      await onChanged();
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function reset() {
+    setBusy(true);
+    try {
+      await setRouting({ task: task.task }); // clear override → env/default
+      await onChanged();
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 text-sm">
+      <span className="w-24 shrink-0 text-zinc-600 dark:text-zinc-300">
+        {t(`task_${task.task}`)}
+      </span>
+      <select
+        value={provider}
+        onChange={(e) => setProvider(e.target.value as typeof provider)}
+        className="rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs"
+      >
+        {providers.map((p) => (
+          <option key={p.provider} value={p.provider} disabled={!p.configured}>
+            {p.provider}
+            {p.configured ? "" : ` (${t("providerUnconfigured")})`}
+          </option>
+        ))}
+      </select>
+      <input
+        value={model}
+        onChange={(e) => setModel(e.target.value)}
+        spellCheck={false}
+        className="min-w-0 flex-1 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs font-mono"
+      />
+      <button
+        type="button"
+        onClick={apply}
+        disabled={busy || !dirty}
+        className="rounded-md bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-2.5 py-1 text-xs font-medium disabled:opacity-40"
+      >
+        {t("routingApply")}
+      </button>
+      <button
+        type="button"
+        onClick={reset}
+        disabled={busy || !task.overridden}
+        className="rounded-md border border-zinc-300 dark:border-zinc-700 px-2.5 py-1 text-xs disabled:opacity-40"
+      >
+        {t("routingReset")}
+      </button>
+    </div>
   );
 }

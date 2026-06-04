@@ -39,6 +39,16 @@ export async function initDb(): Promise<void> {
     updated_at INTEGER NOT NULL
   )`);
 
+  // Runtime per-task LLM routing overrides (provider/model). Layered on top of
+  // the env/default routing in config.ts so model switching takes effect live —
+  // no restart, no .env edit. See routing.ts.
+  await db.execute(`CREATE TABLE IF NOT EXISTS routing_overrides (
+    task       TEXT PRIMARY KEY,
+    provider   TEXT,
+    model      TEXT,
+    updated_at INTEGER NOT NULL
+  )`);
+
   // Reaper: any job still queued/running belongs to a previous (now-dead)
   // process — a fire-and-forget runJob() can't survive a restart. Mark them
   // errored so the client stops polling and can retry.

@@ -198,6 +198,51 @@ export interface JobState {
   error?: string;
 }
 
+// --- /v1/routing (admin: switch which provider+model serves each task) ---
+
+export type LlmTaskName =
+  | "authoring"
+  | "gloss"
+  | "scenario"
+  | "split"
+  | "keywords"
+  | "ask";
+
+export type LlmProviderName =
+  | "anthropic"
+  | "openai"
+  | "deepseek"
+  | "claude-cli"
+  | "gemini"
+  | "gemini-cli";
+
+export interface RoutingTaskState {
+  task: LlmTaskName;
+  provider: LlmProviderName;
+  model: string;
+  maxTokens: number;
+  /** true when a runtime override is set (vs env/code default). */
+  overridden: boolean;
+}
+
+export interface RoutingProviderInfo {
+  provider: LlmProviderName;
+  /** Whether the provider's credential is present server-side. */
+  configured: boolean;
+}
+
+export interface RoutingState {
+  tasks: RoutingTaskState[];
+  providers: RoutingProviderInfo[];
+}
+
+/** PUT body. Omit/empty both provider and model to clear the override. */
+export interface RoutingUpdate {
+  task: LlmTaskName;
+  provider?: string;
+  model?: string;
+}
+
 // --- /v1/tts (returns binary audio/mpeg, not JSON) ---
 
 export interface TtsRequest {

@@ -1,5 +1,6 @@
 import type { z } from "zod";
-import { TASK_ROUTING, type LlmTask } from "../config";
+import { type LlmTask } from "../config";
+import { resolveRoute } from "../routing";
 import type {
   ComposeRequest,
   ComposeResult,
@@ -50,7 +51,7 @@ async function runStructured<S extends z.ZodTypeAny>(
   prompt: { system: string; user: string },
   schema: S,
 ): Promise<z.infer<S>> {
-  const route = TASK_ROUTING[task];
+  const route = resolveRoute(task);
   const adapter = getAdapter(route.provider);
   let lastError = "";
 
@@ -112,7 +113,7 @@ async function runStructuredStream<S extends z.ZodTypeAny>(
   schema: S,
   onText: (textSoFar: string) => void,
 ): Promise<z.infer<S>> {
-  const route = TASK_ROUTING[task];
+  const route = resolveRoute(task);
   const adapter = getAdapter(route.provider);
   if (!adapter.completeStream) {
     return runStructured(task, prompt, schema);
