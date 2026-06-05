@@ -140,3 +140,56 @@ export interface VocabEntry {
   refs: VocabRef[];
   createdAt: number;
 }
+
+// --- 德国入籍考试 (Einbürgerungstest) — Dexie v4 ---
+//
+// A fully ISOLATED quiz module: objective multiple-choice questions, graded by
+// `options[].correct` (never by position). It does NOT touch islands/sentences/
+// reviews and does NOT use the sentence SR scheduler. See plan & CLAUDE.md 原则五.
+
+/** Either the all-Germany core test (1–300) or the NRW state addendum (391–400). */
+export type QuizRegion = "national" | "nrw";
+
+/** Optional memory-aid layer. Absent/empty must not break core answering. */
+export interface QuizStudy {
+  tags: string[]; // 技巧标签: 否定/数字/价值观/图片/配对 — filter + card badge
+  anchor_q: string; // 题干锚点(德)
+  anchor_a: string; // 答案锚点(德)
+  hint_zh: string; // 一句话中文记忆提示，做完/翻面后显示
+}
+
+export interface QuizOption {
+  de: string;
+  zh: string;
+  correct: boolean;
+}
+
+/**
+ * One citizenship-test question. `id` is the stable integer primary key
+ * (1–300 = national, 391–400 = NRW); `day`/`region`/`tags` are derived at load
+ * time from `id` + `study` so they can be indexed for filtering.
+ */
+export interface QuizQuestion {
+  id: number;
+  category: string; // 中文细分类，如 "政治·选举"
+  image: string | null; // 图片题的图片 URL；普通题为 null
+  question_de: string;
+  question_zh: string;
+  options: QuizOption[]; // 恰好一个 correct=true
+  study: QuizStudy | null;
+  // derived (denormalised for indexing/filtering):
+  day: number; // 1–6 (D1–D6)
+  region: QuizRegion;
+  tags: string[]; // = study?.tags ?? [] (top-level for the multiEntry index)
+}
+
+/** Lightweight per-question progress — mistake tracking, NOT dated SR scheduling. */
+export interface QuizProgress {
+  questionId: number;
+  attempts: number;
+  correct: number;
+  wrong: number;
+  lastResult: "correct" | "wrong" | null;
+  starred: 0 | 1; // boolean as 0/1 so it's a valid Dexie index key
+  updatedAt: number;
+}
