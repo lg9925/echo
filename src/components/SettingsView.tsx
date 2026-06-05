@@ -350,8 +350,10 @@ function RoutingRow({
   onChanged: () => void | Promise<void>;
 }) {
   const t = useTranslations("settings");
+  const CUSTOM = "__custom__";
   const [provider, setProvider] = useState(task.provider);
   const [model, setModel] = useState(task.model);
+  const [custom, setCustom] = useState(false);
   const [busy, setBusy] = useState(false);
 
   const dirty = provider !== task.provider || model !== task.model;
@@ -366,6 +368,7 @@ function RoutingRow({
 
   function changeProvider(next: typeof provider) {
     setProvider(next);
+    setCustom(false);
     const def = providers.find((p) => p.provider === next)?.models[0];
     if (def) setModel(def);
   }
@@ -408,8 +411,14 @@ function RoutingRow({
         ))}
       </select>
       <select
-        value={model}
-        onChange={(e) => setModel(e.target.value)}
+        value={custom ? CUSTOM : model}
+        onChange={(e) => {
+          if (e.target.value === CUSTOM) setCustom(true);
+          else {
+            setCustom(false);
+            setModel(e.target.value);
+          }
+        }}
         className="min-w-0 flex-1 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs font-mono"
       >
         {modelOptions.map((m) => (
@@ -417,7 +426,17 @@ function RoutingRow({
             {m}
           </option>
         ))}
+        <option value={CUSTOM}>{t("routingCustom")}</option>
       </select>
+      {custom && (
+        <input
+          value={model}
+          onChange={(e) => setModel(e.target.value)}
+          placeholder={t("routingCustomPlaceholder")}
+          spellCheck={false}
+          className="min-w-0 flex-1 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs font-mono"
+        />
+      )}
       <button
         type="button"
         onClick={apply}

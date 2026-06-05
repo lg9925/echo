@@ -59,6 +59,8 @@
     "routingHint": "为每个 AI 任务切换 provider / 模型,改完即时生效、无需重启。模型留空则用该 provider 默认。密钥只在服务端。",
     "routingApply": "应用",
     "routingReset": "默认",
+    "routingCustom": "自定义…",
+    "routingCustomPlaceholder": "输入模型名",
     "providerUnconfigured": "未配置",
     "task_authoring": "造句(想说)",
     "task_gloss": "查词(想懂)",
