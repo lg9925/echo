@@ -17,7 +17,8 @@ export type LlmTask =
   | "scenario"
   | "split"
   | "keywords"
-  | "ask";
+  | "ask"
+  | "einb_literal";
 
 export interface LlmRoute {
   provider: LlmProvider;
@@ -39,6 +40,9 @@ const DEFAULT_TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   keywords: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 2000 },
   // Ask = the 随手助手 Q&A: a short Chinese answer to a learner question.
   ask: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 1200 },
+  // 入籍考试 word-by-word literal — author-time batch over the 310 questions
+  // (one short German clause each). Strong model for quality; run via claude-cli.
+  einb_literal: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 800 },
 };
 
 // Optional per-task env override (no code change needed to switch a provider):
@@ -62,6 +66,7 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   split: withEnvOverride("split", DEFAULT_TASK_ROUTING.split),
   keywords: withEnvOverride("keywords", DEFAULT_TASK_ROUTING.keywords),
   ask: withEnvOverride("ask", DEFAULT_TASK_ROUTING.ask),
+  einb_literal: withEnvOverride("einb_literal", DEFAULT_TASK_ROUTING.einb_literal),
 };
 
 // Curated model menu per provider, so the UI offers a dropdown instead of asking

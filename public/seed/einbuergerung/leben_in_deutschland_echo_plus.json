@@ -60,7 +60,8 @@
         "anchor_q": "Regierung",
         "anchor_a": "hier Meinungsfreiheit gilt",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → hier Meinungsfreiheit gilt"
-      }
+      },
+      "literal": "In(在) Deutschland(德国) dürfen(可以) Menschen(人们) offen(公开地) etwas(一些话) gegen(反对) die(定冠词) Regierung(政府) sagen(说), weil(因为) …(……)"
     },
     {
       "id": 2,
@@ -97,7 +98,8 @@
         "anchor_q": "Lebensjahr",
         "anchor_a": "Religionsunterricht",
         "hint_zh": "锚点配对：Lebensjahr → Religionsunterricht"
-      }
+      },
+      "literal": "In(在) Deutschland(德国) können(可以) Eltern(父母) bis(直到) zum(至) 14.(第14) Lebensjahr(岁) ihres(其) Kindes(孩子的) entscheiden(决定), ob(是否) es(孩子) in(在) der(定冠词) Schule(学校) am(在) …(……) teilnimmt(参加)。"
     },
     {
       "id": 3,
@@ -134,7 +136,8 @@
         "anchor_q": "Rechtsstaat",
         "anchor_a": "Einwohner",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Einwohner"
-      }
+      },
+      "literal": "Deutschland(德国) ist(是) ein(一个) Rechtsstaat(法治国家)。Was(什么) ist(是) damit(由此) gemeint(意指的)?"
     },
     {
       "id": 4,
@@ -171,7 +174,8 @@
         "anchor_q": "Grundrechten",
         "anchor_a": "Meinungsfreiheit",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Meinungsfreiheit"
-      }
+      },
+      "literal": "Welches(哪项) Recht(权利) gehört(属于) zu(于) den(定冠词) Grundrechten(基本权利) in(在) Deutschland(德国)?"
     },
     {
       "id": 5,
@@ -208,7 +212,8 @@
         "anchor_q": "Wahlen",
         "anchor_a": "Nachteile",
         "hint_zh": "锚点配对：Wahlen → Nachteile"
-      }
+      },
+      "literal": "Wahlen(选举) in(在) Deutschland(德国) sind(是) frei(自由的)。Was(什么) bedeutet(意味着) das(这)?"
     },
     {
       "id": 6,
@@ -245,7 +250,8 @@
         "anchor_q": "Verfassung",
         "anchor_a": "Grundgesetz",
         "hint_zh": "锚点配对：Verfassung → Grundgesetz"
-      }
+      },
+      "literal": "Wie(什么) heißt(叫做) die(定冠词) deutsche(德国的) Verfassung(宪法)?"
     },
     {
       "id": 7,
@@ -282,7 +288,8 @@
         "anchor_q": "Grundrechten",
         "anchor_a": "Glaubens- und Gewissensfreiheit",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Glaubens- und Gewissensfreiheit"
-      }
+      },
+      "literal": "Welches(哪个) Recht(权利) gehört(属于) zu(于) den(定冠词) Grundrechten(基本权利)？ Das(定冠词) Recht(权利) auf(享有) …(……)"
     },
     {
       "id": 8,
@@ -320,7 +327,8 @@
         "anchor_q": "Grundgesetz",
         "anchor_a": "Alle",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Alle"
-      }
+      },
+      "literal": "Was(什么) steht(写有) nicht(不) im(在…里) Grundgesetz(基本法) von(的) Deutschland(德国)?（？）"
     },
     {
       "id": 9,
@@ -357,7 +365,8 @@
         "anchor_q": "Grundrecht",
         "anchor_a": "Asyl",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Asyl"
-      }
+      },
+      "literal": "Welches(哪项) Grundrecht(基本权利) gilt(适用) in(在) Deutschland(德国) nur(只) für(针对) Ausländer/innen(外国人（男/女）)? Das(这项) Grundrecht(基本权利) auf(对……) …(……)"
     },
     {
       "id": 10,
@@ -394,7 +403,8 @@
         "anchor_q": "Grundgesetz",
         "anchor_a": "die Geldstrafe",
         "hint_zh": "锚点配对：Grundgesetz → die Geldstrafe"
-      }
+      },
+      "literal": "Was(什么) ist(是) mit(与) dem(该) deutschen(德国的) Grundgesetz(基本法) vereinbar(相符的)？"
     },
     {
       "id": 11,
@@ -431,7 +441,8 @@
         "anchor_q": "Verfassung",
         "anchor_a": "Grundgesetz",
         "hint_zh": "锚点配对：Verfassung → Grundgesetz"
-      }
+      },
+      "literal": "Wie(如何) wird(被) die(定冠词) Verfassung(宪法) der(的) Bundesrepublik(联邦共和国) Deutschland(德国) genannt(称为)?"
     },
     {
       "id": 12,
@@ -468,7 +479,8 @@
         "anchor_q": "Pressefreiheit",
         "anchor_a": "Pressefreiheit",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Pressefreiheit"
-      }
+      },
+      "literal": "Eine(一个) Partei(政党) im(在……中) Bundestag(联邦议院) will(想要) die(定冠词) Pressefreiheit(新闻自由) abschaffen(废除). Ist(是) das(这) möglich(可能的)?"
     },
     {
       "id": 13,
@@ -505,7 +517,8 @@
         "anchor_q": "Opposition",
         "anchor_a": "Regierungspartei",
         "hint_zh": "锚点配对：Opposition → Regierungspartei"
-      }
+      },
+      "literal": "Im(在……中) Parlament(议会) steht(表示) der(定冠词) Begriff(概念) 「Opposition」(反对派) für(代表) …(……)"
     },
     {
       "id": 14,
@@ -542,7 +555,8 @@
         "anchor_q": "Meinungsfreiheit",
         "anchor_a": "Internet",
         "hint_zh": "锚点配对：Meinungsfreiheit → Internet"
-      }
+      },
+      "literal": "Meinungsfreiheit(言论自由) in(在) Deutschland(德国) heißt(意味着) z.(例) B.(如), dass(即) ich(我) …(……)"
     },
     {
       "id": 15,
@@ -579,7 +593,8 @@
         "anchor_q": "Grundgesetz",
         "anchor_a": "Zwangsarbeit",
         "hint_zh": "锚点配对：Grundgesetz → Zwangsarbeit"
-      }
+      },
+      "literal": "Was(什么) verbietet(禁止) das(定冠词) deutsche(德国的) Grundgesetz(基本法)?"
     },
     {
       "id": 16,
@@ -616,7 +631,8 @@
         "anchor_q": "Meinungsfreiheit",
         "anchor_a": "Behauptungen",
         "hint_zh": "锚点配对：Meinungsfreiheit → Behauptungen"
-      }
+      },
+      "literal": "Wann(什么时候) ist(是) die(定冠词) Meinungsfreiheit(言论自由) in(在) Deutschland(德国) eingeschränkt(受限制的)?"
     },
     {
       "id": 17,
@@ -653,7 +669,8 @@
         "anchor_q": "Gesetze",
         "anchor_a": "Ungleichbehandlung",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Ungleichbehandlung"
-      }
+      },
+      "literal": "Die(定冠词) deutschen(德国的) Gesetze(法律) verbieten(禁止) …(……)"
     },
     {
       "id": 18,
@@ -690,7 +707,8 @@
         "anchor_q": "Grundgesetzes",
         "anchor_a": "Unantastbarkeit",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Unantastbarkeit"
-      }
+      },
+      "literal": "Welches(哪个) Grundrecht(基本权利) ist(是) in(在) Artikel(条) 1(第一) des(的) Grundgesetzes(基本法) garantiert(被保障)?"
     },
     {
       "id": 19,
@@ -727,7 +745,8 @@
         "anchor_q": "Freizügigkeit",
         "anchor_a": "Wohnort",
         "hint_zh": "锚点配对：Freizügigkeit → Wohnort"
-      }
+      },
+      "literal": "Was(什么) versteht(理解/指的是) man(人们) unter(在……之下/指的是) dem(定冠词) Recht(权利) der(定冠词) „Freizügigkeit(自由迁徙)\"(自由迁徙)?"
     },
     {
       "id": 20,
@@ -764,7 +783,8 @@
         "anchor_q": "Diktatur",
         "anchor_a": "verfassungswidrig",
         "hint_zh": "锚点配对：Diktatur → verfassungswidrig"
-      }
+      },
+      "literal": "Eine(一个) Partei(政党) verfolgt(追求) das(定冠词) Ziel(目标), eine(一个) Diktatur(独裁统治) zu(去) errichten(建立). Sie(它) ist(是) dann(那么) …(……)"
     },
     {
       "id": 21,
@@ -801,7 +821,8 @@
         "anchor_q": "Wappen",
         "anchor_a": "Schild",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welches(哪个) ist(是) das(定冠词) Wappen(国徽) der(属格定冠词) Bundesrepublik(联邦共和国) Deutschland(德国)?"
     },
     {
       "id": 22,
@@ -838,7 +859,8 @@
         "anchor_q": "Staatsform",
         "anchor_a": "Republik",
         "hint_zh": "锚点配对：Staatsform → Republik"
-      }
+      },
+      "literal": "Was(什么) für(样的) eine(一种) Staatsform(国家政体) hat(有) Deutschland(德国)?"
     },
     {
       "id": 23,
@@ -875,7 +897,8 @@
         "anchor_q": "Erwerbstätigen",
         "anchor_a": "Behörde",
         "hint_zh": "锚点配对：Erwerbstätigen → Behörde"
-      }
+      },
+      "literal": "In(在) Deutschland(德国) sind(是) die(定冠词) meisten(大多数) Erwerbstätigen(就业者) …(……)"
     },
     {
       "id": 24,
@@ -912,7 +935,8 @@
         "anchor_q": "Bundesländer",
         "anchor_a": "16",
         "hint_zh": "数字题：记住 16"
-      }
+      },
+      "literal": "Wie(多少) viele(个) Bundesländer(联邦州) hat(有) die(定冠词) Bundesrepublik(联邦共和国) Deutschland(德国)?"
     },
     {
       "id": 25,
@@ -950,7 +974,8 @@
         "anchor_q": "Bundesland",
         "anchor_a": "Elsass-Lothringen",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Elsass-Lothringen"
-      }
+      },
+      "literal": "Was(什么) ist(是) kein(不是一个) Bundesland(联邦州) der(的) Bundesrepublik(联邦共和国) Deutschland(德国)？"
     },
     {
       "id": 26,
@@ -987,7 +1012,8 @@
         "anchor_q": "Deutschland",
         "anchor_a": "Bundesstaat",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Bundesstaat"
-      }
+      },
+      "literal": "Deutschland(德国) ist(是) …(……)"
     },
     {
       "id": 27,
@@ -1024,7 +1050,8 @@
         "anchor_q": "Deutschland",
         "anchor_a": "ein Bundesstaat",
         "hint_zh": "锚点配对：Deutschland → ein Bundesstaat"
-      }
+      },
+      "literal": "Deutschland(德国) ist(是) …(……)"
     },
     {
       "id": 28,
@@ -1061,7 +1088,8 @@
         "anchor_q": "Abgeordneten",
         "anchor_a": "das wahlberechtigte Volk",
         "hint_zh": "锚点配对：Abgeordneten → das wahlberechtigte Volk"
-      }
+      },
+      "literal": "Wer(谁) wählt(选举) in(在) Deutschland(德国) die(定冠词) Abgeordneten(议员们) zum(进入) Bundestag(联邦议院)?"
     },
     {
       "id": 29,
@@ -1098,7 +1126,8 @@
         "anchor_q": "Wappentier",
         "anchor_a": "Adler",
         "hint_zh": "锚点配对：Wappentier → Adler"
-      }
+      },
+      "literal": "Welches(哪种) Tier(动物) ist(是) das(这个) Wappentier(国徽动物) der(的) Bundesrepublik(联邦共和国) Deutschland(德国)?"
     },
     {
       "id": 30,
@@ -1136,7 +1165,8 @@
         "anchor_q": "Demokratie",
         "anchor_a": "Pressezensur",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Pressezensur"
-      }
+      },
+      "literal": "Was(什么) ist(是) kein(不是) Merkmal(特征) unserer(我们的) Demokratie(民主制度)?"
     },
     {
       "id": 31,
@@ -1173,7 +1203,8 @@
         "anchor_q": "Zusammenarbeit",
         "anchor_a": "Koalition",
         "hint_zh": "锚点配对：Zusammenarbeit → Koalition"
-      }
+      },
+      "literal": "Die(定冠词) Zusammenarbeit(合作) von(由) Parteien(政党们) zur(为了) Bildung(组建) einer(一个) Regierung(政府) nennt(称作) man(人们) …(……)"
     },
     {
       "id": 32,
@@ -1211,7 +1242,8 @@
         "anchor_q": "Gewalt",
         "anchor_a": "Presse",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Presse"
-      }
+      },
+      "literal": "Was(什么) ist(是) keine(不是) staatliche(国家的) Gewalt(权力) in(在) Deutschland(德国)?"
     },
     {
       "id": 33,
@@ -1248,7 +1280,8 @@
         "anchor_q": "Aussage",
         "anchor_a": "Religionsgemeinschaften",
         "hint_zh": "锚点配对：Aussage → Religionsgemeinschaften"
-      }
+      },
+      "literal": "Welche(哪个) Aussage(说法) ist(是) richtig(正确的)? In(在) Deutschland(德国) …(……)"
     },
     {
       "id": 34,
@@ -1286,7 +1319,8 @@
         "anchor_q": "Deutschland",
         "anchor_a": "eine Monarchie",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → eine Monarchie"
-      }
+      },
+      "literal": "Was(什么) ist(是) Deutschland(德国) nicht(不)?"
     },
     {
       "id": 35,
@@ -1323,7 +1357,8 @@
         "anchor_q": "Sozialversicherung",
         "anchor_a": "Sozialabgaben",
         "hint_zh": "锚点配对：Sozialversicherung → Sozialabgaben"
-      }
+      },
+      "literal": "Womit(靠什么) finanziert(资助) der(定冠词) Staat(国家) die(定冠词) Sozialversicherung(社会保险)?"
     },
     {
       "id": 36,
@@ -1360,7 +1395,8 @@
         "anchor_q": "Sicherheit",
         "anchor_a": "die Krankenversicherung",
         "hint_zh": "锚点配对：Sicherheit → die Krankenversicherung"
-      }
+      },
+      "literal": "Welche(哪项) Maßnahme(措施) schafft(能带来) soziale(社会性的) Sicherheit(保障)?"
     },
     {
       "id": 37,
@@ -1397,7 +1433,8 @@
         "anchor_q": "Regierungschefs",
         "anchor_a": "Ministerpräsident/in",
         "hint_zh": "锚点配对：Regierungschefs → Ministerpräsident/in"
-      }
+      },
+      "literal": "Wie(如何) werden(被〔被动助动词〕) die(定冠词) Regierungschefs(政府首脑们) der(的) meisten(大多数) Bundesländer(联邦州) genannt(称为)?"
     },
     {
       "id": 38,
@@ -1434,7 +1471,8 @@
         "anchor_q": "Bundesrepublik",
         "anchor_a": "Bundesstaat",
         "hint_zh": "锚点配对：Bundesrepublik → Bundesstaat"
-      }
+      },
+      "literal": "Die(定冠词) Bundesrepublik(联邦共和国) Deutschland(德国) ist(是) ein(一个) demokratischer(民主的) und(和) sozialer(社会的) …(……)"
     },
     {
       "id": 39,
@@ -1471,7 +1509,8 @@
         "anchor_q": "Bundesland",
         "anchor_a": "eine eigene Regierung",
         "hint_zh": "锚点配对：Bundesland → eine eigene Regierung"
-      }
+      },
+      "literal": "Was(什么) hat(有) jedes(每个) deutsche(德国的) Bundesland(联邦州)?"
     },
     {
       "id": 40,
@@ -1508,7 +1547,8 @@
         "anchor_q": "Nationalhymne",
         "anchor_a": "Einigkeit",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Einigkeit"
-      }
+      },
+      "literal": "Mit(用) welchen(哪些) Worten(词语) beginnt(开头) die(定冠词) deutsche(德国的) Nationalhymne(国歌)?"
     },
     {
       "id": 41,
@@ -1545,7 +1585,8 @@
         "anchor_q": "Demokratie",
         "anchor_a": "Meinungen",
         "hint_zh": "锚点配对：Demokratie → Meinungen"
-      }
+      },
+      "literal": "Warum（为什么） gibt（有） es（〔形式主语〕） in（在） einer（一个） Demokratie（民主制度） mehr（更多） als（于） eine（一个） Partei（政党）?"
     },
     {
       "id": 42,
@@ -1582,7 +1623,8 @@
         "anchor_q": "Gesetz",
         "anchor_a": "das Parlament",
         "hint_zh": "锚点配对：Gesetz → das Parlament"
-      }
+      },
+      "literal": "Wer(谁) beschließt(通过) in(在) Deutschland(德国) ein(一部) neues(新的) Gesetz(法律)?"
     },
     {
       "id": 43,
@@ -1619,7 +1661,8 @@
         "anchor_q": "Partei",
         "anchor_a": "Verfassung",
         "hint_zh": "锚点配对：Partei → Verfassung"
-      }
+      },
+      "literal": "Wann(什么时候) kann(可以) in(在) Deutschland(德国) eine(一个) Partei(政党) verboten(被禁止) werden(〔助动词，构成被动〕)?(?)"
     },
     {
       "id": 44,
@@ -1657,7 +1700,8 @@
         "anchor_q": "Bürger",
         "anchor_a": "den Bundespräsidenten/in",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → den Bundespräsidenten/in"
-      }
+      },
+      "literal": "Wen(谁) kann(能) man(人们) als(作为) Bürger(公民) nicht(不) direkt(直接) wählen(选举)?"
     },
     {
       "id": 45,
@@ -1694,7 +1738,8 @@
         "anchor_q": "Pflegeversicherung",
         "anchor_a": "Sozialversicherung",
         "hint_zh": "锚点配对：Pflegeversicherung → Sozialversicherung"
-      }
+      },
+      "literal": "Zu(到) welcher(哪种) Versicherung(保险) gehört(属于) die(定冠词) Pflegeversicherung(护理保险)?"
     },
     {
       "id": 46,
@@ -1731,7 +1776,8 @@
         "anchor_q": "Aufgaben",
         "anchor_a": "Straßen",
         "hint_zh": "锚点配对：Aufgaben → Straßen"
-      }
+      },
+      "literal": "Der(定冠词) deutsche(德国的) Staat(国家) hat(有) viele(许多) Aufgaben(职责). Welche(哪一项) gehört(属于) dazu(其中)?"
     },
     {
       "id": 47,
@@ -1769,7 +1815,8 @@
         "anchor_q": "Aufgabe",
         "anchor_a": "Urlaubsreisen",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Urlaubsreisen"
-      }
+      },
+      "literal": "Welche(哪项) Aufgabe(职能) gehört(属于) nicht(不) zum(归于) deutschen(德国的) Staat(国家)?(？)"
     },
     {
       "id": 48,
@@ -1807,7 +1854,8 @@
         "anchor_q": "Verfassungsorganen",
         "anchor_a": "die Bürgerversammlung",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → die Bürgerversammlung"
-      }
+      },
+      "literal": "Welches(哪个) Organ(机构) gehört(属于) nicht(不) zu(……之列的) den(定冠词) Verfassungsorganen(宪法机构) Deutschlands(德国的)?"
     },
     {
       "id": 49,
@@ -1844,7 +1892,8 @@
         "anchor_q": "Schulpolitik",
         "anchor_a": "die Bundesländer",
         "hint_zh": "锚点配对：Schulpolitik → die Bundesländer"
-      }
+      },
+      "literal": "Wer(谁) bestimmt(决定) in(在) Deutschland(德国) die(定冠词) Schulpolitik(学校教育政策)?"
     },
     {
       "id": 50,
@@ -1881,7 +1930,8 @@
         "anchor_q": "Wirtschaftsform",
         "anchor_a": "soziale Marktwirtschaft",
         "hint_zh": "锚点配对：Wirtschaftsform → soziale Marktwirtschaft"
-      }
+      },
+      "literal": "Die(定冠词) Wirtschaftsform(经济形式) in(在) Deutschland(德国) nennt(称) man(人们) …(……)"
     },
     {
       "id": 51,
@@ -1919,7 +1969,8 @@
         "anchor_q": "Rechtsstaat",
         "anchor_a": "Privatpolizei",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Privatpolizei"
-      }
+      },
+      "literal": "Was(什么) gehört(属于) nicht(不) zu(于) einem(一个) demokratischen(民主的) Rechtsstaat(法治国家)?"
     },
     {
       "id": 52,
@@ -1956,7 +2007,8 @@
         "anchor_q": "Volkssouveränität",
         "anchor_a": "Volke aus",
         "hint_zh": "锚点配对：Volkssouveränität → Volke aus"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) „Volkssouveränität\"(「人民主权」)？ Alle(所有的) Staatsgewalt(国家权力) geht(出自) vom(来自) …(……)"
     },
     {
       "id": 53,
@@ -1993,7 +2045,8 @@
         "anchor_q": "Rechtsstaat",
         "anchor_a": "Gesetze",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Gesetze"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意味着) „Rechtsstaat\"(「法治国家」) in(在) Deutschland(德国)?"
     },
     {
       "id": 54,
@@ -2031,7 +2084,8 @@
         "anchor_q": "Gewalt",
         "anchor_a": "Direktive",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Direktive"
-      }
+      },
+      "literal": "Was(什么) ist(是) keine(不是) staatliche(国家的) Gewalt(权力) in(在) Deutschland(德国)?"
     },
     {
       "id": 55,
@@ -2068,7 +2122,8 @@
         "anchor_q": "Bild",
         "anchor_a": "Bundestagssitz",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Was(什么) zeigt(显示) dieses(这) Bild(图片)?"
     },
     {
       "id": 56,
@@ -2105,7 +2160,8 @@
         "anchor_q": "Gemeindeverwaltung",
         "anchor_a": "Ordnungsamt",
         "hint_zh": "锚点配对：Gemeindeverwaltung → Ordnungsamt"
-      }
+      },
+      "literal": "Welches(哪个) Amt(机构) gehört(属于) zur(到……中的) Gemeindeverwaltung(乡镇行政机构)？"
     },
     {
       "id": 57,
@@ -2142,7 +2198,8 @@
         "anchor_q": "Präsidenten",
         "anchor_a": "Abgeordneter",
         "hint_zh": "锚点配对：Präsidenten → Abgeordneter"
-      }
+      },
+      "literal": "Wer(谁) wird(被) meistens(通常) zum(为) Präsidenten(议长) des(的) Bundestages(联邦议院) gewählt(选出)?"
     },
     {
       "id": 58,
@@ -2179,7 +2236,8 @@
         "anchor_q": "Bundesregierung",
         "anchor_a": "der Bundespräsident/in",
         "hint_zh": "锚点配对：Bundesregierung → der Bundespräsident/in"
-      }
+      },
+      "literal": "Wer(谁) ernennt(任命) die(定冠词) Minister(部长们) der(的) Bundesregierung(联邦政府)？"
     },
     {
       "id": 59,
@@ -2216,7 +2274,8 @@
         "anchor_q": "Deutschlands",
         "anchor_a": "Jahren",
         "hint_zh": "数字题：记住 vor etwa 1700 Jahren"
-      }
+      },
+      "literal": "Vor(在……之前) wie(多少) vielen(许多的) Jahren(年) gab(有) es(此处) erstmals(第一次) eine(一个) jüdische(犹太的) Gemeinde(社区) auf(在) dem(该) Gebiet(领土) des(的) heutigen(今天的) Deutschlands(德国)?"
     },
     {
       "id": 60,
@@ -2253,7 +2312,8 @@
         "anchor_q": "Bundestag",
         "anchor_a": "Legislative",
         "hint_zh": "锚点配对：Bundestag → Legislative"
-      }
+      },
+      "literal": "Bundestag(联邦议院) und(和) Bundesrat(联邦参议院) gehören(属于) zur(归于，zu+der缩合) …(……)"
     },
     {
       "id": 61,
@@ -2290,7 +2350,8 @@
         "anchor_q": "Volkssouveränität",
         "anchor_a": "Staatsgewalt",
         "hint_zh": "锚点配对：Volkssouveränität → Staatsgewalt"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) „Volkssouveränität\"(「人民主权」)?"
     },
     {
       "id": 62,
@@ -2327,7 +2388,8 @@
         "anchor_q": "Bundeslandes",
         "anchor_a": "Landtagswahl",
         "hint_zh": "锚点配对：Bundeslandes → Landtagswahl"
-      }
+      },
+      "literal": "Wenn（当） das（该） Parlament（议会） eines（一个） Bundeslandes（联邦州的） gewählt（选出） wird（被）, nennt（称） man（人们） das（这） …（……）"
     },
     {
       "id": 63,
@@ -2365,7 +2427,8 @@
         "anchor_q": "Exekutive",
         "anchor_a": "die Gerichte",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → die Gerichte"
-      }
+      },
+      "literal": "Was(什么) gehört(属于) in(在) Deutschland(德国) nicht(不) zur(归于，zu+der缩合) Exekutive(行政机构)?"
     },
     {
       "id": 64,
@@ -2402,7 +2465,8 @@
         "anchor_q": "Bundesrepublik",
         "anchor_a": "Kommunen",
         "hint_zh": "锚点配对：Bundesrepublik → Kommunen"
-      }
+      },
+      "literal": "Die(定冠词) Bundesrepublik(联邦共和国) Deutschland(德国) ist(是) heute(如今) gegliedert(划分) in(为) …(……)"
     },
     {
       "id": 65,
@@ -2440,7 +2504,8 @@
         "anchor_q": "Bundestages",
         "anchor_a": "Bundeskabinett",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Bundeskabinett"
-      }
+      },
+      "literal": "Es(这) gehört(属于) nicht(不) zu(归于) den(定冠词) Aufgaben(职责) des(的) Bundestages(联邦议院),(，) …(……)"
     },
     {
       "id": 66,
@@ -2477,7 +2542,8 @@
         "anchor_q": "Gemeinden",
         "anchor_a": "Berlin und München",
         "hint_zh": "锚点配对：Gemeinden → Berlin und München"
-      }
+      },
+      "literal": "Welche(哪些) Städte(城市) haben(有) die(定冠词) größten(最大的) jüdischen(犹太人的) Gemeinden(社区) in(在) Deutschland(德国)?"
     },
     {
       "id": 67,
@@ -2514,7 +2580,8 @@
         "anchor_q": "Bundesländer",
         "anchor_a": "Schulpolitik",
         "hint_zh": "锚点配对：Bundesländer → Schulpolitik"
-      }
+      },
+      "literal": "Was(什么) ist(是) vor(尤其) allem(一切) eine(一项) Aufgabe(任务) der(定冠词·属格) Bundesländer(联邦州)?"
     },
     {
       "id": 68,
@@ -2551,7 +2618,8 @@
         "anchor_q": "Schulwesen",
         "anchor_a": "Grundgesetz",
         "hint_zh": "锚点配对：Schulwesen → Grundgesetz"
-      }
+      },
+      "literal": "Warum(为什么) kontrolliert(监管) der(定冠词) Staat(国家) das(定冠词) Schulwesen(学校教育制度)?"
     },
     {
       "id": 69,
@@ -2588,7 +2656,8 @@
         "anchor_q": "Stufe",
         "anchor_a": "Gemeinden",
         "hint_zh": "锚点配对：Stufe → Gemeinden"
-      }
+      },
+      "literal": "Die(定冠词) unterste(最低的) politische(政治的) Stufe(层级) heißt(叫做) …(……)"
     },
     {
       "id": 70,
@@ -2625,7 +2694,8 @@
         "anchor_q": "Bundespräsidenten",
         "anchor_a": "Kanzler",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Was(什么) gehört(属于) zu(之列) den(定冠词) Aufgaben(职责) des(的) Bundespräsidenten(联邦总统)?"
     },
     {
       "id": 71,
@@ -2662,7 +2732,8 @@
         "anchor_q": "Bundeskanzler",
         "anchor_a": "Bundeskanzleramt",
         "hint_zh": "锚点配对：Bundeskanzler → Bundeskanzleramt"
-      }
+      },
+      "literal": "Wo(在哪里) hält(逗留) sich(自己) der(定冠词) Bundeskanzler(联邦总理) am(〔副词最高级标记〕) häufigsten(最频繁地) auf(〔分离前缀，与hält合构「sich aufhalten＝逗留」〕)?"
     },
     {
       "id": 72,
@@ -2699,7 +2770,8 @@
         "anchor_q": "Bundeskanzler",
         "anchor_a": "Friedrich Merz",
         "hint_zh": "锚点配对：Bundeskanzler → Friedrich Merz"
-      }
+      },
+      "literal": "Wie(叫什么) heißt(名叫) der(定冠词) jetzige(现任的) Bundeskanzler(联邦总理) von(的) Deutschland(德国)?"
     },
     {
       "id": 73,
@@ -2736,7 +2808,8 @@
         "anchor_q": "Fraktionen",
         "anchor_a": "CDU/CSU und AfD",
         "hint_zh": "锚点配对：Fraktionen → CDU/CSU und AfD"
-      }
+      },
+      "literal": "Die(定冠词) beiden(两个) größten(最大的) Fraktionen(党团) im(在……中) Bundestag(联邦议院) heißen(叫做) zurzeit(目前) …(……)"
     },
     {
       "id": 74,
@@ -2773,7 +2846,8 @@
         "anchor_q": "Parlament",
         "anchor_a": "Bundestag",
         "hint_zh": "锚点配对：Parlament → Bundestag"
-      }
+      },
+      "literal": "Wie(叫什么) heißt(叫做) das(这个) Parlament(议会) für(代表) ganz(整个) Deutschland(德国)?"
     },
     {
       "id": 75,
@@ -2810,7 +2884,8 @@
         "anchor_q": "Staatsoberhaupt",
         "anchor_a": "Frank-Walter Steinmeier",
         "hint_zh": "锚点配对：Staatsoberhaupt → Frank-Walter Steinmeier"
-      }
+      },
+      "literal": "Wie(如何) heißt(叫做) Deutschlands(德国的) heutiges(现任的) Staatsoberhaupt(国家元首)?"
     },
     {
       "id": 76,
@@ -2847,7 +2922,8 @@
         "anchor_q": "Abkürzung",
         "anchor_a": "Christlich Demokratische Union",
         "hint_zh": "锚点配对：Abkürzung → Christlich Demokratische Union"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) die(定冠词) Abkürzung(缩写) CDU(基督教民主联盟)？"
     },
     {
       "id": 77,
@@ -2884,7 +2960,8 @@
         "anchor_q": "Bundeswehr",
         "anchor_a": "die deutsche Armee",
         "hint_zh": "锚点配对：Bundeswehr → die deutsche Armee"
-      }
+      },
+      "literal": "Was(什么) ist(是) die(定冠词) Bundeswehr(联邦国防军)?"
     },
     {
       "id": 78,
@@ -2921,7 +2998,8 @@
         "anchor_q": "Abkürzung",
         "anchor_a": "Sozialdemokratische Partei Deutschlands",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Sozialdemokratische Partei Deutschlands"
-      }
+      },
+      "literal": "Was(什么) bedeutet(的意思是) die(定冠词) Abkürzung(缩写) SPD(SPD)?"
     },
     {
       "id": 79,
@@ -2958,7 +3036,8 @@
         "anchor_q": "Abkürzung",
         "anchor_a": "Freie Demokratische Partei",
         "hint_zh": "锚点配对：Abkürzung → Freie Demokratische Partei"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) die(定冠词) Abkürzung(缩写) FDP(FDP)？"
     },
     {
       "id": 80,
@@ -2995,7 +3074,8 @@
         "anchor_q": "Grundgesetzes",
         "anchor_a": "Bundesverfassungsgericht",
         "hint_zh": "锚点配对：Grundgesetzes → Bundesverfassungsgericht"
-      }
+      },
+      "literal": "Welches(哪个) Gericht(法院) ist(是) zuständig(有管辖权的) für(负责) die(定冠词) Auslegung(解释) des(的) Grundgesetzes(基本法)?"
     },
     {
       "id": 81,
@@ -3032,7 +3112,8 @@
         "anchor_q": "Bundeskanzler",
         "anchor_a": "der Bundestag",
         "hint_zh": "锚点配对：Bundeskanzler → der Bundestag"
-      }
+      },
+      "literal": "Wer(谁) wählt(选举) den(定冠词) Bundeskanzler(联邦总理) in(在) Deutschland(德国)?"
     },
     {
       "id": 82,
@@ -3069,7 +3150,8 @@
         "anchor_q": "Bundeskabinett",
         "anchor_a": "der Bundeskanzler/in",
         "hint_zh": "锚点配对：Bundeskabinett → der Bundeskanzler/in"
-      }
+      },
+      "literal": "Wer(谁) leitet(领导) das(定冠词) deutsche(德国的) Bundeskabinett(联邦内阁)?"
     },
     {
       "id": 83,
@@ -3106,7 +3188,8 @@
         "anchor_q": "Bundeskanzler",
         "anchor_a": "der Bundestag",
         "hint_zh": "锚点配对：Bundeskanzler → der Bundestag"
-      }
+      },
+      "literal": "Wer(谁) wählt(选举) den(定冠词) deutschen(德国的) Bundeskanzler(联邦总理)?"
     },
     {
       "id": 84,
@@ -3143,7 +3226,8 @@
         "anchor_q": "Bundespräsident",
         "anchor_a": "repräsentiert das Land",
         "hint_zh": "锚点配对：Bundespräsident → repräsentiert das Land"
-      }
+      },
+      "literal": "Welche(什么) Hauptaufgabe(主要职责) hat(有) der(定冠词) Bundespräsident(联邦总统)? Er(他)/Sie(她) …(……)"
     },
     {
       "id": 85,
@@ -3180,7 +3264,8 @@
         "anchor_q": "Bundesrat",
         "anchor_a": "Regierungsvertreter",
         "hint_zh": "锚点配对：Bundesrat → Regierungsvertreter"
-      }
+      },
+      "literal": "Wer(谁) bildet(组成) den(定冠词) deutschen(德国的) Bundesrat(联邦参议院)?"
     },
     {
       "id": 86,
@@ -3217,7 +3302,8 @@
         "anchor_q": "Bundespräsidenten",
         "anchor_a": "die Bundesversammlung",
         "hint_zh": "锚点配对：Bundespräsidenten → die Bundesversammlung"
-      }
+      },
+      "literal": "Wer(谁) wählt(选举) den(定冠词) Bundespräsidenten(联邦总统)?"
     },
     {
       "id": 87,
@@ -3254,7 +3340,8 @@
         "anchor_q": "Staatsoberhaupt",
         "anchor_a": "der Bundespräsident/in",
         "hint_zh": "锚点配对：Staatsoberhaupt → der Bundespräsident/in"
-      }
+      },
+      "literal": "Wer(谁) ist(是) das(定冠词) Staatsoberhaupt(国家元首) der(的) Bundesrepublik(联邦共和国) Deutschland(德国)?"
     },
     {
       "id": 88,
@@ -3291,7 +3378,8 @@
         "anchor_q": "Opposition",
         "anchor_a": "kontrolliert die Regierung",
         "hint_zh": "锚点配对：Opposition → kontrolliert die Regierung"
-      }
+      },
+      "literal": "Die(定冠词) parlamentarische(议会的) Opposition(反对党) im(在……里) Bundestag(联邦议院) …(……)"
     },
     {
       "id": 89,
@@ -3328,7 +3416,8 @@
         "anchor_q": "Abgeordneten",
         "anchor_a": "Fraktion",
         "hint_zh": "锚点配对：Abgeordneten → Fraktion"
-      }
+      },
+      "literal": "Wie(怎么) nennt(称呼) man(人们) die(定冠词) Vereinigung(联合体) von(由) Abgeordneten(议员们) einer(某一个) Partei(政党) im(在……里) Parlament(议会)?"
     },
     {
       "id": 90,
@@ -3365,7 +3454,8 @@
         "anchor_q": "Bundesländer",
         "anchor_a": "den Bundesrat",
         "hint_zh": "锚点配对：Bundesländer → den Bundesrat"
-      }
+      },
+      "literal": "Die(定冠词) Bundesländer(联邦各州) wirken(参与) an(在) der(定冠词) Gesetzgebung(立法) des(定冠词) Bundes(联邦) mit(共同——与前面「wirken」合构分离动词「mitwirken参与」) durch(通过) …(……)"
     },
     {
       "id": 91,
@@ -3402,7 +3492,8 @@
         "anchor_q": "Regierungswechsel",
         "anchor_a": "Bundesrat",
         "hint_zh": "锚点配对：Regierungswechsel → Bundesrat"
-      }
+      },
+      "literal": "Ein(一个) Regierungswechsel(政府更迭) in(在) einem(某个) Bundesland(联邦州) kann(可以) die(该) Bundespolitik(联邦政治) beeinflussen(影响)。Das(这种) Regieren(执政) wird(将会) …(……)"
     },
     {
       "id": 92,
@@ -3439,7 +3530,8 @@
         "anchor_q": "Abkürzung",
         "anchor_a": "Christlich Soziale Union",
         "hint_zh": "锚点配对：Abkürzung → Christlich Soziale Union"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) die(定冠词) Abkürzung(缩写) CSU(基社盟/基督教社会联盟)?"
     },
     {
       "id": 93,
@@ -3476,7 +3568,8 @@
         "anchor_q": "Zweitstimmen",
         "anchor_a": "Parlament",
         "hint_zh": "锚点配对：Zweitstimmen → Parlament"
-      }
+      },
+      "literal": "Je(越) mehr(多) „Zweitstimmen\"(第二票) eine(一个) Partei(政党) bekommt(获得), desto(就越) …(……)"
     },
     {
       "id": 94,
@@ -3513,7 +3606,8 @@
         "anchor_q": "Bundestag",
         "anchor_a": "18",
         "hint_zh": "数字题：记住 18"
-      }
+      },
+      "literal": "Ab(从) welchem(哪个) Alter(年龄) darf(可以) man(人们) zum(zu+dem，为……投票) Bundestag(联邦议院) wählen(选举投票)？"
     },
     {
       "id": 95,
@@ -3550,7 +3644,8 @@
         "anchor_q": "Kinder",
         "anchor_a": "Schulpflicht",
         "hint_zh": "锚点配对：Kinder → Schulpflicht"
-      }
+      },
+      "literal": "Was(什么) gilt(适用) für(对于) die(定冠词) meisten(大多数) Kinder(孩子们) in(在) Deutschland(德国)？"
     },
     {
       "id": 96,
@@ -3587,7 +3682,8 @@
         "anchor_q": "Holocaust",
         "anchor_a": "Freiheitsstrafe",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Freiheitsstrafe"
-      }
+      },
+      "literal": "Wie(如何) kann(能) jemand(某人), der(谁) den(定冠词) Holocaust(大屠杀) leugnet(否认), bestraft(惩处) werden(被)?"
     },
     {
       "id": 97,
@@ -3624,7 +3720,8 @@
         "anchor_q": "automatisch,",
         "anchor_a": "Sozialversicherung",
         "hint_zh": "锚点配对：automatisch, → Sozialversicherung"
-      }
+      },
+      "literal": "Was(什么) bezahlt(缴纳) man(人们) automatisch(自动地), wenn(当) man(人们) fest(正式) angestellt(受雇) ist(是)?"
     },
     {
       "id": 98,
@@ -3661,7 +3758,8 @@
         "anchor_q": "Abgeordnete",
         "anchor_a": "Regierung",
         "hint_zh": "锚点配对：Abgeordnete → Regierung"
-      }
+      },
+      "literal": "Wenn(如果) Abgeordnete(议员们) ihre(他们的) Fraktion(议会党团) wechseln(更换), …(……)"
     },
     {
       "id": 99,
@@ -3698,7 +3796,8 @@
         "anchor_q": "Sozialversicherungen",
         "anchor_a": "Arbeitgeber und Arbeitnehmer",
         "hint_zh": "锚点配对：Sozialversicherungen → Arbeitgeber und Arbeitnehmer"
-      }
+      },
+      "literal": "Wer(谁) bezahlt(缴纳) in(在) Deutschland(德国) die(定冠词) Sozialversicherungen(社会保险费)?"
     },
     {
       "id": 100,
@@ -3736,7 +3835,8 @@
         "anchor_q": "Sozialversicherung",
         "anchor_a": "die Lebensversicherung",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → die Lebensversicherung"
-      }
+      },
+      "literal": "Was(什么) gehört(属于) nicht(不) zur(zu与der的缩合，到……) gesetzlichen(法定的) Sozialversicherung(社会保险)？"
     },
     {
       "id": 101,
@@ -3773,7 +3873,8 @@
         "anchor_q": "Interessenverbände",
         "anchor_a": "Arbeitnehmer und Arbeitnehmerinnen",
         "hint_zh": "锚点配对：Interessenverbände → Arbeitnehmer und Arbeitnehmerinnen"
-      }
+      },
+      "literal": "Gewerkschaften(工会) sind(是) Interessenverbände(利益团体) der(的) …(……)"
     },
     {
       "id": 102,
@@ -3810,7 +3911,8 @@
         "anchor_q": "Leistungen",
         "anchor_a": "Bundesverdienstkreuz",
         "hint_zh": "锚点配对：Leistungen → Bundesverdienstkreuz"
-      }
+      },
+      "literal": "Womit(凭什么) kann(能) man(人们) für(因为) besondere(特别的) Leistungen(成就) geehrt(被表彰) werden(被)? Mit(用) dem(这个/定冠词与格) …(……)"
     },
     {
       "id": 103,
@@ -3847,7 +3949,8 @@
         "anchor_q": "Ampelkoalition",
         "anchor_a": "Bündnis",
         "hint_zh": "锚点配对：Ampelkoalition → Bündnis"
-      }
+      },
+      "literal": "Was(什么) wird(被) als(作为) „Ampelkoalition\"(「红绿灯联盟」) bezeichnet(称呼)? Die(定冠词) Zusammenarbeit(合作) …(……)"
     },
     {
       "id": 104,
@@ -3885,7 +3988,8 @@
         "anchor_q": "Arbeit",
         "anchor_a": "Kind",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Kind"
-      }
+      },
+      "literal": "Eine(一个) Frau(女人) verliert(失去) ihre(她的) Arbeit(工作). Was(什么) darf(可以) nicht(不) der(定冠词) Grund(原因) sein(是)?"
     },
     {
       "id": 105,
@@ -3922,7 +4026,8 @@
         "anchor_q": "Wahlhelfern",
         "anchor_a": "Stimmen",
         "hint_zh": "锚点配对：Wahlhelfern → Stimmen"
-      }
+      },
+      "literal": "Was(什么) ist(是) eine(一个) Aufgabe(任务) von(的) Wahlhelfern(选举志愿者)?"
     },
     {
       "id": 106,
@@ -3959,7 +4064,8 @@
         "anchor_q": "Wahlhelfern",
         "anchor_a": "Stimmen",
         "hint_zh": "锚点配对：Wahlhelfern → Stimmen"
-      }
+      },
+      "literal": "Was(什么) ist(是) eine(一个) Aufgabe(任务) von(的) Wahlhelfern(选举志愿者)?"
     },
     {
       "id": 107,
@@ -3996,7 +4102,8 @@
         "anchor_q": "Bundestag",
         "anchor_a": "4 Jahre",
         "hint_zh": "数字题：记住 4 Jahre"
-      }
+      },
+      "literal": "Für(为期) wie(多少) viele(多) Jahre(年) wird(被) der(定冠词) Bundestag(联邦议院) gewählt(选举)?"
     },
     {
       "id": 108,
@@ -4033,7 +4140,8 @@
         "anchor_q": "Bundestagswahl",
         "anchor_a": "Bürger",
         "hint_zh": "锚点配对：Bundestagswahl → Bürger"
-      }
+      },
+      "literal": "Bei（在） einer（一次） Bundestagswahl（联邦议院选举） darf（可以） jeder（每个人） wählen（投票）, der（凡是） …（……）"
     },
     {
       "id": 109,
@@ -4070,7 +4178,8 @@
         "anchor_q": "Bundestagswahlen",
         "anchor_a": "alle vier Jahre",
         "hint_zh": "数字题：记住 alle vier Jahre"
-      }
+      },
+      "literal": "Wie(多久) oft(一次) gibt(举行) es(虚主语) normalerweise(通常) Bundestagswahlen(联邦议院选举)?"
     },
     {
       "id": 110,
@@ -4107,7 +4216,8 @@
         "anchor_q": "Bundestag",
         "anchor_a": "4 Jahre",
         "hint_zh": "数字题：记住 4 Jahre"
-      }
+      },
+      "literal": "Für(为) wie(多少) viele(多) Jahre(年) wird(被) der(定冠词) Bundestag(联邦议院) gewählt(选举出)？"
     },
     {
       "id": 111,
@@ -4144,7 +4254,8 @@
         "anchor_q": "Handlung",
         "anchor_a": "Vernichtung",
         "hint_zh": "锚点配对：Handlung → Vernichtung"
-      }
+      },
+      "literal": "Welche(哪种) Handlung(行为) mit(与……有关的) Bezug(关联) auf(对) Israel(以色列) ist(是) in(在) Deutschland(德国) verboten(被禁止的)?"
     },
     {
       "id": 112,
@@ -4181,7 +4292,8 @@
         "anchor_q": "Wahlen",
         "anchor_a": "geheim",
         "hint_zh": "锚点配对：Wahlen → geheim"
-      }
+      },
+      "literal": "Die(定冠词) Wahlen(选举) in(在) Deutschland(德国) sind(是) …(……)"
     },
     {
       "id": 113,
@@ -4218,7 +4330,8 @@
         "anchor_q": "Wahlen",
         "anchor_a": "Stimmen",
         "hint_zh": "锚点配对：Wahlen → Stimmen"
-      }
+      },
+      "literal": "Wahlen(选举) gewinnt(赢得) die(定冠词) Partei(政党), die(关系代词「那个……的」) …(……)"
     },
     {
       "id": 114,
@@ -4255,7 +4368,8 @@
         "anchor_q": "Wahlen",
         "anchor_a": "ein Recht",
         "hint_zh": "锚点配对：Wahlen → ein Recht"
-      }
+      },
+      "literal": "An(在) demokratischen(民主的) Wahlen(选举) teilzunehmen(参加) ist(是) …(……)"
     },
     {
       "id": 115,
@@ -4292,7 +4406,8 @@
         "anchor_q": "aktives Wahlrecht",
         "anchor_a": "Man kann wählen",
         "hint_zh": "锚点配对：aktives Wahlrecht → Man kann wählen"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) „aktives(主动的) Wahlrecht(选举权)\"?"
     },
     {
       "id": 116,
@@ -4329,7 +4444,8 @@
         "anchor_q": "Wenn",
         "anchor_a": "aktives Wahlrecht",
         "hint_zh": "锚点配对：Wenn → aktives Wahlrecht"
-      }
+      },
+      "literal": "Wenn(如果) Sie(您) bei(在) einer(一次) Wahl(选举) wählen(投票) dürfen(可以), heißt(意味着) das(这) …(……)"
     },
     {
       "id": 117,
@@ -4366,7 +4482,8 @@
         "anchor_q": "Zweitstimmen",
         "anchor_a": "5 %",
         "hint_zh": "数字题：记住 5 %"
-      }
+      },
+      "literal": "Wie(多) viel(少) Prozent(百分比) der(的) Zweitstimmen(第二票) braucht(需要) eine(一个) Partei(政党) mindestens(至少)？"
     },
     {
       "id": 118,
@@ -4403,7 +4520,8 @@
         "anchor_q": "Makkabi-Sportvereinen",
         "anchor_a": "alle Menschen",
         "hint_zh": "锚点配对：Makkabi-Sportvereinen → alle Menschen"
-      }
+      },
+      "literal": "Wer(谁) darf(可以) bei(在) den(这些) jüdischen(犹太的) Makkabi-Sportvereinen(马卡比体育俱乐部) Mitglied(会员) werden(成为)？"
     },
     {
       "id": 119,
@@ -4440,7 +4558,8 @@
         "anchor_q": "Wahlen",
         "anchor_a": "Person",
         "hint_zh": "锚点配对：Wahlen → Person"
-      }
+      },
+      "literal": "Wahlen(选举) in(在) Deutschland(德国) sind(是) frei(自由的)。Was(什么) bedeutet(意味着) das(这)?"
     },
     {
       "id": 120,
@@ -4477,7 +4596,8 @@
         "anchor_q": "Wahlsystem",
         "anchor_a": "Mehrheits- und Verhältniswahlrecht",
         "hint_zh": "锚点配对：Wahlsystem → Mehrheits- und Verhältniswahlrecht"
-      }
+      },
+      "literal": "Das(这个) Wahlsystem(选举制度) in(在) Deutschland(德国) ist(是) ein(一种) …(……)"
     },
     {
       "id": 121,
@@ -4514,7 +4634,8 @@
         "anchor_q": "Mindestanteil",
         "anchor_a": "5 %-Hürde",
         "hint_zh": "数字题：记住 5 %-Hürde"
-      }
+      },
+      "literal": "Mindestanteil(最低比例) an(所得) Wählerstimmen(选票) für(进入) den(定冠词) Bundestag(联邦议院) heißt(称为) …(……)"
     },
     {
       "id": 122,
@@ -4551,7 +4672,8 @@
         "anchor_q": "Grundsatz",
         "anchor_a": "frei, gleich, geheim",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → frei, gleich, geheim"
-      }
+      },
+      "literal": "Welchem（哪项） Grundsatz（原则） unterliegen（受……约束） Wahlen（选举）？ Wahlen（选举） sind（是） …（……）"
     },
     {
       "id": 123,
@@ -4588,7 +4710,8 @@
         "anchor_q": "5 %-Hürde",
         "anchor_a": "Mindestanteil",
         "hint_zh": "锚点配对：5 %-Hürde → Mindestanteil"
-      }
+      },
+      "literal": "Was(什么) ist(是) die(定冠词) „5 %-Hürde(5%门槛)\"?"
     },
     {
       "id": 124,
@@ -4625,7 +4748,8 @@
         "anchor_q": "Bundestagswahl",
         "anchor_a": "Deutschland",
         "hint_zh": "锚点配对：Bundestagswahl → Deutschland"
-      }
+      },
+      "literal": "Die(定冠词) Bundestagswahl(联邦议院选举) ist(是) die(定冠词) Wahl(选举) …(……)"
     },
     {
       "id": 125,
@@ -4662,7 +4786,8 @@
         "anchor_q": "Funktion",
         "anchor_a": "Regierung",
         "hint_zh": "锚点配对：Funktion → Regierung"
-      }
+      },
+      "literal": "Eine(一个) Funktion(功能) regelmäßiger(定期的) Wahlen(选举) ist(是), …(……)"
     },
     {
       "id": 126,
@@ -4699,7 +4824,8 @@
         "anchor_q": "Wahlberechtigte",
         "anchor_a": "Wahlbenachrichtigung",
         "hint_zh": "锚点配对：Wahlberechtigte → Wahlbenachrichtigung"
-      }
+      },
+      "literal": "Was(什么) bekommen(收到) Wahlberechtigte(有选举权的人) vor(在……之前) einer(一次) Wahl(选举)?"
     },
     {
       "id": 127,
@@ -4736,7 +4862,8 @@
         "anchor_q": "Hürde",
         "anchor_a": "Regierungsbildung",
         "hint_zh": "锚点配对：Hürde → Regierungsbildung"
-      }
+      },
+      "literal": "Warum(为什么) gibt(有) es(虚主语) die(定冠词) 5 %-Hürde(5%门槛)?"
     },
     {
       "id": 128,
@@ -4773,7 +4900,8 @@
         "anchor_q": "Parlamentsmitglieder",
         "anchor_a": "Abgeordnete",
         "hint_zh": "锚点配对：Parlamentsmitglieder → Abgeordnete"
-      }
+      },
+      "literal": "Vom(由) Volk(人民) gewählte(选出的) Parlamentsmitglieder(议会成员) nennt(称为) man(人们) …(……)"
     },
     {
       "id": 129,
@@ -4810,7 +4938,8 @@
         "anchor_q": "Volk",
         "anchor_a": "der Bundestag",
         "hint_zh": "锚点配对：Volk → der Bundestag"
-      }
+      },
+      "literal": "Vom(由) Volk(人民) gewählt(选出) wird(被) in(在) Deutschland(德国) …(……)"
     },
     {
       "id": 130,
@@ -4847,7 +4976,8 @@
         "anchor_q": "Bundestagswahl",
         "anchor_a": "Stimme",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welcher(哪张) Stimmzettel(选票) wäre(会是) bei(在) einer(一次) Bundestagswahl(联邦议院选举) gültig(有效的)?"
     },
     {
       "id": 131,
@@ -4884,7 +5014,8 @@
         "anchor_q": "Bürgermeister",
         "anchor_a": "Oberhaupt",
         "hint_zh": "锚点配对：Bürgermeister → Oberhaupt"
-      }
+      },
+      "literal": "In(在) Deutschland(德国) ist(是) ein(一个) Bürgermeister(市长) …(……)"
     },
     {
       "id": 132,
@@ -4921,7 +5052,8 @@
         "anchor_q": "Menschen",
         "anchor_a": "Vereinen",
         "hint_zh": "锚点配对：Menschen → Vereinen"
-      }
+      },
+      "literal": "Viele(许多) Menschen(人们) arbeiten(工作) ehrenamtlich(义务性地)。Was(什么) bedeutet(意味着) das(这)？"
     },
     {
       "id": 133,
@@ -4958,7 +5090,8 @@
         "anchor_q": "Landtagswahlen",
         "anchor_a": "Briefwahl",
         "hint_zh": "锚点配对：Landtagswahlen → Briefwahl"
-      }
+      },
+      "literal": "Was(什么) ist(是) bei(在) Bundestags-(联邦议院选举) und(和) Landtagswahlen(州议院选举) erlaubt(被允许的)?"
     },
     {
       "id": 134,
@@ -4995,7 +5128,8 @@
         "anchor_q": "Buslinie",
         "anchor_a": "Bürgerinitiative",
         "hint_zh": "锚点配对：Buslinie → Bürgerinitiative"
-      }
+      },
+      "literal": "Man(人们) will(想要) Ihre(您的) Buslinie(公交线路) abschaffen(废除). Was(什么) können(能) Sie(您) tun(做)?"
     },
     {
       "id": 135,
@@ -5032,7 +5166,8 @@
         "anchor_q": "Gewerkschaften",
         "anchor_a": "Arbeitnehmer und Arbeitnehmerinnen",
         "hint_zh": "锚点配对：Gewerkschaften → Arbeitnehmer und Arbeitnehmerinnen"
-      }
+      },
+      "literal": "Wen(谁) vertreten(代表) die(定冠词) Gewerkschaften(工会)?"
     },
     {
       "id": 136,
@@ -5069,7 +5204,8 @@
         "anchor_q": "Arbeitsgericht",
         "anchor_a": "Kündigung",
         "hint_zh": "锚点配对：Arbeitsgericht → Kündigung"
-      }
+      },
+      "literal": "Sie(您) gehen(去) zum(到) Arbeitsgericht(劳动法院) bei(遇到) …(……)"
     },
     {
       "id": 137,
@@ -5106,7 +5242,8 @@
         "anchor_q": "Arbeitswelt",
         "anchor_a": "das Arbeitsgericht",
         "hint_zh": "锚点配对：Arbeitswelt → das Arbeitsgericht"
-      }
+      },
+      "literal": "Welches(哪个) Gericht(法院) ist(是) bei(遇到) Konflikten(纠纷) in(在) der(定冠词) Arbeitswelt(职场) zuständig(有管辖权的)?"
     },
     {
       "id": 138,
@@ -5143,7 +5280,8 @@
         "anchor_q": "Arbeitgeber",
         "anchor_a": "Kündigungsschutzklage erheben",
         "hint_zh": "锚点配对：Arbeitgeber → Kündigungsschutzklage erheben"
-      }
+      },
+      "literal": "Was(什么) kann(可以) ich(我) tun(做), wenn(如果) mein(我的) Arbeitgeber(雇主) zu(不当) Unrecht(地) gekündigt(解雇) hat(了)?"
     },
     {
       "id": 139,
@@ -5180,7 +5318,8 @@
         "anchor_q": "Prozess",
         "anchor_a": "Straftat",
         "hint_zh": "锚点配对：Prozess → Straftat"
-      }
+      },
+      "literal": "Wann(什么时候) kommt(发生) es(此事) zu(到) einem(一个) Prozess(诉讼) vor(在) Gericht(法庭)? Wenn(如果) jemand(某人) …(……)"
     },
     {
       "id": 140,
@@ -5217,7 +5356,8 @@
         "anchor_q": "Schöffe",
         "anchor_a": "Richtern",
         "hint_zh": "锚点配对：Schöffe → Richtern"
-      }
+      },
+      "literal": "Was(什么) macht(做) ein(一个) Schöffe(陪审员) in(在) Deutschland(德国)? Er/Sie(他/她) …(……)"
     },
     {
       "id": 141,
@@ -5254,7 +5394,8 @@
         "anchor_q": "Rechtsfragen",
         "anchor_a": "ein Rechtsanwalt/in",
         "hint_zh": "锚点配对：Rechtsfragen → ein Rechtsanwalt/in"
-      }
+      },
+      "literal": "Wer(谁) berät(提供咨询) bei(在……方面) Rechtsfragen(法律问题) und(并且) vertritt(代理出庭) vor(在……前) Gericht(法院)?"
     },
     {
       "id": 142,
@@ -5291,7 +5432,8 @@
         "anchor_q": "Hauptaufgabe",
         "anchor_a": "Gericht",
         "hint_zh": "锚点配对：Hauptaufgabe → Gericht"
-      }
+      },
+      "literal": "Was(什么) ist(是) die(定冠词) Hauptaufgabe(主要任务) eines(一位) Richters(法官的)? Ein(一位) Richter(法官) …(……)"
     },
     {
       "id": 143,
@@ -5328,7 +5470,8 @@
         "anchor_q": "Richter",
         "anchor_a": "Judikative",
         "hint_zh": "锚点配对：Richter → Judikative"
-      }
+      },
+      "literal": "Ein(一个) Richter(法官) gehört(属于) zur(zu+der缩合，……的) …(……)"
     },
     {
       "id": 144,
@@ -5365,7 +5508,8 @@
         "anchor_q": "Richter",
         "anchor_a": "rechtsprechenden Gewalt",
         "hint_zh": "锚点配对：Richter → rechtsprechenden Gewalt"
-      }
+      },
+      "literal": "Ein(一个) Richter(法官) gehört(归属) zur(于) …(……)"
     },
     {
       "id": 145,
@@ -5402,7 +5546,8 @@
         "anchor_q": "Staatsgewalt",
         "anchor_a": "Judikative",
         "hint_zh": "锚点配对：Staatsgewalt → Judikative"
-      }
+      },
+      "literal": "Für(为) welche(哪种) Staatsgewalt(国家权力) arbeitet(效力/工作) ein(一位) Richter(法官)? Für(为) die(定冠词) …(……)"
     },
     {
       "id": 146,
@@ -5439,7 +5584,8 @@
         "anchor_q": "Verfahren",
         "anchor_a": "Prozess",
         "hint_zh": "锚点配对：Verfahren → Prozess"
-      }
+      },
+      "literal": "Wie(怎么) nennt(称呼) man(人们) ein(一个) Verfahren(诉讼程序) vor(在) einem(某个) Gericht(法院)?"
     },
     {
       "id": 147,
@@ -5476,7 +5622,8 @@
         "anchor_q": "Richters",
         "anchor_a": "Recht sprechen",
         "hint_zh": "锚点配对：Richters → Recht sprechen"
-      }
+      },
+      "literal": "Was(什么) ist(是) die(定冠词) Arbeit(工作) eines(一个) Richters(法官的)?"
     },
     {
       "id": 148,
@@ -5513,7 +5660,8 @@
         "anchor_q": "Aufgabe",
         "anchor_a": "Einhaltung",
         "hint_zh": "锚点配对：Aufgabe → Einhaltung"
-      }
+      },
+      "literal": "Was(什么) ist(是) eine(一个) Aufgabe(任务) der(的) Polizei(警察)?"
     },
     {
       "id": 149,
@@ -5550,7 +5698,8 @@
         "anchor_q": "Verhalten",
         "anchor_a": "den Holocaust leugnen",
         "hint_zh": "锚点配对：Verhalten → den Holocaust leugnen"
-      }
+      },
+      "literal": "Was(什么) ist(是) ein(一个) Beispiel(例子) für(对于) antisemitisches(反犹太主义的) Verhalten(行为)?"
     },
     {
       "id": 150,
@@ -5587,7 +5736,8 @@
         "anchor_q": "Gerichtsschöffe",
         "anchor_a": "ein ehrenamtlicher Richter",
         "hint_zh": "锚点配对：Gerichtsschöffe → ein ehrenamtlicher Richter"
-      }
+      },
+      "literal": "Ein(一个) Gerichtsschöffe(法院陪审员) ist(是) …(……)"
     },
     {
       "id": 151,
@@ -5624,7 +5774,8 @@
         "anchor_q": "Berlin",
         "anchor_a": "die DDR",
         "hint_zh": "锚点配对：Berlin → die DDR"
-      }
+      },
+      "literal": "Wer(谁) baute(建造了) die(定冠词) Mauer(墙) in(在) Berlin(柏林)?"
     },
     {
       "id": 152,
@@ -5661,7 +5812,8 @@
         "anchor_q": "Nationalsozialisten",
         "anchor_a": "1933 bis 1945",
         "hint_zh": "数字题：记住 1933 bis 1945"
-      }
+      },
+      "literal": "Wann(什么时候) waren(是【过去式】) die(定冠词) Nationalsozialisten(国家社会主义者) mit(与) Hitler(希特勒) an(执掌) der(定冠词) Macht(权力)?（？）"
     },
     {
       "id": 153,
@@ -5698,7 +5850,8 @@
         "anchor_q": "Mai",
         "anchor_a": "Weltkriegs",
         "hint_zh": "锚点配对：Mai → Weltkriegs"
-      }
+      },
+      "literal": "Was(什么) war(是) am(在……日) 8.(8日) Mai(五月) 1945(1945年)?"
     },
     {
       "id": 154,
@@ -5735,7 +5888,8 @@
         "anchor_q": "Weltkrieg",
         "anchor_a": "1945",
         "hint_zh": "数字题：记住 1945"
-      }
+      },
+      "literal": "Wann(什么时候) war(是) der(定冠词) Zweite(第二次) Weltkrieg(世界大战) zu(到) Ende(结束)?"
     },
     {
       "id": 155,
@@ -5772,7 +5926,8 @@
         "anchor_q": "Nationalsozialisten",
         "anchor_a": "1933 bis 1945",
         "hint_zh": "数字题：记住 1933 bis 1945"
-      }
+      },
+      "literal": "Wann(什么时候) waren(曾是) die(定冠词) Nationalsozialisten(国家社会主义者) an(处于) der(定冠词) Macht(权力)?(？)"
     },
     {
       "id": 156,
@@ -5809,7 +5964,8 @@
         "anchor_q": "Reichskanzler",
         "anchor_a": "1933",
         "hint_zh": "数字题：记住 1933"
-      }
+      },
+      "literal": "In(在) welchem(哪个) Jahr(年份) wurde(成为) Hitler(希特勒) Reichskanzler(帝国总理)?"
     },
     {
       "id": 157,
@@ -5846,7 +6002,8 @@
         "anchor_q": "Nationalsozialisten",
         "anchor_a": "eine Diktatur",
         "hint_zh": "锚点配对：Nationalsozialisten → eine Diktatur"
-      }
+      },
+      "literal": "Die(定冠词) Nationalsozialisten(国家社会主义者/纳粹党人) errichteten(建立了) 1933(1933年) in(在) Deutschland(德国) …(……)"
     },
     {
       "id": 158,
@@ -5883,7 +6040,8 @@
         "anchor_q": "Dritte Reich",
         "anchor_a": "Diktatur",
         "hint_zh": "锚点配对：Dritte Reich → Diktatur"
-      }
+      },
+      "literal": "Das(这个) 「Dritte(第三) Reich」(帝国) war(曾是) eine(一个) …(……)"
     },
     {
       "id": 159,
@@ -5921,7 +6079,8 @@
         "anchor_q": "Nationalsozialismus",
         "anchor_a": "freie Wahlen",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → freie Wahlen"
-      }
+      },
+      "literal": "Was(什么) gab(有) es(虚主语) während(在……期间) des(的) Nationalsozialismus(国家社会主义) nicht(没有)?"
     },
     {
       "id": 160,
@@ -5958,7 +6117,8 @@
         "anchor_q": "Krieg",
         "anchor_a": "der Zweite Weltkrieg",
         "hint_zh": "锚点配对：Krieg → der Zweite Weltkrieg"
-      }
+      },
+      "literal": "Welcher(哪一场) Krieg(战争) dauerte(持续了) von(从) 1939(1939年) bis(到) 1945(1945年)?"
     },
     {
       "id": 161,
@@ -5995,7 +6155,8 @@
         "anchor_q": "NS-Staat",
         "anchor_a": "des staatlichen Rassismus",
         "hint_zh": "锚点配对：NS-Staat → des staatlichen Rassismus"
-      }
+      },
+      "literal": "Was(什么) kennzeichnete(标志了) den(这个) NS-Staat(纳粹国家)? Eine(一种) Politik(政策) …(……)"
     },
     {
       "id": 162,
@@ -6032,7 +6193,8 @@
         "anchor_q": "Stauffenberg",
         "anchor_a": "Attentat",
         "hint_zh": "数字题：记住 das Attentat auf Hitler am 20. Juli 1944"
-      }
+      },
+      "literal": "Claus(克劳斯) Schenk(申克) Graf(伯爵) von(冯) Stauffenberg(施陶芬贝格) wurde(变得) bekannt(知名) durch(因为) …(……)"
     },
     {
       "id": 163,
@@ -6069,7 +6231,8 @@
         "anchor_q": "Synagogen",
         "anchor_a": "1938",
         "hint_zh": "数字题：记住 1938"
-      }
+      },
+      "literal": "In(在) welchem(哪个) Jahr(年份) zerstörten(摧毁了) die(定冠词) NS(纳粹) Synagogen(犹太会堂) und(和) jüdische(犹太人的) Geschäfte(商店)?（？）"
     },
     {
       "id": 164,
@@ -6106,7 +6269,8 @@
         "anchor_q": "November",
         "anchor_a": "Geschäfte",
         "hint_zh": "锚点配对：November → Geschäfte"
-      }
+      },
+      "literal": "Was(什么) passierte(发生了) am(在) 9.(9日) November(11月) 1938(1938年)?"
     },
     {
       "id": 165,
@@ -6143,7 +6307,8 @@
         "anchor_q": "Bundeskanzler",
         "anchor_a": "Konrad Adenauer",
         "hint_zh": "锚点配对：Bundeskanzler → Konrad Adenauer"
-      }
+      },
+      "literal": "Wie(叫什么名字) hieß(叫做) der(定冠词) erste(第一任) Bundeskanzler(联邦总理) der(的) BRD(联邦德国)?"
     },
     {
       "id": 166,
@@ -6180,7 +6345,8 @@
         "anchor_q": "Wir sind das Volk",
         "anchor_a": "Montagsdemonstrationen",
         "hint_zh": "数字题：记住 bei den Montagsdemonstrationen 1989 in der DDR"
-      }
+      },
+      "literal": "Bei(在) welchen(哪些) Demonstrationen(示威游行) riefen(呼喊) die(定冠词) Menschen(人们) „Wir(„我们) sind(是) das(定冠词) Volk\"(人民\")?（?）"
     },
     {
       "id": 167,
@@ -6217,7 +6383,8 @@
         "anchor_q": "Alliierte Besatzungsmächte",
         "anchor_a": "Großbritannien",
         "hint_zh": "锚点配对：Alliierte Besatzungsmächte → Großbritannien"
-      }
+      },
+      "literal": "Welche(哪些) Länder(国家) waren(是) „Alliierte(盟军) Besatzungsmächte\"(占领国)?"
     },
     {
       "id": 168,
@@ -6255,7 +6422,8 @@
         "anchor_q": "Besatzungsmacht",
         "anchor_a": "Japan",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Japan"
-      }
+      },
+      "literal": "Welches(哪个) Land(国家) war(是) keine(不是) Besatzungsmacht(占领国)?"
     },
     {
       "id": 169,
@@ -6292,7 +6460,8 @@
         "anchor_q": "Bundesrepublik",
         "anchor_a": "1949",
         "hint_zh": "数字题：记住 1949"
-      }
+      },
+      "literal": "Wann(什么时候) wurde(被/是，被动助动词) die(定冠词) Bundesrepublik(联邦共和国) Deutschland(德国) gegründet(成立)?"
     },
     {
       "id": 170,
@@ -6329,7 +6498,8 @@
         "anchor_q": "Nationalsozialismus",
         "anchor_a": "Parteien",
         "hint_zh": "锚点配对：Nationalsozialismus → Parteien"
-      }
+      },
+      "literal": "Was(什么) gab(有) es(虚词) während(在……期间) des(属格定冠词) Nationalsozialismus(国家社会主义)?"
     },
     {
       "id": 171,
@@ -6366,7 +6536,8 @@
         "anchor_q": "Marktwirtschaft",
         "anchor_a": "Nachfrage",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Nachfrage"
-      }
+      },
+      "literal": "Soziale(社会性的) Marktwirtschaft(市场经济) bedeutet(意味着), die(定冠词) Wirtschaft(经济) …(……)"
     },
     {
       "id": 172,
@@ -6403,7 +6574,8 @@
         "anchor_q": "Besatzungszone",
         "anchor_a": "sowjetischen Besatzungszone",
         "hint_zh": "锚点配对：Besatzungszone → sowjetischen Besatzungszone"
-      }
+      },
+      "literal": "In(在) welcher(哪个) Besatzungszone(占领区) wurde(被) die(定冠词) DDR(民主德国) gegründet(成立)? In(在) der(定冠词) …(……)"
     },
     {
       "id": 173,
@@ -6440,7 +6612,8 @@
         "anchor_q": "Gründungsmitglied",
         "anchor_a": "Europäischen",
         "hint_zh": "锚点配对：Gründungsmitglied → Europäischen"
-      }
+      },
+      "literal": "Die(定冠词) BRD(联邦德国) ist(是) ein(不定冠词) Gründungsmitglied(创始成员) …(……)"
     },
     {
       "id": 174,
@@ -6477,7 +6650,8 @@
         "anchor_q": "DDR",
         "anchor_a": "1949",
         "hint_zh": "数字题：记住 1949"
-      }
+      },
+      "literal": "Wann(什么时候) wurde(被) die(定冠词) DDR(东德) gegründet(成立)?"
     },
     {
       "id": 175,
@@ -6514,7 +6688,8 @@
         "anchor_q": "Besatzungszonen",
         "anchor_a": "4",
         "hint_zh": "数字题：记住 4"
-      }
+      },
+      "literal": "Wie(多少) viele(个) Besatzungszonen(占领区) gab(有) es(虚主语) nach(在……之后) dem(定冠词) Zweiten(第二次) Weltkrieg(世界大战)?"
     },
     {
       "id": 176,
@@ -6551,7 +6726,8 @@
         "anchor_q": "Besatzungszonen",
         "anchor_a": "Großbritannien",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Wie(如何) waren(是) die(定冠词) Besatzungszonen(占领区) nach(在……之后) 1945(1945年) verteilt(划分的)?"
     },
     {
       "id": 177,
@@ -6588,7 +6764,8 @@
         "anchor_q": "Sektoren",
         "anchor_a": "Berlin",
         "hint_zh": "锚点配对：Sektoren → Berlin"
-      }
+      },
+      "literal": "Welche(哪座) Stadt(城市) wurde(被) nach(在……之后) dem(这场) Krieg(战争) in(成) vier(四个) Sektoren(区域) aufgeteilt(划分)?"
     },
     {
       "id": 178,
@@ -6625,7 +6802,8 @@
         "anchor_q": "Luftbrücke",
         "anchor_a": "Sowjetunion",
         "hint_zh": "锚点配对：Luftbrücke → Sowjetunion"
-      }
+      },
+      "literal": "Warum(为什么) gab(有) es(虚主语) 1948/49(1948/49年) die(定冠词) Berliner(柏林的) Luftbrücke(空中桥梁)?"
     },
     {
       "id": 179,
@@ -6662,7 +6840,8 @@
         "anchor_q": "Weltkrieg",
         "anchor_a": "Kapitulation",
         "hint_zh": "锚点配对：Weltkrieg → Kapitulation"
-      }
+      },
+      "literal": "Wie(如何) endete(结束了) der(定冠词) Zweite(第二次) Weltkrieg(世界大战) in(在) Europa(欧洲) offiziell(正式地)?"
     },
     {
       "id": 180,
@@ -6699,7 +6878,8 @@
         "anchor_q": "Bundeskanzler",
         "anchor_a": "Konrad Adenauer",
         "hint_zh": "锚点配对：Bundeskanzler → Konrad Adenauer"
-      }
+      },
+      "literal": "Der(定冠词) erste(第一位) Bundeskanzler(联邦总理) der(的) BRD(联邦德国) war(是) …(……)"
     },
     {
       "id": 181,
@@ -6736,7 +6916,8 @@
         "anchor_q": "Kniefall",
         "anchor_a": "Vergebung",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Was(什么) wollte(想要) Willy(维利) Brandt(勃兰特) mit(用) seinem(他的) Kniefall(下跪) 1970(1970年) in(在) Warschau(华沙) ausdrücken(表达)?"
     },
     {
       "id": 182,
@@ -6773,7 +6954,8 @@
         "anchor_q": "Gebetshaus",
         "anchor_a": "Synagoge",
         "hint_zh": "锚点配对：Gebetshaus → Synagoge"
-      }
+      },
+      "literal": "Wie(怎么) heißt(叫做) das(定冠词) jüdische(犹太的) Gebetshaus(礼拜堂)?"
     },
     {
       "id": 183,
@@ -6810,7 +6992,8 @@
         "anchor_q": "Wirtschaftswunder",
         "anchor_a": "50er Jahre",
         "hint_zh": "数字题：记住 50er Jahre"
-      }
+      },
+      "literal": "Wann(什么时候) war(是/发生) in(在) der(定冠词) BRD(联邦德国) das(定冠词) „Wirtschaftswunder\"(「经济奇迹」)?"
     },
     {
       "id": 184,
@@ -6847,7 +7030,8 @@
         "anchor_q": "Grundlage",
         "anchor_a": "Resolution",
         "hint_zh": "锚点配对：Grundlage → Resolution"
-      }
+      },
+      "literal": "Auf(基于) welcher(哪个) rechtlichen(法律上的) Grundlage(基础) wurde(被) der(定冠词) Staat(国家) Israel(以色列) gegründet(建立)?"
     },
     {
       "id": 185,
@@ -6884,7 +7068,8 @@
         "anchor_q": "Eiserne Vorhang",
         "anchor_a": "Warschauer",
         "hint_zh": "锚点配对：Eiserne Vorhang → Warschauer"
-      }
+      },
+      "literal": "Wofür(为了什么) stand(代表) der(定冠词) 「Eiserne(铁的) Vorhang」(帷幕)? Für(为) die(定冠词) Abschottung(封锁隔绝) …(……)"
     },
     {
       "id": 186,
@@ -6921,7 +7106,8 @@
         "anchor_q": "Aufstand",
         "anchor_a": "17. Juni",
         "hint_zh": "数字题：记住 17. Juni"
-      }
+      },
+      "literal": "1953(一九五三年) gab(有) es(虚主语) in(在) der(定冠词) DDR(东德) einen(一场) Aufstand(起义). Wann(什么时候) war(是) das(那)?"
     },
     {
       "id": 187,
@@ -6958,7 +7144,8 @@
         "anchor_q": "Ährenkranz",
         "anchor_a": "DDR",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welcher(哪个) deutsche(德国的) Staat(国家) hatte(曾有) eine(一面) Flagge(旗帜) mit(带有) Hammer(锤子), Zirkel(圆规) und(和) Ährenkranz(麦穗环)?"
     },
     {
       "id": 188,
@@ -6995,7 +7182,8 @@
         "anchor_q": "Berlin",
         "anchor_a": "1961",
         "hint_zh": "数字题：记住 1961"
-      }
+      },
+      "literal": "In(在) welchem(哪个) Jahr(年) wurde(被) die(定冠词) Mauer(墙) in(在) Berlin(柏林) gebaut(建造)?"
     },
     {
       "id": 189,
@@ -7032,7 +7220,8 @@
         "anchor_q": "Berlin",
         "anchor_a": "1961",
         "hint_zh": "数字题：记住 1961"
-      }
+      },
+      "literal": "Wann(什么时候) baute(建造了) die(定冠词) DDR(东德) die(定冠词) Mauer(墙) in(在) Berlin(柏林)?"
     },
     {
       "id": 190,
@@ -7069,7 +7258,8 @@
         "anchor_q": "Abkürzung",
         "anchor_a": "Deutsche Demokratische Republik",
         "hint_zh": "锚点配对：Abkürzung → Deutsche Demokratische Republik"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) die(定冠词) Abkürzung(缩写) DDR(东德／德意志民主共和国)?"
     },
     {
       "id": 191,
@@ -7106,7 +7296,8 @@
         "anchor_q": "Berlin",
         "anchor_a": "1989",
         "hint_zh": "数字题：记住 1989"
-      }
+      },
+      "literal": "Wann(什么时候) wurde(被) die(这) Mauer(墙) in(在) Berlin(柏林) für(对) alle(所有人) geöffnet(开放了)?"
     },
     {
       "id": 192,
@@ -7143,7 +7334,8 @@
         "anchor_q": "Bundesland",
         "anchor_a": "Brandenburg",
         "hint_zh": "锚点配对：Bundesland → Brandenburg"
-      }
+      },
+      "literal": "Welches(哪个) Bundesland(联邦州) gehörte(属于) früher(以前) zur(于，zu+der缩合) DDR(东德)?"
     },
     {
       "id": 193,
@@ -7180,7 +7372,8 @@
         "anchor_q": "Berlin",
         "anchor_a": "Mauer",
         "hint_zh": "锚点配对：Berlin → Mauer"
-      }
+      },
+      "literal": "Von(从) 1961(1961年) bis(到) 1989(1989年) war(是) Berlin(柏林) …(……)"
     },
     {
       "id": 194,
@@ -7217,7 +7410,8 @@
         "anchor_q": "Deutschen",
         "anchor_a": "Einheit",
         "hint_zh": "锚点配对：Deutschen → Einheit"
-      }
+      },
+      "literal": "Am(在) 3.(3号) Oktober(十月) feiert(庆祝) man(人们) den(定冠词) Tag(节日) der(定冠词) Deutschen(德意志的) …(……)"
     },
     {
       "id": 195,
@@ -7254,7 +7448,8 @@
         "anchor_q": "Bundesland",
         "anchor_a": "Sachsen-Anhalt",
         "hint_zh": "锚点配对：Bundesland → Sachsen-Anhalt"
-      }
+      },
+      "literal": "Welches(哪个) Bundesland(联邦州) gehörte(曾属于) früher(以前) zur(于) DDR(东德)?"
     },
     {
       "id": 196,
@@ -7291,7 +7486,8 @@
         "anchor_q": "Die Wende",
         "anchor_a": "Demokratie",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Demokratie"
-      }
+      },
+      "literal": "Warum(为什么) nennt(称) man(人们) Herbst(秋天) 1989(1989年) 「Die(定冠词) Wende(转折·转变)」? Die(定冠词) DDR(东德) veränderte(改变了) sich(自身) …(……)"
     },
     {
       "id": 197,
@@ -7328,7 +7524,8 @@
         "anchor_q": "Bundesland",
         "anchor_a": "Thüringen",
         "hint_zh": "锚点配对：Bundesland → Thüringen"
-      }
+      },
+      "literal": "Welches(哪个) Bundesland(联邦州) gehörte(曾属于) früher(以前) zur(zu+der缩合，归属于) DDR(东德，即德意志民主共和国)?"
     },
     {
       "id": 198,
@@ -7365,7 +7562,8 @@
         "anchor_q": "Bundesland",
         "anchor_a": "Sachsen",
         "hint_zh": "锚点配对：Bundesland → Sachsen"
-      }
+      },
+      "literal": "Welches(哪个) Bundesland(联邦州) gehörte(属于) früher(以前) zur(「zu+der」于) DDR(东德)?"
     },
     {
       "id": 199,
@@ -7402,7 +7600,8 @@
         "anchor_q": "Stasi",
         "anchor_a": "Staatssicherheit",
         "hint_zh": "锚点配对：Stasi → Staatssicherheit"
-      }
+      },
+      "literal": "Mit(用) „Stasi\"(「斯塔西」) meinte(指的是) man(人们) in(在) der(定冠词) DDR(民主德国) …(……)"
     },
     {
       "id": 200,
@@ -7439,7 +7638,8 @@
         "anchor_q": "Bundesland",
         "anchor_a": "Mecklenburg-Vorpommern",
         "hint_zh": "锚点配对：Bundesland → Mecklenburg-Vorpommern"
-      }
+      },
+      "literal": "Welches(哪个) Bundesland(联邦州) gehörte(属于) früher(以前) zur(于) DDR(东德)?"
     },
     {
       "id": 201,
@@ -7476,7 +7676,8 @@
         "anchor_q": "DDR-Länder",
         "anchor_a": "Mecklenburg-Vorpommern",
         "hint_zh": "锚点配对：DDR-Länder → Mecklenburg-Vorpommern"
-      }
+      },
+      "literal": "Welche(哪份) Liste(名单) enthält(包含) nur(只) frühere(曾经的) DDR-Länder(东德各州)?"
     },
     {
       "id": 202,
@@ -7513,7 +7714,8 @@
         "anchor_q": "Kalten Krieg",
         "anchor_a": "zum Warschauer Pakt",
         "hint_zh": "锚点配对：Kalten Krieg → zum Warschauer Pakt"
-      }
+      },
+      "literal": "Zu(属) wem(谁) gehörte(属于) die(定冠词) DDR(东德) im(在) „Kalten(冷) Krieg\"?(战争)"
     },
     {
       "id": 203,
@@ -7550,7 +7752,8 @@
         "anchor_q": "Wirtschaftssystem",
         "anchor_a": "Planwirtschaft",
         "hint_zh": "锚点配对：Wirtschaftssystem → Planwirtschaft"
-      }
+      },
+      "literal": "Wie(叫什么) hieß(叫做) das(定冠词) Wirtschaftssystem(经济体制) der(的) DDR(东德)?"
     },
     {
       "id": 204,
@@ -7587,7 +7790,8 @@
         "anchor_q": "Staat",
         "anchor_a": "Länder",
         "hint_zh": "锚点配对：Staat → Länder"
-      }
+      },
+      "literal": "Wie(如何) wurden(成为) BRD(联邦德国) und(和) DDR(民主德国) ein(一个) Staat(国家)？"
     },
     {
       "id": 205,
@@ -7624,7 +7828,8 @@
         "anchor_q": "Beitritt",
         "anchor_a": "zur Europäischen Union",
         "hint_zh": "锚点配对：Beitritt → zur Europäischen Union"
-      }
+      },
+      "literal": "Mit(随着) dem(定冠词) Beitritt(加入) der(定冠词) DDR(东德) gehören(属于) die(定冠词) neuen(新的) Länder(各州) nun(如今) auch(也) …(……)"
     },
     {
       "id": 206,
@@ -7661,7 +7866,8 @@
         "anchor_q": "Stolpersteine",
         "anchor_a": "Nationalsozialismus",
         "hint_zh": "锚点配对：Stolpersteine → Nationalsozialismus"
-      }
+      },
+      "literal": "Woran(关于什么) erinnern(使人想起) die(这些) „Stolpersteine\"(「绊脚石」纪念石)?（？）"
     },
     {
       "id": 207,
@@ -7698,7 +7904,8 @@
         "anchor_q": "Militärbündnis",
         "anchor_a": "im Warschauer Pakt",
         "hint_zh": "锚点配对：Militärbündnis → im Warschauer Pakt"
-      }
+      },
+      "literal": "In(在) welchem(哪个) Militärbündnis(军事联盟) war(是) die(定冠词) DDR(东德) Mitglied(成员)?"
     },
     {
       "id": 208,
@@ -7735,7 +7942,8 @@
         "anchor_q": "Stasi",
         "anchor_a": "Geheimdienst",
         "hint_zh": "锚点配对：Stasi → Geheimdienst"
-      }
+      },
+      "literal": "Was(什么) war(是) die(定冠词) „Stasi\"(「史塔西」，即东德国家安全部)?"
     },
     {
       "id": 209,
@@ -7772,7 +7980,8 @@
         "anchor_q": "Wappen",
         "anchor_a": "Ährenkranz",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welches(哪个) war(是) das(定冠词) Wappen(徽章) der(定冠词) DDR(东德)?（？）"
     },
     {
       "id": 210,
@@ -7809,7 +8018,8 @@
         "anchor_q": "Juni",
         "anchor_a": "Volksaufstand",
         "hint_zh": "锚点配对：Juni → Volksaufstand"
-      }
+      },
+      "literal": "Was(什么) ereignete(发生) sich(反身助词) am(在) 17.(17日) Juni(六月) 1953(1953年) in(在) der(定冠词) DDR(东德)?"
     },
     {
       "id": 211,
@@ -7846,7 +8056,8 @@
         "anchor_q": "Ostverträge",
         "anchor_a": "Willy Brandt",
         "hint_zh": "锚点配对：Ostverträge → Willy Brandt"
-      }
+      },
+      "literal": "Welcher(哪位) Politiker(政治家) steht(代表) für(为) die(定冠词) „Ostverträge\"(《东方条约》)?"
     },
     {
       "id": 212,
@@ -7883,7 +8094,8 @@
         "anchor_q": "Namen",
         "anchor_a": "Bundesrepublik Deutschland",
         "hint_zh": "锚点配对：Namen → Bundesrepublik Deutschland"
-      }
+      },
+      "literal": "Wie(怎么) heißt(叫) Deutschland(德国) mit(用) vollem(完整的) Namen(名字)?"
     },
     {
       "id": 213,
@@ -7920,7 +8132,8 @@
         "anchor_q": "Einwohner",
         "anchor_a": "84 Millionen",
         "hint_zh": "数字题：记住 84 Millionen"
-      }
+      },
+      "literal": "Wie(多) viele(少) Einwohner(居民) hat(有) Deutschland(德国)？"
     },
     {
       "id": 214,
@@ -7957,7 +8170,8 @@
         "anchor_q": "Farben",
         "anchor_a": "schwarz-rot-gold",
         "hint_zh": "锚点配对：Farben → schwarz-rot-gold"
-      }
+      },
+      "literal": "Welche(哪些) Farben(颜色) hat(有) die(定冠词) deutsche(德国的) Flagge(旗帜)?"
     },
     {
       "id": 215,
@@ -7994,7 +8208,8 @@
         "anchor_q": "Kanzler der Deutschen Einheit",
         "anchor_a": "Helmut Kohl",
         "hint_zh": "锚点配对：Kanzler der Deutschen Einheit → Helmut Kohl"
-      }
+      },
+      "literal": "Wer(谁) wird(被) als(作为) „Kanzler(总理) der(的) Deutschen(德意志的) Einheit(统一)\" bezeichnet(称为)?"
     },
     {
       "id": 216,
@@ -8031,7 +8246,8 @@
         "anchor_q": "Bundestages",
         "anchor_a": "der Bundesadler",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welches(哪个) Symbol(标志) ist(是) im(在……里) Plenarsaal(全会大厅) des(的) Bundestages(联邦议院) zu(可以) sehen(看见)?"
     },
     {
       "id": 217,
@@ -8068,7 +8284,8 @@
         "anchor_q": "Zeitraum",
         "anchor_a": "1949 bis 1990",
         "hint_zh": "数字题：记住 1949 bis 1990"
-      }
+      },
+      "literal": "In(在) welchem(哪个) Zeitraum(时间段) gab(有过) es(非人称主语) die(定冠词) DDR(民主德国，即东德)?"
     },
     {
       "id": 218,
@@ -8105,7 +8322,8 @@
         "anchor_q": "Bundesländer",
         "anchor_a": "5",
         "hint_zh": "数字题：记住 5"
-      }
+      },
+      "literal": "Wie(多少) viele(个) Bundesländer(联邦州) kamen(加入了，「hinzukommen」的过去式) 1990(1990年) zur(到，zu+der的缩合) BRD(联邦德国) hinzu(〔可分动词后缀，与kamen合为hinzukommen：新加入〕)?(？)"
     },
     {
       "id": 219,
@@ -8142,7 +8360,8 @@
         "anchor_q": "Grenzen",
         "anchor_a": "1990",
         "hint_zh": "数字题：记住 1990"
-      }
+      },
+      "literal": "Die(定冠词) BRD(德意志联邦共和国) hat(拥有) die(定冠词) heutigen(如今的) Grenzen(边界) seit(自从) …(……)"
     },
     {
       "id": 220,
@@ -8179,7 +8398,8 @@
         "anchor_q": "Gedenktag",
         "anchor_a": "Nationalsozialismus",
         "hint_zh": "锚点配对：Gedenktag → Nationalsozialismus"
-      }
+      },
+      "literal": "Der(定冠词) 27.(第二十七) Januar(一月) ist(是) ein(一个) Gedenktag(纪念日). Woran(纪念的是什么) erinnert(使人想起) er(它)?"
     },
     {
       "id": 221,
@@ -8216,7 +8436,8 @@
         "anchor_q": "Schengener",
         "anchor_a": "Passkontrolle",
         "hint_zh": "锚点配对：Schengener → Passkontrolle"
-      }
+      },
+      "literal": "Deutschland(德国) ist(是) Mitglied(成员) des(的) Schengener(申根的) Abkommens(协议). Was(什么) bedeutet(意味着) das(这)?"
     },
     {
       "id": 222,
@@ -8253,7 +8474,8 @@
         "anchor_q": "Nachbarland",
         "anchor_a": "Schweiz",
         "hint_zh": "锚点配对：Nachbarland → Schweiz"
-      }
+      },
+      "literal": "Welches(哪个) Land(国家) ist(是) ein(一个) Nachbarland(邻国) von(的) Deutschland(德国)?"
     },
     {
       "id": 223,
@@ -8290,7 +8512,8 @@
         "anchor_q": "Nachbarland",
         "anchor_a": "Polen",
         "hint_zh": "锚点配对：Nachbarland → Polen"
-      }
+      },
+      "literal": "Welches(哪个) Land(国家) ist(是) ein(一个) Nachbarland(邻国) von(的) Deutschland(德国)?（？）"
     },
     {
       "id": 224,
@@ -8327,7 +8550,8 @@
         "anchor_q": "Abkürzung",
         "anchor_a": "Europäische Union",
         "hint_zh": "锚点配对：Abkürzung → Europäische Union"
-      }
+      },
+      "literal": "Was(什么) bedeutet(表示) die(定冠词) Abkürzung(缩写) EU(欧盟)?"
     },
     {
       "id": 225,
@@ -8364,7 +8588,8 @@
         "anchor_q": "Bevölkerung",
         "anchor_a": "Österreich",
         "hint_zh": "锚点配对：Bevölkerung → Österreich"
-      }
+      },
+      "literal": "In(在) welchem(哪个) anderen(其他的) Land(国家) gibt(有) es(这里) eine(一个) große(庞大的) deutschsprachige(说德语的) Bevölkerung(人口/群体)?"
     },
     {
       "id": 226,
@@ -8401,7 +8626,8 @@
         "anchor_q": "Europäischen",
         "anchor_a": "Sternenkreis",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welche(哪个) ist(是) die(定冠词) Flagge(旗帜) der(的) Europäischen(欧洲的) Union(联盟)?"
     },
     {
       "id": 227,
@@ -8438,7 +8664,8 @@
         "anchor_q": "Nachbarland",
         "anchor_a": "Dänemark",
         "hint_zh": "锚点配对：Nachbarland → Dänemark"
-      }
+      },
+      "literal": "Welches(哪个) Land(国家) ist(是) ein(一个) Nachbarland(邻国) von(的) Deutschland(德国)？"
     },
     {
       "id": 228,
@@ -8475,7 +8702,8 @@
         "anchor_q": "Beitritt",
         "anchor_a": "Deutsche Wiedervereinigung",
         "hint_zh": "锚点配对：Beitritt → Deutsche Wiedervereinigung"
-      }
+      },
+      "literal": "Wie(如何) wird(被) der(定冠词) Beitritt(并入) der(的) DDR(东德) 1990(1990年) genannt(称为)?"
     },
     {
       "id": 229,
@@ -8512,7 +8740,8 @@
         "anchor_q": "Nachbarland",
         "anchor_a": "Luxemburg",
         "hint_zh": "锚点配对：Nachbarland → Luxemburg"
-      }
+      },
+      "literal": "Welches(哪个) Land(国家) ist(是) ein(一个) Nachbarland(邻国) von(的) Deutschland(德国)?（？）"
     },
     {
       "id": 230,
@@ -8549,7 +8778,8 @@
         "anchor_q": "Europäische",
         "anchor_a": "5 Jahre",
         "hint_zh": "数字题：记住 5 Jahre"
-      }
+      },
+      "literal": "Das(定冠词) Europäische(欧洲的) Parlament(议会) wird(被) gewählt(选举) alle(每隔) …(……)"
     },
     {
       "id": 231,
@@ -8586,7 +8816,8 @@
         "anchor_q": "europäische Integration",
         "anchor_a": "Zusammenschluss",
         "hint_zh": "锚点配对：europäische Integration → Zusammenschluss"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) „(„)europäische(欧洲的) Integration(一体化)\"(\")?(?)"
     },
     {
       "id": 232,
@@ -8623,7 +8854,8 @@
         "anchor_q": "Europawahl",
         "anchor_a": "Abgeordneten",
         "hint_zh": "锚点配对：Europawahl → Abgeordneten"
-      }
+      },
+      "literal": "Wer(谁) wird(被「助动词，构成被动」) bei(在) der(定冠词) Europawahl(欧洲议会选举) gewählt(选出)?"
     },
     {
       "id": 233,
@@ -8660,7 +8892,8 @@
         "anchor_q": "Nachbarland",
         "anchor_a": "Tschechien",
         "hint_zh": "锚点配对：Nachbarland → Tschechien"
-      }
+      },
+      "literal": "Welches(哪个) Land(国家) ist(是) ein(一个) Nachbarland(邻国) von(的) Deutschland(德国)?"
     },
     {
       "id": 234,
@@ -8697,7 +8930,8 @@
         "anchor_q": "Europäischen",
         "anchor_a": "Straßburg",
         "hint_zh": "锚点配对：Europäischen → Straßburg"
-      }
+      },
+      "literal": "Wo(哪里) ist(是) ein(一个) Sitz(所在地) des(的) Europäischen(欧洲) Parlaments(议会)?"
     },
     {
       "id": 235,
@@ -8734,7 +8968,8 @@
         "anchor_q": "Mitterrand",
         "anchor_a": "Sicherheit",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Mitterrand(密特朗) und(和) Kohl(科尔) in(在) Verdun(凡尔登) —(——) welches(哪个) EU-Ziel(欧盟目标) wird(变得) deutlich(明显)?"
     },
     {
       "id": 236,
@@ -8771,7 +9006,8 @@
         "anchor_q": "Mitgliedstaaten",
         "anchor_a": "27",
         "hint_zh": "数字题：记住 27"
-      }
+      },
+      "literal": "Wie(多少) viele(个) Mitgliedstaaten(成员国) hat(有) die(定冠词) EU(欧盟) heute(今天)?"
     },
     {
       "id": 237,
@@ -8808,7 +9044,8 @@
         "anchor_q": "Römischen Verträge",
         "anchor_a": "Wirtschaftsgemeinschaft",
         "hint_zh": "锚点配对：Römischen Verträge → Wirtschaftsgemeinschaft"
-      }
+      },
+      "literal": "Was(什么) war(是) der(定冠词) Inhalt(内容) der(属格冠词) „Römischen(「罗马的) Verträge\"(条约」) (1957年)?"
     },
     {
       "id": 238,
@@ -8845,7 +9082,8 @@
         "anchor_q": "Europäische",
         "anchor_a": "Straßburg",
         "hint_zh": "锚点配对：Europäische → Straßburg"
-      }
+      },
+      "literal": "An(在) welchen(哪些) Orten(地方) arbeitet(运作) das(定冠词) Europäische(欧洲的) Parlament(议会)？"
     },
     {
       "id": 239,
@@ -8882,7 +9120,8 @@
         "anchor_q": "Verträge",
         "anchor_a": "Römische Verträge",
         "hint_zh": "锚点配对：Verträge → Römische Verträge"
-      }
+      },
+      "literal": "Durch(通过) welche(哪些) Verträge(条约) entstand(成立了) die(定冠词) EWG(欧洲经济共同体)?"
     },
     {
       "id": 240,
@@ -8919,7 +9158,8 @@
         "anchor_q": "Euro",
         "anchor_a": "2002",
         "hint_zh": "数字题：记住 2002"
-      }
+      },
+      "literal": "Seit(自从) wann(何时) bezahlt(支付) man(人们) in(在) Deutschland(德国) mit(用) dem(定冠词) Euro(欧元) in(以) bar(现金)?"
     },
     {
       "id": 241,
@@ -8956,7 +9196,8 @@
         "anchor_q": "Elterngeld",
         "anchor_a": "Elterngeldstelle",
         "hint_zh": "锚点配对：Elterngeld → Elterngeldstelle"
-      }
+      },
+      "literal": "Frau(女士) Seger(泽格尔) bekommt(即将生育) ein(一个) Kind(孩子). Was(什么) muss(必须) sie(她) tun(做), um(为了) Elterngeld(育儿津贴) zu(不定式标记) erhalten(获得)?"
     },
     {
       "id": 242,
@@ -8993,7 +9234,8 @@
         "anchor_q": "Kindergarten",
         "anchor_a": "Erziehungsberechtigten",
         "hint_zh": "锚点配对：Kindergarten → Erziehungsberechtigten"
-      }
+      },
+      "literal": "Wer(谁) entscheidet(决定), ob(是否) ein(一个) Kind(孩子) in(到) den(定冠词) Kindergarten(幼儿园) geht(去)?"
     },
     {
       "id": 243,
@@ -9030,7 +9272,8 @@
         "anchor_q": "Demonstration",
         "anchor_a": "die Demonstration anmelden",
         "hint_zh": "锚点配对：Demonstration → die Demonstration anmelden"
-      }
+      },
+      "literal": "Maik(迈克) und(和) Sybille(西比勒) wollen(想要) eine(一场) Demonstration(示威游行) abhalten(举行). Was(什么) müssen(必须) sie(他们) tun(做)?"
     },
     {
       "id": 244,
@@ -9067,7 +9310,8 @@
         "anchor_q": "Universitätsstudium",
         "anchor_a": "das Abitur",
         "hint_zh": "锚点配对：Universitätsstudium → das Abitur"
-      }
+      },
+      "literal": "Welchen(哪种) Schulabschluss(学校毕业文凭) braucht(需要) man(人们) für(为了) ein(一个) Universitätsstudium(大学学业)?"
     },
     {
       "id": 245,
@@ -9105,7 +9349,8 @@
         "anchor_q": "Paar",
         "anchor_a": "Anne",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Anne"
-      }
+      },
+      "literal": "Wer(谁) darf(被允许) nicht(不) als(作为) Paar(伴侣) zusammenleben(同居住)?（？）"
     },
     {
       "id": 246,
@@ -9142,7 +9387,8 @@
         "anchor_q": "Alter",
         "anchor_a": "18",
         "hint_zh": "数字题：记住 18"
-      }
+      },
+      "literal": "Ab(从) welchem(哪个) Alter(年龄) ist(是) man(人们) in(在) Deutschland(德国) volljährig(成年的)?"
     },
     {
       "id": 247,
@@ -9179,7 +9425,8 @@
         "anchor_q": "Schutz",
         "anchor_a": "Mutterschutz",
         "hint_zh": "锚点配对：Schutz → Mutterschutz"
-      }
+      },
+      "literal": "Wie(叫什么) heißt(称为) der(定冠词) besondere(特别的) Schutz(保护) kurz(紧接) vor(在……之前) und(和) nach(在……之后) der(定冠词) Geburt(分娩)?（？）"
     },
     {
       "id": 248,
@@ -9216,7 +9463,8 @@
         "anchor_q": "Erziehung",
         "anchor_a": "der Eltern",
         "hint_zh": "锚点配对：Erziehung → der Eltern"
-      }
+      },
+      "literal": "Die(定冠词) Erziehung(教育) der(的) Kinder(孩子们) ist(是) vor(首先) allem(一切) Aufgabe(任务) …(……)"
     },
     {
       "id": 249,
@@ -9253,7 +9501,8 @@
         "anchor_q": "Kindererziehung",
         "anchor_a": "die Eltern",
         "hint_zh": "锚点配对：Kindererziehung → die Eltern"
-      }
+      },
+      "literal": "Wer(谁) ist(是) hauptsächlich(主要地) verantwortlich(负责的) für(对) die(定冠词) Kindererziehung(子女教育)?"
     },
     {
       "id": 250,
@@ -9290,7 +9539,8 @@
         "anchor_q": "Chancen",
         "anchor_a": "gut ausgebildet ist",
         "hint_zh": "锚点配对：Chancen → gut ausgebildet ist"
-      }
+      },
+      "literal": "Beste(最佳的) Chancen(机会) auf(获得) gut(高) bezahlte(薪酬的) Arbeit(工作) hat(有) man(人们), wenn(如果) man(人们) …(……)"
     },
     {
       "id": 251,
@@ -9327,7 +9577,8 @@
         "anchor_q": "Wenn",
         "anchor_a": "bestraft",
         "hint_zh": "锚点配对：Wenn → bestraft"
-      }
+      },
+      "literal": "Wenn(如果) man(有人) in(在) Deutschland(德国) ein(一个) Kind(孩子) schlägt(打), …(……)"
     },
     {
       "id": 252,
@@ -9364,7 +9615,8 @@
         "anchor_q": "Deutschland",
         "anchor_a": "Person",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Person"
-      }
+      },
+      "literal": "In(在) Deutschland(德国) …(……)"
     },
     {
       "id": 253,
@@ -9401,7 +9653,8 @@
         "anchor_q": "anmelden,",
         "anchor_a": "beim Einwohnermeldeamt",
         "hint_zh": "锚点配对：anmelden, → beim Einwohnermeldeamt"
-      }
+      },
+      "literal": "Wo(在哪里) müssen(必须) Sie(您) sich(自己) anmelden(登记), wenn(当) Sie(您) umziehen(搬家)?"
     },
     {
       "id": 254,
@@ -9438,7 +9691,8 @@
         "anchor_q": "Trennungsjahr",
         "anchor_a": "Ehegatten",
         "hint_zh": "锚点配对：Trennungsjahr → Ehegatten"
-      }
+      },
+      "literal": "Was(什么) bedeutet(表示) das(这个) „Trennungsjahr“(「分居年」) vor(在……之前) einer(一个) Scheidung(离婚)?"
     },
     {
       "id": 255,
@@ -9475,7 +9729,8 @@
         "anchor_q": "Erziehungsproblemen",
         "anchor_a": "Jugendamt",
         "hint_zh": "锚点配对：Erziehungsproblemen → Jugendamt"
-      }
+      },
+      "literal": "Bei(遇到／在……情况下) Erziehungsproblemen(教育问题时) erhalten(获得) Eltern(父母) Hilfe(帮助) vom(来自「von dem」缩合，意为「来自……的」) …(……)"
     },
     {
       "id": 256,
@@ -9512,7 +9767,8 @@
         "anchor_q": "Restaurant",
         "anchor_a": "Gaststättenerlaubnis",
         "hint_zh": "锚点配对：Restaurant → Gaststättenerlaubnis"
-      }
+      },
+      "literal": "Ein(一个) Ehepaar(夫妇) will(想要) ein(一家) Restaurant(餐厅) eröffnen(开设). Was(什么) braucht(需要) es(他们/指这对夫妇)?"
     },
     {
       "id": 257,
@@ -9549,7 +9805,8 @@
         "anchor_q": "Erwachsene",
         "anchor_a": "einem Abendgymnasium",
         "hint_zh": "锚点配对：Erwachsene → einem Abendgymnasium"
-      }
+      },
+      "literal": "Eine(一个) Erwachsene(成年女性) möchte(想要) das(定冠词) Abitur(高中毕业会考) nachholen(补修). Das(这件事) kann(可以) sie(她) an(在) …(……)"
     },
     {
       "id": 258,
@@ -9586,7 +9843,8 @@
         "anchor_q": "Jugendamt",
         "anchor_a": "Familie",
         "hint_zh": "锚点配对：Jugendamt → Familie"
-      }
+      },
+      "literal": "Was(什么) darf(可以) das(定冠词) Jugendamt(青少年局)?"
     },
     {
       "id": 259,
@@ -9623,7 +9881,8 @@
         "anchor_q": "Berufsinformationszentrum",
         "anchor_a": "Lehrstellensuche",
         "hint_zh": "锚点配对：Berufsinformationszentrum → Lehrstellensuche"
-      }
+      },
+      "literal": "Das(定冠词) Berufsinformationszentrum(职业信息中心) (BIZ)(简称) hilft(帮助) bei(在……方面) der(定冠词) …(……)"
     },
     {
       "id": 260,
@@ -9660,7 +9919,8 @@
         "anchor_q": "Schule",
         "anchor_a": "Anwesenheitspflicht",
         "hint_zh": "锚点配对：Schule → Anwesenheitspflicht"
-      }
+      },
+      "literal": "Ein(一个) Kind(孩子) hat(有／助动词) in(在) der(定冠词) Schule(学校) …(……)"
     },
     {
       "id": 261,
@@ -9697,7 +9957,8 @@
         "anchor_q": "Abitur",
         "anchor_a": "einem Abendgymnasium",
         "hint_zh": "锚点配对：Abitur → einem Abendgymnasium"
-      }
+      },
+      "literal": "Ein(一个) Mann(男人) (30)(三十岁) will(想要) das(定冠词) Abitur(高中毕业会考) nachholen(补考). Wo(在哪里)? An(在) …(……)"
     },
     {
       "id": 262,
@@ -9734,7 +9995,8 @@
         "anchor_q": "Gleichbehandlung",
         "anchor_a": "Behinderung",
         "hint_zh": "锚点配对：Gleichbehandlung → Behinderung"
-      }
+      },
+      "literal": "Was(什么) bedeutet(意思是) der(定冠词) Grundsatz(原则) der(的) Gleichbehandlung(平等对待)？"
     },
     {
       "id": 263,
@@ -9771,7 +10033,8 @@
         "anchor_q": "Jugendliche",
         "anchor_a": "werden bestraft",
         "hint_zh": "锚点配对：Jugendliche → werden bestraft"
-      }
+      },
+      "literal": "Jugendliche(青少年) ab(从满) 14(14岁) sind(是) strafmündig(达到刑事责任年龄的). Das(这) bedeutet(意味着), sie(他们) …(……)"
     },
     {
       "id": 264,
@@ -9808,7 +10071,8 @@
         "anchor_q": "Kostüme",
         "anchor_a": "am Rosenmontag",
         "hint_zh": "锚点配对：Kostüme → am Rosenmontag"
-      }
+      },
+      "literal": "Zu(在) welchem(哪个) Fest(节日) trägt(穿戴) man(人们) Kostüme(戏装) und(和) Masken(面具)?（？）"
     },
     {
       "id": 265,
@@ -9845,7 +10109,8 @@
         "anchor_q": "Wohin",
         "anchor_a": "zum Standesamt",
         "hint_zh": "锚点配对：Wohin → zum Standesamt"
-      }
+      },
+      "literal": "Wohin(去哪里) muss(必须) man(人们) zuerst(首先) gehen(去), wenn(如果) man(人们) heiraten(结婚) möchte(想)?"
     },
     {
       "id": 266,
@@ -9882,7 +10147,8 @@
         "anchor_q": "Nachtruhe",
         "anchor_a": "um 22 Uhr",
         "hint_zh": "数字题：记住 um 22 Uhr"
-      }
+      },
+      "literal": "Wann(什么时候) beginnt(开始) die(定冠词) gesetzliche(法定的) Nachtruhe(夜间安静时间) in(在) Deutschland(德国)?"
     },
     {
       "id": 267,
@@ -9919,7 +10185,8 @@
         "anchor_q": "Jährige",
         "anchor_a": "Entscheidung",
         "hint_zh": "价值观题：选讲自由/民主/平等/尊严的 → Entscheidung"
-      }
+      },
+      "literal": "Eine(一个) 22-Jährige(22岁的年轻女性) lebt(居住) mit(和) ihrem(她的) Freund(男友) zusammen(一起). Die(定冠词) Eltern(父母) sind(是) dagegen(反对). Was(什么) können(能) sie(他们) tun(做)?"
     },
     {
       "id": 268,
@@ -9957,7 +10224,8 @@
         "anchor_q": "Führerscheinprüfung",
         "anchor_a": "Theorieprüfung",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Theorieprüfung"
-      }
+      },
+      "literal": "Eine(一位) Frau(女士) hat(有) Angst(恐惧) vor(对) der(定冠词) Führerscheinprüfung(驾照考试), weil(因为) Deutsch(德语) nicht(不) ihre(她的) Muttersprache(母语) ist(是). Was(什么) ist(是) richtig(正确的)?"
     },
     {
       "id": 269,
@@ -9994,7 +10262,8 @@
         "anchor_q": "Einschulung",
         "anchor_a": "einen Kindergartenplatz",
         "hint_zh": "锚点配对：Einschulung → einen Kindergartenplatz"
-      }
+      },
+      "literal": "Kinder(孩子们) ab(从) drei(三) Jahren(岁) haben(有) bis(直到) zur(到) Einschulung(入学) Anspruch(权利) auf(享受) …(……)"
     },
     {
       "id": 270,
@@ -10031,7 +10300,8 @@
         "anchor_q": "Volkshochschule",
         "anchor_a": "zur Weiterbildung",
         "hint_zh": "锚点配对：Volkshochschule → zur Weiterbildung"
-      }
+      },
+      "literal": "Die(定冠词) Volkshochschule(市民大学) ist(是) eine(一所) Einrichtung(机构) …(……)"
     },
     {
       "id": 271,
@@ -10068,7 +10338,8 @@
         "anchor_q": "Weihnachten",
         "anchor_a": "einen Tannenbaum schmücken",
         "hint_zh": "锚点配对：Weihnachten → einen Tannenbaum schmücken"
-      }
+      },
+      "literal": "Was(什么) ist(是) ein(一个) Brauch(习俗) zu(在) Weihnachten(圣诞节)?"
     },
     {
       "id": 272,
@@ -10106,7 +10377,8 @@
         "anchor_q": "Lebensform",
         "anchor_a": "Frauen",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Frauen"
-      }
+      },
+      "literal": "Welche(哪种) Lebensform(生活方式) ist(是) nicht(不) erlaubt(被允许的)?"
     },
     {
       "id": 273,
@@ -10143,7 +10415,8 @@
         "anchor_q": "Erziehungsproblemen",
         "anchor_a": "Jugendamt",
         "hint_zh": "锚点配对：Erziehungsproblemen → Jugendamt"
-      }
+      },
+      "literal": "Bei(遇到) Erziehungsproblemen(教育问题时) gehen(去) Sie(您) zum(到……那里) …(……)"
     },
     {
       "id": 274,
@@ -10181,7 +10454,8 @@
         "anchor_q": "Brief",
         "anchor_a": "das Briefgeheimnis",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → das Briefgeheimnis"
-      }
+      },
+      "literal": "Sie(您) öffnen(打开) absichtlich(故意地) einen(一封) fremden(别人的) Brief(信件)。Was(什么) haben(助动词) Sie(您) nicht(没有) beachtet(遵守)?"
     },
     {
       "id": 275,
@@ -10218,7 +10492,8 @@
         "anchor_q": "Ehescheidung",
         "anchor_a": "Unterstützung",
         "hint_zh": "锚点配对：Ehescheidung → Unterstützung"
-      }
+      },
+      "literal": "Was(什么) braucht(需要) man(一个人) für(为了) eine(一个) Ehescheidung(离婚)?"
     },
     {
       "id": 276,
@@ -10255,7 +10530,8 @@
         "anchor_q": "Behörde",
         "anchor_a": "Behördenleiter",
         "hint_zh": "锚点配对：Behörde → Behördenleiter"
-      }
+      },
+      "literal": "Was(什么) tun(做), wenn(如果) man(一个人) in(在) einer(一个) Behörde(政府机构) schlecht(糟糕地) behandelt(对待) wird(被)?"
     },
     {
       "id": 277,
@@ -10293,7 +10569,8 @@
         "anchor_q": "Diskriminierung",
         "anchor_a": "Mutter ist",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Mutter ist"
-      }
+      },
+      "literal": "Beispiel(示例) für(关于) Diskriminierung(歧视): Sie(她) bekommt(得到) die(定冠词) Stelle(职位) nur(仅仅) deshalb(就因为这个原因) nicht(没有得到), weil(因为) sie(她) …(……)"
     },
     {
       "id": 278,
@@ -10331,7 +10608,8 @@
         "anchor_q": "Diskriminierung",
         "anchor_a": "im Rollstuhl sitzt",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → im Rollstuhl sitzt"
-      }
+      },
+      "literal": "Beispiel(例子) für(关于) Diskriminierung(歧视): Er(他) bekommt(得到) die(定冠词) Stelle(职位) nur(只) deshalb(就是因为这个) nicht(没得到), weil(因为) er(他) …(……)"
     },
     {
       "id": 279,
@@ -10368,7 +10646,8 @@
         "anchor_q": "Hausordnung",
         "anchor_a": "Bewohner",
         "hint_zh": "锚点配对：Hausordnung → Bewohner"
-      }
+      },
+      "literal": "Was(什么) steht(写着) in(在) einer(一份)「Hausordnung」(住宅规章)? Sie(它) nennt(列举) …(……)"
     },
     {
       "id": 280,
@@ -10405,7 +10684,8 @@
         "anchor_q": "Steuerbescheid",
         "anchor_a": "Einspruch einlegen",
         "hint_zh": "锚点配对：Steuerbescheid → Einspruch einlegen"
-      }
+      },
+      "literal": "Wie(如何) wehren(维权申诉) Sie(您) sich(自身) gegen(针对) einen(一个) falschen(错误的) Steuerbescheid(税务通知书)?"
     },
     {
       "id": 281,
@@ -10443,7 +10723,8 @@
         "anchor_q": "Schwimmbad",
         "anchor_a": "Gleichbehandlung",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Gleichbehandlung"
-      }
+      },
+      "literal": "Zwei(两个) dunkelhäutige(深肤色的) Freunde(朋友) werden(被) nicht(不) ins(进入) Schwimmbad(游泳池) gelassen(放入). Welches(哪项) Recht(权利) wird(被) verletzt(侵犯)? Das(这个) Recht(权利) auf(……之) …(……)"
     },
     {
       "id": 282,
@@ -10480,7 +10761,8 @@
         "anchor_q": "Staatsbürger",
         "anchor_a": "Wahlhelfer/in",
         "hint_zh": "锚点配对：Staatsbürger → Wahlhelfer/in"
-      }
+      },
+      "literal": "Welches(哪个) Ehrenamt(荣誉职务) müssen(必须) Staatsbürger(公民) übernehmen(承担), wenn(如果) aufgefordert(被要求)?"
     },
     {
       "id": 283,
@@ -10517,7 +10799,8 @@
         "anchor_q": "Rechnung",
         "anchor_a": "Widerspruch",
         "hint_zh": "锚点配对：Rechnung → Widerspruch"
-      }
+      },
+      "literal": "Was(什么) tun(做) Sie(您) bei(面对) einer(一张) falschen(错误的) Rechnung(账单) von(来自) einer(一个) Behörde(政府机关)？"
     },
     {
       "id": 284,
@@ -10554,7 +10837,8 @@
         "anchor_q": "Arbeitsanforderungen",
         "anchor_a": "Erwachsene",
         "hint_zh": "锚点配对：Arbeitsanforderungen → Erwachsene"
-      }
+      },
+      "literal": "Arbeitsanforderungen(工作要求) ändern(改变) sich(自身) schnell(快速地). Was(什么) kann(可以) man(人们) tun(做)?"
     },
     {
       "id": 285,
@@ -10592,7 +10876,8 @@
         "anchor_q": "Festangestellte",
         "anchor_a": "Umsatzsteuer",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Umsatzsteuer"
-      }
+      },
+      "literal": "Was(什么) muss(必须) eine(一位) Festangestellte(女性正式员工) nicht(不) vom(从……中) Gehalt(薪资) bezahlen(缴纳/支付)?"
     },
     {
       "id": 286,
@@ -10629,7 +10914,8 @@
         "anchor_q": "Arbeitnehmern",
         "anchor_a": "der Betriebsrat",
         "hint_zh": "锚点配对：Arbeitnehmern → der Betriebsrat"
-      }
+      },
+      "literal": "Welche(哪个) Organisation(组织) hilft(帮助) Arbeitnehmern(劳动者) bei(遇到) Problemen(问题) mit(与) dem(该) Arbeitgeber(雇主)？"
     },
     {
       "id": 287,
@@ -10666,7 +10952,8 @@
         "anchor_q": "Arbeitsverhältnis",
         "anchor_a": "die Kündigungsfrist",
         "hint_zh": "锚点配对：Arbeitsverhältnis → die Kündigungsfrist"
-      }
+      },
+      "literal": "Sie(您) möchten(想要) Ihr(您的) Arbeitsverhältnis(劳动关系) beenden(终止)。Was(什么) müssen(必须) Sie(您) beachten(注意)？"
     },
     {
       "id": 288,
@@ -10703,7 +10990,8 @@
         "anchor_q": "Verantwortung",
         "anchor_a": "Verbrechen",
         "hint_zh": "锚点配对：Verantwortung → Verbrechen"
-      }
+      },
+      "literal": "Woraus(由什么) begründet(产生/源于) sich(自身) Deutschlands(德国的) besondere(特殊的) Verantwortung(责任) für(对于) Israel(以色列)?"
     },
     {
       "id": 289,
@@ -10741,7 +11029,8 @@
         "anchor_q": "Diskriminierung",
         "anchor_a": "Haut",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Haut"
-      }
+      },
+      "literal": "Beispiel(例子) für(关于) Diskriminierung(歧视): Er(他) bekommt(得到) die(定冠词) Kellnerstelle(服务员职位) nur(只) deshalb(正因此) nicht(没有), weil(因为) …(……)"
     },
     {
       "id": 290,
@@ -10778,7 +11067,8 @@
         "anchor_q": "Fernseher",
         "anchor_a": "den Fernseher reklamieren",
         "hint_zh": "锚点配对：Fernseher → den Fernseher reklamieren"
-      }
+      },
+      "literal": "Der(定冠词) gekaufte(买来的) Fernseher(电视机) ist(是) kaputt(坏了). Was(什么) können(可以) Sie(您) tun(做)?"
     },
     {
       "id": 291,
@@ -10815,7 +11105,8 @@
         "anchor_q": "Kirchenzugehörigkeit",
         "anchor_a": "Einkommensteuer",
         "hint_zh": "锚点配对：Kirchenzugehörigkeit → Einkommensteuer"
-      }
+      },
+      "literal": "Warum(为什么) muss(必须) man(人们) bei(在) der(定冠词) Steuererklärung(报税申报) die(定冠词) Kirchenzugehörigkeit(教会归属) angeben(填写)?"
     },
     {
       "id": 292,
@@ -10852,7 +11143,8 @@
         "anchor_q": "Religiöse",
         "anchor_a": "Jeder",
         "hint_zh": "锚点配对：Religiöse → Jeder"
-      }
+      },
+      "literal": "Religiöse(宗教的) Toleranz(宽容) bedeutet(意味着) …(……)"
     },
     {
       "id": 293,
@@ -10889,7 +11181,8 @@
         "anchor_q": "Brauch",
         "anchor_a": "Eier bemalen",
         "hint_zh": "锚点配对：Brauch → Eier bemalen"
-      }
+      },
+      "literal": "Was(什么) ist(是) ein(一个) Brauch(习俗) an(在) Ostern(复活节)?"
     },
     {
       "id": 294,
@@ -10926,7 +11219,8 @@
         "anchor_q": "Pfingsten",
         "anchor_a": "christlicher Feiertag",
         "hint_zh": "锚点配对：Pfingsten → christlicher Feiertag"
-      }
+      },
+      "literal": "Pfingsten(圣灵降临节) ist(是) ein(一个) …(……)"
     },
     {
       "id": 295,
@@ -10963,7 +11257,8 @@
         "anchor_q": "Religion",
         "anchor_a": "das Christentum",
         "hint_zh": "锚点配对：Religion → das Christentum"
-      }
+      },
+      "literal": "Welche(哪种) Religion(宗教) hat(助动词) die(定冠词) deutsche(德国的) Kultur(文化) geprägt(塑造了)?"
     },
     {
       "id": 296,
@@ -11000,7 +11295,8 @@
         "anchor_q": "Weihnachten",
         "anchor_a": "die Adventszeit",
         "hint_zh": "锚点配对：Weihnachten → die Adventszeit"
-      }
+      },
+      "literal": "Die(定冠词) letzten(最后的) vier(四) Wochen(周) vor(在……之前) Weihnachten(圣诞节) heißen(叫做) …(……)"
     },
     {
       "id": 297,
@@ -11037,7 +11333,8 @@
         "anchor_q": "Migranten",
         "anchor_a": "Türkei",
         "hint_zh": "锚点配对：Migranten → Türkei"
-      }
+      },
+      "literal": "Aus(从) welchem(哪个) Land(国家) kamen(来了) die(定冠词) meisten(最多的) Migranten(移民) nach(去) Deutschland(德国)？"
     },
     {
       "id": 298,
@@ -11074,7 +11371,8 @@
         "anchor_q": "Migranten",
         "anchor_a": "Vietnam, Polen, Mosambik",
         "hint_zh": "锚点配对：Migranten → Vietnam, Polen, Mosambik"
-      }
+      },
+      "literal": "In(在) der(定冠词) DDR(东德) lebten(居住着) vor(尤其) allem(是) Migranten(移民们) aus(来自) …(……)"
     },
     {
       "id": 299,
@@ -11111,7 +11409,8 @@
         "anchor_q": "Arbeitskräfte",
         "anchor_a": "Gastarbeiter/innen",
         "hint_zh": "锚点配对：Arbeitskräfte → Gastarbeiter/innen"
-      }
+      },
+      "literal": "Wie(怎样) nannte(称呼) man(人们) die(那些) in(在) den(定冠词复数与格) 50er/60er(五六十年代的) Jahren(年代) angeworbenen(被招募来的) Arbeitskräfte(劳动力)?"
     },
     {
       "id": 300,
@@ -11148,7 +11447,8 @@
         "anchor_q": "Gastarbeiter",
         "anchor_a": "Italien",
         "hint_zh": "锚点配对：Gastarbeiter → Italien"
-      }
+      },
+      "literal": "Aus(从) welchem(哪个) Land(国家) kamen(来) die(定冠词) ersten(第一批) Gastarbeiter(外籍劳工) nach(到) Deutschland(德国)?"
     },
     {
       "id": 391,
@@ -11185,7 +11485,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "2",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welches(哪个) Wappen(徽章) gehört(属于) zum(于该，zu+dem缩写) Bundesland(联邦州) Nordrhein-Westfalen(北莱茵-威斯特法伦)?"
     },
     {
       "id": 392,
@@ -11222,7 +11523,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "Rhein-Sieg-Kreis",
         "hint_zh": "锚点配对：Nordrhein-Westfalen → Rhein-Sieg-Kreis"
-      }
+      },
+      "literal": "Welches(哪个) ist(是) ein(一个) Landkreis(县) in(在) Nordrhein-Westfalen(北莱茵-威斯特法伦州)?"
     },
     {
       "id": 393,
@@ -11259,7 +11561,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "5",
         "hint_zh": "数字题：记住 5"
-      }
+      },
+      "literal": "Für(为期) wie(多少) viele(几) Jahre(年) wird(被) der(定冠词) Landtag(州议会) in(在) Nordrhein-Westfalen(北莱茵-威斯特法伦) gewählt(选出)?"
     },
     {
       "id": 394,
@@ -11296,7 +11599,8 @@
         "anchor_q": "Kommunalwahlen",
         "anchor_a": "16",
         "hint_zh": "数字题：记住 16"
-      }
+      },
+      "literal": "Ab(从) welchem(哪个) Alter(年龄) darf(可以) man(人们) in(在) NRW(北莱茵-威斯特法伦州) bei(参加) Kommunalwahlen(地方选举) wählen(投票)?"
     },
     {
       "id": 395,
@@ -11333,7 +11637,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "grün-weiß-rot",
         "hint_zh": "锚点配对：Nordrhein-Westfalen → grün-weiß-rot"
-      }
+      },
+      "literal": "Welche(哪些) Farben(颜色) hat(有) die(定冠词) Landesflagge(州旗) von(……的) Nordrhein-Westfalen(北莱茵-威斯特法伦)?"
     },
     {
       "id": 396,
@@ -11370,7 +11675,8 @@
         "anchor_q": "Themen",
         "anchor_a": "Landeszentrale",
         "hint_zh": "锚点配对：Themen → Landeszentrale"
-      }
+      },
+      "literal": "Wo(在哪里) können(可以) Sie(您) sich(自身) in(在) NRW(北威州) über(关于) politische(政治的) Themen(话题) informieren(获取信息)?"
     },
     {
       "id": 397,
@@ -11407,7 +11713,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "Düsseldorf",
         "hint_zh": "锚点配对：Nordrhein-Westfalen → Düsseldorf"
-      }
+      },
+      "literal": "Die(定冠词) Landeshauptstadt(州首府) von(的) Nordrhein-Westfalen(北莱茵-威斯特法伦) heißt(叫做) …(……)"
     },
     {
       "id": 398,
@@ -11444,7 +11751,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "3",
         "hint_zh": "看图选编号（纯视觉记忆，必拿分）"
-      }
+      },
+      "literal": "Welches(哪个) Bundesland(联邦州) ist(是) Nordrhein-Westfalen(北莱茵-威斯特法伦)?"
     },
     {
       "id": 399,
@@ -11481,7 +11789,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "Ministerpräsident/in",
         "hint_zh": "锚点配对：Nordrhein-Westfalen → Ministerpräsident/in"
-      }
+      },
+      "literal": "Wie(如何) nennt(称呼) man(人们) den(定冠词) Regierungschef(政府首脑) in(在) Nordrhein-Westfalen(北莱茵-威斯特法伦州)?"
     },
     {
       "id": 400,
@@ -11519,7 +11828,8 @@
         "anchor_q": "Nordrhein-Westfalen",
         "anchor_a": "Außenminister",
         "hint_zh": "否定题（题干有 nicht/kein）：选最不合群/坏的那个 → Außenminister"
-      }
+      },
+      "literal": "Welchen(哪个) Minister(部长) hat(有) Nordrhein-Westfalen(北莱茵-威斯特法伦) nicht(没有)?"
     }
   ]
 }
