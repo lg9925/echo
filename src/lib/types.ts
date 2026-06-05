@@ -162,6 +162,9 @@ export interface QuizOption {
   de: string;
   zh: string;
   correct: boolean;
+  /** Word-by-word German→Chinese gloss. AI-pregenerated for the correct option
+   *  only (practice shows it under the right answer); null otherwise. */
+  literal?: string | null;
 }
 
 /**

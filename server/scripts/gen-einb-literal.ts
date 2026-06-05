@@ -22,10 +22,17 @@ process.env.LLM_EINB_LITERAL_PROVIDER ??= "claude-cli";
 
 const { einbLiteral } = await import("../src/llm/index.js");
 
+interface RawOption {
+  de: string;
+  zh: string;
+  correct: boolean;
+  literal?: string | null;
+}
 interface RawQuestion {
   id: number;
   question_de: string;
   literal?: string | null;
+  options: RawOption[];
   [k: string]: unknown;
 }
 interface Bank {
@@ -52,19 +59,27 @@ const idsArg = arg("ids");
 const ids = idsArg ? new Set(idsArg.split(",").map((s) => Number(s.trim()))) : null;
 const force = flag("force");
 const concurrency = arg("concurrency") ? Number(arg("concurrency")) : 5;
+// "question" (default) → q.literal; "answer" → the correct option's literal.
+const what = arg("what") === "answer" ? "answer" : "question";
 const out =
   arg("out") ?? (sampleN ? SOURCE.replace(/\.json$/, ".sample.json") : SOURCE);
+
+const correctOf = (q: RawQuestion): RawOption | undefined =>
+  q.options.find((o) => o.correct);
 
 async function main() {
   const bank: Bank = JSON.parse(await readFile(SOURCE, "utf8"));
 
+  const has = (q: RawQuestion) =>
+    what === "answer" ? !!correctOf(q)?.literal : !!q.literal;
+
   let targets = bank.questions;
   if (ids) targets = targets.filter((q) => ids.has(q.id));
-  if (!force) targets = targets.filter((q) => !q.literal);
+  if (!force) targets = targets.filter((q) => !has(q));
   if (sampleN) targets = targets.slice(0, sampleN);
 
   console.log(
-    `Generating literals for ${targets.length} question(s) ` +
+    `Generating ${what} literals for ${targets.length} question(s) ` +
       `(provider=${process.env.LLM_EINB_LITERAL_PROVIDER}, concurrency=${concurrency}) → ${out}`,
   );
 
@@ -88,10 +103,19 @@ async function main() {
   async function worker() {
     for (let q = queue.shift(); q; q = queue.shift()) {
       try {
-        const { literal } = await einbLiteral(q.question_de);
-        q.literal = literal;
-        done++;
-        console.log(`✓ #${q.id}  ${literal}`);
+        if (what === "answer") {
+          const opt = correctOf(q);
+          if (!opt) throw new Error("no correct option");
+          const { literal } = await einbLiteral(opt.de);
+          opt.literal = literal;
+          done++;
+          console.log(`✓ #${q.id}  ${literal}`);
+        } else {
+          const { literal } = await einbLiteral(q.question_de);
+          q.literal = literal;
+          done++;
+          console.log(`✓ #${q.id}  ${literal}`);
+        }
         if (done % 25 === 0) await checkpoint();
       } catch (e) {
         failed++;

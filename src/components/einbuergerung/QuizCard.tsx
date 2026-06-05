@@ -25,6 +25,7 @@ export function QuizCard({
   question,
   immediate,
   showZh,
+  initialPicked,
   onAnswer,
 }: {
   question: QuizQuestion;
@@ -32,12 +33,14 @@ export function QuizCard({
   immediate: boolean;
   /** Persisted default for showing the Chinese translation. */
   showZh: boolean;
+  /** Pre-selected option to restore answered state (e.g. navigating back). */
+  initialPicked?: QuizOption | null;
   /** Fired once, the first time the user picks an option. */
   onAnswer: (isCorrect: boolean, option: QuizOption) => void;
 }) {
   const t = useTranslations("einbuergerung");
   const options = useMemo(() => shuffle(question.options), [question.options]);
-  const [picked, setPicked] = useState<QuizOption | null>(null);
+  const [picked, setPicked] = useState<QuizOption | null>(initialPicked ?? null);
   const [tappedReveal, setTappedReveal] = useState(false);
 
   const answered = picked !== null;
@@ -169,6 +172,12 @@ export function QuizCard({
                 {zhVisible && (
                   <span className="block text-xs text-zinc-500 mt-0.5">
                     {opt.zh}
+                  </span>
+                )}
+                {/* word-by-word literal of the correct answer, after answering */}
+                {showState && opt.correct && opt.literal && (
+                  <span className="block text-xs text-green-700/80 dark:text-green-300/80 mt-1 leading-relaxed">
+                    {opt.literal}
                   </span>
                 )}
               </button>

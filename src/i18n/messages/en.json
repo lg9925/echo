@@ -304,6 +304,7 @@
     "exit": "Exit",
     "progress": "{current} / {total}",
     "nextQuestion": "Next",
+    "prevQuestion": "Previous",
     "finish": "Finish",
     "practiceDone": "Round complete 🎉",
     "score": "{correct} / {total} correct",
