@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { getQuizProgress, setQuizStar } from "@/lib/db";
 import { speak } from "@/lib/tts";
 import { targetBcp47 } from "@/lib/lang";
 import { shuffle } from "@/lib/einbuergerung/exam";
@@ -40,23 +39,6 @@ export function QuizCard({
   const options = useMemo(() => shuffle(question.options), [question.options]);
   const [picked, setPicked] = useState<QuizOption | null>(null);
   const [tappedReveal, setTappedReveal] = useState(false);
-  const [starred, setStarred] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    void getQuizProgress(question.id).then((p) => {
-      if (!cancelled) setStarred(p?.starred === 1);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [question.id]);
-
-  function toggleStar() {
-    const next = !starred;
-    setStarred(next);
-    void setQuizStar(question.id, next);
-  }
 
   const answered = picked !== null;
   const targetLang = targetBcp47("de");
@@ -74,8 +56,8 @@ export function QuizCard({
 
   return (
     <section className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-6 space-y-5 bg-white dark:bg-zinc-950">
-      {/* tags / region badges + collect-to-study-list star */}
-      <div className="flex items-start justify-between gap-2">
+      {/* tags / region badges */}
+      {(question.tags.length > 0 || question.region === "nrw") && (
         <div className="flex flex-wrap gap-1.5">
           {question.region === "nrw" && (
             <span className="rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 px-2 py-0.5 text-xs">
@@ -91,19 +73,23 @@ export function QuizCard({
             </span>
           ))}
         </div>
+      )}
+
+      {/* 德语钩子词 (anchor) — the hook to recognise the question, shown prominently */}
+      {question.study?.anchor_q && (
         <button
           type="button"
-          onClick={toggleStar}
-          aria-pressed={starred}
-          aria-label={t(starred ? "unstar" : "star")}
-          title={t(starred ? "unstar" : "star")}
-          className={`shrink-0 text-lg leading-none ${
-            starred ? "text-amber-500" : "text-zinc-300 dark:text-zinc-600 hover:text-amber-400"
-          }`}
+          onClick={() => sayWord(question.study!.anchor_q)}
+          className="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 px-3 py-2 text-left"
         >
-          {starred ? "★" : "☆"}
+          <span className="text-xs text-blue-500 dark:text-blue-400 shrink-0">
+            🔑 {t("anchorLabel")}
+          </span>
+          <span className="text-lg font-semibold text-blue-800 dark:text-blue-200">
+            {question.study.anchor_q}
+          </span>
         </button>
-      </div>
+      )}
 
       {/* question — German tappable word-by-word, whole-question speaker */}
       <div className="space-y-2">

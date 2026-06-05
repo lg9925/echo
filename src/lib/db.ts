@@ -203,37 +203,8 @@ export async function countQuizQuestions(): Promise<number> {
   return getDb().quizQuestions.count();
 }
 
-export async function getQuizProgress(
-  questionId: number,
-): Promise<QuizProgress | undefined> {
-  return getDb().quizProgress.get(questionId);
-}
-
 export async function listAllQuizProgress(): Promise<QuizProgress[]> {
   return getDb().quizProgress.toArray();
-}
-
-export async function upsertQuizProgress(p: QuizProgress): Promise<void> {
-  await getDb().quizProgress.put(p);
-}
-
-/** Star/unstar a question for the 背诵清单, preserving any answer stats. */
-export async function setQuizStar(
-  questionId: number,
-  starred: boolean,
-  nowMs: number = Date.now(),
-): Promise<void> {
-  const db = getDb();
-  const prev = await db.quizProgress.get(questionId);
-  await db.quizProgress.put({
-    questionId,
-    attempts: prev?.attempts ?? 0,
-    correct: prev?.correct ?? 0,
-    wrong: prev?.wrong ?? 0,
-    lastResult: prev?.lastResult ?? null,
-    starred: starred ? 1 : 0,
-    updatedAt: nowMs,
-  });
 }
 
 /** Record one answer, folding into existing stats. Returns the new progress. */
