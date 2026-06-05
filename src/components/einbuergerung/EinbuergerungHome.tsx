@@ -12,9 +12,10 @@ import {
   type QuizStatusFilter,
 } from "@/lib/einbuergerung/filters";
 import { PracticeSession } from "./PracticeSession";
+import { ExamSession } from "./ExamSession";
 import type { QuizProgress, QuizQuestion } from "@/lib/types";
 
-type View = "home" | "practice";
+type View = "home" | "practice" | "exam";
 
 /**
  * Landing for the 入籍考试 module: idempotently loads the 310-question bank,
@@ -87,6 +88,14 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
     );
   }
 
+  if (view === "exam" && questions) {
+    return (
+      <main className="flex flex-1 flex-col gap-6 px-6 py-12 max-w-2xl mx-auto w-full">
+        <ExamSession questions={questions} onExit={exitPractice} />
+      </main>
+    );
+  }
+
   return (
     <main className="flex flex-1 flex-col gap-6 px-6 py-12 max-w-2xl mx-auto w-full">
       <header className="flex items-baseline justify-between">
@@ -109,6 +118,15 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
         <p className="text-sm text-zinc-500">{t("loadError")}</p>
       ) : (
         <>
+          <button
+            type="button"
+            onClick={() => setView("exam")}
+            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900"
+          >
+            <p className="text-lg font-medium">{t("examTitle")}</p>
+            <p className="text-sm text-zinc-500 mt-0.5">{t("examHint")}</p>
+          </button>
+
           <section className="space-y-4 rounded-xl border border-zinc-200 dark:border-zinc-800 p-5">
             <h2 className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
               {t("filterTitle")}
