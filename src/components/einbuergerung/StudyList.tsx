@@ -89,10 +89,13 @@ export function StudyList({
                   #{q.id}
                 </button>
 
-                {/* 题干 + 答案 */}
+                {/* 题干锚点 + 答案 */}
                 <div className="min-w-0 flex-1 space-y-1">
-                  <p className="text-sm leading-snug">{q.question_de}</p>
-                  <p className="text-xs text-zinc-400">{q.question_zh}</p>
+                  {q.study?.anchor_q && (
+                    <p className="text-sm font-medium leading-snug">
+                      {q.study.anchor_q}
+                    </p>
+                  )}
                   <p className="text-sm">
                     <span className="text-green-700 dark:text-green-400 font-medium">
                       ✓ {right.de}
