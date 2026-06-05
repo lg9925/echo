@@ -11,11 +11,13 @@ import {
   type QuizFilter,
   type QuizStatusFilter,
 } from "@/lib/einbuergerung/filters";
+import { TAG_HELP_KEY } from "@/lib/einbuergerung/tags";
 import { PracticeSession } from "./PracticeSession";
 import { ExamSession } from "./ExamSession";
+import { StudyList } from "./StudyList";
 import type { QuizProgress, QuizQuestion } from "@/lib/types";
 
-type View = "home" | "practice" | "exam";
+type View = "home" | "practice" | "exam" | "study";
 
 /**
  * Landing for the 入籍考试 module: idempotently loads the 310-question bank,
@@ -30,6 +32,9 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   );
   const [filter, setFilter] = useState<QuizFilter>(EMPTY_FILTER);
   const [view, setView] = useState<View>("home");
+  // The set handed to PracticeSession — either the filtered matches or a custom
+  // selection (one question / all starred) from the study list.
+  const [practiceSet, setPracticeSet] = useState<QuizQuestion[]>([]);
 
   const loadProgress = useCallback(async () => {
     const all = await listAllQuizProgress();
@@ -65,10 +70,19 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
     () => filterQuestions(questions ?? [], filter, progressById),
     [questions, filter, progressById],
   );
+  const starredCount = useMemo(
+    () => [...progressById.values()].filter((p) => p.starred === 1).length,
+    [progressById],
+  );
 
-  function exitPractice() {
+  function exitToHome() {
     setView("home");
-    void loadProgress(); // refresh so 只练错题 counts reflect this round
+    void loadProgress(); // refresh so 只练错题 / 收藏 counts reflect this round
+  }
+
+  function startPractice(qs: QuizQuestion[]) {
+    setPracticeSet(qs);
+    setView("practice");
   }
 
   function toggleTag(tag: string) {
@@ -83,7 +97,7 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   if (view === "practice") {
     return (
       <main className="flex flex-1 flex-col gap-6 px-6 py-12 max-w-2xl mx-auto w-full">
-        <PracticeSession questions={matches} onExit={exitPractice} />
+        <PracticeSession questions={practiceSet} onExit={exitToHome} />
       </main>
     );
   }
@@ -91,7 +105,15 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   if (view === "exam" && questions) {
     return (
       <main className="flex flex-1 flex-col gap-6 px-6 py-12 max-w-2xl mx-auto w-full">
-        <ExamSession questions={questions} onExit={exitPractice} />
+        <ExamSession questions={questions} onExit={exitToHome} />
+      </main>
+    );
+  }
+
+  if (view === "study") {
+    return (
+      <main className="flex flex-1 flex-col gap-6 px-6 py-12 max-w-2xl mx-auto w-full">
+        <StudyList onPractice={startPractice} onBack={exitToHome} />
       </main>
     );
   }
@@ -118,14 +140,26 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
         <p className="text-sm text-zinc-500">{t("loadError")}</p>
       ) : (
         <>
-          <button
-            type="button"
-            onClick={() => setView("exam")}
-            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900"
-          >
-            <p className="text-lg font-medium">{t("examTitle")}</p>
-            <p className="text-sm text-zinc-500 mt-0.5">{t("examHint")}</p>
-          </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => setView("exam")}
+              className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900"
+            >
+              <p className="text-lg font-medium">{t("examTitle")}</p>
+              <p className="text-sm text-zinc-500 mt-0.5">{t("examHint")}</p>
+            </button>
+            <button
+              type="button"
+              onClick={() => setView("study")}
+              className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900"
+            >
+              <p className="text-lg font-medium">{t("studyListTitle")}</p>
+              <p className="text-sm text-zinc-500 mt-0.5">
+                {t("studyListCount", { n: starredCount })}
+              </p>
+            </button>
+          </div>
 
           <section className="space-y-4 rounded-xl border border-zinc-200 dark:border-zinc-800 p-5">
             <h2 className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -151,19 +185,39 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
               ))}
             </Field>
 
-            {/* 技巧标签 tags */}
+            {/* 技巧标签 tags + 说明 */}
             {facets.tags.length > 0 && (
-              <Field label={t("filterTags")}>
-                {facets.tags.map((tag) => (
-                  <Chip
-                    key={tag}
-                    active={filter.tags.includes(tag)}
-                    onClick={() => toggleTag(tag)}
-                  >
-                    {tag}
-                  </Chip>
-                ))}
-              </Field>
+              <div className="space-y-1.5">
+                <Field label={t("filterTags")}>
+                  {facets.tags.map((tag) => (
+                    <Chip
+                      key={tag}
+                      active={filter.tags.includes(tag)}
+                      onClick={() => toggleTag(tag)}
+                    >
+                      {tag}
+                    </Chip>
+                  ))}
+                </Field>
+                <details className="text-xs">
+                  <summary className="cursor-pointer select-none text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300">
+                    {t("tagHelpTitle")}
+                  </summary>
+                  <ul className="mt-2 space-y-1.5">
+                    {facets.tags
+                      .filter((tag) => TAG_HELP_KEY[tag])
+                      .map((tag) => (
+                        <li key={tag} className="text-zinc-500">
+                          <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                            {tag}
+                          </span>
+                          {" — "}
+                          {t(TAG_HELP_KEY[tag]!)}
+                        </li>
+                      ))}
+                  </ul>
+                </details>
+              </div>
             )}
 
             {/* 状态 status */}
@@ -208,7 +262,7 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
             <button
               type="button"
               disabled={matches.length === 0}
-              onClick={() => setView("practice")}
+              onClick={() => startPractice(matches)}
               className="rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 px-6 py-2.5 text-sm font-medium disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {t("startPractice")}

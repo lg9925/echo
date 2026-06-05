@@ -48,7 +48,7 @@ export function PracticeSession({
       recordedRef.current = true;
       setAnsweredThis(true);
       if (isCorrect) setCorrectCount((c) => c + 1);
-      void recordQuizAnswer(current.id, isCorrect, Date.now());
+      void recordQuizAnswer(current.id, isCorrect);
     },
     [current],
   );

@@ -76,7 +76,7 @@ export function ExamSession({
     if (recordedRef.current || !current) return;
     recordedRef.current = true;
     setAnswers((a) => [...a, { question: current, picked: option }]);
-    void recordQuizAnswer(current.id, option.correct, Date.now());
+    void recordQuizAnswer(current.id, option.correct);
   }
 
   function advance() {

@@ -177,6 +177,9 @@ export interface QuizQuestion {
   question_zh: string;
   options: QuizOption[]; // 恰好一个 correct=true
   study: QuizStudy | null;
+  /** Word-by-word German→Chinese gloss (like a 句子岛 literal). AI-pregenerated
+   *  into the source JSON; null until that pass has run. */
+  literal: string | null;
   // derived (denormalised for indexing/filtering):
   day: number; // 1–6 (D1–D6)
   region: QuizRegion;

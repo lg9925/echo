@@ -29,6 +29,7 @@ interface RawQuestion {
   question_zh: string;
   options: QuizOption[];
   study?: QuizStudy | null;
+  literal?: string | null;
 }
 
 interface RawBank {
@@ -57,6 +58,7 @@ function toQuizQuestion(raw: RawQuestion): QuizQuestion {
     question_zh: raw.question_zh,
     options: raw.options,
     study,
+    literal: raw.literal ?? null,
     day: dayForId(raw.id),
     region: regionForQuestion(raw.id, raw.category),
     tags: study?.tags ?? [],

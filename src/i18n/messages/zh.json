@@ -314,6 +314,19 @@
     "nrwBadge": "北威州",
     "showChinese": "显示中文",
     "zhOn": "中文 开",
-    "zhOff": "中文 关"
+    "zhOff": "中文 关",
+    "star": "收藏",
+    "unstar": "取消收藏",
+    "studyListTitle": "背诵清单",
+    "studyListCount": "已收藏 {n} 题",
+    "studyListEmpty": "还没有收藏。练习时点 ☆ 把要背的题收进来。",
+    "practiceThis": "练这道",
+    "practiceAllStarred": "练全部收藏",
+    "tagHelpTitle": "技巧标签说明",
+    "tagHelp_negation": "题干有 nicht / kein / keine → 选那个「不合群/坏的」答案，逻辑是反的。",
+    "tagHelp_number": "答案是数字/年份/年龄/百分比 → 死记数字锚点。",
+    "tagHelp_values": "答案在讲自由/民主/平等/人的尊严 → 拿不准时优先选这类。",
+    "tagHelp_image": "看图选编号，纯视觉记忆，必拿分。",
+    "tagHelp_matching": "普通题，靠题干锚点 ↔ 答案锚点配对。"
   }
 }

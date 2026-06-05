@@ -314,6 +314,19 @@
     "nrwBadge": "NRW",
     "showChinese": "Show Chinese",
     "zhOn": "中文 on",
-    "zhOff": "中文 off"
+    "zhOff": "中文 off",
+    "star": "Save to list",
+    "unstar": "Remove from list",
+    "studyListTitle": "Study list",
+    "studyListCount": "{n} saved",
+    "studyListEmpty": "Nothing saved yet. Tap ☆ while practising to collect questions to memorise.",
+    "practiceThis": "Practise this",
+    "practiceAllStarred": "Practise all saved",
+    "tagHelpTitle": "Skill-tag guide",
+    "tagHelp_negation": "Stem has nicht / kein / keine → pick the 'odd/bad' answer; the logic is inverted.",
+    "tagHelp_number": "Answer is a number/year/age/percentage → memorise the number anchor.",
+    "tagHelp_values": "Answer is about freedom/democracy/equality/human dignity → favour these when unsure.",
+    "tagHelp_image": "Pick by image number — pure visual memory, easy points.",
+    "tagHelp_matching": "Ordinary question — match stem anchor ↔ answer anchor."
   }
 }

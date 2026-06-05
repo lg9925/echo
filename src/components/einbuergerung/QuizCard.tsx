@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import { getQuizProgress, setQuizStar } from "@/lib/db";
 import { speak } from "@/lib/tts";
 import { targetBcp47 } from "@/lib/lang";
 import { shuffle } from "@/lib/einbuergerung/exam";
@@ -39,6 +40,23 @@ export function QuizCard({
   const options = useMemo(() => shuffle(question.options), [question.options]);
   const [picked, setPicked] = useState<QuizOption | null>(null);
   const [tappedReveal, setTappedReveal] = useState(false);
+  const [starred, setStarred] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    void getQuizProgress(question.id).then((p) => {
+      if (!cancelled) setStarred(p?.starred === 1);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [question.id]);
+
+  function toggleStar() {
+    const next = !starred;
+    setStarred(next);
+    void setQuizStar(question.id, next);
+  }
 
   const answered = picked !== null;
   const targetLang = targetBcp47("de");
@@ -56,8 +74,8 @@ export function QuizCard({
 
   return (
     <section className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-6 space-y-5 bg-white dark:bg-zinc-950">
-      {/* tags / region badges */}
-      {(question.tags.length > 0 || question.region === "nrw") && (
+      {/* tags / region badges + collect-to-study-list star */}
+      <div className="flex items-start justify-between gap-2">
         <div className="flex flex-wrap gap-1.5">
           {question.region === "nrw" && (
             <span className="rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 px-2 py-0.5 text-xs">
@@ -73,7 +91,19 @@ export function QuizCard({
             </span>
           ))}
         </div>
-      )}
+        <button
+          type="button"
+          onClick={toggleStar}
+          aria-pressed={starred}
+          aria-label={t(starred ? "unstar" : "star")}
+          title={t(starred ? "unstar" : "star")}
+          className={`shrink-0 text-lg leading-none ${
+            starred ? "text-amber-500" : "text-zinc-300 dark:text-zinc-600 hover:text-amber-400"
+          }`}
+        >
+          {starred ? "★" : "☆"}
+        </button>
+      </div>
 
       {/* question — German tappable word-by-word, whole-question speaker */}
       <div className="space-y-2">
@@ -95,7 +125,14 @@ export function QuizCard({
           </button>
         </div>
         {zhVisible ? (
-          <p className="text-sm text-zinc-500">{question.question_zh}</p>
+          <>
+            <p className="text-sm text-zinc-500">{question.question_zh}</p>
+            {question.literal && (
+              <p className="text-xs text-zinc-400 leading-relaxed">
+                {question.literal}
+              </p>
+            )}
+          </>
         ) : (
           <button
             type="button"
