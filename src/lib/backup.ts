@@ -22,6 +22,8 @@ import type { LearnerProfile } from "./api/contracts";
 import type {
   InboxItem,
   Island,
+  QuizProgress,
+  QuizQuestion,
   ReviewState,
   SeedMeta,
   Sentence,
@@ -42,6 +44,10 @@ export interface BackupFile {
     meta: SeedMeta[];
     inbox: InboxItem[];
     vocab: VocabEntry[];
+    // 入籍考试 quiz: questions reload from seed, but quizProgress (stars + stats)
+    // is user data with no other source — both travel so a restore is complete.
+    quizQuestions: QuizQuestion[];
+    quizProgress: QuizProgress[];
     profiles: Record<string, LearnerProfile>;
     playerSettings: PlayerSettings | null;
   };
@@ -54,6 +60,8 @@ export interface ImportSummary {
   meta: number;
   inbox: number;
   vocab: number;
+  quizQuestions: number;
+  quizProgress: number;
   profiles: number;
   playerSettings: boolean;
 }
@@ -74,14 +82,17 @@ function collectProfiles(): Record<string, LearnerProfile> {
 /** Read every table (all languages) + player settings into a backup object. */
 export async function exportBackup(): Promise<BackupFile> {
   const db = getDb();
-  const [islands, sentences, reviews, meta, inbox, vocab] = await Promise.all([
-    db.islands.toArray(),
-    db.sentences.toArray(),
-    db.reviews.toArray(),
-    db.meta.toArray(),
-    db.inbox.toArray(),
-    db.vocab.toArray(),
-  ]);
+  const [islands, sentences, reviews, meta, inbox, vocab, quizQuestions, quizProgress] =
+    await Promise.all([
+      db.islands.toArray(),
+      db.sentences.toArray(),
+      db.reviews.toArray(),
+      db.meta.toArray(),
+      db.inbox.toArray(),
+      db.vocab.toArray(),
+      db.quizQuestions.toArray(),
+      db.quizProgress.toArray(),
+    ]);
   return {
     format: BACKUP_FORMAT,
     version: BACKUP_VERSION,
@@ -93,6 +104,8 @@ export async function exportBackup(): Promise<BackupFile> {
       meta,
       inbox,
       vocab,
+      quizQuestions,
+      quizProgress,
       profiles: collectProfiles(),
       playerSettings: loadPlayerSettings(),
     },
@@ -144,6 +157,9 @@ export function parseBackupFile(text: string): BackupFile {
   }
   // vocab was added later — older backups won't have it; default to empty.
   if (!Array.isArray(d.vocab)) d.vocab = [];
+  // quiz tables added later too — default to empty for older backups.
+  if (!Array.isArray(d.quizQuestions)) d.quizQuestions = [];
+  if (!Array.isArray(d.quizProgress)) d.quizProgress = [];
   // profiles added later too — default to none.
   if (typeof d.profiles !== "object" || d.profiles === null) d.profiles = {};
   return obj as BackupFile;
@@ -156,12 +172,31 @@ export function parseBackupFile(text: string): BackupFile {
  */
 export async function importBackup(file: BackupFile): Promise<ImportSummary> {
   const db = getDb();
-  const { islands, sentences, reviews, meta, inbox, vocab, profiles, playerSettings } =
-    file.data;
+  const {
+    islands,
+    sentences,
+    reviews,
+    meta,
+    inbox,
+    vocab,
+    quizQuestions,
+    quizProgress,
+    profiles,
+    playerSettings,
+  } = file.data;
 
   await db.transaction(
     "rw",
-    [db.islands, db.sentences, db.reviews, db.meta, db.inbox, db.vocab],
+    [
+      db.islands,
+      db.sentences,
+      db.reviews,
+      db.meta,
+      db.inbox,
+      db.vocab,
+      db.quizQuestions,
+      db.quizProgress,
+    ],
     async () => {
       await db.islands.bulkPut(islands);
       await db.sentences.bulkPut(sentences);
@@ -169,6 +204,8 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
       await db.meta.bulkPut(meta);
       await db.inbox.bulkPut(inbox);
       await db.vocab.bulkPut(vocab ?? []);
+      await db.quizQuestions.bulkPut(quizQuestions ?? []);
+      await db.quizProgress.bulkPut(quizProgress ?? []);
     },
   );
 
@@ -190,6 +227,8 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     meta: meta.length,
     inbox: inbox.length,
     vocab: (vocab ?? []).length,
+    quizQuestions: (quizQuestions ?? []).length,
+    quizProgress: (quizProgress ?? []).length,
     profiles: profileEntries.length,
     playerSettings: appliedSettings,
   };

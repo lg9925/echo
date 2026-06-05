@@ -789,7 +789,7 @@
     {
       "id": 21,
       "category": "政治·象征",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/021.png",
+      "image": "/seed/einbuergerung/img/021.png",
       "question_de": "Welches ist das Wappen der Bundesrepublik Deutschland?",
       "question_zh": "哪个是德国国徽？",
       "options": [
@@ -2090,7 +2090,7 @@
     {
       "id": 55,
       "category": "政治·国家机关",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/055.png",
+      "image": "/seed/einbuergerung/img/055.png",
       "question_de": "Was zeigt dieses Bild?",
       "question_zh": "这张图是？",
       "options": [
@@ -2662,7 +2662,7 @@
     {
       "id": 70,
       "category": "政治·国家机关",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/070.png",
+      "image": "/seed/einbuergerung/img/070.png",
       "question_de": "Was gehört zu den Aufgaben des Bundespräsidenten?",
       "question_zh": "联邦总统的任务之一是？",
       "options": [
@@ -4944,7 +4944,7 @@
     {
       "id": 130,
       "category": "政治·选举",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/130.png",
+      "image": "/seed/einbuergerung/img/130.png",
       "question_de": "Welcher Stimmzettel wäre bei einer Bundestagswahl gültig?",
       "question_zh": "哪张选票有效？",
       "options": [
@@ -6694,7 +6694,7 @@
     {
       "id": 176,
       "category": "历史·战后占领",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/176.png",
+      "image": "/seed/einbuergerung/img/176.png",
       "question_de": "Wie waren die Besatzungszonen nach 1945 verteilt?",
       "question_zh": "占领区分布？",
       "options": [
@@ -6884,7 +6884,7 @@
     {
       "id": 181,
       "category": "历史·犹太/责任",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/181.png",
+      "image": "/seed/einbuergerung/img/181.png",
       "question_de": "Was wollte Willy Brandt mit seinem Kniefall 1970 in Warschau ausdrücken?",
       "question_zh": "勃兰特1970华沙下跪表达？",
       "options": [
@@ -7112,7 +7112,7 @@
     {
       "id": 187,
       "category": "历史·东德分裂",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/187.png",
+      "image": "/seed/einbuergerung/img/187.png",
       "question_de": "Welcher deutsche Staat hatte eine Flagge mit Hammer, Zirkel und Ährenkranz?",
       "question_zh": "哪国旗有锤子圆规麦穗？",
       "options": [
@@ -7948,7 +7948,7 @@
     {
       "id": 209,
       "category": "历史·东德分裂",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/209.png",
+      "image": "/seed/einbuergerung/img/209.png",
       "question_de": "Welches war das Wappen der DDR?",
       "question_zh": "哪个是东德国徽？",
       "options": [
@@ -8214,7 +8214,7 @@
     {
       "id": 216,
       "category": "政治·象征",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/216.png",
+      "image": "/seed/einbuergerung/img/216.png",
       "question_de": "Welches Symbol ist im Plenarsaal des Bundestages zu sehen?",
       "question_zh": "联邦议院全会厅的标志？",
       "options": [
@@ -8594,7 +8594,7 @@
     {
       "id": 226,
       "category": "政治·欧盟邻国",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/226.png",
+      "image": "/seed/einbuergerung/img/226.png",
       "question_de": "Welche ist die Flagge der Europäischen Union?",
       "question_zh": "哪个是欧盟旗？",
       "options": [
@@ -8936,7 +8936,7 @@
     {
       "id": 235,
       "category": "历史·犹太/责任",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/235.png",
+      "image": "/seed/einbuergerung/img/235.png",
       "question_de": "Mitterrand und Kohl in Verdun — welches EU-Ziel wird deutlich?",
       "question_zh": "密特朗与科尔在凡尔登体现欧盟何目标？",
       "options": [
@@ -11453,7 +11453,7 @@
     {
       "id": 391,
       "category": "北威州",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/391.png",
+      "image": "/seed/einbuergerung/img/391.png",
       "question_de": "Welches Wappen gehört zum Bundesland Nordrhein-Westfalen?",
       "question_zh": "哪个是北威州州徽？",
       "options": [
@@ -11719,7 +11719,7 @@
     {
       "id": 398,
       "category": "北威州",
-      "image": "https://www.einbuergerungstest-online.de/img/fragen/398.png",
+      "image": "/seed/einbuergerung/img/398.png",
       "question_de": "Welches Bundesland ist Nordrhein-Westfalen?",
       "question_zh": "哪个是北威州（地图）？",
       "options": [
