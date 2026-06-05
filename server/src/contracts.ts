@@ -223,6 +223,9 @@ export interface RoutingTaskState {
   maxTokens: number;
   /** true when a runtime override is set (vs env/code default). */
   overridden: boolean;
+  /** The raw override (or null). `model: null` = "use the provider default"
+   *  (resolved live), so it follows catalog updates instead of pinning. */
+  override: { provider: LlmProviderName | null; model: string | null } | null;
 }
 
 export interface RoutingProviderInfo {

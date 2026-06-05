@@ -351,26 +351,36 @@ function RoutingRow({
 }) {
   const t = useTranslations("settings");
   const CUSTOM = "__custom__";
+  const DEFAULT = "__default__";
+  // "default mode" = a provider override with no pinned model → resolves to the
+  // provider's recommended default live (so it follows catalog updates). model
+  // state of "" represents this; a non-empty string is a pinned model id.
+  const startDefault = !!(
+    task.override &&
+    task.override.provider &&
+    !task.override.model
+  );
   const [provider, setProvider] = useState(task.provider);
-  const [model, setModel] = useState(task.model);
+  const [model, setModel] = useState(startDefault ? "" : task.model);
   const [custom, setCustom] = useState(false);
   const [busy, setBusy] = useState(false);
 
-  const dirty = provider !== task.provider || model !== task.model;
+  const original = startDefault ? "" : task.model;
+  const dirty = provider !== task.provider || model !== original;
 
-  // Models to offer for the chosen provider (+ the current one, so an env/custom
-  // value is never hidden). Switching provider snaps the model to that
-  // provider's default — so the user never types a model string they'd have to guess.
+  // Models to offer for the chosen provider (+ the current pinned one, so an
+  // env/custom value is never hidden).
   const current = providers.find((p) => p.provider === provider);
   const modelOptions = current
-    ? [...new Set([...current.models, model].filter(Boolean))]
-    : [model].filter(Boolean);
+    ? [...new Set([...current.models, ...(model ? [model] : [])])]
+    : model
+      ? [model]
+      : [];
 
   function changeProvider(next: typeof provider) {
     setProvider(next);
     setCustom(false);
-    const def = providers.find((p) => p.provider === next)?.models[0];
-    if (def) setModel(def);
+    setModel(""); // switching provider → use that provider's default
   }
 
   async function apply() {
@@ -411,16 +421,21 @@ function RoutingRow({
         ))}
       </select>
       <select
-        value={custom ? CUSTOM : model}
+        value={custom ? CUSTOM : model === "" ? DEFAULT : model}
         onChange={(e) => {
-          if (e.target.value === CUSTOM) setCustom(true);
-          else {
+          const v = e.target.value;
+          if (v === CUSTOM) setCustom(true);
+          else if (v === DEFAULT) {
             setCustom(false);
-            setModel(e.target.value);
+            setModel("");
+          } else {
+            setCustom(false);
+            setModel(v);
           }
         }}
         className="min-w-0 flex-1 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs font-mono"
       >
+        <option value={DEFAULT}>{t("routingDefaultModel")}</option>
         {modelOptions.map((m) => (
           <option key={m} value={m}>
             {m}
