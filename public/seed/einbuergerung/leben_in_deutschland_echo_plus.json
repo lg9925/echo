@@ -50,7 +50,8 @@
         {
           "de": "hier Meinungsfreiheit gilt.",
           "zh": "这里有言论自由",
-          "correct": true
+          "correct": true,
+          "literal": "hier(这里) Meinungsfreiheit(言论自由) gilt(适用)。"
         }
       ],
       "study": {
@@ -78,7 +79,8 @@
         {
           "de": "Religionsunterricht",
           "zh": "宗教课",
-          "correct": true
+          "correct": true,
+          "literal": "Religionsunterricht(宗教课)"
         },
         {
           "de": "Politikunterricht",
@@ -111,7 +113,8 @@
         {
           "de": "Alle Einwohner/innen und der Staat müssen sich an die Gesetze halten.",
           "zh": "所有居民和国家都须守法",
-          "correct": true
+          "correct": true,
+          "literal": "Alle(所有) Einwohner/innen(居民们) und(和) der(定冠词) Staat(国家) müssen(必须) sich(自身) an(遵照) die(定冠词) Gesetze(法律) halten(遵守)。"
         },
         {
           "de": "Der Staat muss sich nicht an die Gesetze halten.",
@@ -159,7 +162,8 @@
         {
           "de": "Meinungsfreiheit",
           "zh": "言论自由",
-          "correct": true
+          "correct": true,
+          "literal": "Meinungsfreiheit(言论自由)"
         },
         {
           "de": "Selbstjustiz",
@@ -192,7 +196,8 @@
         {
           "de": "Der Wähler darf nicht beeinflusst oder gezwungen werden und keine Nachteile haben.",
           "zh": "选民不受影响不被强迫不受损",
-          "correct": true
+          "correct": true,
+          "literal": "Der(定冠词) Wähler(选民) darf(被允许) nicht(不) beeinflusst(被影响) oder(或) gezwungen(被强迫) werden(构成被动) und(并且) keine(任何) Nachteile(不利) haben(遭受)。"
         },
         {
           "de": "Nur Personen ohne Gefängnis dürfen wählen.",
@@ -240,7 +245,8 @@
         {
           "de": "Grundgesetz",
           "zh": "基本法",
-          "correct": true
+          "correct": true,
+          "literal": "Grundgesetz(基本法)"
         }
       ],
       "study": {
@@ -263,7 +269,8 @@
         {
           "de": "Glaubens- und Gewissensfreiheit",
           "zh": "信仰和良心自由",
-          "correct": true
+          "correct": true,
+          "literal": "Glaubens-(信仰-) und(和) Gewissensfreiheit(良心自由)"
         },
         {
           "de": "Unterhaltung",
@@ -306,7 +313,8 @@
         {
           "de": "Alle sollen gleich viel Geld haben.",
           "zh": "人人应有等量金钱",
-          "correct": true
+          "correct": true,
+          "literal": "Alle(所有人) sollen(应该) gleich(同样) viel(多) Geld(钱) haben(拥有)。"
         },
         {
           "de": "Jeder Mensch darf seine Meinung sagen.",
@@ -350,7 +358,8 @@
         {
           "de": "Asyl",
           "zh": "庇护",
-          "correct": true
+          "correct": true,
+          "literal": "Asyl(庇护/避难)"
         },
         {
           "de": "Meinungsfreiheit",
@@ -393,7 +402,8 @@
         {
           "de": "die Geldstrafe",
           "zh": "罚款",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Geldstrafe(罚款)"
         }
       ],
       "study": {
@@ -416,7 +426,8 @@
         {
           "de": "Grundgesetz",
           "zh": "基本法",
-          "correct": true
+          "correct": true,
+          "literal": "Grundgesetz(基本法)"
         },
         {
           "de": "Bundesverfassung",
@@ -464,7 +475,8 @@
         {
           "de": "Nein, denn die Pressefreiheit ist ein Grundrecht.",
           "zh": "否，新闻自由是基本权利不可废",
-          "correct": true
+          "correct": true,
+          "literal": "Nein(不), denn(因为) die(定冠词) Pressefreiheit(新闻自由) ist(是) ein(不定冠词) Grundrecht(基本权利)."
         },
         {
           "de": "Nein, nur der Bundesrat kann das.",
@@ -497,7 +509,8 @@
         {
           "de": "alle Abgeordneten, die nicht zur Regierungspartei gehören.",
           "zh": "所有不属执政党的议员",
-          "correct": true
+          "correct": true,
+          "literal": "alle(所有的) Abgeordneten(议员们), die(那些) nicht(不) zur(于该/zu+der的缩合) Regierungspartei(执政党) gehören(属于)。"
         },
         {
           "de": "die Fraktion mit den meisten Abgeordneten.",
@@ -535,7 +548,8 @@
         {
           "de": "meine Meinung im Internet äußern kann.",
           "zh": "可在网上表达意见",
-          "correct": true
+          "correct": true,
+          "literal": "meine(我的) Meinung(意见) im(在) Internet(互联网上) äußern(表达／发表) kann(能够)。"
         },
         {
           "de": "Nazi-, Hamas- oder IS-Symbole tragen darf.",
@@ -573,7 +587,8 @@
         {
           "de": "Zwangsarbeit",
           "zh": "强迫劳动",
-          "correct": true
+          "correct": true,
+          "literal": "Zwangsarbeit(强制劳动)"
         },
         {
           "de": "freie Berufswahl",
@@ -606,7 +621,8 @@
         {
           "de": "bei der öffentlichen Verbreitung falscher Behauptungen über einzelne Personen",
           "zh": "公开散布对个人的不实指控时",
-          "correct": true
+          "correct": true,
+          "literal": "bei(在……情况下) der(定冠词) öffentlichen(公开的) Verbreitung(传播) falscher(虚假的) Behauptungen(断言) über(关于) einzelne(个别) Personen(人)"
         },
         {
           "de": "bei Meinungen über die Bundesregierung",
@@ -659,7 +675,8 @@
         {
           "de": "Ungleichbehandlung der Bürger durch den Staat.",
           "zh": "国家对公民的不平等对待",
-          "correct": true
+          "correct": true,
+          "literal": "Ungleichbehandlung(对公民的不平等对待) der(定冠词) Bürger(公民) durch(通过/由) den(定冠词) Staat(国家).（.）"
         }
       ],
       "study": {
@@ -682,7 +699,8 @@
         {
           "de": "die Unantastbarkeit der Menschenwürde",
           "zh": "人的尊严不可侵犯",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Unantastbarkeit(不可侵犯性) der(……的) Menschenwürde(人的尊严)"
         },
         {
           "de": "das Recht auf Leben",
@@ -720,7 +738,8 @@
         {
           "de": "Man darf sich seinen Wohnort selbst aussuchen.",
           "zh": "可自行选择居住地",
-          "correct": true
+          "correct": true,
+          "literal": "Man(人/一个人) darf(可以) sich(自己) seinen(自己的) Wohnort(居住地) selbst(亲自/自行) aussuchen(挑选/选择)."
         },
         {
           "de": "Man kann seinen Beruf wechseln.",
@@ -773,7 +792,8 @@
         {
           "de": "verfassungswidrig.",
           "zh": "违宪的",
-          "correct": true
+          "correct": true,
+          "literal": "verfassungswidrig(违宪的)。"
         }
       ],
       "study": {
@@ -796,7 +816,8 @@
         {
           "de": "1 (Adler auf gelbem Schild)",
           "zh": "1 黄盾单头鹰",
-          "correct": true
+          "correct": true,
+          "literal": "1(选项1) ((（) Adler(鹰) auf(在……上) gelbem(黄色的) Schild(盾牌) )(）)"
         },
         {
           "de": "2",
@@ -844,7 +865,8 @@
         {
           "de": "Republik",
           "zh": "共和国",
-          "correct": true
+          "correct": true,
+          "literal": "Republik(共和国)"
         },
         {
           "de": "Fürstentum",
@@ -872,7 +894,8 @@
         {
           "de": "bei einer Firma oder Behörde beschäftigt.",
           "zh": "受雇于公司或机关",
-          "correct": true
+          "correct": true,
+          "literal": "bei(在) einer(一个，不定冠词阴性第三格) Firma(公司) oder(或者) Behörde(政府机关) beschäftigt(受雇/就职)."
         },
         {
           "de": "in kleinen Familienunternehmen beschäftigt.",
@@ -920,7 +943,8 @@
         {
           "de": "16",
           "zh": "16",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "17",
@@ -953,7 +977,8 @@
         {
           "de": "Elsass-Lothringen",
           "zh": "阿尔萨斯-洛林",
-          "correct": true
+          "correct": true,
+          "literal": "Elsass(阿尔萨斯)-Lothringen(洛林)"
         },
         {
           "de": "Mecklenburg-Vorpommern",
@@ -992,7 +1017,8 @@
         {
           "de": "ein demokratischer und sozialer Bundesstaat.",
           "zh": "民主、社会的联邦制国家",
-          "correct": true
+          "correct": true,
+          "literal": "ein(一个) demokratischer(民主的) und(和) sozialer(社会的) Bundesstaat(联邦国家)."
         },
         {
           "de": "eine kapitalistische und soziale Monarchie.",
@@ -1030,7 +1056,8 @@
         {
           "de": "ein Bundesstaat.",
           "zh": "联邦制国家",
-          "correct": true
+          "correct": true,
+          "literal": "ein(一个) Bundesstaat(联邦州).（句号）"
         },
         {
           "de": "eine Diktatur.",
@@ -1073,7 +1100,8 @@
         {
           "de": "das wahlberechtigte Volk",
           "zh": "有选举权的人民",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) wahlberechtigte(有选举权的) Volk(人民／民众)"
         },
         {
           "de": "die Verwaltung",
@@ -1106,7 +1134,8 @@
         {
           "de": "Adler",
           "zh": "鹰",
-          "correct": true
+          "correct": true,
+          "literal": "Adler(老鹰)"
         },
         {
           "de": "Bär",
@@ -1144,7 +1173,8 @@
         {
           "de": "Pressezensur",
           "zh": "新闻审查",
-          "correct": true
+          "correct": true,
+          "literal": "Pressezensur(新闻审查)"
         },
         {
           "de": "Meinungsfreiheit",
@@ -1183,7 +1213,8 @@
         {
           "de": "Koalition.",
           "zh": "执政联盟",
-          "correct": true
+          "correct": true,
+          "literal": "Koalition(联合执政党／执政联盟)。"
         },
         {
           "de": "Ministerium.",
@@ -1226,7 +1257,8 @@
         {
           "de": "Presse",
           "zh": "新闻界",
-          "correct": true
+          "correct": true,
+          "literal": "Presse(新闻界／媒体)"
         },
         {
           "de": "Rechtsprechung",
@@ -1255,7 +1287,8 @@
         {
           "de": "sind Staat und Religionsgemeinschaften voneinander getrennt.",
           "zh": "政教分离",
-          "correct": true
+          "correct": true,
+          "literal": "sind(是) Staat(国家) und(和) Religionsgemeinschaften(宗教团体) voneinander(相互) getrennt(分离的)。"
         },
         {
           "de": "bilden die Religionsgemeinschaften den Staat.",
@@ -1303,7 +1336,8 @@
         {
           "de": "eine Monarchie",
           "zh": "君主国",
-          "correct": true
+          "correct": true,
+          "literal": "eine(一个/不定冠词) Monarchie(君主制)"
         },
         {
           "de": "ein Sozialstaat",
@@ -1337,7 +1371,8 @@
         {
           "de": "Sozialabgaben",
           "zh": "社会保险费",
-          "correct": true
+          "correct": true,
+          "literal": "Sozialabgaben(社会保险费/社会缴款)"
         },
         {
           "de": "Spendengeldern",
@@ -1370,7 +1405,8 @@
         {
           "de": "die Krankenversicherung",
           "zh": "医疗保险",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Krankenversicherung(医疗保险)"
         },
         {
           "de": "die Autoversicherung",
@@ -1423,7 +1459,8 @@
         {
           "de": "Ministerpräsident/in",
           "zh": "州长",
-          "correct": true
+          "correct": true,
+          "literal": "Ministerpräsident/in(州长／州长女性形式，即德国某联邦州的政府首脑)"
         }
       ],
       "study": {
@@ -1451,7 +1488,8 @@
         {
           "de": "Bundesstaat.",
           "zh": "联邦制国家",
-          "correct": true
+          "correct": true,
+          "literal": "Bundesstaat(联邦州)."
         },
         {
           "de": "Staatenbund.",
@@ -1499,7 +1537,8 @@
         {
           "de": "eine eigene Regierung",
           "zh": "自己的政府",
-          "correct": true
+          "correct": true,
+          "literal": "eine(一个) eigene(自己的／独立的) Regierung(政府)"
         }
       ],
       "study": {
@@ -1527,7 +1566,8 @@
         {
           "de": "Einigkeit und Recht und Freiheit …",
           "zh": "统一、正义与自由",
-          "correct": true
+          "correct": true,
+          "literal": "Einigkeit(统一) und(和) Recht(法治) und(和) Freiheit(自由) …(……)"
         },
         {
           "de": "Freude schöner Götterfunken …",
@@ -1560,7 +1600,8 @@
         {
           "de": "weil dadurch die unterschiedlichen Meinungen der Bürger vertreten werden",
           "zh": "因可代表公民不同意见",
-          "correct": true
+          "correct": true,
+          "literal": "weil(因为) dadurch(通过这种方式) die(定冠词) unterschiedlichen(不同的) Meinungen(意见) der(定冠词) Bürger(公民) vertreten(被代表) werden(被)"
         },
         {
           "de": "damit Bestechung begrenzt wird",
@@ -1603,7 +1644,8 @@
         {
           "de": "das Parlament",
           "zh": "议会",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Parlament(议会)"
         },
         {
           "de": "die Gerichte",
@@ -1641,7 +1683,8 @@
         {
           "de": "wenn sie gegen die Verfassung kämpft",
           "zh": "反对宪法时",
-          "correct": true
+          "correct": true,
+          "literal": "wenn(如果/当) sie(她/它) gegen(反对) die(定冠词) Verfassung(宪法) kämpft(斗争/抗争)"
         },
         {
           "de": "wenn sie Kritik äußert",
@@ -1679,7 +1722,8 @@
         {
           "de": "den Bundespräsidenten/in",
           "zh": "联邦总统",
-          "correct": true
+          "correct": true,
+          "literal": "den(定冠词·宾格) Bundespräsidenten/in(联邦总统〔男性/女性〕)"
         },
         {
           "de": "Landtagsabgeordnete",
@@ -1713,7 +1757,8 @@
         {
           "de": "Sozialversicherung",
           "zh": "社会保险",
-          "correct": true
+          "correct": true,
+          "literal": "Sozialversicherung(社会保险)"
         },
         {
           "de": "Unfallversicherung",
@@ -1751,7 +1796,8 @@
         {
           "de": "Er baut Straßen und Schulen.",
           "zh": "修建道路和学校",
-          "correct": true
+          "correct": true,
+          "literal": "Er(他) baut(建造) Straßen(道路) und(和) Schulen(学校)。(句号)"
         },
         {
           "de": "Er verkauft Lebensmittel und Kleidung.",
@@ -1789,7 +1835,8 @@
         {
           "de": "Er bezahlt für alle Urlaubsreisen.",
           "zh": "为所有人付度假旅行",
-          "correct": true
+          "correct": true,
+          "literal": "Er(他) bezahlt(支付) für(为) alle(所有的) Urlaubsreisen(度假旅行)。(。)"
         },
         {
           "de": "Er zahlt Kindergeld.",
@@ -1838,7 +1885,8 @@
         {
           "de": "die Bürgerversammlung",
           "zh": "公民大会",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Bürgerversammlung(市民大会／公民集会)"
         },
         {
           "de": "die Regierung",
@@ -1872,7 +1920,8 @@
         {
           "de": "die Bundesländer",
           "zh": "各州",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Bundesländer(联邦州)"
         },
         {
           "de": "das Familienministerium",
@@ -1910,7 +1959,8 @@
         {
           "de": "soziale Marktwirtschaft.",
           "zh": "社会市场经济",
-          "correct": true
+          "correct": true,
+          "literal": "soziale(社会性的) Marktwirtschaft(市场经济)。"
         },
         {
           "de": "gelenkte Zentralwirtschaft.",
@@ -1953,7 +2003,8 @@
         {
           "de": "Menschen werden von einer Privatpolizei ohne Grund verhaftet.",
           "zh": "被私人警察无故逮捕",
-          "correct": true
+          "correct": true,
+          "literal": "Menschen(人们) werden(被) von(由) einer(一支) Privatpolizei(私人警察) ohne(没有) Grund(理由) verhaftet(逮捕)。"
         },
         {
           "de": "Jemand begeht ein Verbrechen und wird verhaftet.",
@@ -1982,7 +2033,8 @@
         {
           "de": "Volke aus.",
           "zh": "人民",
-          "correct": true
+          "correct": true,
+          "literal": "Volke(人民) aus(而出)。"
         },
         {
           "de": "Bundestag aus.",
@@ -2035,7 +2087,8 @@
         {
           "de": "Der Staat muss die Gesetze einhalten.",
           "zh": "国家必须守法",
-          "correct": true
+          "correct": true,
+          "literal": "Der(定冠词) Staat(国家) muss(必须) die(定冠词) Gesetze(法律) einhalten(遵守)."
         }
       ],
       "study": {
@@ -2073,7 +2126,8 @@
         {
           "de": "Direktive",
           "zh": "“指令权”（无此项）",
-          "correct": true
+          "correct": true,
+          "literal": "Direktive(指令／指导方针)"
         }
       ],
       "study": {
@@ -2097,7 +2151,8 @@
         {
           "de": "den Bundestagssitz in Berlin",
           "zh": "柏林联邦议院",
-          "correct": true
+          "correct": true,
+          "literal": "den(定冠词) Bundestagssitz(联邦议院所在地) in(在) Berlin(柏林)"
         },
         {
           "de": "das Bundesverfassungsgericht in Karlsruhe",
@@ -2140,7 +2195,8 @@
         {
           "de": "Ordnungsamt",
           "zh": "秩序局",
-          "correct": true
+          "correct": true,
+          "literal": "Ordnungsamt(市政秩序管理局)"
         },
         {
           "de": "Finanzamt",
@@ -2183,7 +2239,8 @@
         {
           "de": "ein Abgeordneter der stärksten Fraktion",
           "zh": "最大党团的议员",
-          "correct": true
+          "correct": true,
+          "literal": "ein(一个) Abgeordneter(议员) der(属格，……的) stärksten(最大的) Fraktion(议会党团)"
         },
         {
           "de": "ein ehemaliger Bundeskanzler",
@@ -2216,7 +2273,8 @@
         {
           "de": "der Bundespräsident/in",
           "zh": "联邦总统",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Bundespräsident/in(联邦总统［男/女］)"
         },
         {
           "de": "der Bundesratspräsident",
@@ -2264,7 +2322,8 @@
         {
           "de": "vor etwa 1700 Jahren",
           "zh": "约1700年",
-          "correct": true
+          "correct": true,
+          "literal": "vor(在……之前) etwa(大约) 1700(一千七百) Jahren(年前)"
         }
       ],
       "study": {
@@ -2292,7 +2351,8 @@
         {
           "de": "Legislative.",
           "zh": "立法权",
-          "correct": true
+          "correct": true,
+          "literal": "Legislative(立法机关)."
         },
         {
           "de": "Direktive.",
@@ -2340,7 +2400,8 @@
         {
           "de": "Die Staatsgewalt geht vom Volke aus.",
           "zh": "国家权力源于人民",
-          "correct": true
+          "correct": true,
+          "literal": "Die(定冠词) Staatsgewalt(国家权力) geht(出自) vom(从) Volke(人民) aus(出)."
         }
       ],
       "study": {
@@ -2368,7 +2429,8 @@
         {
           "de": "Landtagswahl.",
           "zh": "州议会选举",
-          "correct": true
+          "correct": true,
+          "literal": "Landtagswahl(州议会选举)。"
         },
         {
           "de": "Europawahl.",
@@ -2406,7 +2468,8 @@
         {
           "de": "die Gerichte",
           "zh": "法院",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词/复数) Gerichte(法院)"
         },
         {
           "de": "das Finanzamt",
@@ -2455,7 +2518,8 @@
         {
           "de": "Bund, Länder und Kommunen.",
           "zh": "联邦、州、市镇",
-          "correct": true
+          "correct": true,
+          "literal": "Bund(联邦/中央政府)，(，) Länder(各州) und(和) Kommunen(市镇/地方政府)。(。)"
         }
       ],
       "study": {
@@ -2493,7 +2557,8 @@
         {
           "de": "das Bundeskabinett zu bilden.",
           "zh": "组建内阁",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Bundeskabinett(联邦内阁) zu(不定式标志) bilden(组建)。"
         }
       ],
       "study": {
@@ -2517,7 +2582,8 @@
         {
           "de": "Berlin und München",
           "zh": "柏林和慕尼黑",
-          "correct": true
+          "correct": true,
+          "literal": "Berlin(柏林) und(和) München(慕尼黑)"
         },
         {
           "de": "Hamburg und Essen",
@@ -2570,7 +2636,8 @@
         {
           "de": "Schulpolitik",
           "zh": "教育",
-          "correct": true
+          "correct": true,
+          "literal": "Schulpolitik(学校教育政策)"
         }
       ],
       "study": {
@@ -2608,7 +2675,8 @@
         {
           "de": "weil es nach dem Grundgesetz seine Aufgabe ist",
           "zh": "基本法规定的任务",
-          "correct": true
+          "correct": true,
+          "literal": "weil(因为) es(它) nach(根据) dem(定冠词) Grundgesetz(基本法) seine(它的) Aufgabe(任务) ist(是)"
         }
       ],
       "study": {
@@ -2641,7 +2709,8 @@
         {
           "de": "Gemeinden",
           "zh": "市镇",
-          "correct": true
+          "correct": true,
+          "literal": "Gemeinden(市镇／地方自治体)"
         },
         {
           "de": "Bezirksämter",
@@ -2684,7 +2753,8 @@
         {
           "de": "Er schlägt den Kanzler zur Wahl vor.",
           "zh": "提名总理供选举",
-          "correct": true
+          "correct": true,
+          "literal": "Er(他) schlägt(提名/推荐) den(定冠词，第四格) Kanzler(总理) zur(zum的缩合，到/作为) Wahl(选举) vor(分隔前缀，与schlägt…vor构成\"提名\")."
         }
       ],
       "study": {
@@ -2712,7 +2782,8 @@
         {
           "de": "in Berlin (Bundeskanzleramt und Bundestag)",
           "zh": "柏林（总理府与联邦议院）",
-          "correct": true
+          "correct": true,
+          "literal": "in(在) Berlin(柏林) (（) Bundeskanzleramt(联邦总理府) und(和) Bundestag(联邦议院) )（）"
         },
         {
           "de": "auf Schloss Meseberg",
@@ -2760,7 +2831,8 @@
         {
           "de": "Friedrich Merz",
           "zh": "",
-          "correct": true
+          "correct": true,
+          "literal": "Friedrich(弗里德里希，德国人名) Merz(默茨，姓氏；即德国基民盟政治家弗里德里希·默茨)"
         }
       ],
       "study": {
@@ -2783,7 +2855,8 @@
         {
           "de": "CDU/CSU und AfD.",
           "zh": "",
-          "correct": true
+          "correct": true,
+          "literal": "CDU/CSU(基督教民主联盟／基督教社会联盟) und(和) AfD(德国另类选择党)。"
         },
         {
           "de": "Die Linke und Die Grünen.",
@@ -2831,7 +2904,8 @@
         {
           "de": "Bundestag",
           "zh": "联邦议院",
-          "correct": true
+          "correct": true,
+          "literal": "Bundestag(联邦议院)"
         },
         {
           "de": "Bundesgerichtshof",
@@ -2859,7 +2933,8 @@
         {
           "de": "Frank-Walter Steinmeier",
           "zh": "",
-          "correct": true
+          "correct": true,
+          "literal": "Frank-Walter(弗兰克-瓦尔特（名）) Steinmeier(施泰因迈尔（姓）)"
         },
         {
           "de": "Bärbel Bas",
@@ -2912,7 +2987,8 @@
         {
           "de": "Christlich Demokratische Union",
           "zh": "基督教民主联盟",
-          "correct": true
+          "correct": true,
+          "literal": "Christlich(基督教的) Demokratische(民主的) Union(联盟)"
         }
       ],
       "study": {
@@ -2950,7 +3026,8 @@
         {
           "de": "die deutsche Armee",
           "zh": "德国军队",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) deutsche(德国的) Armee(军队)"
         }
       ],
       "study": {
@@ -2983,7 +3060,8 @@
         {
           "de": "Sozialdemokratische Partei Deutschlands",
           "zh": "德国社会民主党",
-          "correct": true
+          "correct": true,
+          "literal": "Sozialdemokratische(社会民主主义的) Partei(党) Deutschlands(德国的)"
         },
         {
           "de": "Sozialgerechte Partei Deutschlands",
@@ -3026,7 +3104,8 @@
         {
           "de": "Freie Demokratische Partei",
           "zh": "自由民主党",
-          "correct": true
+          "correct": true,
+          "literal": "Freie(自由的) Demokratische(民主的) Partei(党)"
         }
       ],
       "study": {
@@ -3059,7 +3138,8 @@
         {
           "de": "Bundesverfassungsgericht",
           "zh": "联邦宪法法院",
-          "correct": true
+          "correct": true,
+          "literal": "Bundesverfassungsgericht(联邦宪法法院)"
         },
         {
           "de": "Verwaltungsgericht",
@@ -3102,7 +3182,8 @@
         {
           "de": "der Bundestag",
           "zh": "联邦议院",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Bundestag(联邦议院)"
         }
       ],
       "study": {
@@ -3135,7 +3216,8 @@
         {
           "de": "der Bundeskanzler/in",
           "zh": "联邦总理",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Bundeskanzler/in(联邦总理（男性/女性）)"
         },
         {
           "de": "der Bundesratspräsident",
@@ -3173,7 +3255,8 @@
         {
           "de": "der Bundestag",
           "zh": "联邦议院",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Bundestag(联邦议院)"
         },
         {
           "de": "die Bundesregierung",
@@ -3211,7 +3294,8 @@
         {
           "de": "repräsentiert das Land.",
           "zh": "代表国家",
-          "correct": true
+          "correct": true,
+          "literal": "repräsentiert(代表) das(定冠词) Land(国家)."
         },
         {
           "de": "überwacht die Gesetze.",
@@ -3249,7 +3333,8 @@
         {
           "de": "die Regierungsvertreter der Bundesländer",
           "zh": "各州政府代表",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Regierungsvertreter(政府代表) der(各……的) Bundesländer(联邦州)"
         },
         {
           "de": "die Parteimitglieder",
@@ -3277,7 +3362,8 @@
         {
           "de": "die Bundesversammlung",
           "zh": "联邦大会",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Bundesversammlung(联邦大会)"
         },
         {
           "de": "der Bundesrat",
@@ -3320,7 +3406,8 @@
         {
           "de": "der Bundespräsident/in",
           "zh": "联邦总统",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Bundespräsident/in(联邦总统／联邦总统〔女性〕)"
         },
         {
           "de": "der Bundesratspräsident",
@@ -3353,7 +3440,8 @@
         {
           "de": "kontrolliert die Regierung.",
           "zh": "监督政府",
-          "correct": true
+          "correct": true,
+          "literal": "kontrolliert(控制/监督) die(定冠词) Regierung(政府)。"
         },
         {
           "de": "entscheidet, wer Minister wird.",
@@ -3401,7 +3489,8 @@
         {
           "de": "Fraktion",
           "zh": "党团",
-          "correct": true
+          "correct": true,
+          "literal": "Fraktion(议会党团)"
         },
         {
           "de": "Opposition",
@@ -3429,7 +3518,8 @@
         {
           "de": "den Bundesrat.",
           "zh": "联邦参议院",
-          "correct": true
+          "correct": true,
+          "literal": "den(定冠词·宾格) Bundesrat(联邦参议院)。"
         },
         {
           "de": "die Bundesversammlung.",
@@ -3477,7 +3567,8 @@
         {
           "de": "schwieriger, wenn die Mehrheit im Bundesrat verändert wird.",
           "zh": "若改变联邦参议院多数则更难",
-          "correct": true
+          "correct": true,
+          "literal": "schwieriger(更困难), wenn(如果) die(定冠词) Mehrheit(多数席位) im(在……中) Bundesrat(联邦参议院) verändert(被改变) wird(助动词，构成被动)."
         },
         {
           "de": "leichter, bei einem reichen Bundesland.",
@@ -3520,7 +3611,8 @@
         {
           "de": "Christlich Soziale Union",
           "zh": "基督教社会联盟",
-          "correct": true
+          "correct": true,
+          "literal": "Christlich(基督教的) Soziale(社会的) Union(联盟)"
         }
       ],
       "study": {
@@ -3543,7 +3635,8 @@
         {
           "de": "mehr Sitze erhält die Partei im Parlament.",
           "zh": "议会席位越多",
-          "correct": true
+          "correct": true,
+          "literal": "mehr(越多) Sitze(席位) erhält(获得) die(该) Partei(政党) im(在……中) Parlament(议会)。"
         },
         {
           "de": "weniger Erststimmen kann sie haben.",
@@ -3586,7 +3679,8 @@
         {
           "de": "18",
           "zh": "",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "21",
@@ -3624,7 +3718,8 @@
         {
           "de": "Schulpflicht",
           "zh": "义务教育",
-          "correct": true
+          "correct": true,
+          "literal": "Schulpflicht(义务教育)"
         },
         {
           "de": "Schweigepflicht",
@@ -3672,7 +3767,8 @@
         {
           "de": "mit Freiheitsstrafe bis zu fünf Jahren oder Geldstrafe",
           "zh": "最高五年监禁或罚款",
-          "correct": true
+          "correct": true,
+          "literal": "mit(以) Freiheitsstrafe(自由刑) bis(最高) zu(达) fünf(五) Jahren(年) oder(或) Geldstrafe(罚款)"
         }
       ],
       "study": {
@@ -3695,7 +3791,8 @@
         {
           "de": "Sozialversicherung",
           "zh": "社会保险",
-          "correct": true
+          "correct": true,
+          "literal": "Sozialversicherung(社会保险)"
         },
         {
           "de": "Sozialhilfe",
@@ -3733,7 +3830,8 @@
         {
           "de": "kann die Regierung ihre Mehrheit verlieren.",
           "zh": "政府可能失去多数",
-          "correct": true
+          "correct": true,
+          "literal": "kann(可能) die(定冠词) Regierung(政府) ihre(它的) Mehrheit(多数席位) verlieren(失去)。"
         },
         {
           "de": "dürfen sie nicht mehr an Sitzungen teilnehmen.",
@@ -3771,7 +3869,8 @@
         {
           "de": "Arbeitgeber und Arbeitnehmer",
           "zh": "雇主和雇员",
-          "correct": true
+          "correct": true,
+          "literal": "Arbeitgeber(雇主) und(和) Arbeitnehmer(雇员)"
         },
         {
           "de": "nur Arbeitnehmer",
@@ -3814,7 +3913,8 @@
         {
           "de": "die Lebensversicherung",
           "zh": "人寿保险",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Lebensversicherung(人寿保险)"
         },
         {
           "de": "die Arbeitslosenversicherung",
@@ -3853,7 +3953,8 @@
         {
           "de": "Arbeitnehmer und Arbeitnehmerinnen.",
           "zh": "雇员",
-          "correct": true
+          "correct": true,
+          "literal": "Arbeitnehmer(男性受雇者/雇员) und(和) Arbeitnehmerinnen(女性受雇者/雇员)。(。)"
         },
         {
           "de": "Rentner.",
@@ -3891,7 +3992,8 @@
         {
           "de": "Bundesverdienstkreuz.",
           "zh": "联邦十字勋章",
-          "correct": true
+          "correct": true,
+          "literal": "Bundesverdienstkreuz(联邦功勋十字勋章)."
         },
         {
           "de": "Vaterländischen Verdienstorden.",
@@ -3929,7 +4031,8 @@
         {
           "de": "von SPD, FDP und Bündnis 90/Die Grünen",
           "zh": "社民党、自民党、绿党",
-          "correct": true
+          "correct": true,
+          "literal": "von(由/来自) SPD(社会民主党), FDP(自由民主党) und(和) Bündnis(联盟) 90/Die(90/绿党的定冠词) Grünen(绿党)"
         },
         {
           "de": "von CSU, Die Linke und Die Grünen",
@@ -3977,7 +4080,8 @@
         {
           "de": "Sie bekommt ein Kind und der Chef weiß das.",
           "zh": "怀孕生子且老板知情",
-          "correct": true
+          "correct": true,
+          "literal": "Sie(她) bekommt(要生) ein(一个) Kind(孩子) und(而且) der(定冠词) Chef(老板) weiß(知道) das(这件事)。"
         }
       ],
       "study": {
@@ -4016,7 +4120,8 @@
         {
           "de": "Sie zählen die Stimmen nach der Wahl.",
           "zh": "投票结束后清点选票",
-          "correct": true
+          "correct": true,
+          "literal": "Sie(他们) zählen(清点) die(定冠词) Stimmen(选票) nach(在……之后) der(定冠词) Wahl(选举)."
         }
       ],
       "study": {
@@ -4054,7 +4159,8 @@
         {
           "de": "Sie zählen die Stimmen nach der Wahl.",
           "zh": "投票结束后清点选票",
-          "correct": true
+          "correct": true,
+          "literal": "Sie(他们) zählen(统计) die(定冠词) Stimmen(选票) nach(在……之后) der(定冠词) Wahl(选举)。"
         }
       ],
       "study": {
@@ -4082,7 +4188,8 @@
         {
           "de": "4 Jahre",
           "zh": "四年",
-          "correct": true
+          "correct": true,
+          "literal": "4(4) Jahre(年)"
         },
         {
           "de": "6 Jahre",
@@ -4120,7 +4227,8 @@
         {
           "de": "Bürger der BRD und mindestens 18 ist.",
           "zh": "是德国公民且满18岁",
-          "correct": true
+          "correct": true,
+          "literal": "Bürger(公民) der(……的) BRD(联邦德国) und(并且) mindestens(至少) 18(18岁) ist(是)。"
         },
         {
           "de": "seit 3 Jahren in Deutschland lebt.",
@@ -4158,7 +4266,8 @@
         {
           "de": "alle vier Jahre",
           "zh": "每4年",
-          "correct": true
+          "correct": true,
+          "literal": "alle(所有) vier(四) Jahre(年)"
         },
         {
           "de": "alle fünf Jahre",
@@ -4201,7 +4310,8 @@
         {
           "de": "4 Jahre",
           "zh": "四年",
-          "correct": true
+          "correct": true,
+          "literal": "4(4) Jahre(年)"
         },
         {
           "de": "5 Jahre",
@@ -4244,7 +4354,8 @@
         {
           "de": "Der öffentliche Aufruf zur Vernichtung Israels.",
           "zh": "公开煽动消灭以色列",
-          "correct": true
+          "correct": true,
+          "literal": "Der(定冠词) öffentliche(公开的) Aufruf(呼吁) zur(对……的) Vernichtung(消灭) Israels(以色列的)。"
         }
       ],
       "study": {
@@ -4272,7 +4383,8 @@
         {
           "de": "geheim.",
           "zh": "秘密的",
-          "correct": true
+          "correct": true,
+          "literal": "geheim(秘密的)."
         },
         {
           "de": "berufsbezogen.",
@@ -4305,7 +4417,8 @@
         {
           "de": "die meisten Stimmen bekommt.",
           "zh": "获最多选票",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) meisten(最多的) Stimmen(选票) bekommt(获得)."
         },
         {
           "de": "die meisten Männer gewählt haben.",
@@ -4348,7 +4461,8 @@
         {
           "de": "ein Recht.",
           "zh": "一项权利",
-          "correct": true
+          "correct": true,
+          "literal": "ein(一个) Recht(权利)."
         },
         {
           "de": "ein Zwang.",
@@ -4391,7 +4505,8 @@
         {
           "de": "Man kann wählen.",
           "zh": "可以投票",
-          "correct": true
+          "correct": true,
+          "literal": "Man(人们) kann(可以) wählen(选举/投票)。"
         },
         {
           "de": "Man muss zur Auszählung gehen.",
@@ -4434,7 +4549,8 @@
         {
           "de": "aktives Wahlrecht.",
           "zh": "主动选举权",
-          "correct": true
+          "correct": true,
+          "literal": "aktives(主动的) Wahlrecht(选举权)。"
         }
       ],
       "study": {
@@ -4467,7 +4583,8 @@
         {
           "de": "5 %",
           "zh": "5%",
-          "correct": true
+          "correct": true,
+          "literal": "5(5) %(百分之……[数字])"
         },
         {
           "de": "6 %",
@@ -4510,7 +4627,8 @@
         {
           "de": "alle Menschen",
           "zh": "所有人",
-          "correct": true
+          "correct": true,
+          "literal": "alle(所有) Menschen(人)"
         }
       ],
       "study": {
@@ -4543,7 +4661,8 @@
         {
           "de": "Jede Person kann ohne Zwang entscheiden, ob und wen sie wählt.",
           "zh": "可无强迫地决定是否及选谁",
-          "correct": true
+          "correct": true,
+          "literal": "Jede(每个) Person(人) kann(可以) ohne(不受) Zwang(强制) entscheiden(决定), ob(是否) und(以及) wen(选谁) sie(他/她) wählt(投票)."
         },
         {
           "de": "Ich kann frei entscheiden, wo ich wähle.",
@@ -4581,7 +4700,8 @@
         {
           "de": "Mehrheits- und Verhältniswahlrecht.",
           "zh": "多数与比例代表混合制",
-          "correct": true
+          "correct": true,
+          "literal": "Mehrheits-(多数选举制-) und(和) Verhältniswahlrecht(比例选举制)。"
         },
         {
           "de": "allgemeines Männerwahlrecht.",
@@ -4609,7 +4729,8 @@
         {
           "de": "5 %-Hürde.",
           "zh": "5%门槛",
-          "correct": true
+          "correct": true,
+          "literal": "5 %(百分之五) -Hürde(门槛)。"
         },
         {
           "de": "Zulassungsgrenze.",
@@ -4647,7 +4768,8 @@
         {
           "de": "frei, gleich, geheim.",
           "zh": "自由、平等、秘密",
-          "correct": true
+          "correct": true,
+          "literal": "frei(自由的), gleich(平等的), geheim(秘密的)."
         },
         {
           "de": "offen, sicher, frei.",
@@ -4695,7 +4817,8 @@
         {
           "de": "Mindestanteil an Wählerstimmen, um ins Parlament zu kommen",
           "zh": "进议会所需最低得票比例",
-          "correct": true
+          "correct": true,
+          "literal": "Mindestanteil(最低份额) an(的) Wählerstimmen(选票), um(为了) ins(进入) Parlament(议会) zu(不定式标记) kommen(进入)"
         },
         {
           "de": "Anwesenheitskontrolle im Bundesrat",
@@ -4733,7 +4856,8 @@
         {
           "de": "des Parlaments für Deutschland.",
           "zh": "德国的议会",
-          "correct": true
+          "correct": true,
+          "literal": "des(定冠词属格) Parlaments(议会) für(为) Deutschland(德国)。"
         },
         {
           "de": "des Bundespräsidenten.",
@@ -4766,7 +4890,8 @@
         {
           "de": "nach dem Willen der Mehrheit den Wechsel der Regierung zu ermöglichen.",
           "zh": "依多数意愿实现政府更替",
-          "correct": true
+          "correct": true,
+          "literal": "nach(根据) dem(定冠词) Willen(意愿) der(定冠词) Mehrheit(多数) den(定冠词) Wechsel(更替) der(定冠词) Regierung(政府) zu(不定式符) ermöglichen(使成为可能)。"
         },
         {
           "de": "bestehende Gesetze beizubehalten.",
@@ -4799,7 +4924,8 @@
         {
           "de": "eine Wahlbenachrichtigung von der Gemeinde",
           "zh": "市镇的选举通知",
-          "correct": true
+          "correct": true,
+          "literal": "eine(一份) Wahlbenachrichtigung(选举通知书) von(来自) der(定冠词) Gemeinde(市镇/社区)"
         },
         {
           "de": "eine Wahlerlaubnis vom Bundespräsidenten",
@@ -4847,7 +4973,8 @@
         {
           "de": "weil viele kleine Parteien die Regierungsbildung erschweren",
           "zh": "众多小党使组阁困难",
-          "correct": true
+          "correct": true,
+          "literal": "weil(因为) viele(许多) kleine(小的) Parteien(政党) die(定冠词) Regierungsbildung(组建政府) erschweren(使困难)"
         },
         {
           "de": "weil kleine Parteien wenig Geld haben",
@@ -4875,7 +5002,8 @@
         {
           "de": "Abgeordnete.",
           "zh": "议员",
-          "correct": true
+          "correct": true,
+          "literal": "Abgeordnete(议员／代表)。(句号)"
         },
         {
           "de": "Kanzler.",
@@ -4923,7 +5051,8 @@
         {
           "de": "der Bundestag.",
           "zh": "联邦议院",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Bundestag(联邦议院)."
         },
         {
           "de": "der Bundespräsident.",
@@ -4951,7 +5080,8 @@
         {
           "de": "1 (je eine Stimme links und rechts)",
           "zh": "1 左右各一票",
-          "correct": true
+          "correct": true,
+          "literal": "1(1) （(（) je(各) eine(一个) Stimme(票) links(左边) und(和) rechts(右边) ）())"
         },
         {
           "de": "2",
@@ -4999,7 +5129,8 @@
         {
           "de": "das Oberhaupt einer Gemeinde.",
           "zh": "市镇首长",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Oberhaupt(首长) einer(某个,不定冠词阴性第二格) Gemeinde(市镇/社区)."
         },
         {
           "de": "der Vorsitzende einer Partei.",
@@ -5032,7 +5163,8 @@
         {
           "de": "Sie arbeiten freiwillig und unbezahlt in Vereinen.",
           "zh": "在社团自愿无偿工作",
-          "correct": true
+          "correct": true,
+          "literal": "Sie(您/他们) arbeiten(工作/从事活动) freiwillig(自愿地) und(和) unbezahlt(无偿地) in(在) Vereinen(社团/协会中)。"
         },
         {
           "de": "Sie arbeiten in der Bundesregierung.",
@@ -5070,7 +5202,8 @@
         {
           "de": "Man kann durch Briefwahl seine Stimme abgeben.",
           "zh": "可邮寄投票",
-          "correct": true
+          "correct": true,
+          "literal": "Man(人们) kann(可以) durch(通过) Briefwahl(邮寄投票) seine(自己的) Stimme(选票) abgeben(投出/提交)."
         },
         {
           "de": "Man kann telefonisch wählen.",
@@ -5103,7 +5236,8 @@
         {
           "de": "Ich beteilige mich an einer Bürgerinitiative oder gründe selbst eine.",
           "zh": "参与或自建公民倡议",
-          "correct": true
+          "correct": true,
+          "literal": "Ich(我) beteilige(参与) mich(自身) an(参加) einer(一个) Bürgerinitiative(公民倡议组织) oder(或者) gründe(创建) selbst(亲自) eine(一个)。"
         },
         {
           "de": "Ich werde Mitglied in einem Sportverein.",
@@ -5156,7 +5290,8 @@
         {
           "de": "Arbeitnehmer und Arbeitnehmerinnen",
           "zh": "雇员",
-          "correct": true
+          "correct": true,
+          "literal": "Arbeitnehmer(雇员／受雇男性) und(和) Arbeitnehmerinnen(女性雇员)"
         }
       ],
       "study": {
@@ -5184,7 +5319,8 @@
         {
           "de": "ungerechtfertigter Kündigung durch den Chef.",
           "zh": "被老板无理解雇",
-          "correct": true
+          "correct": true,
+          "literal": "ungerechtfertigter(无正当理由的) Kündigung(解雇) durch(由) den(定冠词) Chef(老板)."
         },
         {
           "de": "Problemen mit Nachbarn.",
@@ -5227,7 +5363,8 @@
         {
           "de": "das Arbeitsgericht",
           "zh": "劳动法院",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Arbeitsgericht(劳动法院)"
         },
         {
           "de": "das Amtsgericht",
@@ -5265,7 +5402,8 @@
         {
           "de": "Kündigungsschutzklage erheben",
           "zh": "提起解雇保护诉讼",
-          "correct": true
+          "correct": true,
+          "literal": "Kündigungsschutzklage(解雇保护诉讼) erheben(提起)"
         },
         {
           "de": "den Arbeitgeber bei der Polizei anzeigen",
@@ -5298,7 +5436,8 @@
         {
           "de": "eine Straftat begangen hat und angeklagt wird.",
           "zh": "犯罪并被起诉",
-          "correct": true
+          "correct": true,
+          "literal": "eine(一项) Straftat(刑事罪行) begangen(犯下) hat(已) und(并且) angeklagt(被起诉) wird(正被)。"
         },
         {
           "de": "eine andere Meinung als die Regierung hat.",
@@ -5331,7 +5470,8 @@
         {
           "de": "entscheidet mit Richtern über Schuld und Strafe.",
           "zh": "与法官共同裁决罪责刑罚",
-          "correct": true
+          "correct": true,
+          "literal": "entscheidet(裁决) mit(与) Richtern(法官们) über(关于) Schuld(罪责) und(和) Strafe(刑罚)。"
         },
         {
           "de": "gibt Bürgern rechtlichen Rat.",
@@ -5369,7 +5509,8 @@
         {
           "de": "ein Rechtsanwalt/in",
           "zh": "律师",
-          "correct": true
+          "correct": true,
+          "literal": "ein(一个) Rechtsanwalt/in(律师（男/女）)"
         },
         {
           "de": "ein Richter",
@@ -5412,7 +5553,8 @@
         {
           "de": "arbeitet an einem Gericht und spricht Urteile.",
           "zh": "在法院工作并判案",
-          "correct": true
+          "correct": true,
+          "literal": "arbeitet(在……工作) an(在) einem(一个/不定冠词) Gericht(法院) und(并且) spricht(宣读) Urteile(判决)。"
         },
         {
           "de": "ändert Gesetze.",
@@ -5445,7 +5587,8 @@
         {
           "de": "Judikative.",
           "zh": "司法权",
-          "correct": true
+          "correct": true,
+          "literal": "Judikative(司法权／司法机构)。"
         },
         {
           "de": "Exekutive.",
@@ -5488,7 +5631,8 @@
         {
           "de": "rechtsprechenden Gewalt.",
           "zh": "司法裁判权",
-          "correct": true
+          "correct": true,
+          "literal": "rechtsprechenden(司法的) Gewalt(权力)."
         },
         {
           "de": "planenden Gewalt.",
@@ -5521,7 +5665,8 @@
         {
           "de": "Judikative.",
           "zh": "司法权",
-          "correct": true
+          "correct": true,
+          "literal": "Judikative(司法机关)."
         },
         {
           "de": "Exekutive.",
@@ -5574,7 +5719,8 @@
         {
           "de": "Prozess",
           "zh": "诉讼程序",
-          "correct": true
+          "correct": true,
+          "literal": "Prozess(诉讼)"
         }
       ],
       "study": {
@@ -5602,7 +5748,8 @@
         {
           "de": "Recht sprechen",
           "zh": "司法裁判",
-          "correct": true
+          "correct": true,
+          "literal": "Recht(法律/权利) sprechen(讲述/宣判)"
         },
         {
           "de": "Pläne erstellen",
@@ -5650,7 +5797,8 @@
         {
           "de": "die Einhaltung von Gesetzen zu überwachen",
           "zh": "监督守法",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Einhaltung(遵守) von(对) Gesetzen(法律) zu(去) überwachen(监督)"
         }
       ],
       "study": {
@@ -5683,7 +5831,8 @@
         {
           "de": "den Holocaust leugnen",
           "zh": "否认大屠杀",
-          "correct": true
+          "correct": true,
+          "literal": "den(定冠词·宾格) Holocaust(大屠杀) leugnen(否认)"
         },
         {
           "de": "gegen Juden Fußball spielen",
@@ -5716,7 +5865,8 @@
         {
           "de": "ein ehrenamtlicher Richter.",
           "zh": "名誉法官",
-          "correct": true
+          "correct": true,
+          "literal": "ein(一个/不定冠词) ehrenamtlicher(名誉职务的/义务担任的) Richter(法官)."
         },
         {
           "de": "ein Mitglied eines Gemeinderats.",
@@ -5759,7 +5909,8 @@
         {
           "de": "die DDR",
           "zh": "东德",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) DDR(民主德国／东德)"
         },
         {
           "de": "die USA",
@@ -5797,7 +5948,8 @@
         {
           "de": "1933 bis 1945",
           "zh": "1933至1945",
-          "correct": true
+          "correct": true,
+          "literal": "1933(一九三三年) bis(到) 1945(一九四五年)"
         },
         {
           "de": "1945 bis 1989",
@@ -5840,7 +5992,8 @@
         {
           "de": "Ende des Zweiten Weltkriegs in Europa",
           "zh": "欧洲二战结束",
-          "correct": true
+          "correct": true,
+          "literal": "Ende(结束) des(第二格定冠词) Zweiten(第二次) Weltkriegs(世界大战) in(在) Europa(欧洲)"
         }
       ],
       "study": {
@@ -5868,7 +6021,8 @@
         {
           "de": "1945",
           "zh": "1945",
-          "correct": true
+          "correct": true,
+          "literal": "1945(一九四五年)"
         },
         {
           "de": "1949",
@@ -5911,7 +6065,8 @@
         {
           "de": "1933 bis 1945",
           "zh": "1933至1945",
-          "correct": true
+          "correct": true,
+          "literal": "1933(一九三三年) bis(到) 1945(一九四五年)"
         },
         {
           "de": "1949 bis 1963",
@@ -5949,7 +6104,8 @@
         {
           "de": "1933",
           "zh": "1933",
-          "correct": true
+          "correct": true,
+          "literal": "1933(1933年)"
         },
         {
           "de": "1936",
@@ -5977,7 +6133,8 @@
         {
           "de": "eine Diktatur.",
           "zh": "独裁",
-          "correct": true
+          "correct": true,
+          "literal": "eine(一个) Diktatur(独裁政权)."
         },
         {
           "de": "einen demokratischen Staat.",
@@ -6015,7 +6172,8 @@
         {
           "de": "Diktatur.",
           "zh": "独裁",
-          "correct": true
+          "correct": true,
+          "literal": "Diktatur(独裁；专政)."
         },
         {
           "de": "Demokratie.",
@@ -6053,7 +6211,8 @@
         {
           "de": "freie Wahlen",
           "zh": "自由选举",
-          "correct": true
+          "correct": true,
+          "literal": "freie(自由的) Wahlen(选举)"
         },
         {
           "de": "Pressezensur",
@@ -6097,7 +6256,8 @@
         {
           "de": "der Zweite Weltkrieg",
           "zh": "二战",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Zweite(第二次的) Weltkrieg(世界大战)"
         },
         {
           "de": "der Vietnamkrieg",
@@ -6130,7 +6290,8 @@
         {
           "de": "des staatlichen Rassismus",
           "zh": "国家种族主义",
-          "correct": true
+          "correct": true,
+          "literal": "des(的) staatlichen(国家的) Rassismus(种族主义)"
         },
         {
           "de": "der Meinungsfreiheit",
@@ -6183,7 +6344,8 @@
         {
           "de": "das Attentat auf Hitler am 20. Juli 1944.",
           "zh": "1944年7月20日刺杀希特勒",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Attentat(暗杀行动) auf(针对) Hitler(希特勒) am(在……) 20.(20日) Juli(七月) 1944(1944年)."
         }
       ],
       "study": {
@@ -6216,7 +6378,8 @@
         {
           "de": "1938",
           "zh": "1938",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "1945",
@@ -6254,7 +6417,8 @@
         {
           "de": "Jüdische Geschäfte und Synagogen werden zerstört.",
           "zh": "犹太商铺和会堂被毁",
-          "correct": true
+          "correct": true,
+          "literal": "Jüdische(犹太人的) Geschäfte(商店) und(和) Synagogen(犹太教堂) werden(被) zerstört(摧毁)。"
         },
         {
           "de": "Hitler wird Reichspräsident.",
@@ -6282,7 +6446,8 @@
         {
           "de": "Konrad Adenauer",
           "zh": "阿登纳",
-          "correct": true
+          "correct": true,
+          "literal": "Konrad(康拉德) Adenauer(阿登纳)"
         },
         {
           "de": "Kurt Georg Kiesinger",
@@ -6320,7 +6485,8 @@
         {
           "de": "bei den Montagsdemonstrationen 1989 in der DDR",
           "zh": "1989东德周一示威",
-          "correct": true
+          "correct": true,
+          "literal": "bei(在) den(定冠词复数) Montagsdemonstrationen(周一示威游行) 1989(一九八九年) in(在) der(定冠词) DDR(东德)"
         },
         {
           "de": "beim Arbeiteraufstand 1953",
@@ -6373,7 +6539,8 @@
         {
           "de": "USA, Sowjetunion, Großbritannien, Frankreich",
           "zh": "美苏英法",
-          "correct": true
+          "correct": true,
+          "literal": "USA(美国),(逗号) Sowjetunion(苏联),(逗号) Großbritannien(英国),(逗号) Frankreich(法国)"
         }
       ],
       "study": {
@@ -6411,7 +6578,8 @@
         {
           "de": "Japan",
           "zh": "日本",
-          "correct": true
+          "correct": true,
+          "literal": "Japan(日本)"
         }
       ],
       "study": {
@@ -6445,7 +6613,8 @@
         {
           "de": "1949",
           "zh": "1949",
-          "correct": true
+          "correct": true,
+          "literal": "1949(一九四九年)"
         },
         {
           "de": "1951",
@@ -6483,7 +6652,8 @@
         {
           "de": "das Verbot von Parteien",
           "zh": "禁止政党",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词，第四格) Verbot(禁止) von(……的) Parteien(政党)"
         },
         {
           "de": "den Schutz der Menschenwürde",
@@ -6526,7 +6696,8 @@
         {
           "de": "richtet sich nach Angebot und Nachfrage, aber der Staat sorgt für sozialen Ausgleich.",
           "zh": "依供需但国家做社会平衡",
-          "correct": true
+          "correct": true,
+          "literal": "richtet(取决于) sich(自身) nach(按照) Angebot(供给) und(和) Nachfrage(需求), aber(但是) der(定冠词) Staat(国家) sorgt(保障) für(为) sozialen(社会性的) Ausgleich(平衡)."
         }
       ],
       "study": {
@@ -6564,7 +6735,8 @@
         {
           "de": "sowjetischen Besatzungszone.",
           "zh": "苏占区",
-          "correct": true
+          "correct": true,
+          "literal": "sowjetischen(苏联的) Besatzungszone(占领区)."
         }
       ],
       "study": {
@@ -6597,7 +6769,8 @@
         {
           "de": "der Europäischen Union (EU).",
           "zh": "欧盟",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Europäischen(欧洲的) Union(联盟) (EU)(欧盟缩写)."
         },
         {
           "de": "des Warschauer Pakts.",
@@ -6630,7 +6803,8 @@
         {
           "de": "1949",
           "zh": "1949",
-          "correct": true
+          "correct": true,
+          "literal": "1949(一九四九年)"
         },
         {
           "de": "1953",
@@ -6668,7 +6842,8 @@
         {
           "de": "4",
           "zh": "4",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "5",
@@ -6711,7 +6886,8 @@
         {
           "de": "1=Großbritannien, 2=Sowjetunion, 3=USA, 4=Frankreich",
           "zh": "1英2苏3美4法",
-          "correct": true
+          "correct": true,
+          "literal": "1(选项一) =(＝) Großbritannien(英国), 2(选项二) =(＝) Sowjetunion(苏联), 3(选项三) =(＝) USA(美国), 4(选项四) =(＝) Frankreich(法国)"
         },
         {
           "de": "1=GB, 2=USA, 3=SU, 4=FR",
@@ -6744,7 +6920,8 @@
         {
           "de": "Berlin",
           "zh": "柏林",
-          "correct": true
+          "correct": true,
+          "literal": "Berlin(柏林)"
         },
         {
           "de": "Dresden",
@@ -6792,7 +6969,8 @@
         {
           "de": "Die Sowjetunion unterbrach den Landweg.",
           "zh": "苏联切断陆路",
-          "correct": true
+          "correct": true,
+          "literal": "Die(定冠词) Sowjetunion(苏联) unterbrach(切断了) den(定冠词) Landweg(陆路)。"
         }
       ],
       "study": {
@@ -6820,7 +6998,8 @@
         {
           "de": "durch die bedingungslose Kapitulation Deutschlands",
           "zh": "德国无条件投降",
-          "correct": true
+          "correct": true,
+          "literal": "durch(通过) die(定冠词) bedingungslose(无条件的) Kapitulation(投降) Deutschlands(德国的)"
         },
         {
           "de": "mit dem Rückzug der Deutschen",
@@ -6863,7 +7042,8 @@
         {
           "de": "Konrad Adenauer.",
           "zh": "阿登纳",
-          "correct": true
+          "correct": true,
+          "literal": "Konrad(康拉德) Adenauer(阿登纳)。(。)"
         },
         {
           "de": "Gerhard Schröder.",
@@ -6896,7 +7076,8 @@
         {
           "de": "Er bat Polen und die polnischen Juden um Vergebung.",
           "zh": "向波兰及波兰犹太人请求宽恕",
-          "correct": true
+          "correct": true,
+          "literal": "Er(他) bat(请求) Polen(波兰人) und(和) die(定冠词) polnischen(波兰的) Juden(犹太人) um(为……【与bat构成bitten um搭配】) Vergebung(宽恕)。"
         },
         {
           "de": "Demut vor dem Warschauer Pakt.",
@@ -6939,7 +7120,8 @@
         {
           "de": "Synagoge",
           "zh": "犹太会堂",
-          "correct": true
+          "correct": true,
+          "literal": "Synagoge(犹太会堂)"
         },
         {
           "de": "Kirche",
@@ -6972,7 +7154,8 @@
         {
           "de": "50er Jahre",
           "zh": "50年代",
-          "correct": true
+          "correct": true,
+          "literal": "50er(50年代的) Jahre(年代)"
         },
         {
           "de": "70er Jahre",
@@ -7005,7 +7188,8 @@
         {
           "de": "eine Resolution der Vereinten Nationen",
           "zh": "联合国决议",
-          "correct": true
+          "correct": true,
+          "literal": "eine(一个) Resolution(决议) der(定冠词) Vereinten(联合的) Nationen(国家们)"
         },
         {
           "de": "ein Beschluss des Zionistenkongresses",
@@ -7043,7 +7227,8 @@
         {
           "de": "des Warschauer Pakts gegen den Westen.",
           "zh": "华约对西方",
-          "correct": true
+          "correct": true,
+          "literal": "des(的〔属格冠词〕) Warschauer(华沙的) Pakts(条约) gegen(对抗) den(定冠词) Westen(西方)."
         },
         {
           "de": "Norddeutschlands gegen Süden.",
@@ -7086,7 +7271,8 @@
         {
           "de": "17. Juni",
           "zh": "6月17日",
-          "correct": true
+          "correct": true,
+          "literal": "17.(第17)(序数缩写) Juni(六月)"
         },
         {
           "de": "20. Juli",
@@ -7129,7 +7315,8 @@
         {
           "de": "DDR",
           "zh": "东德",
-          "correct": true
+          "correct": true,
+          "literal": "DDR(德意志民主共和国，即\"东德\")"
         },
         {
           "de": "Drittes Reich",
@@ -7172,7 +7359,8 @@
         {
           "de": "1961",
           "zh": "1961",
-          "correct": true
+          "correct": true,
+          "literal": null
         }
       ],
       "study": {
@@ -7205,7 +7393,8 @@
         {
           "de": "1961",
           "zh": "1961",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "1990",
@@ -7248,7 +7437,8 @@
         {
           "de": "Deutsche Demokratische Republik",
           "zh": "德意志民主共和国",
-          "correct": true
+          "correct": true,
+          "literal": "Deutsche(德意志) Demokratische(民主的) Republik(共和国)"
         }
       ],
       "study": {
@@ -7276,7 +7466,8 @@
         {
           "de": "1989",
           "zh": "1989",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "1992",
@@ -7309,7 +7500,8 @@
         {
           "de": "Brandenburg",
           "zh": "勃兰登堡",
-          "correct": true
+          "correct": true,
+          "literal": "Brandenburg(勃兰登堡)"
         },
         {
           "de": "Bayern",
@@ -7357,7 +7549,8 @@
         {
           "de": "durch eine Mauer geteilt.",
           "zh": "被墙分隔",
-          "correct": true
+          "correct": true,
+          "literal": "durch(被/由) eine(一道) Mauer(墙) geteilt(分隔)。"
         },
         {
           "de": "nur per Flugzeug erreichbar.",
@@ -7385,7 +7578,8 @@
         {
           "de": "Einheit.",
           "zh": "统一",
-          "correct": true
+          "correct": true,
+          "literal": "Einheit(统一/团结)."
         },
         {
           "de": "Nation.",
@@ -7428,7 +7622,8 @@
         {
           "de": "Sachsen-Anhalt",
           "zh": "萨克森-安哈尔特",
-          "correct": true
+          "correct": true,
+          "literal": "Sachsen-Anhalt(萨克森-安哈尔特，德国东部的一个联邦州)"
         },
         {
           "de": "Nordrhein-Westfalen",
@@ -7461,7 +7656,8 @@
         {
           "de": "von einer Diktatur zur Demokratie.",
           "zh": "独裁转向民主",
-          "correct": true
+          "correct": true,
+          "literal": "von(从) einer(一个) Diktatur(独裁制度) zur(到) Demokratie(民主制度)。"
         },
         {
           "de": "von Marktwirtschaft zum Sozialismus.",
@@ -7499,7 +7695,8 @@
         {
           "de": "Thüringen",
           "zh": "图林根",
-          "correct": true
+          "correct": true,
+          "literal": "Thüringen(图林根〔德国中部的一个联邦州〕)"
         },
         {
           "de": "Hessen",
@@ -7547,7 +7744,8 @@
         {
           "de": "Sachsen",
           "zh": "萨克森",
-          "correct": true
+          "correct": true,
+          "literal": "Sachsen(萨克森州)"
         },
         {
           "de": "Baden-Württemberg",
@@ -7580,7 +7778,8 @@
         {
           "de": "das Ministerium für Staatssicherheit.",
           "zh": "国家安全部",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Ministerium(部门) für(负责) Staatssicherheit(国家安全)."
         },
         {
           "de": "eine regierende Partei.",
@@ -7623,7 +7822,8 @@
         {
           "de": "Mecklenburg-Vorpommern",
           "zh": "梅前州",
-          "correct": true
+          "correct": true,
+          "literal": "Mecklenburg(梅克伦堡)-Vorpommern(前波美拉尼亚)"
         },
         {
           "de": "Saarland",
@@ -7656,7 +7856,8 @@
         {
           "de": "Mecklenburg-Vorpommern, Brandenburg, Sachsen, Sachsen-Anhalt, Thüringen",
           "zh": "梅前、勃兰登堡、萨克森、萨安、图林根",
-          "correct": true
+          "correct": true,
+          "literal": "Mecklenburg-Vorpommern(梅克伦堡-前波美拉尼亚州)，(，) Brandenburg(勃兰登堡州)，(，) Sachsen(萨克森州)，(，) Sachsen-Anhalt(萨克森-安哈尔特州)，(，) Thüringen(图林根州)"
         },
         {
           "de": "Bayern, BW, RLP, Thüringen, Sachsen",
@@ -7694,7 +7895,8 @@
         {
           "de": "zum Warschauer Pakt",
           "zh": "华沙条约",
-          "correct": true
+          "correct": true,
+          "literal": "zum(zum = zu+dem 的缩合，意为\"属于\") Warschauer(华沙的) Pakt(条约)"
         },
         {
           "de": "zur NATO",
@@ -7732,7 +7934,8 @@
         {
           "de": "Planwirtschaft",
           "zh": "计划经济",
-          "correct": true
+          "correct": true,
+          "literal": "Planwirtschaft(计划经济)"
         },
         {
           "de": "Angebot und Nachfrage",
@@ -7770,7 +7973,8 @@
         {
           "de": "Die fünf östlichen Länder traten der BRD bei.",
           "zh": "五个东部州加入西德",
-          "correct": true
+          "correct": true,
+          "literal": "Die(这些) fünf(五个) östlichen(东部的) Länder(联邦州) traten(加入，过去式) der(定冠词) BRD(联邦德国) bei(〔可分前缀，与traten合为beitreten\"加入\"〕)。"
         },
         {
           "de": "Die Westländer traten der DDR bei.",
@@ -7803,7 +8007,8 @@
         {
           "de": "zur Europäischen Union.",
           "zh": "欧盟",
-          "correct": true
+          "correct": true,
+          "literal": "zur(到/关于) Europäischen(欧洲的) Union(联盟)。"
         },
         {
           "de": "zum Warschauer Pakt.",
@@ -7846,7 +8051,8 @@
         {
           "de": "an die Opfer des Nationalsozialismus",
           "zh": "纳粹受害者",
-          "correct": true
+          "correct": true,
+          "literal": "an(对) die(定冠词) Opfer(受害者) des(的) Nationalsozialismus(国家社会主义/纳粹主义)"
         },
         {
           "de": "an Verkehrstote",
@@ -7889,7 +8095,8 @@
         {
           "de": "im Warschauer Pakt",
           "zh": "华沙条约",
-          "correct": true
+          "correct": true,
+          "literal": "im(在……中) Warschauer(华沙的) Pakt(条约)"
         },
         {
           "de": "im Europabündnis",
@@ -7927,7 +8134,8 @@
         {
           "de": "der Geheimdienst der DDR",
           "zh": "东德情报机构",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Geheimdienst(秘密情报机构) der(的) DDR(东德／德意志民主共和国)"
         },
         {
           "de": "ein Sportverein",
@@ -7970,7 +8178,8 @@
         {
           "de": "4 (Hammer, Zirkel, Ährenkranz)",
           "zh": "4 锤子圆规麦穗",
-          "correct": true
+          "correct": true,
+          "literal": "4(选项4) (Hammer(锤子), Zirkel(圆规), Ährenkranz(麦穗环))"
         }
       ],
       "study": {
@@ -7998,7 +8207,8 @@
         {
           "de": "landesweite Streiks und ein Volksaufstand",
           "zh": "全国罢工与人民起义",
-          "correct": true
+          "correct": true,
+          "literal": "landesweite(全国性的) Streiks(罢工) und(和) ein(一场) Volksaufstand(民众起义)"
         },
         {
           "de": "der 1. SED-Parteitag",
@@ -8036,7 +8246,8 @@
         {
           "de": "Willy Brandt",
           "zh": "勃兰特",
-          "correct": true
+          "correct": true,
+          "literal": "Willy(威利，人名) Brandt(勃兰特，人名——德国前联邦总理)"
         },
         {
           "de": "Michail Gorbatschow",
@@ -8079,7 +8290,8 @@
         {
           "de": "Bundesrepublik Deutschland",
           "zh": "德意志联邦共和国",
-          "correct": true
+          "correct": true,
+          "literal": "Bundesrepublik(联邦共和国) Deutschland(德国)"
         },
         {
           "de": "Bundesbezirk Deutschland",
@@ -8117,7 +8329,8 @@
         {
           "de": "84 Millionen",
           "zh": "8400万",
-          "correct": true
+          "correct": true,
+          "literal": "84(八十四) Millionen(百万)"
         },
         {
           "de": "90 Millionen",
@@ -8145,7 +8358,8 @@
         {
           "de": "schwarz-rot-gold",
           "zh": "黑红金",
-          "correct": true
+          "correct": true,
+          "literal": "schwarz(黑色)-rot(红色)-gold(金色)"
         },
         {
           "de": "rot-weiß-schwarz",
@@ -8188,7 +8402,8 @@
         {
           "de": "Helmut Kohl",
           "zh": "科尔",
-          "correct": true
+          "correct": true,
+          "literal": "Helmut(赫尔穆特，人名) Kohl(科尔，姓氏)"
         },
         {
           "de": "Konrad Adenauer",
@@ -8226,7 +8441,8 @@
         {
           "de": "der Bundesadler",
           "zh": "联邦鹰",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Bundesadler(联邦之鹰)"
         },
         {
           "de": "der Reichsadler",
@@ -8269,7 +8485,8 @@
         {
           "de": "1949 bis 1990",
           "zh": "1949至1990",
-          "correct": true
+          "correct": true,
+          "literal": "1949(一九四九年) bis(到) 1990(一九九〇年)"
         },
         {
           "de": "1945 bis 1961",
@@ -8302,7 +8519,8 @@
         {
           "de": "5",
           "zh": "5",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "6",
@@ -8350,7 +8568,8 @@
         {
           "de": "1990.",
           "zh": "1990",
-          "correct": true
+          "correct": true,
+          "literal": "1990(一九九〇年).（句号）"
         }
       ],
       "study": {
@@ -8388,7 +8607,8 @@
         {
           "de": "an die Opfer des Nationalsozialismus (Befreiung Auschwitz)",
           "zh": "纳粹受害者（奥斯维辛解放日）",
-          "correct": true
+          "correct": true,
+          "literal": "an(向/纪念) die(定冠词，复数) Opfer(受害者) des(的，属格定冠词) Nationalsozialismus(国家社会主义／纳粹) (Befreiung(解放) Auschwitz(奥斯维辛))"
         }
       ],
       "study": {
@@ -8411,7 +8631,8 @@
         {
           "de": "Deutsche können in viele EU-Länder ohne Passkontrolle reisen.",
           "zh": "可免护照检查赴许多欧洲国家",
-          "correct": true
+          "correct": true,
+          "literal": "Deutsche(德国人) können(可以) in(进入) viele(许多) EU-Länder(欧盟国家) ohne(没有) Passkontrolle(护照检查) reisen(旅行)."
         },
         {
           "de": "Alle können ohne Kontrolle einreisen.",
@@ -8464,7 +8685,8 @@
         {
           "de": "Schweiz",
           "zh": "瑞士",
-          "correct": true
+          "correct": true,
+          "literal": "Schweiz(瑞士)"
         }
       ],
       "study": {
@@ -8497,7 +8719,8 @@
         {
           "de": "Polen",
           "zh": "波兰",
-          "correct": true
+          "correct": true,
+          "literal": "Polen(波兰)"
         },
         {
           "de": "Griechenland",
@@ -8530,7 +8753,8 @@
         {
           "de": "Europäische Union",
           "zh": "欧洲联盟",
-          "correct": true
+          "correct": true,
+          "literal": "Europäische(欧洲的) Union(联盟)"
         },
         {
           "de": "Einheitliche Union",
@@ -8578,7 +8802,8 @@
         {
           "de": "Österreich",
           "zh": "奥地利",
-          "correct": true
+          "correct": true,
+          "literal": "Österreich(奥地利)"
         }
       ],
       "study": {
@@ -8601,7 +8826,8 @@
         {
           "de": "2 (blau mit Sternenkreis)",
           "zh": "2 蓝底环形星",
-          "correct": true
+          "correct": true,
+          "literal": "2(2) (blau(蓝色) mit(带有) Sternenkreis(星环))"
         },
         {
           "de": "1",
@@ -8644,7 +8870,8 @@
         {
           "de": "Dänemark",
           "zh": "丹麦",
-          "correct": true
+          "correct": true,
+          "literal": "Dänemark(丹麦)"
         },
         {
           "de": "Norwegen",
@@ -8692,7 +8919,8 @@
         {
           "de": "Deutsche Wiedervereinigung",
           "zh": "两德统一",
-          "correct": true
+          "correct": true,
+          "literal": "Deutsche(德意志的) Wiedervereinigung(重新统一)"
         }
       ],
       "study": {
@@ -8730,7 +8958,8 @@
         {
           "de": "Luxemburg",
           "zh": "卢森堡",
-          "correct": true
+          "correct": true,
+          "literal": "Luxemburg(卢森堡)"
         }
       ],
       "study": {
@@ -8753,7 +8982,8 @@
         {
           "de": "5 Jahre.",
           "zh": "5年",
-          "correct": true
+          "correct": true,
+          "literal": "5(5) Jahre(年)。"
         },
         {
           "de": "6 Jahre.",
@@ -8806,7 +9036,8 @@
         {
           "de": "der Zusammenschluss europäischer Staaten zur EU",
           "zh": "欧洲国家联合为欧盟",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Zusammenschluss(联合) europäischer(欧洲各) Staaten(国家) zur(成为) EU(欧盟)"
         }
       ],
       "study": {
@@ -8844,7 +9075,8 @@
         {
           "de": "die Abgeordneten des Europäischen Parlaments",
           "zh": "欧洲议会议员",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Abgeordneten(议员们) des(……的) Europäischen(欧洲的) Parlaments(议会)"
         }
       ],
       "study": {
@@ -8867,7 +9099,8 @@
         {
           "de": "Tschechien",
           "zh": "捷克",
-          "correct": true
+          "correct": true,
+          "literal": "Tschechien(捷克)"
         },
         {
           "de": "Bulgarien",
@@ -8920,7 +9153,8 @@
         {
           "de": "Straßburg",
           "zh": "斯特拉斯堡",
-          "correct": true
+          "correct": true,
+          "literal": "Straßburg(斯特拉斯堡)"
         }
       ],
       "study": {
@@ -8953,7 +9187,8 @@
         {
           "de": "Frieden und Sicherheit in den EU-Ländern",
           "zh": "欧盟成员国的和平与安全",
-          "correct": true
+          "correct": true,
+          "literal": "Frieden(和平) und(和) Sicherheit(安全) in(在) den(定冠词，复数与格) EU-Ländern(欧盟国家中)"
         },
         {
           "de": "einheitliche Feiertage",
@@ -8996,7 +9231,8 @@
         {
           "de": "27",
           "zh": "27",
-          "correct": true
+          "correct": true,
+          "literal": null
         }
       ],
       "study": {
@@ -9024,7 +9260,8 @@
         {
           "de": "Gründung der Europäischen Wirtschaftsgemeinschaft (EWG)",
           "zh": "成立欧洲经济共同体",
-          "correct": true
+          "correct": true,
+          "literal": "Gründung(成立) der(的) Europäischen(欧洲的) Wirtschaftsgemeinschaft(经济共同体) (EWG)(欧共体缩写)"
         },
         {
           "de": "Reparationsleistungen",
@@ -9062,7 +9299,8 @@
         {
           "de": "Straßburg, Luxemburg und Brüssel",
           "zh": "斯特拉斯堡、卢森堡、布鲁塞尔",
-          "correct": true
+          "correct": true,
+          "literal": "Straßburg(斯特拉斯堡), Luxemburg(卢森堡) und(和) Brüssel(布鲁塞尔)"
         },
         {
           "de": "Rom, Bern, Wien",
@@ -9100,7 +9338,8 @@
         {
           "de": "Römische Verträge",
           "zh": "罗马条约",
-          "correct": true
+          "correct": true,
+          "literal": "Römische(罗马的) Verträge(条约)"
         },
         {
           "de": "Pariser Verträge",
@@ -9143,7 +9382,8 @@
         {
           "de": "2002",
           "zh": "2002",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "2005",
@@ -9181,7 +9421,8 @@
         {
           "de": "einen Antrag bei der Elterngeldstelle stellen",
           "zh": "向父母金机构申请",
-          "correct": true
+          "correct": true,
+          "literal": "einen(一个) Antrag(申请) bei(向) der(定冠词) Elterngeldstelle(育儿金办理处) stellen(提交)"
         },
         {
           "de": "das Arbeitsamt um Erlaubnis bitten",
@@ -9219,7 +9460,8 @@
         {
           "de": "die Eltern / Erziehungsberechtigten",
           "zh": "父母/监护人",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Eltern(父母) /(或) Erziehungsberechtigten(法定监护人)"
         },
         {
           "de": "die Schulen",
@@ -9252,7 +9494,8 @@
         {
           "de": "die Demonstration anmelden",
           "zh": "申报登记",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Demonstration(示威游行) anmelden(申报登记)"
         },
         {
           "de": "nichts, Demos sind verboten",
@@ -9285,7 +9528,8 @@
         {
           "de": "das Abitur",
           "zh": "高中毕业会考",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Abitur(高中毕业会考)"
         },
         {
           "de": "ein Diplom",
@@ -9338,7 +9582,8 @@
         {
           "de": "Anne (13) und Tim (25)",
           "zh": "涉及未成年",
-          "correct": true
+          "correct": true,
+          "literal": "Anne(安妮) (13)(（13岁）) und(和) Tim(蒂姆) (25)(（25岁）)"
         }
       ],
       "study": {
@@ -9367,7 +9612,8 @@
         {
           "de": "18",
           "zh": "18",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "19",
@@ -9410,7 +9656,8 @@
         {
           "de": "Mutterschutz",
           "zh": "产妇保护",
-          "correct": true
+          "correct": true,
+          "literal": "Mutterschutz(产妇保护制度)"
         },
         {
           "de": "Wochenbett",
@@ -9443,7 +9690,8 @@
         {
           "de": "der Eltern.",
           "zh": "父母",
-          "correct": true
+          "correct": true,
+          "literal": "der(的) Eltern(父母)."
         },
         {
           "de": "der Großeltern.",
@@ -9481,7 +9729,8 @@
         {
           "de": "die Eltern",
           "zh": "父母",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Eltern(父母)"
         },
         {
           "de": "die Verwandten",
@@ -9519,7 +9768,8 @@
         {
           "de": "gut ausgebildet ist.",
           "zh": "受过良好教育",
-          "correct": true
+          "correct": true,
+          "literal": "gut(良好地) ausgebildet(受过培训的) ist(是)。"
         },
         {
           "de": "eine Frau ist.",
@@ -9567,7 +9817,8 @@
         {
           "de": "kann man dafür bestraft werden.",
           "zh": "会受惩罚",
-          "correct": true
+          "correct": true,
+          "literal": "kann(可以) man(人们) dafür(为此) bestraft(惩处) werden(被)。"
         }
       ],
       "study": {
@@ -9590,7 +9841,8 @@
         {
           "de": "darf man nur mit einer Person gleichzeitig verheiratet sein.",
           "zh": "同时只能与一人结婚",
-          "correct": true
+          "correct": true,
+          "literal": "darf(可以) man(人们) nur(只) mit(与) einer(一个) Person(人) gleichzeitig(同时) verheiratet(已婚的) sein(处于……状态)."
         },
         {
           "de": "kann man mehrere Ehepartner haben.",
@@ -9628,7 +9880,8 @@
         {
           "de": "beim Einwohnermeldeamt",
           "zh": "居民登记处",
-          "correct": true
+          "correct": true,
+          "literal": "beim(在……处) Einwohnermeldeamt(户籍登记处)"
         },
         {
           "de": "beim Standesamt",
@@ -9681,7 +9934,8 @@
         {
           "de": "Die Ehegatten leben mind. ein Jahr getrennt, danach Scheidung.",
           "zh": "分居至少一年后可离婚",
-          "correct": true
+          "correct": true,
+          "literal": "Die(定冠词) Ehegatten(配偶/夫妻双方) leben(生活) mind.(至少) ein(一) Jahr(年) getrennt(分居),(,) danach(之后) Scheidung(离婚)。(。)"
         }
       ],
       "study": {
@@ -9714,7 +9968,8 @@
         {
           "de": "Jugendamt.",
           "zh": "青少年局",
-          "correct": true
+          "correct": true,
+          "literal": "Jugendamt(青少年局／青少年事务局)."
         },
         {
           "de": "Gesundheitsamt.",
@@ -9757,7 +10012,8 @@
         {
           "de": "eine Gaststättenerlaubnis von der zuständigen Behörde",
           "zh": "主管机关的餐饮许可",
-          "correct": true
+          "correct": true,
+          "literal": "eine(一份) Gaststättenerlaubnis(餐馆营业许可证) von(来自) der(定冠词) zuständigen(主管的) Behörde(机关)"
         }
       ],
       "study": {
@@ -9785,7 +10041,8 @@
         {
           "de": "einem Abendgymnasium.",
           "zh": "夜校文理中学",
-          "correct": true
+          "correct": true,
+          "literal": "einem(一所) Abendgymnasium(夜间高中)."
         },
         {
           "de": "einer Hauptschule.",
@@ -9823,7 +10080,8 @@
         {
           "de": "Es kann ein misshandeltes Kind aus der Familie nehmen.",
           "zh": "可将受虐儿童带离家庭",
-          "correct": true
+          "correct": true,
+          "literal": "Es(它) kann(可以) ein(一个) misshandeltes(受虐待的) Kind(孩子) aus(从) der(这个) Familie(家庭) nehmen(带走)。"
         },
         {
           "de": "Es zahlt das Kindergeld.",
@@ -9861,7 +10119,8 @@
         {
           "de": "Lehrstellensuche.",
           "zh": "找学徒位置",
-          "correct": true
+          "correct": true,
+          "literal": "Lehrstellensuche(学徒岗位搜寻)."
         },
         {
           "de": "Steuererklärung.",
@@ -9909,7 +10168,8 @@
         {
           "de": "Anwesenheitspflicht.",
           "zh": "出勤义务",
-          "correct": true
+          "correct": true,
+          "literal": "Anwesenheitspflicht(出勤义务)."
         }
       ],
       "study": {
@@ -9937,7 +10197,8 @@
         {
           "de": "einem Abendgymnasium",
           "zh": "夜校文理中学",
-          "correct": true
+          "correct": true,
+          "literal": "einem(一个，第三格不定冠词) Abendgymnasium(夜间文理高中)"
         },
         {
           "de": "einer Hauptschule",
@@ -9970,7 +10231,8 @@
         {
           "de": "Niemand darf z. B. wegen einer Behinderung benachteiligt werden.",
           "zh": "不得因残疾等受歧视",
-          "correct": true
+          "correct": true,
+          "literal": "Niemand(没有人) darf(可以) z. B.(例如) wegen(因为) einer(一个) Behinderung(残疾) benachteiligt(受到歧视) werden(被……（被动助动词）)."
         },
         {
           "de": "Man darf bei Gründen benachteiligen.",
@@ -10008,7 +10270,8 @@
         {
           "de": "werden bestraft.",
           "zh": "会受惩罚",
-          "correct": true
+          "correct": true,
+          "literal": "werden(将被/会受到) bestraft(惩罚)."
         },
         {
           "de": "werden wie Erwachsene behandelt.",
@@ -10046,7 +10309,8 @@
         {
           "de": "am Rosenmontag",
           "zh": "玫瑰星期一（狂欢节）",
-          "correct": true
+          "correct": true,
+          "literal": "am(在) Rosenmontag(玫瑰星期一)"
         },
         {
           "de": "am Maifeiertag",
@@ -10099,7 +10363,8 @@
         {
           "de": "zum Standesamt",
           "zh": "户籍登记处",
-          "correct": true
+          "correct": true,
+          "literal": "zum(到……〔缩合自 zu+dem〕) Standesamt(户籍登记处)"
         }
       ],
       "study": {
@@ -10127,7 +10392,8 @@
         {
           "de": "um 22 Uhr",
           "zh": "晚10点",
-          "correct": true
+          "correct": true,
+          "literal": "um(在……时) 22(二十二) Uhr(点钟)"
         },
         {
           "de": "wenn die Nachbarn schlafen",
@@ -10160,7 +10426,8 @@
         {
           "de": "Sie müssen die Entscheidung der volljährigen Tochter respektieren.",
           "zh": "须尊重成年女儿的决定",
-          "correct": true
+          "correct": true,
+          "literal": "Sie(您) müssen(必须) die(这个) Entscheidung(决定) der(这位) volljährigen(已成年的) Tochter(女儿) respektieren(尊重)。"
         },
         {
           "de": "Sie holen die Tochter zurück.",
@@ -10203,7 +10470,8 @@
         {
           "de": "Sie kann die Theorieprüfung evtl. in ihrer Muttersprache machen (>10 Sprachen).",
           "zh": "或可用母语应试（10余种语言）",
-          "correct": true
+          "correct": true,
+          "literal": "Sie(她) kann(可以) die(定冠词) Theorieprüfung(理论考试) evtl.(可能) in(以) ihrer(她的) Muttersprache(母语) machen(参加) (>10(超过10种) Sprachen(语言))。"
         },
         {
           "de": "Ohne Deutsch kein Führerschein.",
@@ -10242,7 +10510,8 @@
         {
           "de": "einen Kindergartenplatz.",
           "zh": "幼儿园名额",
-          "correct": true
+          "correct": true,
+          "literal": "einen(一个) Kindergartenplatz(幼儿园名额)."
         },
         {
           "de": "einen Platz im Sportverein.",
@@ -10285,7 +10554,8 @@
         {
           "de": "zur Weiterbildung.",
           "zh": "进修",
-          "correct": true
+          "correct": true,
+          "literal": "zur(为了) Weiterbildung(进修)."
         },
         {
           "de": "nur für Rentner.",
@@ -10318,7 +10588,8 @@
         {
           "de": "einen Tannenbaum schmücken",
           "zh": "装饰圣诞树",
-          "correct": true
+          "correct": true,
+          "literal": "einen(一个，不定冠词宾格) Tannenbaum(圣诞树) schmücken(装饰)"
         },
         {
           "de": "sich verkleiden",
@@ -10366,7 +10637,8 @@
         {
           "de": "Ein Mann ist mit zwei Frauen zugleich verheiratet.",
           "zh": "一夫多妻",
-          "correct": true
+          "correct": true,
+          "literal": "Ein(一个) Mann(男人) ist(是) mit(与) zwei(两个) Frauen(女人) zugleich(同时) verheiratet(已婚的/结婚的)。"
         }
       ],
       "study": {
@@ -10405,7 +10677,8 @@
         {
           "de": "Jugendamt.",
           "zh": "青少年局",
-          "correct": true
+          "correct": true,
+          "literal": "Jugendamt(青少年事务局)。"
         }
       ],
       "study": {
@@ -10433,7 +10706,8 @@
         {
           "de": "das Briefgeheimnis",
           "zh": "通信秘密",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Briefgeheimnis(通信秘密)"
         },
         {
           "de": "die Schweigepflicht",
@@ -10482,7 +10756,8 @@
         {
           "de": "die Unterstützung eines Anwalts",
           "zh": "律师协助",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Unterstützung(支持) eines(一位) Anwalts(律师的)"
         }
       ],
       "study": {
@@ -10520,7 +10795,8 @@
         {
           "de": "Ich kann mich beim Behördenleiter beschweren.",
           "zh": "向机关负责人投诉",
-          "correct": true
+          "correct": true,
+          "literal": "Ich(我) kann(可以) mich(自己/反身代词) beim(在……处) Behördenleiter(机关负责人) beschweren(投诉/申诉)。"
         }
       ],
       "study": {
@@ -10558,7 +10834,8 @@
         {
           "de": "Mutter ist.",
           "zh": "是母亲",
-          "correct": true
+          "correct": true,
+          "literal": "Mutter(母亲) ist(是)。"
         }
       ],
       "study": {
@@ -10582,7 +10859,8 @@
         {
           "de": "im Rollstuhl sitzt.",
           "zh": "坐轮椅",
-          "correct": true
+          "correct": true,
+          "literal": "im(在……里) Rollstuhl(轮椅) sitzt(坐着)。"
         },
         {
           "de": "keine Erfahrung hat.",
@@ -10631,7 +10909,8 @@
         {
           "de": "Regeln, an die sich alle Bewohner halten müssen.",
           "zh": "所有住户须守的规则",
-          "correct": true
+          "correct": true,
+          "literal": "Regeln(规则), an(遵守) die(定冠词/关系代词) sich(自身) alle(所有) Bewohner(居民) halten(遵守) müssen(必须)."
         },
         {
           "de": "die Adresse des Ordnungsamts.",
@@ -10669,7 +10948,8 @@
         {
           "de": "Einspruch einlegen",
           "zh": "提出异议",
-          "correct": true
+          "correct": true,
+          "literal": "Einspruch(异议/抗议) einlegen(提出/提起)"
         },
         {
           "de": "auf einen neuen Bescheid warten",
@@ -10702,7 +10982,8 @@
         {
           "de": "Gleichbehandlung.",
           "zh": "平等待遇",
-          "correct": true
+          "correct": true,
+          "literal": "Gleichbehandlung(平等对待)。"
         },
         {
           "de": "Versammlungsfreiheit.",
@@ -10746,7 +11027,8 @@
         {
           "de": "Wahlhelfer/in",
           "zh": "选举助理",
-          "correct": true
+          "correct": true,
+          "literal": "Wahlhelfer/in(选举助理［男／女］)"
         },
         {
           "de": "Lehrer",
@@ -10779,7 +11061,8 @@
         {
           "de": "Ich lege Widerspruch ein.",
           "zh": "提出异议",
-          "correct": true
+          "correct": true,
+          "literal": "Ich(我) lege(提起) Widerspruch(异议) ein(〔einlegen 的分离前缀〕)。"
         },
         {
           "de": "Ich schicke sie zurück.",
@@ -10822,7 +11105,8 @@
         {
           "de": "Erwachsene müssen auch nach der Ausbildung weiter lernen.",
           "zh": "成人培训后仍需持续学习",
-          "correct": true
+          "correct": true,
+          "literal": "Erwachsene(成年人) müssen(必须) auch(也) nach(在……之后) der(定冠词) Ausbildung(职业培训) weiter(继续) lernen(学习)."
         },
         {
           "de": "Alle müssen früher aufhören zu arbeiten.",
@@ -10850,7 +11134,8 @@
         {
           "de": "Umsatzsteuer",
           "zh": "增值税",
-          "correct": true
+          "correct": true,
+          "literal": "Umsatzsteuer(营业税／增值税)"
         },
         {
           "de": "Lohnsteuer",
@@ -10889,7 +11174,8 @@
         {
           "de": "der Betriebsrat",
           "zh": "企业职工委员会",
-          "correct": true
+          "correct": true,
+          "literal": "der(定冠词) Betriebsrat(企业职工委员会)"
         },
         {
           "de": "der Betriebsprüfer",
@@ -10937,7 +11223,8 @@
         {
           "de": "die Kündigungsfrist",
           "zh": "解约通知期",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Kündigungsfrist(解约通知期)"
         },
         {
           "de": "die Versicherungspflicht",
@@ -10970,7 +11257,8 @@
         {
           "de": "aus den nationalsozialistischen Verbrechen gegen Juden",
           "zh": "纳粹对犹太人的罪行",
-          "correct": true
+          "correct": true,
+          "literal": "aus(从) den(定冠词复数) nationalsozialistischen(纳粹的) Verbrechen(罪行) gegen(针对) Juden(犹太人)"
         },
         {
           "de": "aus dem Grundgesetz",
@@ -11013,7 +11301,8 @@
         {
           "de": "er eine dunkle Haut hat.",
           "zh": "肤色深",
-          "correct": true
+          "correct": true,
+          "literal": "er(他) eine(一个) dunkle(深色的) Haut(皮肤) hat(有)。"
         },
         {
           "de": "er keine Erfahrung hat.",
@@ -11047,7 +11336,8 @@
         {
           "de": "den Fernseher reklamieren",
           "zh": "投诉/退换",
-          "correct": true
+          "correct": true,
+          "literal": "den(这台) Fernseher(电视机) reklamieren(投诉退换)"
         },
         {
           "de": "das Gerät ungefragt austauschen",
@@ -11085,7 +11375,8 @@
         {
           "de": "wegen der Kirchensteuer (an Lohn-/Einkommensteuer geknüpft)",
           "zh": "因有教会税（与工资/所得税挂钩）",
-          "correct": true
+          "correct": true,
+          "literal": "wegen（由于） der（定冠词） Kirchensteuer（教会税） (an（与） Lohn-（工资[税]）/Einkommensteuer（所得税） geknüpft（挂钩）)"
         },
         {
           "de": "weil man sonst mehr zahlt",
@@ -11128,7 +11419,8 @@
         {
           "de": "Jeder kann glauben, was er möchte.",
           "zh": "人人可自由信仰",
-          "correct": true
+          "correct": true,
+          "literal": "Jeder(每个人) kann(可以) glauben(相信) ,(,) was(什么) er(他) möchte(想要) .(。)"
         },
         {
           "de": "Der Staat entscheidet den Glauben.",
@@ -11166,7 +11458,8 @@
         {
           "de": "Eier bemalen",
           "zh": "画彩蛋",
-          "correct": true
+          "correct": true,
+          "literal": "Eier(鸡蛋，复数) bemalen(涂色/彩绘)"
         },
         {
           "de": "Raketen abschießen",
@@ -11194,7 +11487,8 @@
         {
           "de": "christlicher Feiertag.",
           "zh": "基督教节日",
-          "correct": true
+          "correct": true,
+          "literal": "christlicher(基督教的) Feiertag(节假日)。"
         },
         {
           "de": "deutscher Gedenktag.",
@@ -11237,7 +11531,8 @@
         {
           "de": "das Christentum",
           "zh": "基督教",
-          "correct": true
+          "correct": true,
+          "literal": "das(定冠词) Christentum(基督教)"
         },
         {
           "de": "der Buddhismus",
@@ -11280,7 +11575,8 @@
         {
           "de": "die Adventszeit.",
           "zh": "将临期",
-          "correct": true
+          "correct": true,
+          "literal": "die(定冠词) Adventszeit(降临节时节)。"
         },
         {
           "de": "Allerheiligen.",
@@ -11323,7 +11619,8 @@
         {
           "de": "Türkei",
           "zh": "土耳其",
-          "correct": true
+          "correct": true,
+          "literal": "Türkei(土耳其)"
         }
       ],
       "study": {
@@ -11346,7 +11643,8 @@
         {
           "de": "Vietnam, Polen, Mosambik.",
           "zh": "越南、波兰、莫桑比克",
-          "correct": true
+          "correct": true,
+          "literal": "Vietnam(越南)，Polen(波兰)，Mosambik(莫桑比克)。"
         },
         {
           "de": "Frankreich, Rumänien, Somalia.",
@@ -11389,7 +11687,8 @@
         {
           "de": "Gastarbeiter/innen",
           "zh": "客籍工人",
-          "correct": true
+          "correct": true,
+          "literal": "Gastarbeiter/innen(外籍劳工〔含男女两性〕)"
         },
         {
           "de": "Zeitarbeiter",
@@ -11422,7 +11721,8 @@
         {
           "de": "Italien",
           "zh": "意大利",
-          "correct": true
+          "correct": true,
+          "literal": "Italien(意大利)"
         },
         {
           "de": "Spanien",
@@ -11465,7 +11765,8 @@
         {
           "de": "2",
           "zh": "2",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "3",
@@ -11503,7 +11804,8 @@
         {
           "de": "Rhein-Sieg-Kreis",
           "zh": "莱茵-锡格县",
-          "correct": true
+          "correct": true,
+          "literal": "Rhein(莱茵河)-Sieg(锡格河)-Kreis(县)"
         },
         {
           "de": "Nordfriesland",
@@ -11546,7 +11848,8 @@
         {
           "de": "5",
           "zh": "5年",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "6",
@@ -11579,7 +11882,8 @@
         {
           "de": "16",
           "zh": "16岁",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "18",
@@ -11617,7 +11921,8 @@
         {
           "de": "grün-weiß-rot",
           "zh": "绿-白-红",
-          "correct": true
+          "correct": true,
+          "literal": "grün(绿色)-weiß(白色)-rot(红色)"
         },
         {
           "de": "schwarz-gold",
@@ -11665,7 +11970,8 @@
         {
           "de": "bei der Landeszentrale für politische Bildung",
           "zh": "州政治教育中心",
-          "correct": true
+          "correct": true,
+          "literal": "bei(在) der(定冠词) Landeszentrale(州立中心) für(负责) politische(政治) Bildung(教育)"
         }
       ],
       "study": {
@@ -11698,7 +12004,8 @@
         {
           "de": "Düsseldorf.",
           "zh": "杜塞尔多夫",
-          "correct": true
+          "correct": true,
+          "literal": "Düsseldorf(杜塞尔多夫)."
         },
         {
           "de": "Dortmund.",
@@ -11736,7 +12043,8 @@
         {
           "de": "3",
           "zh": "3",
-          "correct": true
+          "correct": true,
+          "literal": null
         },
         {
           "de": "4",
@@ -11779,7 +12087,8 @@
         {
           "de": "Ministerpräsident/in",
           "zh": "州长（部长主席）",
-          "correct": true
+          "correct": true,
+          "literal": "Ministerpräsident/in(州长／州总理，/in 为女性形式)"
         }
       ],
       "study": {
@@ -11807,7 +12116,8 @@
         {
           "de": "Außenminister",
           "zh": "外交部长",
-          "correct": true
+          "correct": true,
+          "literal": "Außenminister(外交部长)"
         },
         {
           "de": "Finanzminister",

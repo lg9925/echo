@@ -11,8 +11,9 @@ import type { QuizOption, QuizQuestion, QuizRegion, QuizStudy } from "../types";
 
 /** Bump to force-reload/overwrite the bank after editing the source JSON.
  *  v2: added word-by-word `literal` to every question.
- *  v3: image questions now point at local /seed/einbuergerung/img/*.png (offline). */
-export const EINBUERGERUNG_VERSION = 3;
+ *  v3: image questions now point at local /seed/einbuergerung/img/*.png (offline).
+ *  v4: added the correct answer's `literal` (option-level) where meaningful. */
+export const EINBUERGERUNG_VERSION = 4;
 const META_KEY = `einbuergerung@${EINBUERGERUNG_VERSION}`;
 const SOURCE_URL = "/seed/einbuergerung/leben_in_deutschland_echo_plus.json";
 
