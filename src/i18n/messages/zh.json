@@ -311,6 +311,9 @@
     "playAudio": "朗读题目",
     "imageAlt": "题目图片",
     "hintLabel": "记忆提示",
-    "nrwBadge": "北威州"
+    "nrwBadge": "北威州",
+    "showChinese": "显示中文",
+    "zhOn": "中文 开",
+    "zhOff": "中文 关"
   }
 }

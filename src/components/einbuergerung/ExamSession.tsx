@@ -8,7 +8,9 @@ import {
   buildExam,
   correctOption,
 } from "@/lib/einbuergerung/exam";
+import { getShowZh, setShowZh } from "@/lib/einbuergerung/prefs";
 import { QuizCard } from "./QuizCard";
+import { ZhToggle } from "./ZhToggle";
 import type { QuizOption, QuizQuestion } from "@/lib/types";
 
 interface Answer {
@@ -41,7 +43,20 @@ export function ExamSession({
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [elapsed, setElapsed] = useState(0);
+  const [showZh, setShowZhState] = useState(false);
   const recordedRef = useRef(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot localStorage read after mount (SSR has no localStorage)
+    setShowZhState(getShowZh());
+  }, []);
+
+  function toggleZh() {
+    setShowZhState((v) => {
+      setShowZh(!v);
+      return !v;
+    });
+  }
 
   // Count-up timer; freezes on submit.
   useEffect(() => {
@@ -168,16 +183,20 @@ export function ExamSession({
         >
           ← {t("exit")}
         </button>
-        <span className="text-sm text-zinc-500 tabular-nums">⏱ {formatTime(elapsed)}</span>
-        <span className="text-sm text-zinc-500 tabular-nums">
-          {t("progress", { current: index + 1, total: exam.length })}
-        </span>
+        <div className="flex items-center gap-3">
+          <ZhToggle on={showZh} onToggle={toggleZh} />
+          <span className="text-sm text-zinc-500 tabular-nums">⏱ {formatTime(elapsed)}</span>
+          <span className="text-sm text-zinc-500 tabular-nums">
+            {t("progress", { current: index + 1, total: exam.length })}
+          </span>
+        </div>
       </header>
 
       <QuizCard
         key={current.id}
         question={current}
         immediate={false}
+        showZh={showZh}
         onAnswer={handleAnswer}
       />
 

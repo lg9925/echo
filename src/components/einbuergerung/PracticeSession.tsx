@@ -1,9 +1,11 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { recordQuizAnswer } from "@/lib/db";
+import { getShowZh, setShowZh } from "@/lib/einbuergerung/prefs";
 import { QuizCard } from "./QuizCard";
+import { ZhToggle } from "./ZhToggle";
 import type { QuizQuestion } from "@/lib/types";
 
 /**
@@ -22,8 +24,21 @@ export function PracticeSession({
   const [index, setIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [answeredThis, setAnsweredThis] = useState(false);
+  const [showZh, setShowZhState] = useState(false);
   // Guard against double-recording if onAnswer somehow fires twice.
   const recordedRef = useRef(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot localStorage read after mount (SSR has no localStorage)
+    setShowZhState(getShowZh());
+  }, []);
+
+  function toggleZh() {
+    setShowZhState((v) => {
+      setShowZh(!v);
+      return !v;
+    });
+  }
 
   const current = questions[index];
 
@@ -73,12 +88,21 @@ export function PracticeSession({
         >
           ← {t("exit")}
         </button>
-        <span className="text-sm text-zinc-500 tabular-nums">
-          {t("progress", { current: index + 1, total: questions.length })}
-        </span>
+        <div className="flex items-center gap-3">
+          <ZhToggle on={showZh} onToggle={toggleZh} />
+          <span className="text-sm text-zinc-500 tabular-nums">
+            {t("progress", { current: index + 1, total: questions.length })}
+          </span>
+        </div>
       </header>
 
-      <QuizCard key={current.id} question={current} immediate onAnswer={handleAnswer} />
+      <QuizCard
+        key={current.id}
+        question={current}
+        immediate
+        showZh={showZh}
+        onAnswer={handleAnswer}
+      />
 
       <button
         type="button"

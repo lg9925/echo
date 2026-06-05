@@ -311,6 +311,9 @@
     "playAudio": "Read question aloud",
     "imageAlt": "Question image",
     "hintLabel": "Memory hint",
-    "nrwBadge": "NRW"
+    "nrwBadge": "NRW",
+    "showChinese": "Show Chinese",
+    "zhOn": "中文 on",
+    "zhOff": "中文 off"
   }
 }
