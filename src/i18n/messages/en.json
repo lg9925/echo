@@ -9,7 +9,8 @@
     "settings": "Settings",
     "inbox": "Inbox",
     "vocab": "Words",
-    "profile": "Profile"
+    "profile": "Profile",
+    "einbuergerung": "Citizenship test"
   },
   "home": {
     "pickLanguage": "Pick a language",
@@ -267,5 +268,25 @@
     "fNote": "Note",
     "fIpa": "IPA",
     "fVariants": "Variants"
+  },
+  "einbuergerung": {
+    "title": "German Citizenship Test",
+    "subtitle": "Leben in Deutschland · 310 questions (300 national + 10 NRW)",
+    "back": "Back",
+    "loading": "Loading questions…",
+    "loadError": "Failed to load questions. Please refresh.",
+    "practiceAll": "Practice all questions",
+    "questionCount": "{n} questions",
+    "exit": "Exit",
+    "progress": "{current} / {total}",
+    "nextQuestion": "Next",
+    "finish": "Finish",
+    "practiceDone": "Round complete 🎉",
+    "score": "{correct} / {total} correct",
+    "backToHome": "Back",
+    "playAudio": "Read question aloud",
+    "imageAlt": "Question image",
+    "hintLabel": "Memory hint",
+    "nrwBadge": "NRW"
   }
 }

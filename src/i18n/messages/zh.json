@@ -9,7 +9,8 @@
     "settings": "设置",
     "inbox": "收件箱",
     "vocab": "字词表",
-    "profile": "学习画像"
+    "profile": "学习画像",
+    "einbuergerung": "入籍考试"
   },
   "home": {
     "pickLanguage": "选择语言",
@@ -267,5 +268,25 @@
     "fNote": "说明",
     "fIpa": "音标",
     "fVariants": "变体"
+  },
+  "einbuergerung": {
+    "title": "德国入籍考试",
+    "subtitle": "Leben in Deutschland · 310 题(全国 300 + 北威州 10)",
+    "back": "返回",
+    "loading": "题库加载中…",
+    "loadError": "题库加载失败,请刷新重试。",
+    "practiceAll": "练习全部题",
+    "questionCount": "{n} 题",
+    "exit": "退出",
+    "progress": "{current} / {total}",
+    "nextQuestion": "下一题",
+    "finish": "完成",
+    "practiceDone": "本轮结束 🎉",
+    "score": "答对 {correct} / {total}",
+    "backToHome": "返回",
+    "playAudio": "朗读题目",
+    "imageAlt": "题目图片",
+    "hintLabel": "记忆提示",
+    "nrwBadge": "北威州"
   }
 }
