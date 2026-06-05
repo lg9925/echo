@@ -39,11 +39,16 @@ const route = new Hono();
 // provider menu the UI can offer.
 route.get("/", (c) => {
   return c.json({
-    tasks: TASKS.map((task) => ({
-      task,
-      ...resolveRoute(task),
-      overridden: getRouteOverride(task) !== undefined,
-    })),
+    tasks: TASKS.map((task) => {
+      const ov = getRouteOverride(task);
+      return {
+        task,
+        ...resolveRoute(task),
+        overridden: ov !== undefined,
+        // The raw override (or null) — model:null means "provider default".
+        override: ov ? { provider: ov.provider ?? null, model: ov.model ?? null } : null,
+      };
+    }),
     providers: PROVIDERS.map((provider) => ({
       provider,
       configured: providerConfigured(provider),

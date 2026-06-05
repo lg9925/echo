@@ -195,6 +195,8 @@ export interface RoutingTaskState {
   model: string;
   maxTokens: number;
   overridden: boolean;
+  /** Raw override (or null). `model: null` = "use the provider default". */
+  override: { provider: LlmProviderName | null; model: string | null } | null;
 }
 
 export interface RoutingProviderInfo {

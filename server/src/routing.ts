@@ -6,7 +6,13 @@
 //
 // API keys never enter this path — only provider/model *names*. Keys stay in
 // server env (原则六); the adapter for the chosen provider must be configured.
-import { TASK_ROUTING, type LlmProvider, type LlmRoute, type LlmTask } from "./config";
+import {
+  PROVIDER_MODELS,
+  TASK_ROUTING,
+  type LlmProvider,
+  type LlmRoute,
+  type LlmTask,
+} from "./config";
 import { db } from "./db";
 
 const overrides = new Map<LlmTask, { provider?: LlmProvider; model?: string }>();
@@ -18,11 +24,15 @@ export function resolveRoute(task: LlmTask): LlmRoute {
   const base = TASK_ROUTING[task];
   const o = overrides.get(task);
   if (!o) return base;
-  return {
-    provider: o.provider ?? base.provider,
-    model: o.model ?? base.model,
-    maxTokens: base.maxTokens,
-  };
+  const provider = o.provider ?? base.provider;
+  // No pinned model = "use this provider's default", resolved live: keep the
+  // base model when the provider is unchanged, else the provider's recommended
+  // default (PROVIDER_MODELS[provider][0]). So a "default" choice follows
+  // catalog updates instead of freezing a version string.
+  const model =
+    o.model ??
+    (provider === base.provider ? base.model : PROVIDER_MODELS[provider]?.[0] ?? base.model);
+  return { provider, model, maxTokens: base.maxTokens };
 }
 
 /** Current override for a task (if any) — for the admin endpoint to echo back. */

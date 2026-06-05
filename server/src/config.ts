@@ -66,14 +66,16 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
 
 // Curated model menu per provider, so the UI offers a dropdown instead of asking
 // the user to guess a model string (原则一). First entry = a sensible default.
-// The current value is always shown too (union), so env/custom models aren't lost.
+// The current value is always shown too (union), and the UI has a "custom…"
+// escape — so this list going stale never blocks (model names change often).
+// Last refreshed: 2026-06. claude-cli uses CLI aliases that auto-track latest.
 export const PROVIDER_MODELS: Record<LlmProvider, string[]> = {
   anthropic: ["claude-sonnet-4-6", "claude-opus-4-8", "claude-haiku-4-5-20251001"],
   "claude-cli": ["sonnet", "opus", "haiku"],
-  openai: ["gpt-4o", "gpt-4o-mini"],
-  deepseek: ["deepseek-chat", "deepseek-reasoner"],
-  gemini: ["gemini-2.5-flash", "gemini-2.5-pro"],
-  "gemini-cli": ["gemini-2.5-flash", "gemini-2.5-pro"],
+  openai: ["gpt-5.5", "gpt-5.4-mini", "gpt-5.4-nano"],
+  deepseek: ["deepseek-v4-flash", "deepseek-v4-pro"],
+  gemini: ["gemini-3.5-flash", "gemini-3.1-flash-lite", "gemini-3-pro-preview"],
+  "gemini-cli": ["gemini-3.5-flash", "gemini-3.1-flash-lite", "gemini-3-pro-preview"],
 };
 
 // --- TTS routing ---
