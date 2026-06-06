@@ -69,7 +69,8 @@
     "task_scenario": "场景生成",
     "task_split": "拆岛",
     "task_keywords": "关键词",
-    "task_ask": "随手提问"
+    "task_ask": "随手提问",
+    "task_judge": "复习裁判"
   },
   "inbox": {
     "title": "收件箱",
@@ -134,7 +135,16 @@
     "done": "本轮搞定 🎉",
     "remaining": "剩 {n} 张",
     "empty": "还没有可复习的句子,先在岛里学几句。",
-    "loading": "加载中…"
+    "loading": "加载中…",
+    "inputPlaceholder": "凭记忆写出来(可留空,直接翻面)",
+    "check": "检查",
+    "checking": "判定中…",
+    "yourAnswer": "你的答案",
+    "verdictCorrect": "对 ✓",
+    "verdictClose": "接近(算对)",
+    "verdictWrong": "意思不对",
+    "betterLabel": "更地道",
+    "judgeOffline": "离线,自行判定"
   },
   "player": {
     "back": "返回",

@@ -14,6 +14,8 @@ import type {
   KeywordsResult,
   AskRequest,
   AskResult,
+  JudgeRequest,
+  JudgeResult,
 } from "../contracts";
 import { getAdapter } from "./adapters";
 import {
@@ -23,6 +25,7 @@ import {
   buildSplitPrompt,
   buildKeywordsPrompt,
   buildAskPrompt,
+  buildJudgePrompt,
   buildEinbLiteralPrompt,
 } from "./prompts";
 import {
@@ -32,6 +35,7 @@ import {
   splitSchema,
   keywordsSchema,
   askSchema,
+  judgeSchema,
 } from "./schema";
 
 // Pull a JSON object out of a model reply that may be wrapped in prose or a
@@ -103,6 +107,10 @@ export function keywords(req: KeywordsRequest): Promise<KeywordsResult> {
 
 export function ask(req: AskRequest): Promise<AskResult> {
   return runStructured("ask", buildAskPrompt(req), askSchema);
+}
+
+export function judge(req: JudgeRequest): Promise<JudgeResult> {
+  return runStructured("judge", buildJudgePrompt(req), judgeSchema);
 }
 
 // 入籍考试逐词直译 — author-time only (not wired to a route/job). Plain-text

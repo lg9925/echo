@@ -5,6 +5,8 @@ import type {
   JobState,
   JobSubmitResult,
   JobTask,
+  JudgeRequest,
+  JudgeResult,
   RoutingState,
   RoutingUpdate,
 } from "./contracts";
@@ -32,17 +34,33 @@ function url(path: string): string {
   return `${resolveApiBase()}${path}`;
 }
 
+// Gateway/edge statuses that mean the request died before (or after) our origin
+// — Cloudflare returns these as HTML, not JSON. 524 is the tunnel's ~100s edge
+// timeout (see server/CLAUDE.md → async jobs).
+const GATEWAY_STATUS = new Set([502, 503, 504, 520, 521, 522, 523, 524]);
+
 async function toApiError(res: Response): Promise<ApiClientError> {
-  let code = "http_error";
-  let detail = "";
+  let body: ApiError | undefined;
   try {
-    const body = (await res.json()) as ApiError;
-    code = body.error ?? code;
-    detail = body.detail ?? "";
+    body = (await res.json()) as ApiError;
   } catch {
-    /* non-JSON error body */
+    /* non-JSON error body — i.e. NOT echo-server (see below) */
   }
-  return new ApiClientError(detail || code || `HTTP ${res.status}`, res.status, code);
+  // echo-server always answers with JSON {error, detail?}. A non-JSON body means
+  // we never reached it — almost always a wrong API 地址 in 高级设置, a down
+  // tunnel, or a Cloudflare edge timeout (524). Surface that plainly instead of
+  // the opaque "http_error" the user actually hit.
+  if (!body?.error) {
+    const why = GATEWAY_STATUS.has(res.status)
+      ? `服务器无响应或超时 (HTTP ${res.status})`
+      : `服务器返回了异常响应 (HTTP ${res.status})`;
+    return new ApiClientError(
+      `无法连接到服务器，请检查高级设置里的 API 地址。${why}`,
+      res.status,
+      "unreachable",
+    );
+  }
+  return new ApiClientError(body.detail || body.error, res.status, body.error);
 }
 
 /** POST JSON, get JSON back. Throws ApiClientError on any non-2xx. */
@@ -73,67 +91,6 @@ export async function apiFetchBlob(path: string, body: unknown, signal?: AbortSi
   });
   if (!res.ok) throw await toApiError(res);
   return res.blob();
-}
-
-/**
- * POST JSON, consume an SSE stream. `onProgress` fires for each `progress`
- * event; resolves with the payload of the `done` event. Throws on `error`
- * events or non-2xx. Used for long generations (scenario) to show live
- * progress instead of a blank wait.
- */
-export async function apiFetchSSE<T>(
-  path: string,
-  body: unknown,
-  onProgress: (data: unknown) => void,
-  signal?: AbortSignal,
-): Promise<T> {
-  const res = await fetch(url(path), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${requireToken()}`,
-    },
-    body: JSON.stringify(body),
-    signal,
-  });
-  if (!res.ok || !res.body) throw await toApiError(res);
-
-  const reader = res.body.getReader();
-  const decoder = new TextDecoder();
-  let buf = "";
-  let result: T | undefined;
-  let failure: ApiClientError | undefined;
-
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buf += decoder.decode(value, { stream: true });
-
-    let sep: number;
-    while ((sep = buf.indexOf("\n\n")) >= 0) {
-      const block = buf.slice(0, sep);
-      buf = buf.slice(sep + 2);
-      let event = "message";
-      let data = "";
-      for (const line of block.split("\n")) {
-        if (line.startsWith("event:")) event = line.slice(6).trim();
-        else if (line.startsWith("data:")) data += line.slice(5).trim();
-      }
-      if (!data) continue;
-      if (event === "progress") onProgress(JSON.parse(data));
-      else if (event === "done") result = JSON.parse(data) as T;
-      else if (event === "error") {
-        const d = JSON.parse(data) as ApiError;
-        failure = new ApiClientError(d.detail || d.error || "stream_error", 502, d.error || "stream_error");
-      }
-    }
-  }
-
-  if (failure) throw failure;
-  if (result === undefined) {
-    throw new ApiClientError("stream ended without a result", 502, "no_result");
-  }
-  return result;
 }
 
 /** GET JSON. Throws ApiClientError on any non-2xx. */
@@ -215,6 +172,11 @@ export async function runJob<T>(
 ): Promise<T> {
   const jobId = await submitJob(task, input, signal);
   return pollJob<T>(jobId, onProgress, signal);
+}
+
+/** 复习裁判: judge a typed review answer by meaning/naturalness. */
+export function judge(req: JudgeRequest, signal?: AbortSignal): Promise<JudgeResult> {
+  return apiFetchJson<JudgeResult>("/v1/judge", req, signal);
 }
 
 /** Unauthenticated reachability check. */

@@ -165,6 +165,28 @@ export interface AskResult {
   words: { term: string; meaning: string }[];
 }
 
+// --- /v1/judge ("复习裁判": 判断复习时输入的答案对不对,按意思/自然度) ---
+
+export interface JudgeRequest {
+  language: TargetLanguage;
+  /** 中文提示(卡片正面)。 */
+  native: string;
+  /** 标准答案(地道目标语)。用于对照,但不要求逐字相同。 */
+  target: string;
+  /** 学习者输入的答案。 */
+  attempt: string;
+  profile?: LearnerProfile;
+}
+
+export interface JudgeResult {
+  /** correct=自然准确;close=能懂但别扭(算对);wrong=意思不对(重来)。 */
+  verdict: "correct" | "close" | "wrong";
+  /** 简短中文说明(为什么接近/为什么错),可空串。 */
+  tip: string;
+  /** 更地道的说法(close 时尤其有用),可空串。 */
+  better: string;
+}
+
 // --- /v1/jobs (async queue: submit a slow task → poll for the result) ---
 
 /** Tasks that can run as a background job. Each `input` is that task's request

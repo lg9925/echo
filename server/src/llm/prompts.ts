@@ -2,6 +2,7 @@ import type {
   AskRequest,
   ComposeRequest,
   GlossRequest,
+  JudgeRequest,
   KeywordsRequest,
   LearnerProfile,
   ScenarioRequest,
@@ -130,6 +131,29 @@ export function buildAskPrompt(req: AskRequest): PromptPair {
 answer 内可用普通换行与简单 Markdown(列表/加粗)。
 ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const user = `问题:${req.question}`;
+  return { system, user };
+}
+
+// "复习裁判": judge a typed review answer by MEANING/NATURALNESS, never exact
+// match (原则二). The standard answer is one of many valid phrasings.
+export function buildJudgePrompt(req: JudgeRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const system = `你是一位宽容、地道的${lang}复习裁判,帮助中文母语者。学习者看到一句中文,凭记忆写出${lang}。
+判定**绝不按逐字匹配**——标准答案只是众多地道说法之一,意思对、自然就算过。三档:
+- correct:自然、准确地表达了中文意思(用词/语序可与标准答案不同)。
+- close:能听懂、意思对,但有点别扭或有小错(语法/拼写/不够地道)——**也算过**,但要给更地道的说法。
+- wrong:意思不对、答非所问、或基本空白。
+要求:
+- tip:一句简短**中文**说明(为什么接近/哪里错;correct 可空串)。
+- better:更地道的${lang}写法(close 时尤其给;correct/wrong 可给可空)。
+- 对拼写/大小写/标点的小瑕疵宽容(口语复习,不是听写)。
+- **tip 与 better 内绝不要出现英文双引号 " 或反斜杠**(要强调就用「」),否则会破坏 JSON。
+只输出一个 JSON 对象,不要解释、不要 markdown:
+{"verdict":"correct"|"close"|"wrong","tip":string,"better":string}
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
+  const user = `中文意思:${req.native}
+参考答案(地道说法之一):${req.target}
+学习者写的:${req.attempt}`;
   return { system, user };
 }
 
