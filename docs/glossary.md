@@ -69,8 +69,23 @@
 ### PWA — Progressive Web App
 能像原生 App 一样"安装到主屏、离线可用"的网页。靠 manifest + Service Worker 实现。
 
-### Service Worker
-浏览器后台运行的脚本,拦截网络请求做缓存,是 PWA 离线能力的核心。
+### Service Worker(SW)
+浏览器后台独立运行的脚本,坐在页面和网络之间像个**本地代理中间件**——拦截每个网络请求,自己决定走网络还是回缓存(Cache Storage)。是 PWA 离线能力的核心。只能在 HTTPS / localhost 跑。有"安装→等待→激活"的更新生命周期(见 `skipWaiting + clientsClaim`)。Echo 的实现:`src/app/sw.ts`,构建后产出 `out/sw.js`。
+
+### manifest(PWA 清单)
+一个 JSON,告诉浏览器 App 的图标、名字、主题色、启动方式——决定"装到主屏后长什么样"。与 Service Worker 是 PWA 的两根支柱(SW 管离线/缓存,manifest 管外观/安装)。
+
+### Serwist
+帮你**生成和管理 Service Worker** 的库(Google 已停维护的 Workbox 的后继者)。手写 SW 易错(缓存版本、清理旧缓存、precache 清单……),Serwist 把这些封装成声明式的 `runtimeCaching` 配置。`@serwist/next` 是给 Next.js 的集成包。它是**构建期工具**:`pnpm build` 时读 `sw.ts` + 扫描静态资源 → 编译出 `out/sw.js`,因此与静态导出不冲突。⚠️ `disable: NODE_ENV==='development'` 意味着 `next dev` 不产出 SW。
+
+### precache(预缓存)
+Serwist 在构建期扫描所有静态资源,生成一份清单(`sw.ts` 里的 `__SW_MANIFEST`),SW 安装时就把它们全缓存下来——保证离线时核心资源齐全。与之相对的是 `runtimeCaching`(运行时按请求动态缓存)。
+
+### NetworkFirst / CacheFirst(缓存策略)
+SW 决定"请求来了走网络还是走缓存"的策略。**NetworkFirst** = 先试网络,失败/超时才回退缓存;**CacheFirst** = 先用缓存。Echo 的 `sw.ts` 对 `/seed/*` 和页面跳转都用 NetworkFirst(5 秒超时),刻意优先回源——这样 `pnpm build` 重新部署后用户一刷新就拿到新版,不会卡在旧内容。
+
+### skipWaiting + clientsClaim
+解决 SW 那个"更新要等下次才生效"的痛点。`skipWaiting`:新 SW 装好后**立刻上岗**,不等旧 SW 退休;`clientsClaim`:新 SW 一激活就**立刻接管所有已打开页面**。两者合起来 = 重新部署后用户**刷一下就用上新版**,无需清缓存。Echo 在 `sw.ts:16-17` 同时开启,是其"build→serve 即部署"流程能生效的底层保障。
 
 ### IndexedDB
 浏览器内置的本地数据库(可存大量结构化数据 + Blob)。Echo 全部数据存这里,**无后端、无云同步**。
@@ -80,6 +95,15 @@ IndexedDB 的封装库,把原生那套难用的 API 变成顺手的查询。**�
 
 ### static export(静态导出)
 `next.config.ts` 里 `output: 'export'`,把站点编译成纯静态文件(`out/`),无服务器运行时。**代价**:不能用 Proxy(中间件)、Server Actions、动态 Route Handler、`cookies()`、`redirects`/`rewrites`/`headers` 配置、默认 Image Optimization——用了会构建失败。
+
+### `next dev`(开发服务器)
+本地开发命令(项目里是 `pnpm dev`,跑在 `localhost:3000`)。改代码即时编译、浏览器自动刷新(靠 HMR),**为快而牺牲优化**:不压缩、不打包成成品。类比后端的 `dotnet watch` / Spring devtools。⚠️ **绝不能当生产**:它跑在 development 模式,Serwist 配置里 `disable: NODE_ENV==='development'` → **不产出 service worker**,无法覆盖用户设备上缓存的旧 SW(见 `static export` / `Serwist`)。
+
+### `next build`(生产构建)
+产出上线成品的命令(项目里是 `pnpm build`,即 `next build --webpack`)。编译慢但做了全部优化,把站点输出成静态 `out/`,**并由 Serwist 生成带 SW 的 `out/sw.js`**。正确的生产姿势是 `pnpm build` 后用 `pnpm serve` 伺服 `out/`,不是 `next dev`。
+
+### HMR — Hot Module Replacement(热模块替换)
+开发期"改一行代码、不刷新整页就把改动塞进运行中的应用"的机制,只换变更的模块、保留页面状态。`next dev` 提供,`next build` 的成品里没有。
 
 ### seed(种子数据)
 首次启动时一次性读入 IndexedDB 的初始内容,放在 `public/seed/echo_seed_{lang}.json`。加载逻辑 `src/lib/seedLoader.ts`,**幂等**(已加载过就跳过)。详见 [`seed-format.md`](./seed-format.md)。
