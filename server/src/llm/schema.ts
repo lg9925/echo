@@ -60,6 +60,19 @@ export const askSchema = z.object({
     .default([]),
 });
 
+export const judgeSchema = z.object({
+  verdict: z.enum(["correct", "close", "wrong"]),
+  // tolerate missing/null → "" (the UI hides empty tips/suggestions).
+  tip: z
+    .string()
+    .nullish()
+    .transform((v) => v ?? ""),
+  better: z
+    .string()
+    .nullish()
+    .transform((v) => v ?? ""),
+});
+
 export const keywordsSchema = z.object({
   keywords: z
     .array(

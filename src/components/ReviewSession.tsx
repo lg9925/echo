@@ -13,7 +13,12 @@ import { ensureSeedLoaded } from "@/lib/seedLoader";
 import { freshState, schedule } from "@/lib/sr";
 import { cancelAllSpeech, speak } from "@/lib/tts";
 import { targetBcp47 } from "@/lib/lang";
+import { judge } from "@/lib/api/client";
+import { getApiToken } from "@/lib/settings";
+import { profileForRequest } from "@/lib/profile";
+import type { TargetLanguage, JudgeResult } from "@/lib/api/contracts";
 import type { Sentence } from "@/lib/types";
+import { MicButton } from "./MicButton";
 
 interface DeckItem {
   sentence: Sentence;
@@ -35,6 +40,12 @@ export function ReviewSession({
   const [queue, setQueue] = useState<DeckItem[] | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [doneCount, setDoneCount] = useState(0);
+  // Typed-recall: the learner's attempt, the AI verdict (online), and whether
+  // this card fell back to self-grading (offline / no backend / judge failed).
+  const [attempt, setAttempt] = useState("");
+  const [judging, setJudging] = useState(false);
+  const [verdict, setVerdict] = useState<JudgeResult | null>(null);
+  const [selfGraded, setSelfGraded] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -77,13 +88,56 @@ export function ReviewSession({
 
   const current = queue?.[0];
 
-  const onReveal = useCallback(() => {
-    if (!current || revealed) return;
+  const reveal = useCallback(() => {
+    if (!current) return;
     setRevealed(true);
     void speak(current.sentence.target, {
       lang: targetBcp47(current.sentence.language),
     });
-  }, [current, revealed]);
+  }, [current]);
+
+  // Skip typing → straight to reveal + self-grade (the original flow).
+  const onReveal = useCallback(() => {
+    if (!current || revealed || judging) return;
+    reveal();
+  }, [current, revealed, judging, reveal]);
+
+  // Submit the typed answer. Online + token → AI judge by meaning/naturalness;
+  // otherwise (offline / no backend / judge failed) fall back to self-grading.
+  // Either way we reveal — typing never blocks the review.
+  const check = useCallback(async () => {
+    if (!current || revealed || judging) return;
+    const text = attempt.trim();
+    if (!text) {
+      reveal();
+      return;
+    }
+    const lang = current.sentence.language as TargetLanguage;
+    const online =
+      typeof navigator !== "undefined" && navigator.onLine && !!getApiToken();
+    if (!online) {
+      setSelfGraded(true);
+      reveal();
+      return;
+    }
+    setJudging(true);
+    try {
+      const r = await judge({
+        language: lang,
+        native: current.sentence.native,
+        target: current.sentence.target,
+        attempt: text,
+        profile: profileForRequest(lang),
+      });
+      setVerdict(r);
+      reveal();
+    } catch {
+      setSelfGraded(true); // backend hiccup → don't block the review
+      reveal();
+    } finally {
+      setJudging(false);
+    }
+  }, [current, revealed, judging, attempt, reveal]);
 
   const grade = useCallback(
     async (g: "again" | "good") => {
@@ -103,10 +157,20 @@ export function ReviewSession({
         return q.slice(1);
       });
       setRevealed(false);
+      setAttempt("");
+      setVerdict(null);
+      setSelfGraded(false);
+      setJudging(false);
       setDoneCount((c) => c + 1);
     },
     [current],
   );
+
+  const suggested: "again" | "good" | null = verdict
+    ? verdict.verdict === "wrong"
+      ? "again"
+      : "good"
+    : null;
 
   if (queue === null) {
     return (
@@ -177,15 +241,97 @@ export function ReviewSession({
                 </p>
               </div>
             )}
+            {attempt && (
+              <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4 space-y-2">
+                <div>
+                  <p className="text-xs text-zinc-500 mb-1">{t("yourAnswer")}</p>
+                  <p
+                    className={`text-lg ${
+                      verdict?.verdict === "wrong"
+                        ? "text-red-600 dark:text-red-400"
+                        : ""
+                    }`}
+                  >
+                    {attempt}
+                  </p>
+                </div>
+                {verdict && (
+                  <div className="space-y-1">
+                    <span
+                      className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        verdict.verdict === "correct"
+                          ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200"
+                          : verdict.verdict === "close"
+                            ? "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-200"
+                            : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200"
+                      }`}
+                    >
+                      {verdict.verdict === "correct"
+                        ? t("verdictCorrect")
+                        : verdict.verdict === "close"
+                          ? t("verdictClose")
+                          : t("verdictWrong")}
+                    </span>
+                    {verdict.tip && (
+                      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                        {verdict.tip}
+                      </p>
+                    )}
+                    {verdict.better && (
+                      <p className="text-sm">
+                        <span className="text-zinc-400">{t("betterLabel")}: </span>
+                        {verdict.better}
+                      </p>
+                    )}
+                  </div>
+                )}
+                {selfGraded && (
+                  <p className="text-xs text-zinc-400">{t("judgeOffline")}</p>
+                )}
+              </div>
+            )}
           </>
         ) : (
-          <button
-            type="button"
-            onClick={onReveal}
-            className="w-full py-4 rounded-lg border-2 border-dashed border-zinc-300 dark:border-zinc-700 text-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-900"
-          >
-            {t("reveal")}
-          </button>
+          <div className="space-y-3">
+            <div className="flex items-end gap-2">
+              <textarea
+                value={attempt}
+                onChange={(e) => setAttempt(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    void check();
+                  }
+                }}
+                placeholder={t("inputPlaceholder")}
+                rows={2}
+                disabled={judging}
+                className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-base resize-none"
+              />
+              <MicButton
+                lang={targetBcp47(sentence.language)}
+                onText={(text) => setAttempt(text)}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={onReveal}
+                disabled={judging}
+                className="py-3 rounded-lg border-2 border-dashed border-zinc-300 dark:border-zinc-700 text-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-900 disabled:opacity-50"
+              >
+                {t("reveal")}
+              </button>
+              <button
+                type="button"
+                onClick={check}
+                disabled={judging || !attempt.trim()}
+                className="py-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium disabled:opacity-40"
+              >
+                {judging ? t("checking") : t("check")}
+              </button>
+            </div>
+          </div>
         )}
       </section>
 
@@ -194,14 +340,22 @@ export function ReviewSession({
           <button
             type="button"
             onClick={() => grade("again")}
-            className="py-4 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900 font-medium"
+            className={`py-4 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900 font-medium ${
+              suggested === "again"
+                ? "ring-2 ring-offset-2 ring-zinc-400 dark:ring-zinc-500 dark:ring-offset-zinc-950"
+                : ""
+            }`}
           >
             {t("again")}
           </button>
           <button
             type="button"
             onClick={() => grade("good")}
-            className="py-4 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium"
+            className={`py-4 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium ${
+              suggested === "good"
+                ? "ring-2 ring-offset-2 ring-zinc-400 dark:ring-zinc-500 dark:ring-offset-zinc-950"
+                : ""
+            }`}
           >
             {t("good")}
           </button>

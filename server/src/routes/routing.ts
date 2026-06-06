@@ -5,7 +5,7 @@ import { getRouteOverride, resolveRoute, setRouteOverride } from "../routing";
 // Admin: read/switch which provider+model serves each LLM task, at runtime
 // (persisted in the DB, no restart). Gated by the same /v1 Bearer auth. This
 // backs the app's advanced-settings "model选择" (原则一). Keys never cross here.
-const TASKS: LlmTask[] = ["authoring", "gloss", "scenario", "split", "keywords", "ask"];
+const TASKS: LlmTask[] = ["authoring", "gloss", "scenario", "split", "keywords", "ask", "judge"];
 const PROVIDERS: LlmProvider[] = [
   "anthropic",
   "openai",

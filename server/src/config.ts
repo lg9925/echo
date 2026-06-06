@@ -18,7 +18,8 @@ export type LlmTask =
   | "split"
   | "keywords"
   | "ask"
-  | "einb_literal";
+  | "einb_literal"
+  | "judge";
 
 export interface LlmRoute {
   provider: LlmProvider;
@@ -43,6 +44,9 @@ const DEFAULT_TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   // 入籍考试 word-by-word literal — author-time batch over the 310 questions
   // (one short German clause each). Strong model for quality; run via claude-cli.
   einb_literal: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 800 },
+  // 复习裁判: judge a typed review answer by meaning/naturalness (原则二). High
+  // frequency + interactive → a cheap, fast model (haiku) by default (原则五).
+  judge: { provider: "anthropic", model: "claude-haiku-4-5-20251001", maxTokens: 500 },
 };
 
 // Optional per-task env override (no code change needed to switch a provider):
@@ -67,6 +71,7 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   keywords: withEnvOverride("keywords", DEFAULT_TASK_ROUTING.keywords),
   ask: withEnvOverride("ask", DEFAULT_TASK_ROUTING.ask),
   einb_literal: withEnvOverride("einb_literal", DEFAULT_TASK_ROUTING.einb_literal),
+  judge: withEnvOverride("judge", DEFAULT_TASK_ROUTING.judge),
 };
 
 // Curated model menu per provider, so the UI offers a dropdown instead of asking

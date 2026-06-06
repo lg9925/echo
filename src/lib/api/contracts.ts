@@ -140,6 +140,22 @@ export interface AskResult {
   words: { term: string; meaning: string }[];
 }
 
+// --- /v1/judge ("复习裁判": 判断复习时输入的答案对不对) ---
+
+export interface JudgeRequest {
+  language: TargetLanguage;
+  native: string;
+  target: string;
+  attempt: string;
+  profile?: LearnerProfile;
+}
+
+export interface JudgeResult {
+  verdict: "correct" | "close" | "wrong";
+  tip: string;
+  better: string;
+}
+
 // --- /v1/jobs (async queue: submit a slow task → poll for the result) ---
 
 export type JobTask =
@@ -179,7 +195,8 @@ export type LlmTaskName =
   | "scenario"
   | "split"
   | "keywords"
-  | "ask";
+  | "ask"
+  | "judge";
 
 export type LlmProviderName =
   | "anthropic"

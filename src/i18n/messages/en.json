@@ -69,7 +69,8 @@
     "task_scenario": "Scenario",
     "task_split": "Split",
     "task_keywords": "Keywords",
-    "task_ask": "Assistant Q&A"
+    "task_ask": "Assistant Q&A",
+    "task_judge": "Review judge"
   },
   "inbox": {
     "title": "Inbox",
@@ -134,7 +135,16 @@
     "done": "Session done 🎉",
     "remaining": "{n} left",
     "empty": "No sentences to review yet — try an island first.",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "inputPlaceholder": "Type it from memory (optional — or just reveal)",
+    "check": "Check",
+    "checking": "Checking…",
+    "yourAnswer": "Your answer",
+    "verdictCorrect": "Correct ✓",
+    "verdictClose": "Close (counts)",
+    "verdictWrong": "Wrong meaning",
+    "betterLabel": "More natural",
+    "judgeOffline": "Offline — grade it yourself"
   },
   "player": {
     "back": "Back",

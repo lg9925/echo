@@ -22,6 +22,11 @@ export function makeOpenAICompatibleAdapter(opts: {
       const res = await getClient().chat.completions.create({
         model,
         max_tokens: maxTokens,
+        // Every task on this layer asks for a JSON object — force JSON mode so
+        // the model can't break parsing with stray quotes/newlines. (Our prompts
+        // all contain the word "JSON", which OpenAI-style endpoints require for
+        // this mode. The one plain-text task, einb_literal, runs on claude-cli.)
+        response_format: { type: "json_object" },
         messages: [
           { role: "system", content: system },
           { role: "user", content: user },
