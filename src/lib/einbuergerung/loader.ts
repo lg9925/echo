@@ -69,18 +69,37 @@ function toQuizQuestion(raw: RawQuestion): QuizQuestion {
 }
 
 /**
- * Load the question bank into IndexedDB if not already present for this
- * version. Idempotent and safe to call on every visit to the module.
+ * Cheap integrity probe (no network): the bank is present and actually carries
+ * the current version's fields. Guards against a meta flag written from stale or
+ * partial data — e.g. a service worker served an old JSON during an earlier load,
+ * so `einbuergerung@N` got recorded but the rows lack the new fields. In that
+ * case the version flag alone would skip forever; this forces a reload instead.
+ */
+async function bankLooksComplete(): Promise<boolean> {
+  const db = getDb();
+  if ((await db.quizQuestions.count()) !== EINBUERGERUNG_TOTAL) return false;
+  const q1 = await db.quizQuestions.get(1);
+  if (!q1?.literal) return false; // question literal (v2+)
+  return !!q1.options.find((o) => o.correct)?.literal; // answer literal (v4+)
+}
+
+/**
+ * Load the question bank into IndexedDB if not already present for this version
+ * AND the stored data passes an integrity probe. Idempotent and safe to call on
+ * every visit; only hits the network when a (re)load is actually needed.
  */
 export async function ensureEinbuergerungLoaded(): Promise<void> {
   const db = getDb();
   const existing = await db.meta.get(META_KEY);
-  if (existing) return;
+  if (existing && (await bankLooksComplete())) return;
 
-  const response = await fetch(SOURCE_URL);
+  // Cache-bust by version so neither the HTTP cache (max-age) nor a stale SW
+  // entry can hand back an older bank than this build expects.
+  const url = `${SOURCE_URL}?v=${EINBUERGERUNG_VERSION}`;
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error(
-      `einbuergerung loader: failed to fetch ${SOURCE_URL} (${response.status})`,
+      `einbuergerung loader: failed to fetch ${url} (${response.status})`,
     );
   }
   const raw: RawBank = await response.json();
