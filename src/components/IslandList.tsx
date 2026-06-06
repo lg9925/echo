@@ -9,11 +9,18 @@ import {
 } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import { deleteIsland, islandHref, isUserIslandId } from "@/lib/cards";
+import {
+  deleteIslandAudio,
+  downloadIsland,
+  islandAudioStatus,
+  type IslandAudioStatus,
+} from "@/lib/offlineAudio";
 import type { Island } from "@/lib/types";
 
 interface IslandWithCount extends Island {
   sentenceCount: number;
   dueCount: number;
+  audio: IslandAudioStatus;
 }
 
 export function IslandList({
@@ -40,6 +47,7 @@ export function IslandList({
           ...isl,
           sentenceCount: await countSentencesByIsland(isl.id),
           dueCount: due[isl.id] ?? 0,
+          audio: await islandAudioStatus(isl.id, language),
         })),
       );
       setState({ kind: "ready", islands: withCounts });
@@ -60,6 +68,76 @@ export function IslandList({
     if (!window.confirm(t("confirmDeleteIsland", { name: isl.name }))) return;
     await deleteIsland(isl.id);
     await load();
+  }
+
+  // islandId → live progress while its offline download runs.
+  const [dl, setDl] = useState<Record<string, { done: number; total: number }>>(
+    {},
+  );
+
+  async function downloadAudio(isl: IslandWithCount) {
+    setDl((d) => ({ ...d, [isl.id]: { done: 0, total: isl.sentenceCount } }));
+    const res = await downloadIsland(isl.id, language, (done, total) =>
+      setDl((d) => ({ ...d, [isl.id]: { done, total } })),
+    );
+    setDl((d) => {
+      const next = { ...d };
+      delete next[isl.id];
+      return next;
+    });
+    if (res.failed > 0) window.alert(t("offlineFailed", { n: res.failed }));
+    await load();
+  }
+
+  async function removeAudio(isl: IslandWithCount) {
+    if (!window.confirm(t("confirmDeleteOfflineAudio", { name: isl.name }))) return;
+    await deleteIslandAudio(isl.id, language);
+    await load();
+  }
+
+  function offlineButton(isl: IslandWithCount) {
+    const base =
+      "shrink-0 flex items-center rounded-lg border px-3 text-sm transition-colors";
+    const prog = dl[isl.id];
+    if (prog) {
+      return (
+        <span
+          className={`${base} border-zinc-200 dark:border-zinc-800 text-zinc-500 tabular-nums`}
+        >
+          {t("offlineDownloading", { done: prog.done, total: prog.total })}
+        </span>
+      );
+    }
+    const full = isl.audio.total > 0 && isl.audio.cached === isl.audio.total;
+    if (full) {
+      return (
+        <button
+          type="button"
+          onClick={() => removeAudio(isl)}
+          aria-label={t("offlineReady")}
+          title={t("offlineReady")}
+          className={`${base} border-emerald-300 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 hover:border-red-300 hover:text-red-500`}
+        >
+          ⬇✓
+        </button>
+      );
+    }
+    const partial = isl.audio.cached > 0;
+    return (
+      <button
+        type="button"
+        onClick={() => downloadAudio(isl)}
+        aria-label={t("offlineDownload")}
+        title={
+          partial
+            ? t("offlinePartial", { cached: isl.audio.cached, total: isl.audio.total })
+            : t("offlineDownload")
+        }
+        className={`${base} border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:border-zinc-300`}
+      >
+        ⬇{partial && <span className="ml-1 text-xs tabular-nums">{isl.audio.cached}/{isl.audio.total}</span>}
+      </button>
+    );
   }
 
   if (state.kind === "loading") {
@@ -96,6 +174,7 @@ export function IslandList({
               {t("islandDue", { n: isl.dueCount })}
             </a>
           )}
+          {offlineButton(isl)}
           <a
             href={`/${uiLocale}/${language}/vocab/?island=${encodeURIComponent(isl.id)}`}
             aria-label={t("extractTitle")}
