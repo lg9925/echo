@@ -338,6 +338,12 @@
     "tagHelp_number": "Answer is a number/year/age/percentage → memorise the number anchor.",
     "tagHelp_values": "Answer is about freedom/democracy/equality/human dignity → favour these when unsure.",
     "tagHelp_image": "Pick by image number — pure visual memory, easy points.",
-    "tagHelp_matching": "Ordinary question — match stem anchor ↔ answer anchor."
+    "tagHelp_matching": "Ordinary question — match stem anchor ↔ answer anchor.",
+    "offlineDownload": "Download audio",
+    "offlineDownloading": "Downloading {done}/{total}",
+    "offlineReady": "Audio offline · tap to remove",
+    "offlinePartial": "Offline {cached}/{total}",
+    "confirmDeleteOfflineAudio": "Remove offline audio for these questions? (questions and progress stay)",
+    "offlineFailed": "{n} clip(s) failed — you can retry"
   }
 }
