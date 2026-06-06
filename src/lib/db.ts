@@ -3,6 +3,8 @@ import type {
   AudioCacheEntry,
   InboxItem,
   Island,
+  QuizProgress,
+  QuizQuestion,
   ReviewState,
   Sentence,
   SeedMeta,
@@ -17,6 +19,8 @@ class EchoDB extends Dexie {
   inbox!: EntityTable<InboxItem, "id">;
   audioCache!: EntityTable<AudioCacheEntry, "key">;
   vocab!: EntityTable<VocabEntry, "id">;
+  quizQuestions!: EntityTable<QuizQuestion, "id">;
+  quizProgress!: EntityTable<QuizProgress, "questionId">;
 
   constructor() {
     super("echo");
@@ -35,6 +39,12 @@ class EchoDB extends Dexie {
     // v3 adds the 字词表 (vocab) — additive, no migration.
     this.version(3).stores({
       vocab: "&id, language, [language+term], [language+createdAt]",
+    });
+    // v4 adds the isolated 入籍考试 (Einbürgerungstest) quiz tables — additive,
+    // no migration. quizProgress is never wiped when the question bank reloads.
+    this.version(4).stores({
+      quizQuestions: "&id, category, day, region, *tags",
+      quizProgress: "&questionId, lastResult, starred, updatedAt",
     });
   }
 }
@@ -179,4 +189,41 @@ export async function findVocabByTerm(
 ): Promise<VocabEntry | undefined> {
   const db = getDb();
   return db.vocab.where("[language+term]").equals([language, term]).first();
+}
+
+// --- 德国入籍考试 (Einbürgerungstest) quiz helpers ---
+
+/** All questions, sorted by stable id. Components filter in memory (310 rows). */
+export async function listQuizQuestions(): Promise<QuizQuestion[]> {
+  const db = getDb();
+  return db.quizQuestions.orderBy("id").toArray();
+}
+
+export async function countQuizQuestions(): Promise<number> {
+  return getDb().quizQuestions.count();
+}
+
+export async function listAllQuizProgress(): Promise<QuizProgress[]> {
+  return getDb().quizProgress.toArray();
+}
+
+/** Record one answer, folding into existing stats. Returns the new progress. */
+export async function recordQuizAnswer(
+  questionId: number,
+  isCorrect: boolean,
+  nowMs: number = Date.now(),
+): Promise<QuizProgress> {
+  const db = getDb();
+  const prev = await db.quizProgress.get(questionId);
+  const next: QuizProgress = {
+    questionId,
+    attempts: (prev?.attempts ?? 0) + 1,
+    correct: (prev?.correct ?? 0) + (isCorrect ? 1 : 0),
+    wrong: (prev?.wrong ?? 0) + (isCorrect ? 0 : 1),
+    lastResult: isCorrect ? "correct" : "wrong",
+    starred: prev?.starred ?? 0,
+    updatedAt: nowMs,
+  };
+  await db.quizProgress.put(next);
+  return next;
 }

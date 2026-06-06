@@ -23,6 +23,7 @@ import {
   buildSplitPrompt,
   buildKeywordsPrompt,
   buildAskPrompt,
+  buildEinbLiteralPrompt,
 } from "./prompts";
 import {
   composeSchema,
@@ -102,6 +103,27 @@ export function keywords(req: KeywordsRequest): Promise<KeywordsResult> {
 
 export function ask(req: AskRequest): Promise<AskResult> {
   return runStructured("ask", buildAskPrompt(req), askSchema);
+}
+
+// 入籍考试逐词直译 — author-time only (not wired to a route/job). Plain-text
+// output (the result is a single string), so German quotes „…" in the source
+// can't break a JSON wrapper. Strips any stray fences/quotes the model adds.
+export async function einbLiteral(
+  questionDe: string,
+): Promise<{ literal: string }> {
+  const route = resolveRoute("einb_literal");
+  const adapter = getAdapter(route.provider);
+  const { system, user } = buildEinbLiteralPrompt(questionDe);
+  const raw = await adapter.complete({
+    system,
+    user,
+    model: route.model,
+    maxTokens: route.maxTokens,
+  });
+  let s = raw.trim();
+  s = s.replace(/^```[a-z]*\s*/i, "").replace(/\s*```$/, "").trim();
+  if (s.length > 1 && s.startsWith('"') && s.endsWith('"')) s = s.slice(1, -1);
+  return { literal: s.trim() };
 }
 
 // Streaming variant: `onText` receives the accumulated raw text as it streams

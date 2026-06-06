@@ -24,13 +24,16 @@ function tokenize(target: string): Part[] {
 export function TargetTokenized({
   target,
   onTapWord,
+  className = "text-2xl font-medium leading-relaxed",
 }: {
   target: string;
   onTapWord: (word: string) => void;
+  /** Wrapper class — defaults to the shadowing player's large style. */
+  className?: string;
 }) {
   const parts = tokenize(target);
   return (
-    <p className="text-2xl font-medium leading-relaxed">
+    <p className={className}>
       {parts.map((part, i) =>
         part.kind === "word" ? (
           <button

@@ -133,6 +133,20 @@ ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   return { system, user };
 }
 
+// 入籍考试逐词直译: 一句德语题干 → 逐词交错的中文注释(像句子岛的 literal)。
+// 输出是单行纯文本(不是 JSON),所以德语原文里的引号 „…" 不会破坏解析。
+export function buildEinbLiteralPrompt(questionDe: string): PromptPair {
+  const system = `你是一位德语老师,帮助中文母语者逐词读懂一句德语。给你一句德国入籍考试的题干(德语),请按**原词序**给出"逐词中文注释":
+- 在**每个德语词**后面紧跟它在本句中的中文意思,用中文全角括号(),如 In(在) Deutschland(德国) dürfen(可以)。
+- 保持德语原词和原顺序不变,保留标点(含引号「」/ „ ");省略号 … 原样保留并注(……)。
+- 功能词(冠词 der/die/das、连词、介词等)也要注,给出最贴合本句的简短中文(如 die(定冠词) / weil(因为))。
+- 注释要简短、贴合**这句话里的实际意思**,不要罗列多个义项、不要解释语法。
+- 这是"逐词帮读",不是通顺翻译,所以保留德语骨架、只在每词后加括号中文。
+**只输出逐词注释这一行本身**,不要 JSON、不要代码块、不要任何前后说明文字。`;
+  const user = `德语题干:${questionDe}`;
+  return { system, user };
+}
+
 // "提取关键词": 一个岛的句子 → 对学习者最有用的关键词/短语 + 释义 + 出处。
 export function buildKeywordsPrompt(req: KeywordsRequest): PromptPair {
   const lang = LANG_LABEL[req.language] ?? req.language;
