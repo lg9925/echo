@@ -27,7 +27,8 @@
     "offlineReady": "Offline · tap to remove",
     "offlinePartial": "Offline {cached}/{total}",
     "confirmDeleteOfflineAudio": "Remove offline audio for \"{name}\"? (sentences and progress stay)",
-    "offlineFailed": "{n} clip(s) failed — you can retry"
+    "offlineFailed": "{n} clip(s) failed — you can retry",
+    "offlineNeedToken": "Downloading offline audio needs your API token — set it in Settings first."
   },
   "languages": {
     "de": "German",
@@ -344,6 +345,7 @@
     "offlineReady": "Audio offline · tap to remove",
     "offlinePartial": "Offline {cached}/{total}",
     "confirmDeleteOfflineAudio": "Remove offline audio for these questions? (questions and progress stay)",
-    "offlineFailed": "{n} clip(s) failed — you can retry"
+    "offlineFailed": "{n} clip(s) failed — you can retry",
+    "offlineNeedToken": "Downloading offline audio needs your API token — set it in Settings first."
   }
 }

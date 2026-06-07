@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { listAllQuizProgress, listQuizQuestions } from "@/lib/db";
+import { getApiToken } from "@/lib/settings";
 import { allCachedAudioKeys } from "@/lib/audioCache";
 import {
   deleteQuizAudio,
@@ -96,6 +97,10 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   );
 
   async function downloadAudio() {
+    if (!getApiToken()) {
+      window.alert(t("offlineNeedToken"));
+      return;
+    }
     setDlProg({ done: 0, total: audioStatus.total });
     const res = await downloadQuizAudio(matches, "de", (done, total) =>
       setDlProg({ done, total }),

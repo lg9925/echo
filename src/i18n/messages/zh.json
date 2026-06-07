@@ -27,7 +27,8 @@
     "offlineReady": "已离线 · 点击删除",
     "offlinePartial": "离线 {cached}/{total}",
     "confirmDeleteOfflineAudio": "删除「{name}」的离线语音?(句子和进度都保留)",
-    "offlineFailed": "{n} 句下载失败,可重试"
+    "offlineFailed": "{n} 句下载失败,可重试",
+    "offlineNeedToken": "下载离线语音需要先在「设置」里配置 API 令牌。"
   },
   "languages": {
     "de": "德语",
@@ -344,6 +345,7 @@
     "offlineReady": "语音已离线 · 点击删除",
     "offlinePartial": "离线 {cached}/{total}",
     "confirmDeleteOfflineAudio": "删除当前这些题的离线语音?(题目和进度都保留)",
-    "offlineFailed": "{n} 段下载失败,可重试"
+    "offlineFailed": "{n} 段下载失败,可重试",
+    "offlineNeedToken": "下载离线语音需要先在「设置」里配置 API 令牌。"
   }
 }

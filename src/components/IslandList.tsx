@@ -8,6 +8,7 @@ import {
   listIslands,
 } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
+import { getApiToken } from "@/lib/settings";
 import { deleteIsland, islandHref, isUserIslandId } from "@/lib/cards";
 import {
   deleteIslandAudio,
@@ -76,6 +77,10 @@ export function IslandList({
   );
 
   async function downloadAudio(isl: IslandWithCount) {
+    if (!getApiToken()) {
+      window.alert(t("offlineNeedToken"));
+      return;
+    }
     setDl((d) => ({ ...d, [isl.id]: { done: 0, total: isl.sentenceCount } }));
     const res = await downloadIsland(isl.id, language, (done, total) =>
       setDl((d) => ({ ...d, [isl.id]: { done, total } })),
