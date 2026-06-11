@@ -45,11 +45,11 @@ Pure TypeScript modules. **No React, no JSX, no Next.js imports.** Everything he
 - `client.ts` — no React. Reads the Bearer token + base URL from `settings.ts` (`getApiToken()`, `resolveApiBase()`). **Never embeds a vendor key** — only the shared `ECHO_API_TOKEN`. Exports:
   - `apiFetchJson<T>(path, body)` — POST JSON → JSON.
   - `apiFetchBlob(path, body)` — POST JSON → binary (e.g. `/v1/tts` audio).
-  - `apiFetchSSE<T>(path, body, onProgress)` — POST JSON, consume an SSE stream; `onProgress` fires per `progress` event, resolves on `done`. Used for long generations (scenario) to show live progress.
+  - `submitJob(task, input)` / `pollJob(jobId, onProgress)` / `runJob(...)` — async job queue (`/v1/jobs`); how slow generations (scenario) run without hitting the tunnel's edge timeout. `onProgress` gets the live sentence count.
   - `checkHealth()` (unauthenticated) / `checkAuth()` (token round-trip) / `ApiClientError`.
 - `contracts.ts` — wire types (`ComposeRequest`/`Result`, `GlossRequest`/`Result`, `ScenarioRequest`/`Result`, `TtsRequest`, `ApiError`, `TargetLanguage`). **This is a MIRROR of `server/src/contracts.ts` — change one, change the other.** The frontend keeps its own copy so the static build has no dependency on the backend package.
 
 ### `inbox.ts` — AI capture + process queue
 - `addToInbox(input)` — drop a raw item in, returns immediately (no network). `listInbox` / `getInboxItem` / `updateInboxItem` / `deleteInboxItem` are Dexie CRUD.
 - `processInboxItem(id, hooks)` — calls the backend to fill the result. Status machine: `captured → processing → ready | error` (then `added` once turned into a card by `cards.ts`).
-- Kinds → endpoints: `say` (想说) → `/v1/compose`; `understand` (想懂) → `/v1/gloss`; `scenario` (场景) → `/v1/scenario/stream` (SSE, with live sentence-count progress).
+- Kinds → endpoints: `say` (想说) → `/v1/compose`; `understand` (想懂) → `/v1/gloss`; `scenario` (场景) → async job queue (`submitJob("scenario") → pollJob`, with live sentence-count progress). All kinds now go through the queue (submit → poll) so a slow run survives the tunnel's ~100s edge timeout; the old synchronous `/v1/scenario/stream` route is retired (returns 410).
