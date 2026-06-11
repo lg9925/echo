@@ -68,8 +68,12 @@ Echo 是一款个性化外语学习 PWA(已上线 echo.helloworldhub.xyz),
 
 ## 现在做
 
-当前聚焦在路线图第 4 步(画像 + 学习目标)。第 1–3 步(稳定版 / 整理 / 内容管理)已完成。
+当前聚焦在路线图**第 7 步「学习引擎对齐」子步骤 1(db v5 掌握阶段)**——给 `ReviewState`
+加 `masteryStage`,纯增量、不动 UI、不接 FSRS。第 1–3 步、画像(原第 4 步前半)、入籍考试、
+离线语音 / 全局音频缓存、异步任务队列均已完成;第 4 步只剩结构化学习目标。
 完整路线图(会随时调整,不属于宪法)见 [`docs/ROADMAP.md`](docs/ROADMAP.md)。
+学习引擎的对齐工作（mastery 阶段 / FSRS / 错误类型 / 对话工位）以
+[`docs/learning-method.md`](docs/learning-method.md) 为准；它是宪法的展开，冲突时以本 CLAUDE.md 为准。
 
 ---
 
@@ -162,6 +166,9 @@ terminals or wire them to a Windows startup task.
 | 客户端 UI 约定 | `src/components/CLAUDE.md` |
 | 框架破坏性变更警告 | `AGENTS.md` |
 | 路线图 (会变) | `docs/ROADMAP.md` |
+| 学习方法规范 (mastery 阶段 / 错误卡组 / 对话工位) | `docs/learning-method.md` |
+| 错误卡组实现 (FSRS + 错误类型) | `docs/srs-error-deck.md` |
+| 对话工位实现 (脚手架陪练) | `docs/conversation-station.md` |
 
 ## Out of scope (don't propose unless asked)
 
