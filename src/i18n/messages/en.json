@@ -21,7 +21,13 @@
     "editIsland": "Edit",
     "islandDue": "Review {n}",
     "islandReviewTitle": "Review this island",
-    "extractTitle": "Extract key words to your word list"
+    "extractTitle": "Extract key words to your word list",
+    "offlineDownload": "Download for offline",
+    "offlineDownloading": "Downloading {done}/{total}",
+    "offlineReady": "Offline · tap to remove",
+    "offlinePartial": "Offline {cached}/{total}",
+    "confirmDeleteOfflineAudio": "Remove offline audio for \"{name}\"? (sentences and progress stay)",
+    "offlineFailed": "{n} clip(s) failed — you can retry"
   },
   "languages": {
     "de": "German",

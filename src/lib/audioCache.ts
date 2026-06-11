@@ -38,3 +38,7 @@ export async function getCachedAudio(key: string): Promise<AudioCacheEntry | und
 export async function putCachedAudio(entry: AudioCacheEntry): Promise<void> {
   await getDb().audioCache.put(entry);
 }
+
+export async function deleteCachedAudio(key: string): Promise<void> {
+  await getDb().audioCache.delete(key);
+}
