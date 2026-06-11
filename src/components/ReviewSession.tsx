@@ -10,7 +10,7 @@ import {
   upsertReview,
 } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
-import { freshState, schedule } from "@/lib/sr";
+import { freshState, schedule, verdictToGrade } from "@/lib/sr";
 import { cancelAllSpeech, speak } from "@/lib/tts";
 import { targetBcp47 } from "@/lib/lang";
 import { judge } from "@/lib/api/client";
@@ -145,7 +145,9 @@ export function ReviewSession({
       const prev =
         (await getReview(current.sentence.id)) ??
         freshState(current.sentence.id, current.sentence.language);
-      const next = schedule(prev, g, new Date());
+      // again/good is what the user taps; the FSRS grade (again/hard/good) is
+      // derived from the AI verdict so the user never hand-picks difficulty.
+      const next = schedule(prev, verdictToGrade(g, verdict?.verdict), new Date());
       await upsertReview(next);
       cancelAllSpeech();
       setQueue((q) => {
@@ -163,7 +165,7 @@ export function ReviewSession({
       setJudging(false);
       setDoneCount((c) => c + 1);
     },
-    [current],
+    [current, verdict],
   );
 
   const suggested: "again" | "good" | null = verdict
