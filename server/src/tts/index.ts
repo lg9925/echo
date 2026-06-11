@@ -1,6 +1,7 @@
 import { TTS_ROUTING, type TtsProvider } from "../config";
 import { voicePresetFor } from "./presets";
 import { getTtsAdapter } from "./adapters";
+import { getCachedTts, putCachedTts, ttsCacheKey } from "./cache";
 import type { TtsResult } from "./adapters/types";
 
 export interface TtsParams {
@@ -15,18 +16,26 @@ export interface TtsParams {
 }
 
 // Core: pick provider by routing, resolve the voice from presets, delegate to
-// the adapter. Caching lives on the client (IndexedDB) this version — the
-// server is a stateless generator.
+// the adapter. A content-addressed disk cache (cache.ts) sits in front so each
+// clip is vendor-generated at most once; the client IndexedDB cache still
+// dedups per-device on top of this.
 export async function tts(params: TtsParams): Promise<TtsResult> {
   const provider = params.provider ?? TTS_ROUTING.default;
   const preset = voicePresetFor(params.lang);
   const voice = params.voice ?? preset[provider] ?? preset.edge;
   const rate = params.rate ?? 1;
 
-  return getTtsAdapter(provider).synthesize({
+  const key = ttsCacheKey({ provider, lang: params.lang, voice, rate, text: params.text });
+  const cached = await getCachedTts(key);
+  if (cached) return cached;
+
+  const result = await getTtsAdapter(provider).synthesize({
     text: params.text,
     voice,
     rate,
     lang: params.lang,
   });
+  // Best-effort: a failed cache write must never fail the response.
+  await putCachedTts(key, result).catch(() => {});
+  return result;
 }
