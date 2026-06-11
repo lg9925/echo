@@ -25,11 +25,11 @@ Pure TypeScript modules. **No React, no JSX, no Next.js imports.** Everything he
 - The source `echo_seed_de.json` does NOT have sentence ids — synthesize as `${language}.${islandOrder}.${sentenceIndex}`. Island id: `${language}.${islandOrder}`.
 - Add `audio: null` to each sentence; the field is reserved for future pre-generated MP3.
 
-### `sr.ts` — Simplified SM-2 (Again / Good)
-- Pure function: `schedule(state: ReviewState, grade: "again" | "good", now: Date): ReviewState`.
-- `Again`: `ease = max(1.3, ease - 0.2)`, `repetitions = 0`, `interval = 0`, `due = now`.
-- `Good`: `repetitions += 1`; `interval = repetitions === 1 ? 1 : repetitions === 2 ? 3 : prev_interval * ease` (days); `due = now + interval days`.
-- Interface is frozen so we can swap to FSRS later without changing call sites.
+### `sr.ts` — FSRS scheduler (`ts-fsrs`, default weights)
+- Pure function: `schedule(state: ReviewState, grade: Grade, now: Date): ReviewState`, where `Grade = "again" | "hard" | "good" | "easy"`. Wraps `ts-fsrs` (`enable_short_term: false`, `request_retention: 0.9`, library default weights — no hand-tuned magic numbers; per-user optimizer tuning deferred). See `docs/srs-error-deck.md` §3.
+- FSRS memory lives on `ReviewState` as optional fields (`stability`/`difficulty`/`lapses`/`fsrsState`); `due`/`interval`/`repetitions` are mirrored from the FSRS card so the `due` index + every `db.ts` query + the hub badges keep working unchanged. Legacy SM-2-only rows (no `stability`) are initialised lazily on their first FSRS review — no Dexie migration, `ease` is now vestigial.
+- The UI only ever offers **again/good** (原则一: the system picks difficulty, never the user). `verdictToGrade(uiAction, verdict)` derives the FSRS grade: `again`→Again, `good`+`close`→Hard, `good`+correct/offline→Good; `easy` is reserved for 7.3.
+- Interface (`schedule`/`freshState`) stays the swap point; call sites (`ReviewSession`) don't construct cards.
 
 ### `tts.ts` — SpeechSynthesis wrapper
 - Single async export: `speak(text: string, opts: { lang: string; rate?: number; voice?: string }): Promise<void>` — resolves on `end` or `error`.

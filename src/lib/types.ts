@@ -43,8 +43,20 @@ export interface ReviewState {
   lastReviewedAt: number | null;
   /** A review row only exists because the card was actively recalled, so it is
    *  stage 2 by default; a sentence with no row is a new card = stage 0 (by
-   *  absence). Stage transitions land in 7.2/7.3 — not wired yet. */
+   *  absence). Stage transitions land in 7.3+ — not wired yet. */
   masteryStage: MasteryStage;
+  // FSRS memory state (added with the FSRS swap; learning-method.md §3 /
+  // srs-error-deck.md §3). All OPTIONAL + un-indexed → legacy rows (v5, SM-2
+  // dimensions only) are initialised lazily on their first FSRS review, so no
+  // Dexie migration is needed. `ease` above is now a vestigial SM-2 field.
+  /** FSRS stability (days). */
+  stability?: number;
+  /** FSRS difficulty (1–10). */
+  difficulty?: number;
+  /** Cumulative lapses (FSRS Card.lapses) — kept so difficulty doesn't drift. */
+  lapses?: number;
+  /** FSRS State enum: 0 New · 1 Learning · 2 Review · 3 Relearning. */
+  fsrsState?: 0 | 1 | 2 | 3;
 }
 
 export interface SeedMeta {
