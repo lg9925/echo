@@ -29,6 +29,10 @@ export interface Sentence {
   audio: string | null;
 }
 
+/** 掌握阶段 (mastery stage), see docs/learning-method.md §2.
+ *  0 理解 · 1 模仿 · 2 回忆 · 3 运用. */
+export type MasteryStage = 0 | 1 | 2 | 3;
+
 export interface ReviewState {
   sentenceId: string;
   language: string;
@@ -37,6 +41,10 @@ export interface ReviewState {
   repetitions: number;
   due: number;
   lastReviewedAt: number | null;
+  /** A review row only exists because the card was actively recalled, so it is
+   *  stage 2 by default; a sentence with no row is a new card = stage 0 (by
+   *  absence). Stage transitions land in 7.2/7.3 — not wired yet. */
+  masteryStage: MasteryStage;
 }
 
 export interface SeedMeta {

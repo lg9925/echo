@@ -200,7 +200,11 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     async () => {
       await db.islands.bulkPut(islands);
       await db.sentences.bulkPut(sentences);
-      await db.reviews.bulkPut(reviews);
+      // Backfill masteryStage for reviews from a pre-v5 backup (a stored row
+      // means the card was recalled → stage 2; see db.ts v5 / learning-method §2).
+      await db.reviews.bulkPut(
+        reviews.map((r) => ({ ...r, masteryStage: r.masteryStage ?? 2 })),
+      );
       await db.meta.bulkPut(meta);
       await db.inbox.bulkPut(inbox);
       await db.vocab.bulkPut(vocab ?? []);

@@ -27,7 +27,8 @@
     "offlineReady": "已离线 · 点击删除",
     "offlinePartial": "离线 {cached}/{total}",
     "confirmDeleteOfflineAudio": "删除「{name}」的离线语音?(句子和进度都保留)",
-    "offlineFailed": "{n} 句下载失败,可重试"
+    "offlineFailed": "{n} 句下载失败,可重试",
+    "offlineNeedToken": "下载离线语音需要先在「设置」里配置 API 令牌。"
   },
   "languages": {
     "de": "德语",
@@ -338,6 +339,13 @@
     "tagHelp_number": "答案是数字/年份/年龄/百分比 → 死记数字锚点。",
     "tagHelp_values": "答案在讲自由/民主/平等/人的尊严 → 拿不准时优先选这类。",
     "tagHelp_image": "看图选编号，纯视觉记忆，必拿分。",
-    "tagHelp_matching": "普通题，靠题干锚点 ↔ 答案锚点配对。"
+    "tagHelp_matching": "普通题，靠题干锚点 ↔ 答案锚点配对。",
+    "offlineDownload": "下载语音",
+    "offlineDownloading": "下载中 {done}/{total}",
+    "offlineReady": "语音已离线 · 点击删除",
+    "offlinePartial": "离线 {cached}/{total}",
+    "confirmDeleteOfflineAudio": "删除当前这些题的离线语音?(题目和进度都保留)",
+    "offlineFailed": "{n} 段下载失败,可重试",
+    "offlineNeedToken": "下载离线语音需要先在「设置」里配置 API 令牌。"
   }
 }

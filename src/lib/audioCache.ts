@@ -42,3 +42,10 @@ export async function putCachedAudio(entry: AudioCacheEntry): Promise<void> {
 export async function deleteCachedAudio(key: string): Promise<void> {
   await getDb().audioCache.delete(key);
 }
+
+// All cached keys at once — lets callers check membership in memory instead of
+// one IndexedDB `get` per clip (the quiz recomputes status on every filter tap).
+export async function allCachedAudioKeys(): Promise<Set<string>> {
+  const keys = await getDb().audioCache.toCollection().primaryKeys();
+  return new Set(keys as string[]);
+}

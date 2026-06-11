@@ -46,6 +46,19 @@ class EchoDB extends Dexie {
       quizQuestions: "&id, category, day, region, *tags",
       quizProgress: "&questionId, lastResult, starred, updatedAt",
     });
+    // v5 adds masteryStage to reviews (掌握阶段, learning-method.md §2). Not
+    // indexed — the reviews index string is unchanged; the upgrade only backfills
+    // existing rows. A review row only exists because the card was recalled, so
+    // every existing row is stage 2; cards with no row stay stage 0 (new) by
+    // absence. reviews is never wiped.
+    this.version(5).stores({}).upgrade(async (tx) => {
+      await tx
+        .table("reviews")
+        .toCollection()
+        .modify((r) => {
+          if (r.masteryStage === undefined) r.masteryStage = 2;
+        });
+    });
   }
 }
 

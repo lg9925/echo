@@ -3,6 +3,13 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { listAllQuizProgress, listQuizQuestions } from "@/lib/db";
+import { getApiToken } from "@/lib/settings";
+import { allCachedAudioKeys } from "@/lib/audioCache";
+import {
+  deleteQuizAudio,
+  downloadQuizAudio,
+  quizAudioStatus,
+} from "@/lib/offlineAudio";
 import { ensureEinbuergerungLoaded } from "@/lib/einbuergerung/loader";
 import {
   EMPTY_FILTER,
@@ -31,6 +38,14 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   );
   const [filter, setFilter] = useState<QuizFilter>(EMPTY_FILTER);
   const [view, setView] = useState<View>("home");
+  // All cached audio keys, loaded once so per-filter status is a sync in-memory
+  // check (not 6 IndexedDB reads per question on every chip tap). Refreshed
+  // after a download / delete.
+  const [cachedKeys, setCachedKeys] = useState<Set<string>>(new Set());
+  // Live clip progress while the current filter's audio downloads.
+  const [dlProg, setDlProg] = useState<{ done: number; total: number } | null>(
+    null,
+  );
   // The set handed to PracticeSession — either the filtered matches or a custom
   // selection (one question / all starred) from the study list.
   const [practiceSet, setPracticeSet] = useState<QuizQuestion[]>([]);
@@ -40,6 +55,10 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
     setProgressById(new Map(all.map((p) => [p.questionId, p])));
   }, []);
 
+  const refreshCachedKeys = useCallback(async () => {
+    setCachedKeys(await allCachedAudioKeys());
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -47,9 +66,11 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
         await ensureEinbuergerungLoaded();
         const qs = await listQuizQuestions();
         const prog = await listAllQuizProgress();
+        const keys = await allCachedAudioKeys();
         if (!cancelled) {
           setQuestions(qs);
           setProgressById(new Map(prog.map((p) => [p.questionId, p])));
+          setCachedKeys(keys);
         }
       } catch (err) {
         console.error(err);
@@ -69,6 +90,32 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
     () => filterQuestions(questions ?? [], filter, progressById),
     [questions, filter, progressById],
   );
+  // Offline-audio status for the current filter (sync, in-memory).
+  const audioStatus = useMemo(
+    () => quizAudioStatus(matches, "de", cachedKeys),
+    [matches, cachedKeys],
+  );
+
+  async function downloadAudio() {
+    if (!getApiToken()) {
+      window.alert(t("offlineNeedToken"));
+      return;
+    }
+    setDlProg({ done: 0, total: audioStatus.total });
+    const res = await downloadQuizAudio(matches, "de", (done, total) =>
+      setDlProg({ done, total }),
+    );
+    setDlProg(null);
+    await refreshCachedKeys();
+    if (res.failed > 0) window.alert(t("offlineFailed", { n: res.failed }));
+  }
+
+  async function removeAudio() {
+    if (!window.confirm(t("confirmDeleteOfflineAudio"))) return;
+    await deleteQuizAudio(matches, "de");
+    await refreshCachedKeys();
+  }
+
   function exitToHome() {
     setView("home");
     void loadProgress(); // refresh so 只练错题 / 收藏 counts reflect this round
@@ -86,6 +133,55 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
         ? f.tags.filter((x) => x !== tag)
         : [...f.tags, tag],
     }));
+  }
+
+  function offlineButton() {
+    const base =
+      "rounded-lg border px-3 py-2.5 text-sm transition-colors disabled:opacity-40";
+    if (dlProg) {
+      return (
+        <span
+          className={`${base} border-zinc-200 dark:border-zinc-800 text-zinc-500 tabular-nums`}
+        >
+          {t("offlineDownloading", { done: dlProg.done, total: dlProg.total })}
+        </span>
+      );
+    }
+    if (audioStatus.total === 0) return null;
+    const full = audioStatus.cached === audioStatus.total;
+    if (full) {
+      return (
+        <button
+          type="button"
+          onClick={removeAudio}
+          title={t("offlineReady")}
+          className={`${base} border-emerald-300 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 hover:border-red-300 hover:text-red-500`}
+        >
+          ⬇✓
+        </button>
+      );
+    }
+    const partial = audioStatus.cached > 0;
+    return (
+      <button
+        type="button"
+        onClick={downloadAudio}
+        title={
+          partial
+            ? t("offlinePartial", {
+                cached: audioStatus.cached,
+                total: audioStatus.total,
+              })
+            : t("offlineDownload")
+        }
+        className={`${base} border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900`}
+      >
+        ⬇{" "}
+        {partial
+          ? `${audioStatus.cached}/${audioStatus.total}`
+          : t("offlineDownload")}
+      </button>
+    );
   }
 
   if (view === "practice") {
@@ -233,14 +329,17 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
             <span className="text-sm text-zinc-500">
               {t("matchCount", { n: matches.length })}
             </span>
-            <button
-              type="button"
-              disabled={matches.length === 0}
-              onClick={() => startPractice(matches)}
-              className="rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 px-6 py-2.5 text-sm font-medium disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              {t("startPractice")}
-            </button>
+            <div className="flex items-center gap-2">
+              {offlineButton()}
+              <button
+                type="button"
+                disabled={matches.length === 0}
+                onClick={() => startPractice(matches)}
+                className="rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 px-6 py-2.5 text-sm font-medium disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                {t("startPractice")}
+              </button>
+            </div>
           </div>
         </>
       )}
