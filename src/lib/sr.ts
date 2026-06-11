@@ -19,6 +19,11 @@ export function freshState(
     repetitions: 0,
     due: 0,
     lastReviewedAt: null,
+    // freshState is only ever the baseline for a card being recalled right now
+    // (it's immediately followed by schedule() before it's persisted), so the
+    // row that lands in the DB is stage 2 = 回忆. New (never-recalled) cards have
+    // no row at all = stage 0. schedule() spreads ...prev, carrying this through.
+    masteryStage: 2,
   };
 }
 
