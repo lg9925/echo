@@ -178,6 +178,24 @@ export interface JudgeRequest {
   profile?: LearnerProfile;
 }
 
+/** Typed failure diagnosis (docs/srs-error-deck.md §2). judge produces only the
+ *  3 it can judge from text (WORD_ORDER/MORPHOLOGY/VOCAB); PHONEME (P3 发音) and
+ *  FLUENCY_LATENCY (计时) come from other sources later. */
+export type ErrorType =
+  | "WORD_ORDER"
+  | "MORPHOLOGY"
+  | "PHONEME"
+  | "VOCAB"
+  | "FLUENCY_LATENCY";
+
+/** What judge emits per detected error: just the classification. The running
+ *  count/lastSeen bookkeeping is maintained client-side when folded into a
+ *  ReviewState (see src/lib/errorTags.ts). */
+export interface JudgeErrorTag {
+  type: ErrorType;
+  detail?: string | null;
+}
+
 export interface JudgeResult {
   /** correct=自然准确;close=能懂但别扭(算对);wrong=意思不对(重来)。 */
   verdict: "correct" | "close" | "wrong";
@@ -185,6 +203,8 @@ export interface JudgeResult {
   tip: string;
   /** 更地道的说法(close 时尤其有用),可空串。 */
   better: string;
+  /** 失败诊断(close/wrong 时),correct 时省略。 */
+  errorTags?: JudgeErrorTag[];
 }
 
 // --- /v1/jobs (async queue: submit a slow task → poll for the result) ---

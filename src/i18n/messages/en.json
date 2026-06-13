@@ -151,7 +151,12 @@
     "verdictClose": "Close (counts)",
     "verdictWrong": "Wrong meaning",
     "betterLabel": "More natural",
-    "judgeOffline": "Offline — grade it yourself"
+    "judgeOffline": "Offline — grade it yourself",
+    "errWordOrder": "Word order",
+    "errMorphology": "Morphology",
+    "errVocab": "Vocabulary",
+    "errPhoneme": "Pronunciation",
+    "errFluency": "Fluency"
   },
   "player": {
     "back": "Back",

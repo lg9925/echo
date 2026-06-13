@@ -150,10 +150,27 @@ export interface JudgeRequest {
   profile?: LearnerProfile;
 }
 
+/** Typed failure diagnosis (docs/srs-error-deck.md §2). judge emits only the 3
+ *  it can judge from text; PHONEME / FLUENCY_LATENCY come from other sources. */
+export type ErrorType =
+  | "WORD_ORDER"
+  | "MORPHOLOGY"
+  | "PHONEME"
+  | "VOCAB"
+  | "FLUENCY_LATENCY";
+
+/** What judge emits per detected error (classification only). count/lastSeen are
+ *  maintained client-side when folded into a ReviewState (src/lib/errorTags.ts). */
+export interface JudgeErrorTag {
+  type: ErrorType;
+  detail?: string | null;
+}
+
 export interface JudgeResult {
   verdict: "correct" | "close" | "wrong";
   tip: string;
   better: string;
+  errorTags?: JudgeErrorTag[];
 }
 
 // --- /v1/jobs (async queue: submit a slow task → poll for the result) ---
