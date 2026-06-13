@@ -11,6 +11,7 @@ import {
 } from "@/lib/db";
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import { freshState, schedule, verdictToGrade } from "@/lib/sr";
+import { foldErrorTags } from "@/lib/errorTags";
 import { cancelAllSpeech, speak } from "@/lib/tts";
 import { targetBcp47 } from "@/lib/lang";
 import { judge } from "@/lib/api/client";
@@ -24,6 +25,15 @@ interface DeckItem {
   sentence: Sentence;
   isNew: boolean;
 }
+
+// ErrorType → i18n key for the error-type chips shown under a close/wrong verdict.
+const ERROR_TYPE_LABEL_KEY: Record<string, string> = {
+  WORD_ORDER: "errWordOrder",
+  MORPHOLOGY: "errMorphology",
+  VOCAB: "errVocab",
+  PHONEME: "errPhoneme",
+  FLUENCY_LATENCY: "errFluency",
+};
 
 export function ReviewSession({
   language,
@@ -148,6 +158,10 @@ export function ReviewSession({
       // again/good is what the user taps; the FSRS grade (again/hard/good) is
       // derived from the AI verdict so the user never hand-picks difficulty.
       const next = schedule(prev, verdictToGrade(g, verdict?.verdict), new Date());
+      // Accumulate the judge's typed failures onto the row (no-op on correct /
+      // offline self-grade, where there are no errorTags).
+      const folded = foldErrorTags(prev.errorTags, verdict?.errorTags, Date.now());
+      if (folded) next.errorTags = folded;
       await upsertReview(next);
       cancelAllSpeech();
       setQueue((q) => {
@@ -284,6 +298,18 @@ export function ReviewSession({
                         <span className="text-zinc-400">{t("betterLabel")}: </span>
                         {verdict.better}
                       </p>
+                    )}
+                    {verdict.errorTags && verdict.errorTags.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {verdict.errorTags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="inline-block rounded-full bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 px-2 py-0.5 text-xs"
+                          >
+                            {t(ERROR_TYPE_LABEL_KEY[tag.type] ?? "errVocab")}
+                          </span>
+                        ))}
+                      </div>
                     )}
                   </div>
                 )}

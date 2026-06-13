@@ -1,6 +1,7 @@
 import type {
   AskResult,
   ComposeResult,
+  ErrorType,
   GlossResult,
   ScenarioResult,
   TargetLanguage,
@@ -57,6 +58,19 @@ export interface ReviewState {
   lapses?: number;
   /** FSRS State enum: 0 New · 1 Learning · 2 Review · 3 Relearning. */
   fsrsState?: 0 | 1 | 2 | 3;
+  /** Accumulated typed failures, folded across reviews by (type, detail) — see
+   *  src/lib/errorTags.ts. Optional + un-indexed (no Dexie migration), foundation
+   *  for "专练某类错误" / cross-card 专项 later (srs-error-deck.md §6 step 4). */
+  errorTags?: ErrorTag[];
+}
+
+/** A typed failure accumulated on a ReviewState. The wire form from judge is
+ *  JudgeErrorTag (type + detail only); count/lastSeen are folded client-side. */
+export interface ErrorTag {
+  type: ErrorType;
+  detail?: string;
+  count: number;
+  lastSeen: number;
 }
 
 export interface SeedMeta {

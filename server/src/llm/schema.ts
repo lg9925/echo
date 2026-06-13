@@ -71,6 +71,27 @@ export const judgeSchema = z.object({
     .string()
     .nullish()
     .transform((v) => v ?? ""),
+  // Typed failure diagnosis (srs-error-deck.md §2). Optional + tolerant: a
+  // response without it (e.g. a `correct` answer, or an older model) still
+  // validates. Only type+detail on the wire — count/lastSeen are client-side.
+  errorTags: z
+    .array(
+      z.object({
+        type: z.enum([
+          "WORD_ORDER",
+          "MORPHOLOGY",
+          "PHONEME",
+          "VOCAB",
+          "FLUENCY_LATENCY",
+        ]),
+        detail: z
+          .string()
+          .nullish()
+          .transform((v) => v ?? null),
+      }),
+    )
+    .nullish()
+    .transform((v) => (v && v.length ? v : undefined)),
 });
 
 export const keywordsSchema = z.object({

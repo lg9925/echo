@@ -146,10 +146,15 @@ export function buildJudgePrompt(req: JudgeRequest): PromptPair {
 要求:
 - tip:一句简短**中文**说明(为什么接近/哪里错;correct 可空串)。
 - better:更地道的${lang}写法(close 时尤其给;correct/wrong 可给可空)。
+- errorTags:**仅当 close 或 wrong** 时,标注硬错误类型(correct 时省略或给空数组)。只在这 3 类里选:
+  WORD_ORDER(语序错,如${lang}动词第二位/动词后置、形容词-名词序),
+  MORPHOLOGY(词形:性/格/一致/时态等),
+  VOCAB(用词缺口或选词错)。每条可附一个简短英文 detail 键(如 verb-second、case-dative、缺失词);
+  一次回答可有多条,没有明确硬错误就给空数组。
 - 对拼写/大小写/标点的小瑕疵宽容(口语复习,不是听写)。
 - **tip 与 better 内绝不要出现英文双引号 " 或反斜杠**(要强调就用「」),否则会破坏 JSON。
 只输出一个 JSON 对象,不要解释、不要 markdown:
-{"verdict":"correct"|"close"|"wrong","tip":string,"better":string}
+{"verdict":"correct"|"close"|"wrong","tip":string,"better":string,"errorTags":[{"type":"WORD_ORDER"|"MORPHOLOGY"|"VOCAB","detail":string|null}]}
 ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const user = `中文意思:${req.native}
 参考答案(地道说法之一):${req.target}

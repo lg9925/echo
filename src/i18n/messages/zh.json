@@ -151,7 +151,12 @@
     "verdictClose": "接近(算对)",
     "verdictWrong": "意思不对",
     "betterLabel": "更地道",
-    "judgeOffline": "离线,自行判定"
+    "judgeOffline": "离线,自行判定",
+    "errWordOrder": "语序",
+    "errMorphology": "词形",
+    "errVocab": "词汇",
+    "errPhoneme": "发音",
+    "errFluency": "流利度"
   },
   "player": {
     "back": "返回",
