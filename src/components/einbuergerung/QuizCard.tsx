@@ -27,6 +27,8 @@ export function QuizCard({
   showZh,
   initialPicked,
   onAnswer,
+  starred,
+  onToggleStar,
 }: {
   question: QuizQuestion;
   /** true = practice (instant feedback); false = exam (no feedback). */
@@ -37,6 +39,10 @@ export function QuizCard({
   initialPicked?: QuizOption | null;
   /** Fired once, the first time the user picks an option. */
   onAnswer: (isCorrect: boolean, option: QuizOption) => void;
+  /** 标记复习 state for this question. */
+  starred?: boolean;
+  /** Toggle the 标记复习 bookmark. When omitted, no mark button is shown. */
+  onToggleStar?: () => void;
 }) {
   const t = useTranslations("einbuergerung");
   const options = useMemo(() => shuffle(question.options), [question.options]);
@@ -202,6 +208,23 @@ export function QuizCard({
             {question.study.hint_zh}
           </p>
         </div>
+      )}
+
+      {/* 标记复习: bookmark a question (e.g. a lucky guess) to review later.
+          Only after answering, in feedback modes. */}
+      {immediate && answered && onToggleStar && (
+        <button
+          type="button"
+          onClick={onToggleStar}
+          aria-pressed={starred}
+          className={`w-full rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors ${
+            starred
+              ? "border-amber-400 bg-amber-50 text-amber-700 dark:border-amber-600 dark:bg-amber-950/40 dark:text-amber-300"
+              : "border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+          }`}
+        >
+          {starred ? `⭐ ${t("markedButton")}` : `☆ ${t("markButton")}`}
+        </button>
       )}
     </section>
   );

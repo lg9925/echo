@@ -15,6 +15,7 @@ import {
   EMPTY_FILTER,
   filterQuestions,
   inWrongPool,
+  isStarred,
   MASTERY_STREAK,
   quizFacets,
   type QuizFilter,
@@ -115,6 +116,15 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
     () => (questions ?? []).filter((q) => inWrongPool(progressById.get(q.id))),
     [questions, progressById],
   );
+  // 标记本 pool: manually 标记复习 bookmarks (persistent until unmarked).
+  const starredPool = useMemo(
+    () => (questions ?? []).filter((q) => isStarred(progressById.get(q.id))),
+    [questions, progressById],
+  );
+  const starredIds = useMemo(
+    () => new Set(starredPool.map((q) => q.id)),
+    [starredPool],
+  );
 
   async function downloadAudio() {
     if (!getApiToken()) {
@@ -213,6 +223,7 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
           onExit={exitToHome}
           requeueWrong={practiceOpts.requeueWrong}
           reviewWrong={practiceOpts.reviewWrong}
+          initialStarredIds={starredIds}
         />
       </main>
     );
@@ -225,6 +236,7 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
           questions={questions}
           onExit={exitToHome}
           onRetryWrong={(qs) => startPractice(qs, WRONG_LOOP)}
+          initialStarredIds={starredIds}
         />
       </main>
     );
@@ -252,8 +264,8 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
         <p className="text-sm text-zinc-500">{t("loadError")}</p>
       ) : (
         <>
-          {/* 以考代学 daily actions: 刷题 + 错题本 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* 以考代学 daily actions: 刷题 + 错题本 + 标记本 */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <button
               type="button"
               onClick={() =>
@@ -280,6 +292,19 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
               </p>
               <p className="text-xs text-zinc-400 mt-1">
                 {t("masteredHint", { n: MASTERY_STREAK })}
+              </p>
+            </button>
+            <button
+              type="button"
+              disabled={starredPool.length === 0}
+              onClick={() => startPractice(starredPool, WRONG_LOOP)}
+              className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+            >
+              <p className="text-lg font-medium">{t("markedDeckTitle")}</p>
+              <p className="text-sm text-zinc-500 mt-0.5">
+                {starredPool.length === 0
+                  ? t("markedDeckEmpty")
+                  : t("markedDeckCount", { n: starredPool.length })}
               </p>
             </button>
           </div>

@@ -26,6 +26,13 @@ export function inWrongPool(p: QuizProgress | undefined): boolean {
   return !!p && p.wrong > 0 && !isMastered(p);
 }
 
+/** 标记复习 bookmark: a persistent manual mark (e.g. a lucky-guess the learner
+ *  wants to review), independent of the wrong pool / mastery — only cleared by
+ *  unmarking. */
+export function isStarred(p: QuizProgress | undefined): boolean {
+  return p?.starred === 1;
+}
+
 export type QuizStatusFilter = "all" | "wrong" | "unseen";
 
 export interface QuizFilter {
