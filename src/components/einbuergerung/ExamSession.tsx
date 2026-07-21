@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { recordQuizAnswer, setQuizStarred } from "@/lib/db";
 import {
@@ -46,11 +46,12 @@ export function ExamSession({
   const t = useTranslations("einbuergerung");
   const exam = useMemo(() => buildExam(questions), [questions]);
   const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Answer[]>([]);
+  // index → the picked option. A Map (not append-only) so the learner can
+  // change a question's answer before advancing (no feedback until submit).
+  const [picks, setPicks] = useState<Map<number, QuizOption>>(new Map());
   const [submitted, setSubmitted] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [showZh, setShowZhState] = useState(false);
-  const recordedRef = useRef(false);
   // Live 标记复习 set for the submit-screen review (seeded from the caller).
   const [starred, setStarred] = useState<Set<number>>(
     () => new Set(initialStarredIds),
@@ -91,18 +92,21 @@ export function ExamSession({
 
   const current = exam[index];
   const isLast = index + 1 >= exam.length;
-  const answeredThis = answers.length > index;
+  const answeredThis = picks.has(index);
 
   function handleAnswer(_isCorrect: boolean, option: QuizOption) {
-    if (recordedRef.current || !current) return;
-    recordedRef.current = true;
-    setAnswers((a) => [...a, { question: current, picked: option }]);
-    void recordQuizAnswer(current.id, option.correct);
+    setPicks((prev) => new Map(prev).set(index, option));
   }
 
   function advance() {
-    recordedRef.current = false;
     if (isLast) {
+      // 交卷: commit each question's final pick to quizProgress once (feeds the
+      // 错题池 / 标记本). Recording here — not per tap — so changing an answer
+      // never inflates the stats.
+      exam.forEach((q, i) => {
+        const picked = picks.get(i);
+        if (picked) void recordQuizAnswer(q.id, picked.correct);
+      });
       setSubmitted(true);
     } else {
       setIndex((i) => i + 1);
@@ -110,6 +114,9 @@ export function ExamSession({
   }
 
   if (submitted) {
+    const answers: Answer[] = exam
+      .map((q, i) => ({ question: q, picked: picks.get(i) }))
+      .filter((a): a is Answer => a.picked !== undefined);
     const correctCount = answers.filter((a) => a.picked.correct).length;
     const passed = correctCount >= EXAM_PASS_MARK;
     const wrong = answers.filter((a) => !a.picked.correct);
@@ -247,6 +254,7 @@ export function ExamSession({
         question={current}
         immediate={false}
         showZh={showZh}
+        initialPicked={picks.get(index) ?? null}
         onAnswer={handleAnswer}
       />
 
