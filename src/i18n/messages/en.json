@@ -325,7 +325,7 @@
     "examNoWrong": "All correct!",
     "retryWrongNow": "Retrain mistakes now ({n})",
     "drillTitle": "Drill · learn by testing",
-    "drillHint": "{n} random questions, instant feedback, misses re-queued on the spot.",
+    "drillHint": "{n} questions drawn like the real exam (30 national + 3 NRW), instant feedback, misses re-queued on the spot.",
     "wrongDeckTitle": "Mistake deck",
     "wrongDeckCount": "{n} not yet mastered",
     "wrongDeckEmpty": "All mastered 🎉",

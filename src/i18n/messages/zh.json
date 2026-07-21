@@ -325,7 +325,7 @@
     "examNoWrong": "全部答对!",
     "retryWrongNow": "立即再练错题 ({n})",
     "drillTitle": "刷题 · 以考代学",
-    "drillHint": "随机抽 {n} 题,即时反馈,答错当场重排。",
+    "drillHint": "按正式考试抽 {n} 题(30 全国 + 3 北威州),即时反馈,答错当场重排。",
     "wrongDeckTitle": "错题本",
     "wrongDeckCount": "{n} 题未掌握",
     "wrongDeckEmpty": "全部掌握 🎉",

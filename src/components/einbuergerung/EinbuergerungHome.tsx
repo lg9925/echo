@@ -20,7 +20,7 @@ import {
   type QuizFilter,
   type QuizStatusFilter,
 } from "@/lib/einbuergerung/filters";
-import { buildDrill, DRILL_SIZE } from "@/lib/einbuergerung/exam";
+import { buildDrill, EXAM_TOTAL } from "@/lib/einbuergerung/exam";
 import { TAG_HELP_KEY } from "@/lib/einbuergerung/tags";
 import { PracticeSession } from "./PracticeSession";
 import { ExamSession } from "./ExamSession";
@@ -263,7 +263,7 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
             >
               <p className="text-lg font-medium">{t("drillTitle")}</p>
               <p className="text-sm text-zinc-500 mt-0.5">
-                {t("drillHint", { n: DRILL_SIZE })}
+                {t("drillHint", { n: EXAM_TOTAL })}
               </p>
             </button>
             <button
