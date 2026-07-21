@@ -231,5 +231,9 @@ export interface QuizProgress {
   wrong: number;
   lastResult: "correct" | "wrong" | null;
   starred: 0 | 1; // boolean as 0/1 so it's a valid Dexie index key
+  /** Consecutive correct answers; reset to 0 on a wrong answer. 连对 3 次 = 掌握
+   *  (mistakes graduate out of the 错题本 pool). Not indexed — old rows without
+   *  it read as 0, no Dexie migration needed. */
+  streak?: number;
   updatedAt: number;
 }

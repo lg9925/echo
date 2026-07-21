@@ -235,6 +235,8 @@ export async function recordQuizAnswer(
     wrong: (prev?.wrong ?? 0) + (isCorrect ? 0 : 1),
     lastResult: isCorrect ? "correct" : "wrong",
     starred: prev?.starred ?? 0,
+    // 连对计数:答错清零;旧行无 streak 视作 0(懒初始化,无迁移)。
+    streak: isCorrect ? (prev?.streak ?? 0) + 1 : 0,
     updatedAt: nowMs,
   };
   await db.quizProgress.put(next);

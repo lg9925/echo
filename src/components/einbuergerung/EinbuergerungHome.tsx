@@ -14,16 +14,29 @@ import { ensureEinbuergerungLoaded } from "@/lib/einbuergerung/loader";
 import {
   EMPTY_FILTER,
   filterQuestions,
+  inWrongPool,
+  MASTERY_STREAK,
   quizFacets,
   type QuizFilter,
   type QuizStatusFilter,
 } from "@/lib/einbuergerung/filters";
+import { buildDrill, EXAM_TOTAL } from "@/lib/einbuergerung/exam";
 import { TAG_HELP_KEY } from "@/lib/einbuergerung/tags";
 import { PracticeSession } from "./PracticeSession";
 import { ExamSession } from "./ExamSession";
 import type { QuizProgress, QuizQuestion } from "@/lib/types";
 
 type View = "home" | "practice" | "exam";
+
+/** Per-session PracticeSession behaviour. 错题本/刷题 turn both on; the plain
+ *  filtered practice keeps the defaults (both off → behaviour unchanged). */
+interface PracticeOpts {
+  requeueWrong: boolean;
+  reviewWrong: boolean;
+}
+
+const PLAIN_PRACTICE: PracticeOpts = { requeueWrong: false, reviewWrong: false };
+const WRONG_LOOP: PracticeOpts = { requeueWrong: true, reviewWrong: true };
 
 /**
  * Landing for the 入籍考试 module: idempotently loads the 310-question bank,
@@ -49,6 +62,8 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   // The set handed to PracticeSession — either the filtered matches or a custom
   // selection (one question / all starred) from the study list.
   const [practiceSet, setPracticeSet] = useState<QuizQuestion[]>([]);
+  // How the current practice session behaves (错题本/刷题 vs plain practice).
+  const [practiceOpts, setPracticeOpts] = useState<PracticeOpts>(PLAIN_PRACTICE);
 
   const loadProgress = useCallback(async () => {
     const all = await listAllQuizProgress();
@@ -95,6 +110,11 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
     () => quizAudioStatus(matches, "de", cachedKeys),
     [matches, cachedKeys],
   );
+  // 错题本 pool: ever answered wrong, not yet mastered (连对 3 次).
+  const wrongPool = useMemo(
+    () => (questions ?? []).filter((q) => inWrongPool(progressById.get(q.id))),
+    [questions, progressById],
+  );
 
   async function downloadAudio() {
     if (!getApiToken()) {
@@ -121,8 +141,9 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
     void loadProgress(); // refresh so 只练错题 / 收藏 counts reflect this round
   }
 
-  function startPractice(qs: QuizQuestion[]) {
+  function startPractice(qs: QuizQuestion[], opts: PracticeOpts = PLAIN_PRACTICE) {
     setPracticeSet(qs);
+    setPracticeOpts(opts);
     setView("practice");
   }
 
@@ -187,7 +208,12 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   if (view === "practice") {
     return (
       <main className="flex flex-1 flex-col gap-6 px-6 py-12 max-w-2xl mx-auto w-full">
-        <PracticeSession questions={practiceSet} onExit={exitToHome} />
+        <PracticeSession
+          questions={practiceSet}
+          onExit={exitToHome}
+          requeueWrong={practiceOpts.requeueWrong}
+          reviewWrong={practiceOpts.reviewWrong}
+        />
       </main>
     );
   }
@@ -195,7 +221,11 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
   if (view === "exam" && questions) {
     return (
       <main className="flex flex-1 flex-col gap-6 px-6 py-12 max-w-2xl mx-auto w-full">
-        <ExamSession questions={questions} onExit={exitToHome} />
+        <ExamSession
+          questions={questions}
+          onExit={exitToHome}
+          onRetryWrong={(qs) => startPractice(qs, WRONG_LOOP)}
+        />
       </main>
     );
   }
@@ -222,6 +252,38 @@ export function EinbuergerungHome({ uiLocale }: { uiLocale: string }) {
         <p className="text-sm text-zinc-500">{t("loadError")}</p>
       ) : (
         <>
+          {/* 以考代学 daily actions: 刷题 + 错题本 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() =>
+                startPractice(buildDrill(questions, progressById), WRONG_LOOP)
+              }
+              className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900"
+            >
+              <p className="text-lg font-medium">{t("drillTitle")}</p>
+              <p className="text-sm text-zinc-500 mt-0.5">
+                {t("drillHint", { n: EXAM_TOTAL })}
+              </p>
+            </button>
+            <button
+              type="button"
+              disabled={wrongPool.length === 0}
+              onClick={() => startPractice(wrongPool, WRONG_LOOP)}
+              className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+            >
+              <p className="text-lg font-medium">{t("wrongDeckTitle")}</p>
+              <p className="text-sm text-zinc-500 mt-0.5">
+                {wrongPool.length === 0
+                  ? t("wrongDeckEmpty")
+                  : t("wrongDeckCount", { n: wrongPool.length })}
+              </p>
+              <p className="text-xs text-zinc-400 mt-1">
+                {t("masteredHint", { n: MASTERY_STREAK })}
+              </p>
+            </button>
+          </div>
+
           <button
             type="button"
             onClick={() => setView("exam")}

@@ -33,9 +33,12 @@ function formatTime(totalSec: number): string {
 export function ExamSession({
   questions,
   onExit,
+  onRetryWrong,
 }: {
   questions: QuizQuestion[];
   onExit: () => void;
+  /** 交卷后「立即再练错题」— hand this exam's misses to a wrong-loop practice. */
+  onRetryWrong?: (qs: QuizQuestion[]) => void;
 }) {
   const t = useTranslations("einbuergerung");
   const exam = useMemo(() => buildExam(questions), [questions]);
@@ -154,13 +157,28 @@ export function ExamSession({
           </section>
         )}
 
-        <button
-          type="button"
-          onClick={onExit}
-          className="rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 py-3 font-medium"
-        >
-          {t("backToHome")}
-        </button>
+        <div className="flex flex-col gap-3">
+          {onRetryWrong && wrong.length > 0 && (
+            <button
+              type="button"
+              onClick={() => onRetryWrong(wrong.map((a) => a.question))}
+              className="rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 py-3 font-medium"
+            >
+              {t("retryWrongNow", { n: wrong.length })}
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={onExit}
+            className={
+              onRetryWrong && wrong.length > 0
+                ? "rounded-lg border border-zinc-300 dark:border-zinc-700 py-3 font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                : "rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 py-3 font-medium"
+            }
+          >
+            {t("backToHome")}
+          </button>
+        </div>
       </div>
     );
   }

@@ -4,7 +4,8 @@
 // inferred from position. buildExam()/gradeExam() (mock-exam mode) land in a
 // later step.
 
-import type { QuizQuestion } from "../types";
+import type { QuizProgress, QuizQuestion } from "../types";
+import { inWrongPool } from "./filters";
 
 /** Fisher–Yates: return a NEW shuffled array; never mutate the input. */
 export function shuffle<T>(items: readonly T[]): T[] {
@@ -47,6 +48,51 @@ export function buildExam(questions: readonly QuizQuestion[]): QuizQuestion[] {
   const picked = [
     ...shuffle(national).slice(0, EXAM_NATIONAL_COUNT),
     ...shuffle(nrw).slice(0, EXAM_NRW_COUNT),
+  ];
+  return shuffle(picked);
+}
+
+// --- 刷题 (drill) — 以考代学 ---
+
+/**
+ * Pick `n` questions from one region, weighted so repeated drills march through
+ * the whole bank: unseen first, then unmastered mistakes (错题池), then the
+ * rest. Each bucket is shuffled; falls back gracefully when a bucket is short.
+ */
+function pickWeighted(
+  pool: readonly QuizQuestion[],
+  progressById: ReadonlyMap<number, QuizProgress>,
+  n: number,
+): QuizQuestion[] {
+  const unseen: QuizQuestion[] = [];
+  const wrong: QuizQuestion[] = [];
+  const rest: QuizQuestion[] = [];
+  for (const q of pool) {
+    const p = progressById.get(q.id);
+    if (!p || p.attempts === 0) unseen.push(q);
+    else if (inWrongPool(p)) wrong.push(q);
+    else rest.push(q);
+  }
+  return [...shuffle(unseen), ...shuffle(wrong), ...shuffle(rest)].slice(0, n);
+}
+
+/**
+ * Draw a drill that mirrors the real Einbürgerungstest — same count and type as
+ * the mock exam: 30 national + 3 NRW = 33 (以考代学 = practise like the real
+ * test). The only differences from `buildExam` are pedagogical: within each
+ * region the draw is weighted toward unseen/unmastered questions so repeated
+ * drills cover the whole bank, and the session (not this function) then adds
+ * instant feedback + re-queue. Falls back gracefully if a region is short.
+ */
+export function buildDrill(
+  questions: readonly QuizQuestion[],
+  progressById: ReadonlyMap<number, QuizProgress>,
+): QuizQuestion[] {
+  const national = questions.filter((q) => q.region === "national");
+  const nrw = questions.filter((q) => q.region === "nrw");
+  const picked = [
+    ...pickWeighted(national, progressById, EXAM_NATIONAL_COUNT),
+    ...pickWeighted(nrw, progressById, EXAM_NRW_COUNT),
   ];
   return shuffle(picked);
 }
