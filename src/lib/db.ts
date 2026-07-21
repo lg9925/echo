@@ -242,3 +242,28 @@ export async function recordQuizAnswer(
   await db.quizProgress.put(next);
   return next;
 }
+
+/** Toggle the 标记复习 (mark-for-review) bookmark on a question. Persistent —
+ *  only cleared by unmarking, never by answering. Upserts a minimal row if the
+ *  question has no progress yet (defensive: marking should never be lost to a
+ *  not-yet-landed recordQuizAnswer). */
+export async function setQuizStarred(
+  questionId: number,
+  starred: 0 | 1,
+  nowMs: number = Date.now(),
+): Promise<QuizProgress> {
+  const db = getDb();
+  const prev = await db.quizProgress.get(questionId);
+  const next: QuizProgress = {
+    questionId,
+    attempts: prev?.attempts ?? 0,
+    correct: prev?.correct ?? 0,
+    wrong: prev?.wrong ?? 0,
+    lastResult: prev?.lastResult ?? null,
+    streak: prev?.streak ?? 0,
+    starred,
+    updatedAt: nowMs,
+  };
+  await db.quizProgress.put(next);
+  return next;
+}

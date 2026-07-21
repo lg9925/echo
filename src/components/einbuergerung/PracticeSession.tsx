@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { recordQuizAnswer } from "@/lib/db";
+import { recordQuizAnswer, setQuizStarred } from "@/lib/db";
 import { correctOption } from "@/lib/einbuergerung/exam";
 import { getShowZh, setShowZh } from "@/lib/einbuergerung/prefs";
 import { QuizCard } from "./QuizCard";
@@ -29,6 +29,7 @@ export function PracticeSession({
   onExit,
   requeueWrong = false,
   reviewWrong = false,
+  initialStarredIds,
 }: {
   questions: QuizQuestion[];
   onExit: () => void;
@@ -36,6 +37,9 @@ export function PracticeSession({
   requeueWrong?: boolean;
   /** 结束页列出本轮错题(题干 + 你的选择 + 正确答案 + 记忆提示)。 */
   reviewWrong?: boolean;
+  /** Question ids already 标记复习 when the session started, so the card shows
+   *  the correct star state. */
+  initialStarredIds?: Set<number>;
 }) {
   const t = useTranslations("einbuergerung");
   // The rendered sequence. Starts as `questions`; grows at the tail when
@@ -45,6 +49,11 @@ export function PracticeSession({
   // index → the option the user picked (locks the card, drives the score).
   const [picks, setPicks] = useState<Map<number, QuizOption>>(new Map());
   const [showZh, setShowZhState] = useState(false);
+  // Live 标记复习 set for this session (seeded from the caller), so toggling a
+  // star updates the card immediately and persists.
+  const [starred, setStarred] = useState<Set<number>>(
+    () => new Set(initialStarredIds),
+  );
   // Indices already written to quizProgress — never double-count an answer.
   const recordedRef = useRef<Set<number>>(new Set());
 
@@ -88,6 +97,17 @@ export function PracticeSession({
     },
     [index, current, requeueWrong],
   );
+
+  const toggleStar = useCallback((questionId: number) => {
+    setStarred((prev) => {
+      const nextOn = !prev.has(questionId);
+      const nextSet = new Set(prev);
+      if (nextOn) nextSet.add(questionId);
+      else nextSet.delete(questionId);
+      void setQuizStarred(questionId, nextOn ? 1 : 0);
+      return nextSet;
+    });
+  }, []);
 
   const next = useCallback(() => setIndex((i) => i + 1), []);
   const prev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), []);
@@ -186,6 +206,8 @@ export function PracticeSession({
         showZh={showZh}
         initialPicked={picks.get(index) ?? null}
         onAnswer={handleAnswer}
+        starred={starred.has(current.id)}
+        onToggleStar={() => toggleStar(current.id)}
       />
 
       <div className="grid grid-cols-2 gap-3">

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { recordQuizAnswer } from "@/lib/db";
+import { recordQuizAnswer, setQuizStarred } from "@/lib/db";
 import {
   EXAM_PASS_MARK,
   buildExam,
@@ -34,11 +34,14 @@ export function ExamSession({
   questions,
   onExit,
   onRetryWrong,
+  initialStarredIds,
 }: {
   questions: QuizQuestion[];
   onExit: () => void;
   /** 交卷后「立即再练错题」— hand this exam's misses to a wrong-loop practice. */
   onRetryWrong?: (qs: QuizQuestion[]) => void;
+  /** Question ids already 标记复习, so the review list shows the star state. */
+  initialStarredIds?: Set<number>;
 }) {
   const t = useTranslations("einbuergerung");
   const exam = useMemo(() => buildExam(questions), [questions]);
@@ -48,6 +51,21 @@ export function ExamSession({
   const [elapsed, setElapsed] = useState(0);
   const [showZh, setShowZhState] = useState(false);
   const recordedRef = useRef(false);
+  // Live 标记复习 set for the submit-screen review (seeded from the caller).
+  const [starred, setStarred] = useState<Set<number>>(
+    () => new Set(initialStarredIds),
+  );
+
+  const toggleStar = useCallback((questionId: number) => {
+    setStarred((prev) => {
+      const nextOn = !prev.has(questionId);
+      const nextSet = new Set(prev);
+      if (nextOn) nextSet.add(questionId);
+      else nextSet.delete(questionId);
+      void setQuizStarred(questionId, nextOn ? 1 : 0);
+      return nextSet;
+    });
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot localStorage read after mount (SSR has no localStorage)
@@ -150,6 +168,20 @@ export function ExamSession({
                         💡 {a.question.study.hint_zh}
                       </p>
                     )}
+                    <button
+                      type="button"
+                      onClick={() => toggleStar(a.question.id)}
+                      aria-pressed={starred.has(a.question.id)}
+                      className={`mt-1 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+                        starred.has(a.question.id)
+                          ? "border-amber-400 bg-amber-50 text-amber-700 dark:border-amber-600 dark:bg-amber-950/40 dark:text-amber-300"
+                          : "border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                      }`}
+                    >
+                      {starred.has(a.question.id)
+                        ? `⭐ ${t("markedButton")}`
+                        : `☆ ${t("markButton")}`}
+                    </button>
                   </li>
                 );
               })}
