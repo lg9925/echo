@@ -56,7 +56,9 @@ export function QuizCard({
   const zhVisible = showZh || tappedReveal || (immediate && answered);
 
   function choose(opt: QuizOption) {
-    if (answered) return;
+    // Practice locks in the first pick (feedback is shown); the exam has no
+    // feedback, so let the learner change their answer before advancing.
+    if (immediate && answered) return;
     setPicked(opt);
     onAnswer(opt.correct, opt);
   }
@@ -170,7 +172,7 @@ export function QuizCard({
             <li key={i} className="flex items-stretch gap-2">
               <button
                 type="button"
-                disabled={answered}
+                disabled={immediate && answered}
                 onClick={() => choose(opt)}
                 className={`flex-1 text-left rounded-lg border px-4 py-3 transition-colors disabled:cursor-default ${cls}`}
               >
