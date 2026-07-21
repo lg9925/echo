@@ -4,7 +4,8 @@
 // inferred from position. buildExam()/gradeExam() (mock-exam mode) land in a
 // later step.
 
-import type { QuizQuestion } from "../types";
+import type { QuizProgress, QuizQuestion } from "../types";
+import { inWrongPool } from "./filters";
 
 /** Fisher–Yates: return a NEW shuffled array; never mutate the input. */
 export function shuffle<T>(items: readonly T[]): T[] {
@@ -48,5 +49,38 @@ export function buildExam(questions: readonly QuizQuestion[]): QuizQuestion[] {
     ...shuffle(national).slice(0, EXAM_NATIONAL_COUNT),
     ...shuffle(nrw).slice(0, EXAM_NRW_COUNT),
   ];
+  return shuffle(picked);
+}
+
+// --- 刷题 (drill) — 以考代学 ---
+
+/** Drill size: a good zero-config default, deliberately NOT a user setting. */
+export const DRILL_SIZE = 20;
+
+/**
+ * Draw a drill round with light weighting: unseen questions first, then
+ * unmastered mistakes (错题池), then the rest — each bucket shuffled, the
+ * combined draw shuffled again so buckets don't cluster. Falls back gracefully
+ * when a bucket is short.
+ */
+export function buildDrill(
+  questions: readonly QuizQuestion[],
+  progressById: ReadonlyMap<number, QuizProgress>,
+  size: number = DRILL_SIZE,
+): QuizQuestion[] {
+  const unseen: QuizQuestion[] = [];
+  const wrong: QuizQuestion[] = [];
+  const rest: QuizQuestion[] = [];
+  for (const q of questions) {
+    const p = progressById.get(q.id);
+    if (!p || p.attempts === 0) unseen.push(q);
+    else if (inWrongPool(p)) wrong.push(q);
+    else rest.push(q);
+  }
+  const picked = [
+    ...shuffle(unseen),
+    ...shuffle(wrong),
+    ...shuffle(rest),
+  ].slice(0, size);
   return shuffle(picked);
 }

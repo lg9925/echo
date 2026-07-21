@@ -6,6 +6,26 @@
 
 import type { QuizProgress, QuizQuestion } from "../types";
 
+// --- 错题池 (wrong pool) semantics ---
+//
+// A question that was ever answered wrong stays in the pool until it's
+// MASTERED: 3 consecutive correct answers (streak, reset on a wrong answer).
+// One lucky correct answer no longer removes it — 以考代学 needs mistakes to
+// keep resurfacing until they stick. 零配置: the threshold is a good default,
+// not a setting.
+
+export const MASTERY_STREAK = 3;
+
+/** 连对 ≥3 次 → 已掌握 (graduated out of the wrong pool). */
+export function isMastered(p: QuizProgress | undefined): boolean {
+  return (p?.streak ?? 0) >= MASTERY_STREAK;
+}
+
+/** In the 错题本 pool: answered wrong at least once and not yet mastered. */
+export function inWrongPool(p: QuizProgress | undefined): boolean {
+  return !!p && p.wrong > 0 && !isMastered(p);
+}
+
 export type QuizStatusFilter = "all" | "wrong" | "unseen";
 
 export interface QuizFilter {
@@ -34,7 +54,7 @@ export function filterQuestions(
       return false;
     if (filter.status !== "all") {
       const p = progressById.get(q.id);
-      if (filter.status === "wrong" && p?.lastResult !== "wrong") return false;
+      if (filter.status === "wrong" && !inWrongPool(p)) return false;
       if (filter.status === "unseen" && p && p.attempts > 0) return false;
     }
     return true;
