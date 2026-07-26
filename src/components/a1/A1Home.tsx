@@ -127,10 +127,10 @@ export function A1Home({
       label: t("actionShadow"),
       desc: t("actionShadowDesc"),
     },
-    review: {
-      href: `/${uiLocale}/review/?lang=${language}`,
-      label: t("actionReview"),
-      desc: t("actionReviewDesc"),
+    output: {
+      href: `/${uiLocale}/a1/output/`,
+      label: t("actionOutput"),
+      desc: t("actionOutputDesc"),
     },
     diktat: {
       href: `/${uiLocale}/a1/diktat/`,
@@ -218,6 +218,12 @@ export function A1Home({
           className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm"
         >
           {t("entryDiktat")}
+        </a>
+        <a
+          href={`/${uiLocale}/a1/output/`}
+          className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm"
+        >
+          {t("entryOutput")}
         </a>
       </section>
     </main>

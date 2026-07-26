@@ -7,6 +7,7 @@ import type {
   DictationAttempt,
   InboxItem,
   Island,
+  OutputDraft,
   QuizProgress,
   QuizQuestion,
   ReviewLogEntry,
@@ -35,6 +36,7 @@ class EchoDB extends Dexie {
   studyDays!: EntityTable<StudyDay, "id">;
   reviewLog!: EntityTable<ReviewLogEntry, "id">;
   curriculum!: EntityTable<CurriculumState, "id">;
+  outputDrafts!: EntityTable<OutputDraft, "id">;
 
   constructor() {
     super("echo");
@@ -88,6 +90,12 @@ class EchoDB extends Dexie {
       studyDays: "&id, dayKey, [language+dayKey]",
       reviewLog: "&id, [language+ts], [deck+ts]",
       curriculum: "&id, language",
+    });
+    // v7 adds the M5 每日产出任务 drafts — additive, no migration. One row per
+    // (language, day); a submitted job's id is persisted so polling resumes
+    // after reload (inbox pattern).
+    this.version(7).stores({
+      outputDrafts: "&id, language, [language+dayKey], status, updatedAt",
     });
   }
 }
@@ -400,4 +408,27 @@ export async function addStudyLogEvent(event: StudyLogEvent): Promise<void> {
 
 export async function addReviewLogEntry(entry: ReviewLogEntry): Promise<void> {
   await getDb().reviewLog.add(entry);
+}
+
+export async function getOutputDraft(
+  language: string,
+  dayKey: string,
+): Promise<OutputDraft | undefined> {
+  return getDb().outputDrafts.get(`${language}|${dayKey}`);
+}
+
+export async function putOutputDraft(draft: OutputDraft): Promise<void> {
+  await getDb().outputDrafts.put(draft);
+}
+
+export async function listRecentOutputDrafts(
+  language: string,
+  limit: number,
+): Promise<OutputDraft[]> {
+  return getDb()
+    .outputDrafts.where("[language+dayKey]")
+    .between([language, Dexie.minKey], [language, Dexie.maxKey])
+    .reverse()
+    .limit(limit)
+    .toArray();
 }

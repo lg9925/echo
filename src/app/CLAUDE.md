@@ -50,3 +50,4 @@ Do not import from `src/lib/db.ts`, `src/lib/tts.ts`, etc. directly in a server 
 | `/[locale]/a1/` | A1 course home — 今天的下一个动作 + cumulative stats (de-only module, like einbuergerung) |
 | `/[locale]/a1/cards/` | A1 interleaved card session (word/cloze/dictation cards) |
 | `/[locale]/a1/diktat/` | 听写 (Diktat) — sentences with length ladder + number sub-modes |
+| `/[locale]/a1/output/` | M5 每日产出任务 — daily production + explicit LLM correction (job queue) |

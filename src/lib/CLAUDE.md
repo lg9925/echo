@@ -14,6 +14,8 @@ Pure TypeScript modules. **No React, no JSX, no Next.js imports.** Everything he
 - `types.ts` — shared types, incl. `InboxItem` / `AudioCacheEntry` (Dexie v2 stores).
 - `a1/` — the A1 课程 (Goethe A1) module: `loader.ts` (wordlist seed → card expansion, noun article/plural invariant enforced at load), `deck.ts` (due queue + daily new-card throttle by phase + tag-interleaved ordering), `cloze.ts` (deterministic cloze derivation from recalled island sentences), `charDiff.ts` (LCS char diff + accuracy + error classification), `diktat.ts` (听写 length ladder + sentence-pool pick), `numbers.ts` (phone/price/time generators), `errorCards.ts` (shared mistake→card pipeline, deterministic ids), `phase.ts` (derived curriculum phase — never stored), `nextAction.ts` (P0 next-action heuristic; replaced by the P1 composer).
 - `studyLog.ts` — the ONLY instrumentation entry point: `logActivity()` (event + StudyDay rollup + MVD flag) and `logReview()` (append-only review log). Components never write these tables directly.
+- `composer.ts` — M1 session composer, PURE (unit-tested): budget/deficit-weighted daily plan; TodayView assembles inputs and renders. The MVD head (srs→input→output) is fixed pedagogical order.
+- `outputTask.ts` — M5 daily production task: local template bank (`src/data/output_tasks_de.json`, no LLM for generation), draft lifecycle draft→submitted→reviewed|error with persisted jobId (resumable), corrections → `a1/errorCards.ts`.
 - `streak.ts` — pure `computeStreak()` fold over StudyDay rows (2 grace days/month, retroactive freeze). No mutable streak state exists anywhere.
 
 ## Contracts (treat as stable, don't break callers)

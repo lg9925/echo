@@ -28,6 +28,7 @@ import type {
   DictationAttempt,
   InboxItem,
   Island,
+  OutputDraft,
   QuizProgress,
   QuizQuestion,
   ReviewLogEntry,
@@ -68,6 +69,7 @@ export interface BackupFile {
     studyDays: StudyDay[];
     reviewLog: ReviewLogEntry[];
     curriculum: CurriculumState[];
+    outputDrafts: OutputDraft[];
     profiles: Record<string, LearnerProfile>;
     playerSettings: PlayerSettings | null;
   };
@@ -89,6 +91,7 @@ export interface ImportSummary {
   studyDays: number;
   reviewLog: number;
   curriculum: number;
+  outputDrafts: number;
   profiles: number;
   playerSettings: boolean;
 }
@@ -120,7 +123,7 @@ export async function exportBackup(): Promise<BackupFile> {
       db.quizQuestions.toArray(),
       db.quizProgress.toArray(),
     ]);
-  const [cards, cardReviews, dictationAttempts, studyLog, studyDays, reviewLog, curriculum] =
+  const [cards, cardReviews, dictationAttempts, studyLog, studyDays, reviewLog, curriculum, outputDrafts] =
     await Promise.all([
       db.cards.toArray(),
       db.cardReviews.toArray(),
@@ -129,6 +132,7 @@ export async function exportBackup(): Promise<BackupFile> {
       db.studyDays.toArray(),
       db.reviewLog.toArray(),
       db.curriculum.toArray(),
+      db.outputDrafts.toArray(),
     ]);
   return {
     format: BACKUP_FORMAT,
@@ -150,6 +154,7 @@ export async function exportBackup(): Promise<BackupFile> {
       studyDays,
       reviewLog,
       curriculum,
+      outputDrafts,
       profiles: collectProfiles(),
       playerSettings: loadPlayerSettings(),
     },
@@ -212,6 +217,7 @@ export function parseBackupFile(text: string): BackupFile {
   if (!Array.isArray(d.studyDays)) d.studyDays = [];
   if (!Array.isArray(d.reviewLog)) d.reviewLog = [];
   if (!Array.isArray(d.curriculum)) d.curriculum = [];
+  if (!Array.isArray(d.outputDrafts)) d.outputDrafts = [];
   // profiles added later too — default to none.
   if (typeof d.profiles !== "object" || d.profiles === null) d.profiles = {};
   return obj as BackupFile;
@@ -240,6 +246,7 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     studyDays,
     reviewLog,
     curriculum,
+    outputDrafts,
     profiles,
     playerSettings,
   } = file.data;
@@ -262,6 +269,7 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
       db.studyDays,
       db.reviewLog,
       db.curriculum,
+      db.outputDrafts,
     ],
     async () => {
       await db.islands.bulkPut(islands);
@@ -283,6 +291,7 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
       await db.studyDays.bulkPut(studyDays ?? []);
       await db.reviewLog.bulkPut(reviewLog ?? []);
       await db.curriculum.bulkPut(curriculum ?? []);
+      await db.outputDrafts.bulkPut(outputDrafts ?? []);
     },
   );
 
@@ -313,6 +322,7 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     studyDays: (studyDays ?? []).length,
     reviewLog: (reviewLog ?? []).length,
     curriculum: (curriculum ?? []).length,
+    outputDrafts: (outputDrafts ?? []).length,
     profiles: profileEntries.length,
     playerSettings: appliedSettings,
   };

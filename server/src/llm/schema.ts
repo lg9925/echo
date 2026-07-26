@@ -94,6 +94,42 @@ export const judgeSchema = z.object({
     .transform((v) => (v && v.length ? v : undefined)),
 });
 
+// A1 产出反馈 (output_feedback). Tolerant like judgeSchema: empty strings for
+// missing text fields; corrections default to []. verdict/coverage are strict —
+// they drive grading.
+export const outputFeedbackSchema = z.object({
+  verdict: z.enum(["pass", "partial", "fail"]),
+  coverage: z.array(z.boolean()),
+  corrections: z
+    .array(
+      z.object({
+        original: z.string(),
+        corrected: z.string(),
+        explanation: z
+          .string()
+          .nullish()
+          .transform((v) => v ?? ""),
+        errorTag: z.object({
+          type: z.enum(["WORD_ORDER", "MORPHOLOGY", "VOCAB"]),
+          detail: z
+            .string()
+            .nullish()
+            .transform((v) => v ?? null),
+        }),
+      }),
+    )
+    .nullish()
+    .transform((v) => v ?? []),
+  revised: z
+    .string()
+    .nullish()
+    .transform((v) => v ?? ""),
+  encouragement: z
+    .string()
+    .nullish()
+    .transform((v) => v ?? ""),
+});
+
 export const keywordsSchema = z.object({
   keywords: z
     .array(

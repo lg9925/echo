@@ -3,6 +3,7 @@ import type {
   ComposeResult,
   ErrorType,
   GlossResult,
+  OutputFeedbackResult,
   ScenarioResult,
   TargetLanguage,
 } from "./api/contracts";
@@ -409,6 +410,32 @@ export interface CurriculumState {
   diktatLevel: number;
   diktatUpStreak: number;
   diktatDownStreak: number;
+  updatedAt: number;
+}
+
+// --- M5 每日产出任务 (output loop) — Dexie v7 ---
+
+export type OutputDraftStatus = "draft" | "submitted" | "reviewed" | "error";
+
+/** One production task per (language, day). Inbox-style status machine so a
+ *  submitted job survives reload/disconnect (jobId persisted, polling resumes):
+ *  draft → submitted → reviewed | error (error is retryable). */
+export interface OutputDraft {
+  /** `${language}|${dayKey}` — the day's task, one per day. */
+  id: string;
+  language: string;
+  dayKey: string;
+  templateId: string;
+  attempt: string;
+  status: OutputDraftStatus;
+  jobId?: string;
+  result?: OutputFeedbackResult;
+  error?: string;
+  /** Offline self-check ticks against the 3 coverage points (离线降级变体). */
+  selfCheck?: boolean[];
+  /** Guard: corrections were already turned into error cards. */
+  cardsCreated?: boolean;
+  createdAt: number;
   updatedAt: number;
 }
 

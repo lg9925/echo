@@ -5,6 +5,7 @@ import type {
   JudgeRequest,
   KeywordsRequest,
   LearnerProfile,
+  OutputFeedbackRequest,
   ScenarioRequest,
   SplitRequest,
 } from "../contracts";
@@ -159,6 +160,34 @@ ${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
   const user = `中文意思:${req.native}
 参考答案(地道说法之一):${req.target}
 学习者写的:${req.attempt}`;
+  return { system, user };
+}
+
+// A1 产出反馈 (M5): 显性纠错每日产出任务。承重墙 #4/#5:每个错误显性指出
+// (禁 recast),病句绝不 pass,反馈保持 A1 水平。
+export function buildOutputFeedbackPrompt(req: OutputFeedbackRequest): PromptPair {
+  const lang = LANG_LABEL[req.language] ?? req.language;
+  const points = req.coveragePoints.map((p, i) => `${i + 1}. ${p}`).join("\n");
+  const system = `你是一位严格但公正的${lang}写作老师,批改中文母语 A1 学习者的每日产出任务(口头问答或约 30 词短消息)。
+判定 verdict 三档,按**任务完成度**打,不是按客气:
+- pass:要点覆盖齐、句子全部无硬伤(小拼写瑕疵可容忍)。**只要有任何一句有语法硬伤或读不懂,绝不给 pass。**
+- partial:意思能懂,但有硬伤或漏要点。
+- fail:答非所问、大部分读不懂、或基本空白;fail 时 revised 给一段「达标答案长什么样」的示范。
+要求:
+- coverage:按给出的要点顺序逐条判断是否覆盖(语义判断,不抠字眼),恰好 ${req.coveragePoints.length} 个布尔值。
+- corrections:**显性纠错**——每个错误一条:original 必须**逐字**摘自学习者原文(含错误原样),corrected 给改正后的片段,explanation 用中文**点名规则**(如「动词第二位」「Akkusativ 阴性用 die→die」「名词首字母大写」),不许含糊其辞。真正干净才给空数组;**不许为了鼓励而漏报错误、不许认可病句**。
+- errorTag:每条 correction 标一个类型,只在 WORD_ORDER(语序)/ MORPHOLOGY(词形:性/格/一致/时态/大小写)/ VOCAB(用词)里选;detail 给简短英文键(如 verb-second、gender、noun-capitalization)。
+- revised:整段改正后的全文——**保持 A1 词汇和句型**,不要升级成高级书面语;学习者写对的部分尽量原样保留。
+- encouragement:一句诚实的中文话,指出真实的进步点;没有就给空串,**不许空洞夸奖**。
+- 德语名词大小写属于正字法,要纠;标点小瑕疵不单独立条。
+只输出一个 JSON 对象,不要解释、不要 markdown:
+{"verdict":"pass"|"partial"|"fail","coverage":boolean[],"corrections":[{"original":string,"corrected":string,"explanation":string,"errorTag":{"type":"WORD_ORDER"|"MORPHOLOGY"|"VOCAB","detail":string|null}}],"revised":string,"encouragement":string}
+${JSON_QUOTE_RULE}${buildProfileBlock(req.profile)}`;
+  const user = `任务(${lang}):${req.taskPrompt}
+要点(需覆盖):
+${points}
+学习者写的:
+${req.attempt}`;
   return { system, user };
 }
 
