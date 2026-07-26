@@ -19,7 +19,8 @@ export type LlmTask =
   | "keywords"
   | "ask"
   | "einb_literal"
-  | "judge";
+  | "judge"
+  | "output_feedback";
 
 export interface LlmRoute {
   provider: LlmProvider;
@@ -47,6 +48,10 @@ const DEFAULT_TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   // 复习裁判: judge a typed review answer by meaning/naturalness (原则二). High
   // frequency + interactive → a cheap, fast model (haiku) by default (原则五).
   judge: { provider: "anthropic", model: "claude-haiku-4-5-20251001", maxTokens: 500 },
+  // A1 产出反馈 (M5): explicit correction of a daily ~30-word production task.
+  // Runs through /v1/jobs (production routes it to claude-cli — slow but free;
+  // flip to a paid API via /v1/routing for second-level latency, no code change).
+  output_feedback: { provider: "anthropic", model: "claude-sonnet-4-6", maxTokens: 1200 },
 };
 
 // Optional per-task env override (no code change needed to switch a provider):
@@ -72,6 +77,7 @@ export const TASK_ROUTING: Record<LlmTask, LlmRoute> = {
   ask: withEnvOverride("ask", DEFAULT_TASK_ROUTING.ask),
   einb_literal: withEnvOverride("einb_literal", DEFAULT_TASK_ROUTING.einb_literal),
   judge: withEnvOverride("judge", DEFAULT_TASK_ROUTING.judge),
+  output_feedback: withEnvOverride("output_feedback", DEFAULT_TASK_ROUTING.output_feedback),
 };
 
 // Curated model menu per provider, so the UI offers a dropdown instead of asking

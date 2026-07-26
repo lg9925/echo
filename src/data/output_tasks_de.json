@@ -1,0 +1,652 @@
+[
+  {
+    "id": "q-vorstellen-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wie heißen Sie und woher kommen Sie?",
+      "zh": "您叫什么名字？来自哪里？"
+    },
+    "coveragePoints": [
+      {"zh": "说出自己的名字"},
+      {"zh": "说出来自哪个国家/城市"},
+      {"zh": "补充一句(现在住在哪里/说什么语言等)"}
+    ]
+  },
+  {
+    "id": "q-wohnen-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wo wohnen Sie? Wohnen Sie in einer Wohnung oder in einem Haus?",
+      "zh": "您住在哪里？住的是公寓还是独栋房子？"
+    },
+    "coveragePoints": [
+      {"zh": "说出住在哪个城市/城区"},
+      {"zh": "说明住的是公寓还是房子"},
+      {"zh": "补充一个细节(几个房间/和谁一起住/喜不喜欢)"}
+    ]
+  },
+  {
+    "id": "q-familie-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Erzählen Sie etwas über Ihre Familie. Haben Sie Geschwister?",
+      "zh": "请介绍一下您的家庭。您有兄弟姐妹吗？"
+    },
+    "coveragePoints": [
+      {"zh": "说出家里有哪些人"},
+      {"zh": "回答有没有兄弟姐妹"},
+      {"zh": "补充一个家人的信息(名字/年龄/职业等)"}
+    ]
+  },
+  {
+    "id": "q-sprachen-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Welche Sprachen sprechen Sie? Lernen Sie noch eine Sprache?",
+      "zh": "您会说哪些语言？现在还在学别的语言吗？"
+    },
+    "coveragePoints": [
+      {"zh": "说出母语是什么"},
+      {"zh": "说出还会/正在学哪门语言"},
+      {"zh": "补充学了多久或在哪里学"}
+    ]
+  },
+  {
+    "id": "q-tagesablauf-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wann stehen Sie morgens auf und was machen Sie dann?",
+      "zh": "您早上几点起床？起床后做什么？"
+    },
+    "coveragePoints": [
+      {"zh": "说出起床时间"},
+      {"zh": "说出起床后做的一件事(洗漱/吃早餐等)"},
+      {"zh": "补充之后去哪里(上班/上课/在家)"}
+    ]
+  },
+  {
+    "id": "q-fruehstueck-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Was essen und trinken Sie zum Frühstück?",
+      "zh": "您早餐吃什么、喝什么？"
+    },
+    "coveragePoints": [
+      {"zh": "说出早餐吃的东西"},
+      {"zh": "说出早餐喝的东西"},
+      {"zh": "补充在哪里吃或几点吃"}
+    ]
+  },
+  {
+    "id": "q-lieblingsessen-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Was ist Ihr Lieblingsessen? Kochen Sie das selbst?",
+      "zh": "您最喜欢吃什么？会自己做吗？"
+    },
+    "coveragePoints": [
+      {"zh": "说出最喜欢的一种食物"},
+      {"zh": "回答会不会自己做"},
+      {"zh": "补充多久吃一次或在哪里吃"}
+    ]
+  },
+  {
+    "id": "q-getraenke-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Trinken Sie lieber Kaffee oder Tee? Wie oft?",
+      "zh": "您更喜欢喝咖啡还是茶？多久喝一次？"
+    },
+    "coveragePoints": [
+      {"zh": "说出更喜欢咖啡还是茶"},
+      {"zh": "说出喝的频率(每天/有时等)"},
+      {"zh": "补充什么时候喝或加不加糖奶"}
+    ]
+  },
+  {
+    "id": "q-hobby-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Was machen Sie gern in Ihrer Freizeit?",
+      "zh": "您空闲时喜欢做什么？"
+    },
+    "coveragePoints": [
+      {"zh": "说出至少一个爱好"},
+      {"zh": "说出多久做一次或什么时候做"},
+      {"zh": "补充和谁一起做或为什么喜欢"}
+    ]
+  },
+  {
+    "id": "q-sport-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Machen Sie Sport? Welchen Sport machen Sie?",
+      "zh": "您做运动吗？做哪种运动？"
+    },
+    "coveragePoints": [
+      {"zh": "回答做不做运动"},
+      {"zh": "说出一种运动(或不运动的原因)"},
+      {"zh": "补充在哪里做或每周几次"}
+    ]
+  },
+  {
+    "id": "q-musik-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Hören Sie gern Musik? Welche Musik mögen Sie?",
+      "zh": "您喜欢听音乐吗？喜欢哪种音乐？"
+    },
+    "coveragePoints": [
+      {"zh": "回答喜不喜欢听音乐"},
+      {"zh": "说出喜欢的音乐类型或歌手"},
+      {"zh": "补充什么时候听(路上/在家/工作时)"}
+    ]
+  },
+  {
+    "id": "q-wetter-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wie ist das Wetter heute bei Ihnen?",
+      "zh": "您那里今天天气怎么样？"
+    },
+    "coveragePoints": [
+      {"zh": "描述今天的天气(晴/雨/多云等)"},
+      {"zh": "说一下气温(热/冷/多少度)"},
+      {"zh": "补充自己今天想做什么或穿什么"}
+    ]
+  },
+  {
+    "id": "q-jahreszeit-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Welche Jahreszeit mögen Sie am liebsten? Warum?",
+      "zh": "您最喜欢哪个季节？为什么？"
+    },
+    "coveragePoints": [
+      {"zh": "说出最喜欢的季节"},
+      {"zh": "给出一个理由(天气/活动)"},
+      {"zh": "补充这个季节常做的一件事"}
+    ]
+  },
+  {
+    "id": "q-einkaufen-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wo kaufen Sie Ihre Lebensmittel? Wie oft gehen Sie einkaufen?",
+      "zh": "您在哪里买食品？多久去买一次？"
+    },
+    "coveragePoints": [
+      {"zh": "说出买食品的地方(超市/市场)"},
+      {"zh": "说出购物频率"},
+      {"zh": "补充常买的一两样东西"}
+    ]
+  },
+  {
+    "id": "q-kleidung-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Kaufen Sie gern Kleidung? Kaufen Sie im Geschäft oder im Internet?",
+      "zh": "您喜欢买衣服吗？在实体店买还是网上买？"
+    },
+    "coveragePoints": [
+      {"zh": "回答喜不喜欢买衣服"},
+      {"zh": "说出在实体店还是网上买"},
+      {"zh": "补充一个原因(便宜/方便/可以试穿)"}
+    ]
+  },
+  {
+    "id": "q-uhrzeit-kurs-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wann beginnt Ihr Deutschkurs und wie lange dauert er?",
+      "zh": "您的德语课几点开始？上多长时间？"
+    },
+    "coveragePoints": [
+      {"zh": "说出上课开始的时间"},
+      {"zh": "说出课程持续多久或几点结束"},
+      {"zh": "补充一周上几次或在哪里上"}
+    ]
+  },
+  {
+    "id": "q-termin-treffen-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Haben Sie morgen Zeit? Wann können wir uns treffen?",
+      "zh": "您明天有时间吗？我们什么时候可以见面？"
+    },
+    "coveragePoints": [
+      {"zh": "回答明天有没有时间"},
+      {"zh": "提出一个具体的见面时间"},
+      {"zh": "补充见面地点或做什么"}
+    ]
+  },
+  {
+    "id": "q-verkehr-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wie kommen Sie zur Arbeit oder zum Deutschkurs? Mit dem Bus?",
+      "zh": "您怎么去上班或去德语课？坐公交车吗？"
+    },
+    "coveragePoints": [
+      {"zh": "说出用什么交通方式"},
+      {"zh": "说出路上大概要多久"},
+      {"zh": "补充一个细节(几点出发/要不要换乘)"}
+    ]
+  },
+  {
+    "id": "q-weg-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Entschuldigung, wo ist hier ein Supermarkt? Ist das weit?",
+      "zh": "有人问您：请问附近哪里有超市？远吗？请回答。"
+    },
+    "coveragePoints": [
+      {"zh": "说出超市在哪里/怎么走(直走/左转等)"},
+      {"zh": "回答远不远或要走几分钟"},
+      {"zh": "补充一句(可以坐几路车/就在某个建筑旁边)"}
+    ]
+  },
+  {
+    "id": "q-beruf-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Was sind Sie von Beruf? Wo arbeiten Sie?",
+      "zh": "您做什么工作？在哪里工作？"
+    },
+    "coveragePoints": [
+      {"zh": "说出自己的职业(或在学习/找工作)"},
+      {"zh": "说出工作/学习的地点"},
+      {"zh": "补充喜不喜欢这份工作或每天工作多久"}
+    ]
+  },
+  {
+    "id": "q-deutsch-warum-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Warum lernen Sie Deutsch? Seit wann lernen Sie?",
+      "zh": "您为什么学德语？学多久了？"
+    },
+    "coveragePoints": [
+      {"zh": "说出学德语的原因(工作/生活/考试)"},
+      {"zh": "说出学了多长时间"},
+      {"zh": "补充怎么学(上课/看手机应用/听音频)"}
+    ]
+  },
+  {
+    "id": "q-wochenende-plan-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Was machen Sie am Wochenende? Haben Sie schon Pläne?",
+      "zh": "您周末做什么？已经有计划了吗？"
+    },
+    "coveragePoints": [
+      {"zh": "说出周末的一个计划或常做的事"},
+      {"zh": "说出和谁一起或在哪里"},
+      {"zh": "补充具体时间(周六上午/周日晚上等)"}
+    ]
+  },
+  {
+    "id": "q-wochenende-letzte-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Was haben Sie am letzten Wochenende gemacht?",
+      "zh": "您上个周末做了什么？"
+    },
+    "coveragePoints": [
+      {"zh": "用过去时说出做了的一件事"},
+      {"zh": "说出和谁一起或在哪里"},
+      {"zh": "补充感受(不错/很累/很好玩)"}
+    ]
+  },
+  {
+    "id": "q-abend-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Was machen Sie normalerweise am Abend? Wann gehen Sie schlafen?",
+      "zh": "您晚上一般做什么？几点睡觉？"
+    },
+    "coveragePoints": [
+      {"zh": "说出晚上常做的一两件事"},
+      {"zh": "说出几点睡觉"},
+      {"zh": "补充晚饭吃什么或和谁一起过晚上"}
+    ]
+  },
+  {
+    "id": "q-gesundheit-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Sie sind beim Arzt. Was tut Ihnen weh und seit wann?",
+      "zh": "您在看医生。哪里不舒服？从什么时候开始的？"
+    },
+    "coveragePoints": [
+      {"zh": "说出哪里疼/哪里不舒服"},
+      {"zh": "说出从什么时候开始"},
+      {"zh": "补充一个症状或请求(发烧/想要药/需要请假条)"}
+    ]
+  },
+  {
+    "id": "q-restaurant-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Gehen Sie gern ins Restaurant? Was bestellen Sie dort?",
+      "zh": "您喜欢去餐馆吃饭吗？一般点什么？"
+    },
+    "coveragePoints": [
+      {"zh": "回答喜不喜欢去餐馆"},
+      {"zh": "说出常点的菜或饮料"},
+      {"zh": "补充多久去一次或和谁去"}
+    ]
+  },
+  {
+    "id": "q-urlaub-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wohin fahren Sie gern im Urlaub? Was machen Sie dort?",
+      "zh": "您度假喜欢去哪里？在那里做什么？"
+    },
+    "coveragePoints": [
+      {"zh": "说出喜欢去的地方(海边/山里/某个城市)"},
+      {"zh": "说出在那里做的一件事"},
+      {"zh": "补充怎么去或和谁去"}
+    ]
+  },
+  {
+    "id": "q-geburtstag-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Wann haben Sie Geburtstag? Wie feiern Sie ihn?",
+      "zh": "您的生日是什么时候？怎么庆祝？"
+    },
+    "coveragePoints": [
+      {"zh": "说出生日的日期或月份"},
+      {"zh": "说出怎么庆祝(聚会/吃饭/蛋糕)"},
+      {"zh": "补充和谁一起庆祝"}
+    ]
+  },
+  {
+    "id": "q-haustier-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Haben Sie ein Haustier? Mögen Sie Tiere?",
+      "zh": "您养宠物吗？喜欢动物吗？"
+    },
+    "coveragePoints": [
+      {"zh": "回答有没有宠物"},
+      {"zh": "说出喜欢(或不喜欢)哪种动物"},
+      {"zh": "补充一句(宠物的名字/为什么不养)"}
+    ]
+  },
+  {
+    "id": "q-fernsehen-handy-1",
+    "kind": "question",
+    "prompt": {
+      "de": "Sehen Sie abends fern oder sind Sie lieber am Handy? Was schauen Sie?",
+      "zh": "您晚上看电视还是更爱玩手机？一般看什么？"
+    },
+    "coveragePoints": [
+      {"zh": "说出更常用电视还是手机"},
+      {"zh": "说出看的内容(新闻/电影/视频)"},
+      {"zh": "补充每天大概看多久"}
+    ]
+  },
+  {
+    "id": "m-absage-kurs-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie sind krank. Schreiben Sie eine Nachricht an Ihre Deutschlehrerin, Frau Weber: Sie können heute nicht zum Kurs kommen.",
+      "zh": "您生病了。给德语老师 Weber 女士写一条消息：今天不能来上课。"
+    },
+    "coveragePoints": [
+      {"zh": "说明今天不能来上课"},
+      {"zh": "说明原因(生病)"},
+      {"zh": "询问作业或说明什么时候回来上课"}
+    ]
+  },
+  {
+    "id": "m-einladung-geburtstag-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie machen am Samstag eine Geburtstagsparty. Schreiben Sie eine Einladung an Ihre Freundin Anna.",
+      "zh": "您周六办生日聚会。给朋友 Anna 写一封邀请。"
+    },
+    "coveragePoints": [
+      {"zh": "邀请对方来生日聚会"},
+      {"zh": "写清时间和地点"},
+      {"zh": "请对方回复或说明可以带点什么"}
+    ]
+  },
+  {
+    "id": "m-info-sprachschule-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie möchten einen Deutschkurs machen. Schreiben Sie an die Sprachschule \"Lingua\" und fragen Sie nach Informationen.",
+      "zh": "您想报一个德语班。给语言学校 Lingua 写信询问信息。"
+    },
+    "coveragePoints": [
+      {"zh": "说明想上德语课(以及大概水平)"},
+      {"zh": "询问课程时间(什么时候开始/上课时间)"},
+      {"zh": "询问价格或怎么报名"}
+    ]
+  },
+  {
+    "id": "m-verspaetung-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie treffen heute Ihren Freund Tom, aber Ihr Bus kommt nicht. Schreiben Sie ihm: Sie kommen zu spät.",
+      "zh": "您今天约了朋友 Tom 见面，但公交车迟迟不来。给他写消息：您要迟到了。"
+    },
+    "coveragePoints": [
+      {"zh": "说明自己会迟到并道歉"},
+      {"zh": "说明原因(公交车没来)"},
+      {"zh": "说出大概几点能到"}
+    ]
+  },
+  {
+    "id": "m-danke-umzug-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Ihr Freund Ali hat Ihnen beim Umzug geholfen. Schreiben Sie ihm eine Dankesnachricht.",
+      "zh": "朋友 Ali 帮您搬了家。给他写一条感谢消息。"
+    },
+    "coveragePoints": [
+      {"zh": "为帮忙搬家表示感谢"},
+      {"zh": "说一句新家的情况(很好/还有很多箱子)"},
+      {"zh": "邀请他来吃饭或提出请客"}
+    ]
+  },
+  {
+    "id": "m-besuch-ankuendigen-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie fahren nächste Woche nach Berlin. Dort wohnt Ihre Freundin Mia. Schreiben Sie ihr: Sie möchten sie besuchen.",
+      "zh": "您下周去柏林，朋友 Mia 住在那里。给她写消息：您想去看她。"
+    },
+    "coveragePoints": [
+      {"zh": "说明下周要去柏林、想见她"},
+      {"zh": "写清哪天到、待几天"},
+      {"zh": "询问她有没有时间或能否来车站接"}
+    ]
+  },
+  {
+    "id": "m-arzttermin-verschieben-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie haben am Montag einen Termin bei Dr. Braun, aber Sie müssen arbeiten. Schreiben Sie an die Praxis.",
+      "zh": "您周一约了 Braun 医生，但那天要上班。给诊所写信改约。"
+    },
+    "coveragePoints": [
+      {"zh": "说明周一的预约不能来"},
+      {"zh": "说明原因(要上班)"},
+      {"zh": "请求换一个新时间并给出建议"}
+    ]
+  },
+  {
+    "id": "m-hausverwaltung-heizung-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Ihre Heizung ist kaputt. Schreiben Sie an die Hausverwaltung.",
+      "zh": "您家暖气坏了。给物业(Hausverwaltung)写信。"
+    },
+    "coveragePoints": [
+      {"zh": "说明暖气坏了、家里很冷"},
+      {"zh": "说明从什么时候开始坏的"},
+      {"zh": "请求尽快派人来修并说明什么时候在家"}
+    ]
+  },
+  {
+    "id": "m-absage-treffen-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie wollten am Freitag mit Ihrer Freundin Lena Kaffee trinken, aber Sie haben keine Zeit. Schreiben Sie ihr eine Absage.",
+      "zh": "您本来周五和朋友 Lena 约了喝咖啡，但没时间了。给她写消息取消。"
+    },
+    "coveragePoints": [
+      {"zh": "取消周五的约会并道歉"},
+      {"zh": "说明原因"},
+      {"zh": "提议一个新的时间"}
+    ]
+  },
+  {
+    "id": "m-kino-einladen-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie möchten am Sonntag ins Kino gehen. Schreiben Sie Ihrem Freund Jonas und laden Sie ihn ein.",
+      "zh": "您周日想去看电影。给朋友 Jonas 写消息邀请他。"
+    },
+    "coveragePoints": [
+      {"zh": "邀请对方周日一起看电影"},
+      {"zh": "写清电影开始时间或看什么电影"},
+      {"zh": "提议在哪里、几点碰面"}
+    ]
+  },
+  {
+    "id": "m-neue-adresse-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie haben eine neue Wohnung. Schreiben Sie Ihrer Freundin Sara: Ihre neue Adresse und eine Einladung.",
+      "zh": "您搬了新家。给朋友 Sara 写消息：告诉她新地址并邀请她来。"
+    },
+    "coveragePoints": [
+      {"zh": "告知自己搬家了并写出新地址"},
+      {"zh": "简单说一句新家怎么样"},
+      {"zh": "邀请她来做客并提一个时间"}
+    ]
+  },
+  {
+    "id": "m-wohnungsanzeige-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie haben eine Wohnungsanzeige gelesen. Schreiben Sie an Herrn Schmidt, den Vermieter.",
+      "zh": "您看到一则租房广告。给房东 Schmidt 先生写信。"
+    },
+    "coveragePoints": [
+      {"zh": "说明对这套房子感兴趣"},
+      {"zh": "问一个问题(房租多少/几个房间)"},
+      {"zh": "询问什么时候可以看房"}
+    ]
+  },
+  {
+    "id": "m-chef-krank-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie sind krank und können nicht arbeiten. Schreiben Sie eine kurze Nachricht an Ihren Chef, Herrn Meier.",
+      "zh": "您生病了，不能上班。给老板 Meier 先生写一条简短消息。"
+    },
+    "coveragePoints": [
+      {"zh": "说明今天生病不能来上班"},
+      {"zh": "说明去看医生或会送病假条"},
+      {"zh": "说出大概什么时候能回来上班"}
+    ]
+  },
+  {
+    "id": "m-party-zusage-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Ihr Kollege Paul hat Sie zu einem Sommerfest eingeladen. Schreiben Sie ihm eine Antwort: Sie kommen gern.",
+      "zh": "同事 Paul 邀请您参加夏日聚会。给他回复：您很乐意去。"
+    },
+    "coveragePoints": [
+      {"zh": "感谢邀请并答应参加"},
+      {"zh": "询问可以带点什么(沙拉/饮料)"},
+      {"zh": "问一个细节(几点开始/怎么去)"}
+    ]
+  },
+  {
+    "id": "m-nachbar-blumen-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie fahren eine Woche in den Urlaub. Schreiben Sie Ihrer Nachbarin, Frau Koch: Sie hat Ihren Schlüssel und soll die Blumen gießen.",
+      "zh": "您要去度假一周。给邻居 Koch 女士写消息：请她拿着钥匙帮忙浇花。"
+    },
+    "coveragePoints": [
+      {"zh": "说明自己去度假、去多久"},
+      {"zh": "请她帮忙浇花(或收包裹)"},
+      {"zh": "说明钥匙的事并表示感谢"}
+    ]
+  },
+  {
+    "id": "m-abholen-bahnhof-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie kommen am Freitagabend mit dem Zug an. Schreiben Sie Ihrem Freund Max: Er soll Sie vom Bahnhof abholen.",
+      "zh": "您周五晚上坐火车到。给朋友 Max 写消息：请他来火车站接您。"
+    },
+    "coveragePoints": [
+      {"zh": "说明周五坐火车到达"},
+      {"zh": "写清到达时间和车站"},
+      {"zh": "请他来接并问他有没有时间"}
+    ]
+  },
+  {
+    "id": "m-lernen-zusammen-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Nächsten Monat ist die A1-Prüfung. Schreiben Sie Ihrer Kurskollegin Elena: Sie möchten zusammen lernen.",
+      "zh": "下个月就是 A1 考试。给同班同学 Elena 写消息：想和她一起复习。"
+    },
+    "coveragePoints": [
+      {"zh": "提出考试前一起复习"},
+      {"zh": "提议时间和地点(图书馆/咖啡馆/家里)"},
+      {"zh": "说明想练什么(口语/写作/听力)"}
+    ]
+  },
+  {
+    "id": "m-tisch-reservieren-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie möchten am Samstag im Restaurant \"Roma\" essen. Schreiben Sie eine E-Mail und reservieren Sie einen Tisch.",
+      "zh": "您想周六在 Roma 餐厅吃饭。写一封邮件订位。"
+    },
+    "coveragePoints": [
+      {"zh": "说明想订一张桌子"},
+      {"zh": "写清日期和时间"},
+      {"zh": "写清几个人并请对方确认"}
+    ]
+  },
+  {
+    "id": "m-danke-geschenk-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie hatten Geburtstag. Ihre Freundin Julia hat Ihnen ein Buch geschenkt. Schreiben Sie ihr eine Dankesnachricht.",
+      "zh": "您过了生日，朋友 Julia 送了您一本书。给她写感谢消息。"
+    },
+    "coveragePoints": [
+      {"zh": "感谢她送的礼物"},
+      {"zh": "说一句对礼物的感受(很喜欢/正在读)"},
+      {"zh": "提议下次见面或一起做点什么"}
+    ]
+  },
+  {
+    "id": "m-entschuldigung-vergessen-1",
+    "kind": "message",
+    "prompt": {
+      "de": "Sie hatten gestern einen Termin mit Ihrem Freund David, aber Sie haben ihn vergessen. Schreiben Sie ihm eine Entschuldigung.",
+      "zh": "昨天您和朋友 David 有约，但您忘了。给他写消息道歉。"
+    },
+    "coveragePoints": [
+      {"zh": "为忘记约会道歉"},
+      {"zh": "简单说明原因(工作太多/太累)"},
+      {"zh": "提出补偿(请喝咖啡/约新时间)"}
+    ]
+  }
+]

@@ -16,7 +16,7 @@ principle 五 (可插拔的中间层) — read that in the root `CLAUDE.md` for 
 
 ## Task routing (`config.ts` → `TASK_ROUTING`)
 
-- Tasks: `authoring` (`/v1/compose` "想说"), `gloss` (`/v1/gloss` "想懂"), `scenario` (`/v1/scenario`), `split` (`/v1/split` 拆岛), `keywords` (`/v1/keywords` 字词表关键词提取), `ask` (`/v1/ask` 随手助手), `judge` (`/v1/judge` 复习裁判 — interactive, sync, default haiku/cheap).
+- Tasks: `authoring` (`/v1/compose` "想说"), `gloss` (`/v1/gloss` "想懂"), `scenario` (`/v1/scenario`), `split` (`/v1/split` 拆岛), `keywords` (`/v1/keywords` 字词表关键词提取), `ask` (`/v1/ask` 随手助手), `judge` (`/v1/judge` 复习裁判 — interactive, sync, default haiku/cheap), `output_feedback` (A1 每日产出显性纠错 — **job-queue only**, no sync route; production routes it to claude-cli via a runtime override, switchable to a paid API in /v1/routing for second-level latency).
 - **Code default: all → `anthropic` / `claude-sonnet-4-6`.** Three layers resolve the route for a task, in order: **runtime override (DB) → env (`LLM_<TASK>_PROVIDER`/`_MODEL`) → code default**. `config.ts` computes the env/default snapshot at startup; `routing.ts` (`resolveRoute(task)`) layers the runtime override on top. `llm/index.ts` calls `resolveRoute(task)` per request — so **switching a task's model takes effect live, no restart**.
   - Env (startup, server-wide): `LLM_GLOSS_PROVIDER=deepseek LLM_GLOSS_MODEL=deepseek-chat`.
   - Runtime (live, persisted in `routing_overrides`): `GET/PUT /v1/routing` — backs the app's advanced-settings "模型路由". `maxTokens` always stays the per-task default (not user-chosen). Keys never cross this API; only provider/model **names**.

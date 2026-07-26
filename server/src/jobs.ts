@@ -15,6 +15,7 @@ import {
   split,
   keywords,
   ask,
+  outputFeedback,
 } from "./llm";
 import type { JobState, JobStatus, JobTask } from "./contracts";
 
@@ -25,6 +26,7 @@ const TASKS: readonly JobTask[] = [
   "split",
   "keywords",
   "ask",
+  "output_feedback",
 ];
 
 export function isJobTask(t: unknown): t is JobTask {
@@ -103,6 +105,9 @@ export async function runJob(id: string): Promise<void> {
         break;
       case "ask":
         result = await ask(input);
+        break;
+      case "output_feedback":
+        result = await outputFeedback(input);
         break;
       case "scenario":
         // Keep the live sentence count by streaming, but write it as progress

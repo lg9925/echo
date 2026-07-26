@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { IslandList } from "@/components/IslandList";
 import { ReviewQueueBadge } from "@/components/ReviewQueueBadge";
+import { TodayView } from "@/components/a1/TodayView";
 
 const TARGET_LANGS = ["de", "en"] as const;
 
@@ -44,6 +45,9 @@ export default async function LanguageHubPage({
 
       <h1 className="text-3xl font-semibold tracking-tight">{tLang(lang)}</h1>
 
+      {/* 打开即练 (M1): the composer-driven Today surface — German course only. */}
+      {lang === "de" && <TodayView language={lang} uiLocale={locale} />}
+
       {/* Per-language actions */}
       <div className="flex flex-wrap items-center gap-3">
         <a
@@ -66,6 +70,14 @@ export default async function LanguageHubPage({
         </a>
         {lang === "de" && (
           <a
+            href={`/${locale}/a1/`}
+            className="rounded-full border border-zinc-300 dark:border-zinc-700 px-4 py-1.5 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900"
+          >
+            {tNav("a1")}
+          </a>
+        )}
+        {lang === "de" && (
+          <a
             href={`/${locale}/einbuergerung/`}
             className="rounded-full border border-zinc-300 dark:border-zinc-700 px-4 py-1.5 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900"
           >
@@ -75,7 +87,7 @@ export default async function LanguageHubPage({
         <ReviewQueueBadge language={lang} uiLocale={locale} />
       </div>
 
-      <section className="space-y-3">
+      <section id="islands" className="space-y-3">
         <h2 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
           {tHome("pickIsland")}
         </h2>

@@ -1,13 +1,21 @@
 import Dexie, { type EntityTable } from "dexie";
 import type {
   AudioCacheEntry,
+  CardRecord,
+  CardReviewState,
+  CurriculumState,
+  DictationAttempt,
   InboxItem,
   Island,
+  OutputDraft,
   QuizProgress,
   QuizQuestion,
+  ReviewLogEntry,
   ReviewState,
   Sentence,
   SeedMeta,
+  StudyDay,
+  StudyLogEvent,
   VocabEntry,
 } from "./types";
 
@@ -21,6 +29,14 @@ class EchoDB extends Dexie {
   vocab!: EntityTable<VocabEntry, "id">;
   quizQuestions!: EntityTable<QuizQuestion, "id">;
   quizProgress!: EntityTable<QuizProgress, "questionId">;
+  cards!: EntityTable<CardRecord, "id">;
+  cardReviews!: EntityTable<CardReviewState, "cardId">;
+  dictationAttempts!: EntityTable<DictationAttempt, "id">;
+  studyLog!: EntityTable<StudyLogEvent, "id">;
+  studyDays!: EntityTable<StudyDay, "id">;
+  reviewLog!: EntityTable<ReviewLogEntry, "id">;
+  curriculum!: EntityTable<CurriculumState, "id">;
+  outputDrafts!: EntityTable<OutputDraft, "id">;
 
   constructor() {
     super("echo");
@@ -58,6 +74,28 @@ class EchoDB extends Dexie {
         .modify((r) => {
           if (r.masteryStage === undefined) r.masteryStage = 2;
         });
+    });
+    // v6 adds the A1 课程 tables (word/cloze/dictation cards + study log +
+    // streak rollup + review log + curriculum state) — purely additive, no
+    // migration, reviews untouched. cardReviews is the FSRS state for cards
+    // (a card with no row is "new", same by-absence convention as sentences);
+    // [language+introducedAt] backs the daily new-card throttle. studyDays is
+    // the incrementally-maintained rollup so streak walks never scan studyLog.
+    // reviewLog is append-only (M7 retention report — cannot be backfilled).
+    this.version(6).stores({
+      cards: "&id, language, kind, *tags, [language+kind], createdAt",
+      cardReviews: "&cardId, language, [language+due], [language+introducedAt]",
+      dictationAttempts: "&id, [language+createdAt]",
+      studyLog: "&id, dayKey, [language+dayKey], createdAt",
+      studyDays: "&id, dayKey, [language+dayKey]",
+      reviewLog: "&id, [language+ts], [deck+ts]",
+      curriculum: "&id, language",
+    });
+    // v7 adds the M5 每日产出任务 drafts — additive, no migration. One row per
+    // (language, day); a submitted job's id is persisted so polling resumes
+    // after reload (inbox pattern).
+    this.version(7).stores({
+      outputDrafts: "&id, language, [language+dayKey], status, updatedAt",
     });
   }
 }
@@ -266,4 +304,131 @@ export async function setQuizStarred(
   };
   await db.quizProgress.put(next);
   return next;
+}
+
+// --- A1 课程 (Dexie v6) helpers ---
+
+export async function listCards(language: string): Promise<CardRecord[]> {
+  return getDb().cards.where("language").equals(language).toArray();
+}
+
+export async function getCard(id: string): Promise<CardRecord | undefined> {
+  return getDb().cards.get(id);
+}
+
+export async function putCard(card: CardRecord): Promise<void> {
+  await getDb().cards.put(card);
+}
+
+export async function listCardReviews(
+  language: string,
+): Promise<CardReviewState[]> {
+  return getDb().cardReviews.where("language").equals(language).toArray();
+}
+
+export async function getCardReview(
+  cardId: string,
+): Promise<CardReviewState | undefined> {
+  return getDb().cardReviews.get(cardId);
+}
+
+export async function upsertCardReview(state: CardReviewState): Promise<void> {
+  await getDb().cardReviews.put(state);
+}
+
+export async function dueCardReviews(
+  language: string,
+  nowMs: number,
+): Promise<CardReviewState[]> {
+  return getDb()
+    .cardReviews.where("[language+due]")
+    .between([language, Dexie.minKey], [language, nowMs])
+    .toArray();
+}
+
+/** Cards whose first CardReviewState landed in [sinceMs, now] — i.e. cards
+ *  introduced today. Backs the daily new-card throttle (refresh-proof: the
+ *  count is derived from the introducedAt index, not a mutable counter). */
+export async function countCardsIntroducedSince(
+  language: string,
+  sinceMs: number,
+): Promise<number> {
+  return getDb()
+    .cardReviews.where("[language+introducedAt]")
+    .between([language, sinceMs], [language, Dexie.maxKey])
+    .count();
+}
+
+export async function recordDictationAttempt(
+  attempt: DictationAttempt,
+): Promise<void> {
+  await getDb().dictationAttempts.add(attempt);
+}
+
+export async function listDictationAttempts(
+  language: string,
+): Promise<DictationAttempt[]> {
+  return getDb()
+    .dictationAttempts.where("[language+createdAt]")
+    .between([language, Dexie.minKey], [language, Dexie.maxKey])
+    .toArray();
+}
+
+export async function getCurriculum(
+  language: string,
+): Promise<CurriculumState | undefined> {
+  return getDb().curriculum.get(`${language}.a1`);
+}
+
+export async function putCurriculum(state: CurriculumState): Promise<void> {
+  await getDb().curriculum.put(state);
+}
+
+export async function getStudyDay(
+  language: string,
+  dayKey: string,
+): Promise<StudyDay | undefined> {
+  return getDb().studyDays.get(`${language}|${dayKey}`);
+}
+
+export async function putStudyDay(day: StudyDay): Promise<void> {
+  await getDb().studyDays.put(day);
+}
+
+export async function listStudyDays(language: string): Promise<StudyDay[]> {
+  return getDb()
+    .studyDays.where("[language+dayKey]")
+    .between([language, Dexie.minKey], [language, Dexie.maxKey])
+    .toArray();
+}
+
+export async function addStudyLogEvent(event: StudyLogEvent): Promise<void> {
+  await getDb().studyLog.add(event);
+}
+
+export async function addReviewLogEntry(entry: ReviewLogEntry): Promise<void> {
+  await getDb().reviewLog.add(entry);
+}
+
+export async function getOutputDraft(
+  language: string,
+  dayKey: string,
+): Promise<OutputDraft | undefined> {
+  return getDb().outputDrafts.get(`${language}|${dayKey}`);
+}
+
+export async function putOutputDraft(draft: OutputDraft): Promise<void> {
+  await getDb().outputDrafts.put(draft);
+}
+
+export async function listRecentOutputDrafts(
+  language: string,
+  limit: number,
+): Promise<OutputDraft[]> {
+  return getDb()
+    .outputDrafts.where("[language+dayKey]")
+    .between([language, Dexie.minKey], [language, Dexie.maxKey])
+    .reverse()
+    .limit(limit)
+    .toArray();
 }

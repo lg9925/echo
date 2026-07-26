@@ -207,6 +207,42 @@ export interface JudgeResult {
   errorTags?: JudgeErrorTag[];
 }
 
+// --- output_feedback (A1 产出反馈: 每日产出任务的显性纠错) — runs via /v1/jobs ---
+
+export interface OutputFeedbackRequest {
+  language: TargetLanguage;
+  /** 任务题目(德语原文,如 "Wie heißen Sie und woher kommen Sie?")。 */
+  taskPrompt: string;
+  /** 恰好 3 个内容要点(中文),覆盖情况按序返回。 */
+  coveragePoints: string[];
+  /** 学习者的产出(约 30 词)。 */
+  attempt: string;
+  profile?: LearnerProfile;
+}
+
+/** One explicit correction. 显性纠错(非含蓄 recast):逐字引用错误片段。 */
+export interface OutputCorrection {
+  /** 错误片段,逐字摘自 attempt。 */
+  original: string;
+  corrected: string;
+  /** 中文说明,点名规则(如「动词第二位」)。 */
+  explanation: string;
+  errorTag: JudgeErrorTag;
+}
+
+export interface OutputFeedbackResult {
+  /** 任务完成度判定——病句绝不 pass。 */
+  verdict: "pass" | "partial" | "fail";
+  /** 与 coveragePoints 一一对应。 */
+  coverage: boolean[];
+  /** 每个错误一条;真正干净才为空。 */
+  corrections: OutputCorrection[];
+  /** 修改后的全文(保持 A1 水平,不许 C1 化)。 */
+  revised: string;
+  /** 诚实的一句中文鼓励,可为空串。 */
+  encouragement: string;
+}
+
 // --- /v1/jobs (async queue: submit a slow task → poll for the result) ---
 
 /** Tasks that can run as a background job. Each `input` is that task's request
@@ -217,7 +253,8 @@ export type JobTask =
   | "scenario"
   | "split"
   | "keywords"
-  | "ask";
+  | "ask"
+  | "output_feedback";
 
 export interface JobSubmitRequest {
   task: JobTask;

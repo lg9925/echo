@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   getReview,
@@ -12,6 +12,7 @@ import {
 import { ensureSeedLoaded } from "@/lib/seedLoader";
 import { freshState, schedule, verdictToGrade } from "@/lib/sr";
 import { foldErrorTags } from "@/lib/errorTags";
+import { logActivity, logReview } from "@/lib/studyLog";
 import { cancelAllSpeech, speak } from "@/lib/tts";
 import { targetBcp47 } from "@/lib/lang";
 import { judge } from "@/lib/api/client";
@@ -56,6 +57,9 @@ export function ReviewSession({
   const [judging, setJudging] = useState(false);
   const [verdict, setVerdict] = useState<JudgeResult | null>(null);
   const [selfGraded, setSelfGraded] = useState(false);
+  // Study-log timing: when the current card appeared (M2/M7 instrumentation).
+  // 0 until the first card-shown effect below stamps it.
+  const cardShownAtRef = useRef(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -97,6 +101,10 @@ export function ReviewSession({
   }, [language, islandId]);
 
   const current = queue?.[0];
+
+  useEffect(() => {
+    cardShownAtRef.current = Date.now();
+  }, [current?.sentence.id]);
 
   const reveal = useCallback(() => {
     if (!current) return;
@@ -157,12 +165,31 @@ export function ReviewSession({
         freshState(current.sentence.id, current.sentence.language);
       // again/good is what the user taps; the FSRS grade (again/hard/good) is
       // derived from the AI verdict so the user never hand-picks difficulty.
-      const next = schedule(prev, verdictToGrade(g, verdict?.verdict), new Date());
+      const fsrsGrade = verdictToGrade(g, verdict?.verdict);
+      await logReview({
+        cardId: current.sentence.id,
+        deck: "sentence",
+        language: current.sentence.language,
+        grade: fsrsGrade,
+        verdict: verdict?.verdict,
+        prev,
+      });
+      const next = schedule(prev, fsrsGrade, new Date());
       // Accumulate the judge's typed failures onto the row (no-op on correct /
       // offline self-grade, where there are no errorTags).
       const folded = foldErrorTags(prev.errorTags, verdict?.errorTags, Date.now());
       if (folded) next.errorTags = folded;
       await upsertReview(next);
+      // A review is one graded card; a typed/spoken attempt is also one
+      // production unit (MVD's output leg — 打字/口说均可).
+      await logActivity({
+        language: current.sentence.language,
+        source: "review",
+        durationMs: Date.now() - cardShownAtRef.current,
+        units: 1,
+        counts: { srsGraded: 1, output: attempt.trim() ? 1 : 0 },
+        srsQueueCleared: g !== "again" && queue?.length === 1,
+      });
       cancelAllSpeech();
       setQueue((q) => {
         if (!q) return q;
@@ -179,7 +206,7 @@ export function ReviewSession({
       setJudging(false);
       setDoneCount((c) => c + 1);
     },
-    [current, verdict],
+    [current, verdict, attempt, queue],
   );
 
   const suggested: "again" | "good" | null = verdict

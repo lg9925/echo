@@ -173,6 +173,37 @@ export interface JudgeResult {
   errorTags?: JudgeErrorTag[];
 }
 
+// --- output_feedback (A1 产出反馈: explicit correction of the daily production
+// task) — runs via /v1/jobs, MIRROR of server/src/contracts.ts ---
+
+export interface OutputFeedbackRequest {
+  language: TargetLanguage;
+  taskPrompt: string;
+  /** Exactly 3 content points (zh); coverage returned in the same order. */
+  coveragePoints: string[];
+  attempt: string;
+  profile?: LearnerProfile;
+}
+
+/** One explicit correction — original quoted verbatim from the attempt. */
+export interface OutputCorrection {
+  original: string;
+  corrected: string;
+  /** Chinese explanation naming the rule. */
+  explanation: string;
+  errorTag: JudgeErrorTag;
+}
+
+export interface OutputFeedbackResult {
+  /** Task fulfillment — broken sentences never pass. */
+  verdict: "pass" | "partial" | "fail";
+  coverage: boolean[];
+  corrections: OutputCorrection[];
+  /** Corrected full text, kept at A1 level. */
+  revised: string;
+  encouragement: string;
+}
+
 // --- /v1/jobs (async queue: submit a slow task → poll for the result) ---
 
 export type JobTask =
@@ -181,7 +212,8 @@ export type JobTask =
   | "scenario"
   | "split"
   | "keywords"
-  | "ask";
+  | "ask"
+  | "output_feedback";
 
 export interface JobSubmitRequest {
   task: JobTask;

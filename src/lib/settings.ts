@@ -63,3 +63,22 @@ export function getMaxIslandSentences(): number {
 export function setMaxIslandSentences(n: number): void {
   write(MAX_ISLAND_KEY, String(n));
 }
+
+// --- A1 course: daily time target (M1 composer) ---
+// Hidden advanced setting (原则一): the composer plans against it, the user
+// never has to touch it. Clamped to [MVD, 4h].
+
+const A1_DAILY_KEY = "echo:a1DailyMinutes";
+export const DEFAULT_A1_DAILY_MINUTES = 120;
+export const MIN_A1_DAILY_MINUTES = 20;
+export const MAX_A1_DAILY_MINUTES = 240;
+
+export function getA1DailyMinutes(): number {
+  const raw = parseInt(read(A1_DAILY_KEY), 10);
+  if (!Number.isFinite(raw)) return DEFAULT_A1_DAILY_MINUTES;
+  return Math.min(MAX_A1_DAILY_MINUTES, Math.max(MIN_A1_DAILY_MINUTES, raw));
+}
+
+export function setA1DailyMinutes(n: number): void {
+  write(A1_DAILY_KEY, String(n));
+}

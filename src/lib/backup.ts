@@ -4,7 +4,9 @@
 // feature (project principle 六). No React here — SettingsView calls these.
 //
 // What's IN the file: islands, sentences, reviews (SR progress), seed meta,
-// inbox items, and player settings — across ALL languages.
+// inbox items, vocab, quiz tables, the A1 课程 tables (cards, cardReviews,
+// dictationAttempts, studyLog, studyDays, reviewLog, curriculum), profiles and
+// player settings — across ALL languages.
 // What's OUT, by design:
 //   - audio blobs: regenerable from text via TTS; keeping them out keeps the
 //     file small (the IndexedDB `audioCache` table is skipped entirely).
@@ -20,13 +22,21 @@ import {
 import { getProfile, saveProfile } from "./profile";
 import type { LearnerProfile } from "./api/contracts";
 import type {
+  CardRecord,
+  CardReviewState,
+  CurriculumState,
+  DictationAttempt,
   InboxItem,
   Island,
+  OutputDraft,
   QuizProgress,
   QuizQuestion,
+  ReviewLogEntry,
   ReviewState,
   SeedMeta,
   Sentence,
+  StudyDay,
+  StudyLogEvent,
   VocabEntry,
 } from "./types";
 
@@ -48,6 +58,18 @@ export interface BackupFile {
     // is user data with no other source — both travel so a restore is complete.
     quizQuestions: QuizQuestion[];
     quizProgress: QuizProgress[];
+    // A1 课程 (v6): cardReviews/studyLog/studyDays/dictationAttempts/reviewLog/
+    // curriculum are user data with no other source — they must travel. cards
+    // travels too (dictation-error cards are user-generated; seed cards get
+    // harmlessly overwritten on the next wordlist load, same as quizQuestions).
+    cards: CardRecord[];
+    cardReviews: CardReviewState[];
+    dictationAttempts: DictationAttempt[];
+    studyLog: StudyLogEvent[];
+    studyDays: StudyDay[];
+    reviewLog: ReviewLogEntry[];
+    curriculum: CurriculumState[];
+    outputDrafts: OutputDraft[];
     profiles: Record<string, LearnerProfile>;
     playerSettings: PlayerSettings | null;
   };
@@ -62,6 +84,14 @@ export interface ImportSummary {
   vocab: number;
   quizQuestions: number;
   quizProgress: number;
+  cards: number;
+  cardReviews: number;
+  dictationAttempts: number;
+  studyLog: number;
+  studyDays: number;
+  reviewLog: number;
+  curriculum: number;
+  outputDrafts: number;
   profiles: number;
   playerSettings: boolean;
 }
@@ -93,6 +123,17 @@ export async function exportBackup(): Promise<BackupFile> {
       db.quizQuestions.toArray(),
       db.quizProgress.toArray(),
     ]);
+  const [cards, cardReviews, dictationAttempts, studyLog, studyDays, reviewLog, curriculum, outputDrafts] =
+    await Promise.all([
+      db.cards.toArray(),
+      db.cardReviews.toArray(),
+      db.dictationAttempts.toArray(),
+      db.studyLog.toArray(),
+      db.studyDays.toArray(),
+      db.reviewLog.toArray(),
+      db.curriculum.toArray(),
+      db.outputDrafts.toArray(),
+    ]);
   return {
     format: BACKUP_FORMAT,
     version: BACKUP_VERSION,
@@ -106,6 +147,14 @@ export async function exportBackup(): Promise<BackupFile> {
       vocab,
       quizQuestions,
       quizProgress,
+      cards,
+      cardReviews,
+      dictationAttempts,
+      studyLog,
+      studyDays,
+      reviewLog,
+      curriculum,
+      outputDrafts,
       profiles: collectProfiles(),
       playerSettings: loadPlayerSettings(),
     },
@@ -160,6 +209,15 @@ export function parseBackupFile(text: string): BackupFile {
   // quiz tables added later too — default to empty for older backups.
   if (!Array.isArray(d.quizQuestions)) d.quizQuestions = [];
   if (!Array.isArray(d.quizProgress)) d.quizProgress = [];
+  // A1 课程 tables (v6) added later — default to empty for older backups.
+  if (!Array.isArray(d.cards)) d.cards = [];
+  if (!Array.isArray(d.cardReviews)) d.cardReviews = [];
+  if (!Array.isArray(d.dictationAttempts)) d.dictationAttempts = [];
+  if (!Array.isArray(d.studyLog)) d.studyLog = [];
+  if (!Array.isArray(d.studyDays)) d.studyDays = [];
+  if (!Array.isArray(d.reviewLog)) d.reviewLog = [];
+  if (!Array.isArray(d.curriculum)) d.curriculum = [];
+  if (!Array.isArray(d.outputDrafts)) d.outputDrafts = [];
   // profiles added later too — default to none.
   if (typeof d.profiles !== "object" || d.profiles === null) d.profiles = {};
   return obj as BackupFile;
@@ -181,6 +239,14 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     vocab,
     quizQuestions,
     quizProgress,
+    cards,
+    cardReviews,
+    dictationAttempts,
+    studyLog,
+    studyDays,
+    reviewLog,
+    curriculum,
+    outputDrafts,
     profiles,
     playerSettings,
   } = file.data;
@@ -196,6 +262,14 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
       db.vocab,
       db.quizQuestions,
       db.quizProgress,
+      db.cards,
+      db.cardReviews,
+      db.dictationAttempts,
+      db.studyLog,
+      db.studyDays,
+      db.reviewLog,
+      db.curriculum,
+      db.outputDrafts,
     ],
     async () => {
       await db.islands.bulkPut(islands);
@@ -210,6 +284,14 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
       await db.vocab.bulkPut(vocab ?? []);
       await db.quizQuestions.bulkPut(quizQuestions ?? []);
       await db.quizProgress.bulkPut(quizProgress ?? []);
+      await db.cards.bulkPut(cards ?? []);
+      await db.cardReviews.bulkPut(cardReviews ?? []);
+      await db.dictationAttempts.bulkPut(dictationAttempts ?? []);
+      await db.studyLog.bulkPut(studyLog ?? []);
+      await db.studyDays.bulkPut(studyDays ?? []);
+      await db.reviewLog.bulkPut(reviewLog ?? []);
+      await db.curriculum.bulkPut(curriculum ?? []);
+      await db.outputDrafts.bulkPut(outputDrafts ?? []);
     },
   );
 
@@ -233,6 +315,14 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     vocab: (vocab ?? []).length,
     quizQuestions: (quizQuestions ?? []).length,
     quizProgress: (quizProgress ?? []).length,
+    cards: (cards ?? []).length,
+    cardReviews: (cardReviews ?? []).length,
+    dictationAttempts: (dictationAttempts ?? []).length,
+    studyLog: (studyLog ?? []).length,
+    studyDays: (studyDays ?? []).length,
+    reviewLog: (reviewLog ?? []).length,
+    curriculum: (curriculum ?? []).length,
+    outputDrafts: (outputDrafts ?? []).length,
     profiles: profileEntries.length,
     playerSettings: appliedSettings,
   };

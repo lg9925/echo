@@ -16,6 +16,8 @@ import type {
   AskResult,
   JudgeRequest,
   JudgeResult,
+  OutputFeedbackRequest,
+  OutputFeedbackResult,
 } from "../contracts";
 import { getAdapter } from "./adapters";
 import {
@@ -26,6 +28,7 @@ import {
   buildKeywordsPrompt,
   buildAskPrompt,
   buildJudgePrompt,
+  buildOutputFeedbackPrompt,
   buildEinbLiteralPrompt,
 } from "./prompts";
 import {
@@ -36,6 +39,7 @@ import {
   keywordsSchema,
   askSchema,
   judgeSchema,
+  outputFeedbackSchema,
 } from "./schema";
 
 // Pull a JSON object out of a model reply that may be wrapped in prose or a
@@ -111,6 +115,18 @@ export function ask(req: AskRequest): Promise<AskResult> {
 
 export function judge(req: JudgeRequest): Promise<JudgeResult> {
   return runStructured("judge", buildJudgePrompt(req), judgeSchema);
+}
+
+// A1 产出反馈 — job-queue only (production routes it to claude-cli; a 2–4 min
+// run would blow the tunnel's ~100s cap as a sync route).
+export function outputFeedback(
+  req: OutputFeedbackRequest,
+): Promise<OutputFeedbackResult> {
+  return runStructured(
+    "output_feedback",
+    buildOutputFeedbackPrompt(req),
+    outputFeedbackSchema,
+  );
 }
 
 // 入籍考试逐词直译 — author-time only (not wired to a route/job). Plain-text
