@@ -65,6 +65,8 @@ export interface DictationOptions {
   onResult: (text: string, isFinal: boolean) => void;
   onError?: (error: string) => void;
   onEnd?: () => void;
+  /** Keep listening across pauses (timed retells). Default false = one pass. */
+  continuous?: boolean;
 }
 
 /** Start one dictation pass. Returns null if unsupported. */
@@ -75,7 +77,7 @@ export function startDictation(opts: DictationOptions): DictationHandle | null {
   const rec = new Ctor();
   rec.lang = opts.lang;
   rec.interimResults = true;
-  rec.continuous = false;
+  rec.continuous = opts.continuous ?? false;
   rec.maxAlternatives = 1;
 
   rec.onresult = (e) => {

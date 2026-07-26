@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "contrasts": [
+    {
+      "id": "umlaut-front",
+      "title": { "zh": "圆唇前元音 ü/ö", "en": "Front rounded vowels ü/ö" },
+      "pairs": [
+        { "id": "uf-1", "a": "schon", "b": "schön", "note": "已经 vs 美丽的" },
+        { "id": "uf-2", "a": "konnte", "b": "könnte", "note": "能(过去式) vs 可能(虚拟式)" },
+        { "id": "uf-3", "a": "musste", "b": "müsste", "note": "必须(过去式) vs 应该(虚拟式)" },
+        { "id": "uf-4", "a": "durfte", "b": "dürfte", "note": "可以(过去式) vs 大概/也许(虚拟式)" },
+        { "id": "uf-5", "a": "wusste", "b": "wüsste", "note": "知道(过去式) vs 要是知道(虚拟式)" },
+        { "id": "uf-6", "a": "drucken", "b": "drücken", "note": "打印 vs 按/压" },
+        { "id": "uf-7", "a": "fuhr", "b": "für", "note": "开车去(过去式) vs 为了" },
+        { "id": "uf-8", "a": "Tour", "b": "Tür", "note": "旅行/路线 vs 门" },
+        { "id": "uf-9", "a": "Mutter", "b": "Mütter", "note": "妈妈 vs 妈妈(复数)" },
+        { "id": "uf-10", "a": "Bruder", "b": "Brüder", "note": "兄弟 vs 兄弟(复数)" },
+        { "id": "uf-11", "a": "Tochter", "b": "Töchter", "note": "女儿 vs 女儿(复数)" },
+        { "id": "uf-12", "a": "Ofen", "b": "Öfen", "note": "烤箱 vs 烤箱(复数)" },
+        { "id": "uf-13", "a": "Boden", "b": "Böden", "note": "地板 vs 地板(复数)" },
+        { "id": "uf-14", "a": "Zug", "b": "Züge", "note": "火车 vs 火车(复数)" },
+        { "id": "uf-15", "a": "Fuß", "b": "Füße", "note": "脚 vs 脚(复数)" },
+        { "id": "uf-16", "a": "Stuhl", "b": "Stühle", "note": "椅子 vs 椅子(复数)" },
+        { "id": "uf-17", "a": "Hut", "b": "Hüte", "note": "帽子 vs 帽子(复数)" },
+        { "id": "uf-18", "a": "Kuh", "b": "Kühe", "note": "奶牛 vs 奶牛(复数)" },
+        { "id": "uf-19", "a": "Sohn", "b": "Söhne", "note": "儿子 vs 儿子(复数)" },
+        { "id": "uf-20", "a": "Kopf", "b": "Köpfe", "note": "头 vs 头(复数)" },
+        { "id": "uf-21", "a": "Rock", "b": "Röcke", "note": "裙子 vs 裙子(复数)" },
+        { "id": "uf-22", "a": "Wunsch", "b": "Wünsche", "note": "愿望 vs 愿望(复数)" },
+        { "id": "uf-23", "a": "Nuss", "b": "Nüsse", "note": "坚果 vs 坚果(复数)" },
+        { "id": "uf-24", "a": "große", "b": "Größe", "note": "大的 vs 尺寸/大小" }
+      ]
+    },
+    {
+      "id": "vowel-length",
+      "title": { "zh": "元音长短", "en": "Vowel length" },
+      "pairs": [
+        { "id": "vl-1", "a": "Stadt", "b": "Staat", "note": "城市 vs 国家" },
+        { "id": "vl-2", "a": "Bett", "b": "Beet", "note": "床 vs 花坛" },
+        { "id": "vl-3", "a": "Mitte", "b": "Miete", "note": "中间 vs 房租" },
+        { "id": "vl-4", "a": "bitten", "b": "bieten", "note": "请求 vs 提供" },
+        { "id": "vl-5", "a": "im", "b": "ihm", "note": "在…里 vs 给他" },
+        { "id": "vl-6", "a": "innen", "b": "ihnen", "note": "在里面 vs 给他们" },
+        { "id": "vl-7", "a": "still", "b": "Stil", "note": "安静的 vs 风格" },
+        { "id": "vl-8", "a": "Schiff", "b": "schief", "note": "船 vs 歪的" },
+        { "id": "vl-9", "a": "denn", "b": "den", "note": "因为 vs 那个(第四格冠词)" },
+        { "id": "vl-10", "a": "wenn", "b": "wen", "note": "如果 vs 谁(第四格)" },
+        { "id": "vl-11", "a": "weg", "b": "Weg", "note": "离开/不见了 vs 路" },
+        { "id": "vl-12", "a": "Kamm", "b": "kam", "note": "梳子 vs 来了(过去式)" },
+        { "id": "vl-13", "a": "offen", "b": "Ofen", "note": "开着的 vs 烤箱" },
+        { "id": "vl-14", "a": "Hölle", "b": "Höhle", "note": "地狱 vs 洞穴" },
+        { "id": "vl-15", "a": "füllen", "b": "fühlen", "note": "填满 vs 感觉" },
+        { "id": "vl-16", "a": "Hütte", "b": "Hüte", "note": "小木屋 vs 帽子(复数)" },
+        { "id": "vl-17", "a": "Ratte", "b": "Rate", "note": "老鼠 vs 分期付款/比率" },
+        { "id": "vl-18", "a": "satt", "b": "Saat", "note": "吃饱的 vs 种子/播种" },
+        { "id": "vl-19", "a": "Rum", "b": "Ruhm", "note": "朗姆酒 vs 名声" },
+        { "id": "vl-20", "a": "Masse", "b": "Maße", "note": "大量/质量 vs 尺寸(复数)" },
+        { "id": "vl-21", "a": "Pollen", "b": "Polen", "note": "花粉 vs 波兰" },
+        { "id": "vl-22", "a": "hacken", "b": "Haken", "note": "剁/砍 vs 钩子" }
+      ]
+    },
+    {
+      "id": "consonant-voicing",
+      "title": { "zh": "浊音/清音 b-p·d-t·g-k", "en": "Voicing contrasts b-p, d-t, g-k" },
+      "pairs": [
+        { "id": "cv-1", "a": "Daten", "b": "Taten", "note": "数据 vs 行为/事迹(复数)" },
+        { "id": "cv-2", "a": "danken", "b": "tanken", "note": "感谢 vs 加油(汽车)" },
+        { "id": "cv-3", "a": "Dank", "b": "Tank", "note": "感谢 vs 油箱" },
+        { "id": "cv-4", "a": "dir", "b": "Tier", "note": "给你 vs 动物" },
+        { "id": "cv-5", "a": "du", "b": "tu", "note": "你 vs 做(命令式)" },
+        { "id": "cv-6", "a": "Ende", "b": "Ente", "note": "结束 vs 鸭子" },
+        { "id": "cv-7", "a": "leider", "b": "Leiter", "note": "可惜 vs 梯子" },
+        { "id": "cv-8", "a": "Seide", "b": "Seite", "note": "丝绸 vs 页/边" },
+        { "id": "cv-9", "a": "Gasse", "b": "Kasse", "note": "小巷 vs 收银台" },
+        { "id": "cv-10", "a": "Garten", "b": "Karten", "note": "花园 vs 卡片(复数)" },
+        { "id": "cv-11", "a": "gern", "b": "Kern", "note": "乐意 vs 果核/核心" },
+        { "id": "cv-12", "a": "Gabel", "b": "Kabel", "note": "叉子 vs 电缆" },
+        { "id": "cv-13", "a": "Grippe", "b": "Krippe", "note": "流感 vs 托儿所/马槽" },
+        { "id": "cv-14", "a": "backen", "b": "packen", "note": "烤 vs 打包" },
+        { "id": "cv-15", "a": "Bar", "b": "Paar", "note": "酒吧 vs 一对" },
+        { "id": "cv-16", "a": "Bass", "b": "Pass", "note": "低音 vs 护照" },
+        { "id": "cv-17", "a": "Ober", "b": "Oper", "note": "服务员(旧称) vs 歌剧" },
+        { "id": "cv-18", "a": "Blatt", "b": "platt", "note": "叶子/纸张 vs 扁平的" },
+        { "id": "cv-19", "a": "dick", "b": "Tick", "note": "厚的/胖的 vs 怪癖" }
+      ]
+    }
+  ]
+}

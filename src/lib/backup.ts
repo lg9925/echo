@@ -24,8 +24,10 @@ import type { LearnerProfile } from "./api/contracts";
 import type {
   CardRecord,
   CardReviewState,
+  CheckpointRecord,
   CurriculumState,
   DictationAttempt,
+  HvptProgress,
   InboxItem,
   Island,
   OutputDraft,
@@ -70,6 +72,8 @@ export interface BackupFile {
     reviewLog: ReviewLogEntry[];
     curriculum: CurriculumState[];
     outputDrafts: OutputDraft[];
+    hvptProgress: HvptProgress[];
+    checkpoints: CheckpointRecord[];
     profiles: Record<string, LearnerProfile>;
     playerSettings: PlayerSettings | null;
   };
@@ -92,6 +96,8 @@ export interface ImportSummary {
   reviewLog: number;
   curriculum: number;
   outputDrafts: number;
+  hvptProgress: number;
+  checkpoints: number;
   profiles: number;
   playerSettings: boolean;
 }
@@ -134,6 +140,10 @@ export async function exportBackup(): Promise<BackupFile> {
       db.curriculum.toArray(),
       db.outputDrafts.toArray(),
     ]);
+  const [hvptProgress, checkpoints] = await Promise.all([
+    db.hvptProgress.toArray(),
+    db.checkpoints.toArray(),
+  ]);
   return {
     format: BACKUP_FORMAT,
     version: BACKUP_VERSION,
@@ -155,6 +165,8 @@ export async function exportBackup(): Promise<BackupFile> {
       reviewLog,
       curriculum,
       outputDrafts,
+      hvptProgress,
+      checkpoints,
       profiles: collectProfiles(),
       playerSettings: loadPlayerSettings(),
     },
@@ -218,6 +230,8 @@ export function parseBackupFile(text: string): BackupFile {
   if (!Array.isArray(d.reviewLog)) d.reviewLog = [];
   if (!Array.isArray(d.curriculum)) d.curriculum = [];
   if (!Array.isArray(d.outputDrafts)) d.outputDrafts = [];
+  if (!Array.isArray(d.hvptProgress)) d.hvptProgress = [];
+  if (!Array.isArray(d.checkpoints)) d.checkpoints = [];
   // profiles added later too — default to none.
   if (typeof d.profiles !== "object" || d.profiles === null) d.profiles = {};
   return obj as BackupFile;
@@ -247,6 +261,8 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     reviewLog,
     curriculum,
     outputDrafts,
+    hvptProgress,
+    checkpoints,
     profiles,
     playerSettings,
   } = file.data;
@@ -270,6 +286,8 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
       db.reviewLog,
       db.curriculum,
       db.outputDrafts,
+      db.hvptProgress,
+      db.checkpoints,
     ],
     async () => {
       await db.islands.bulkPut(islands);
@@ -292,6 +310,8 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
       await db.reviewLog.bulkPut(reviewLog ?? []);
       await db.curriculum.bulkPut(curriculum ?? []);
       await db.outputDrafts.bulkPut(outputDrafts ?? []);
+      await db.hvptProgress.bulkPut(hvptProgress ?? []);
+      await db.checkpoints.bulkPut(checkpoints ?? []);
     },
   );
 
@@ -323,6 +343,8 @@ export async function importBackup(file: BackupFile): Promise<ImportSummary> {
     reviewLog: (reviewLog ?? []).length,
     curriculum: (curriculum ?? []).length,
     outputDrafts: (outputDrafts ?? []).length,
+    hvptProgress: (hvptProgress ?? []).length,
+    checkpoints: (checkpoints ?? []).length,
     profiles: profileEntries.length,
     playerSettings: appliedSettings,
   };

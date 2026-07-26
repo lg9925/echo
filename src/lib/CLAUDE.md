@@ -16,6 +16,8 @@ Pure TypeScript modules. **No React, no JSX, no Next.js imports.** Everything he
 - `studyLog.ts` — the ONLY instrumentation entry point: `logActivity()` (event + StudyDay rollup + MVD flag) and `logReview()` (append-only review log). Components never write these tables directly.
 - `composer.ts` — M1 session composer, PURE (unit-tested): budget/deficit-weighted daily plan; TodayView assembles inputs and renders. The MVD head (srs→input→output) is fixed pedagogical order.
 - `outputTask.ts` — M5 daily production task: local template bank (`src/data/output_tasks_de.json`, no LLM for generation), draft lifecycle draft→submitted→reviewed|error with persisted jobId (resumable), corrections → `a1/errorCards.ts`.
+- `a1/hvpt.ts` — M6 HVPT perception drills over `src/data/hvpt_de.json` minimal pairs; 6 Edge voices (`HVPT_VOICES_DE` — always pass `HVPT_TTS_PROVIDER` ("edge") with them, the global TTS default may be another vendor). Perception errors never create SRS cards.
+- `stats.ts` — M7 pure aggregators (hours by class, budget comparison + 15% exam ceiling, mature-card retention from reviewLog, adherence). Every dashboard number is reproducible from these.
 - `streak.ts` — pure `computeStreak()` fold over StudyDay rows (2 grace days/month, retroactive freeze). No mutable streak state exists anywhere.
 
 ## Contracts (treat as stable, don't break callers)

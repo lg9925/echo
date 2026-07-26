@@ -335,6 +335,9 @@ export interface TtsRequest {
   lang: string;
   /** 可选音色预设 id;省略则用 VOICE_PRESETS 默认。 */
   voice?: string;
+  /** 可选指定厂商(如 "edge")——多说话人 HVPT 用 Edge 音色 id,必须配 edge,
+   *  不能落在全局默认厂商上。省略则走 TTS_PROVIDER 默认。 */
+  provider?: string;
   /** 0.5–1.5;< 1 视为慢速。 */
   rate?: number;
 }

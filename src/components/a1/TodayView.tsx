@@ -85,7 +85,7 @@ export function TodayView({
         dueCards: queue.dueCount,
         newAllowance: Math.min(queue.newAllowance, queue.queue.length),
         online: typeof navigator === "undefined" ? true : navigator.onLine,
-        hvptReady: false,
+        hvptReady: true,
         examDrillsReady: true,
       });
       setData({
@@ -144,7 +144,7 @@ export function TodayView({
     output_task: `/${uiLocale}/a1/output/`,
     dictation: `/${uiLocale}/a1/diktat/`,
     exam_drill: `/${uiLocale}/einbuergerung/`,
-    hvpt_round: null,
+    hvpt_round: `/${uiLocale}/a1/hvpt/`,
     realuse: null,
     buffer: `/${uiLocale}/a1/cards/`,
   };

@@ -287,6 +287,8 @@ export interface RoutingUpdate {
 
 export interface TtsRequest {
   text: string;
+  /** Explicit vendor ("edge" for multi-speaker HVPT voices). Optional. */
+  provider?: string;
   lang: string;
   voice?: string;
   rate?: number;
