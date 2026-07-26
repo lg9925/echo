@@ -7,7 +7,7 @@ import {
   type Card,
   type Grade as FsrsGrade,
 } from "ts-fsrs";
-import type { ReviewState } from "./types";
+import type { CardReviewState, ReviewState } from "./types";
 
 // Echo review grades. The UI only ever shows again/good — the system picks the
 // difficulty, the user never does (宪法原则一). `hard` is derived from a `close`
@@ -75,11 +75,26 @@ export function freshState(
   };
 }
 
-// Rebuild an FSRS Card from our stored ReviewState. Legacy v5 rows have no FSRS
+/** The FSRS-owned field subset shared by ReviewState (sentence deck) and
+ *  CardReviewState (A1 card deck). schedule() is generic over it — one
+ *  scheduler, two state tables. Extra fields (sentenceId/masteryStage/
+ *  errorTags/cardId/introducedAt/…) are spread through untouched. */
+export interface SrFields {
+  due: number;
+  interval: number;
+  repetitions: number;
+  lastReviewedAt: number | null;
+  stability?: number;
+  difficulty?: number;
+  lapses?: number;
+  fsrsState?: 0 | 1 | 2 | 3;
+}
+
+// Rebuild an FSRS Card from our stored state. Legacy v5 rows have no FSRS
 // memory (stability === undefined): treat them as a fresh FSRS card. The old
 // SM-2 history gives way on the first FSRS review; `due` is untouched until then,
 // so this is invisible to the user until they actually review the card.
-function toCard(prev: ReviewState, now: Date): Card {
+function toCard(prev: SrFields, now: Date): Card {
   if (prev.stability === undefined) return createEmptyCard(now);
   return {
     due: new Date(prev.due),
@@ -97,10 +112,10 @@ function toCard(prev: ReviewState, now: Date): Card {
   };
 }
 
-// Mirror the FSRS Card back onto ReviewState. We keep due/interval/repetitions in
+// Mirror the FSRS Card back onto our state. We keep due/interval/repetitions in
 // sync (the `due` index + every db.ts query + the hub badges rely on them) and
-// carry masteryStage through untouched (stage transitions are 7.3+, not 7.2).
-function fromCard(prev: ReviewState, card: Card, now: Date): ReviewState {
+// spread non-FSRS fields through untouched (masteryStage transitions are 7.3+).
+function fromCard<T extends SrFields>(prev: T, card: Card, now: Date): T {
   return {
     ...prev,
     interval: card.scheduled_days,
@@ -114,11 +129,36 @@ function fromCard(prev: ReviewState, card: Card, now: Date): ReviewState {
   };
 }
 
-export function schedule(
-  prev: ReviewState,
+export function schedule<T extends SrFields>(
+  prev: T,
   grade: Grade,
   now: Date,
-): ReviewState {
+): T {
   const next = engine.next(toCard(prev, now), now, GRADE_TO_RATING[grade]).card;
   return fromCard(prev, next, now);
+}
+
+/** Baseline CardReviewState for an A1 card being graded for the first time —
+ *  immediately followed by schedule() before persisting (same contract as
+ *  freshState). Writing this row is what "introduces" the card: introducedAt
+ *  drives the daily new-card throttle via the [language+introducedAt] index. */
+export function freshCardState(
+  cardId: string,
+  language: string,
+  now: Date,
+): CardReviewState {
+  const card = createEmptyCard(now);
+  return {
+    cardId,
+    language,
+    interval: card.scheduled_days,
+    repetitions: card.reps,
+    due: 0,
+    lastReviewedAt: null,
+    stability: card.stability,
+    difficulty: card.difficulty,
+    lapses: card.lapses,
+    fsrsState: card.state,
+    introducedAt: now.getTime(),
+  };
 }

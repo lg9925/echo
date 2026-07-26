@@ -66,6 +66,14 @@ export default async function LanguageHubPage({
         </a>
         {lang === "de" && (
           <a
+            href={`/${locale}/a1/`}
+            className="rounded-full border border-zinc-300 dark:border-zinc-700 px-4 py-1.5 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900"
+          >
+            {tNav("a1")}
+          </a>
+        )}
+        {lang === "de" && (
+          <a
             href={`/${locale}/einbuergerung/`}
             className="rounded-full border border-zinc-300 dark:border-zinc-700 px-4 py-1.5 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900"
           >

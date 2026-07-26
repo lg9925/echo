@@ -47,3 +47,6 @@ Do not import from `src/lib/db.ts`, `src/lib/tts.ts`, etc. directly in a server 
 | `/[locale]/shadow/[islandId]/` | Shadowing player |
 | `/[locale]/review/` | Spaced-repetition review |
 | `/[locale]/settings/` | Speed / pause / voice / UI lang / API token |
+| `/[locale]/a1/` | A1 course home — 今天的下一个动作 + cumulative stats (de-only module, like einbuergerung) |
+| `/[locale]/a1/cards/` | A1 interleaved card session (word/cloze/dictation cards) |
+| `/[locale]/a1/diktat/` | 听写 (Diktat) — sentences with length ladder + number sub-modes |

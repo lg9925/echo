@@ -223,6 +223,195 @@ export interface QuizQuestion {
   tags: string[]; // = study?.tags ?? [] (top-level for the multiEntry index)
 }
 
+// --- A1 课程 (Goethe A1 curriculum) — Dexie v6 ---
+//
+// Objectively-graded card decks (word/cloze/dictation) + study log + streak +
+// curriculum state. Cards are SEPARATE from islands/sentences/reviews: reviews
+// stays keyed by sentenceId (LLM-judged free production), cards are instant
+// offline-graded exercises. One FSRS scheduler, two state tables (sr.ts is
+// generic over SrFields). See docs/echo-a1-cc-plan-prompt.md + the plan.
+
+export type CardKind = "word" | "cloze" | "dictation";
+/** 承重墙 #3 形态匹配: recognition trains recognition, production trains production. */
+export type CardTemplate = "recognition" | "production";
+
+export interface WordCardPayload {
+  lemma: string;
+  pos:
+    | "noun"
+    | "verb"
+    | "adj"
+    | "adv"
+    | "prep"
+    | "pron"
+    | "num"
+    | "phrase"
+    | "other";
+  /** REQUIRED when pos === "noun" — the loader throws on a noun without it. */
+  article?: "der" | "die" | "das";
+  /** REQUIRED (key present) for nouns; null = no plural exists (die Milch). */
+  plural?: string | null;
+  meaningZh: string;
+  example: string;
+  exampleZh: string;
+  ipa?: string;
+}
+
+export interface ClozePayload {
+  /** Island sentence this cloze derives from (target is a snapshot). */
+  sentenceId: string;
+  target: string;
+  clozeIndex: number;
+  answer: string;
+  hint?: string;
+}
+
+export interface DictationErrorPayload {
+  text: string;
+  mode: "sentence" | "number";
+  numberKind?: "phone" | "price" | "time";
+  sentenceId?: string;
+}
+
+export interface CardRecord {
+  /** Deterministic: de.a1.w.<slug>.<template> | de.a1.cz.<sentenceId>.<idx> |
+   *  de.a1.dk.<hash> — reloads and repeat failures are idempotent. */
+  id: string;
+  language: string;
+  kind: CardKind;
+  template: CardTemplate;
+  /** Interleave + filter keys (multiEntry-indexed): gender / pattern / vocab /
+   *  dictation / noun / topic:*. */
+  tags: string[];
+  payload: WordCardPayload | ClozePayload | DictationErrorPayload;
+  createdAt: number;
+  seedVersion?: number;
+}
+
+/** FSRS state for a card. No masteryStage (the stage machine is the sentence
+ *  track's exclusive model, learning-method.md §2) and no ease (born on FSRS).
+ *  A card with no CardReviewState row is "new" — same by-absence convention as
+ *  sentences. */
+export interface CardReviewState {
+  cardId: string;
+  language: string;
+  due: number;
+  interval: number;
+  repetitions: number;
+  lastReviewedAt: number | null;
+  stability?: number;
+  difficulty?: number;
+  lapses?: number;
+  fsrsState?: 0 | 1 | 2 | 3;
+  errorTags?: ErrorTag[];
+  /** When the card first entered the queue — drives the daily new-card throttle
+   *  via the [language+introducedAt] index. */
+  introducedAt: number;
+}
+
+export interface DictationAttempt {
+  id: string;
+  language: string;
+  mode: "sentence" | "number";
+  numberKind?: "phone" | "price" | "time";
+  /** Reference text the audio spoke. */
+  text: string;
+  typed: string;
+  /** 0..1 character accuracy. */
+  accuracy: number;
+  /** Ladder level at attempt time (1..5). */
+  level: number;
+  sentenceId?: string;
+  createdAt: number;
+}
+
+/** 七类学时 (M7). Auto-classified from StudyLogEvent.source — never user-picked. */
+export type ActivityClass =
+  | "input"
+  | "srs"
+  | "output"
+  | "exam"
+  | "hvpt"
+  | "realuse"
+  | "buffer";
+
+export interface StudyLogEvent {
+  id: string;
+  language: string;
+  activity: ActivityClass;
+  source:
+    | "review"
+    | "cardSession"
+    | "diktat"
+    | "shadow"
+    | "quiz"
+    | "outputTask"
+    | "hvpt"
+    | "checkpoint";
+  durationMs: number;
+  /** Cards graded / sentences dictated / clips shadowed … */
+  units: number;
+  /** Local-midnight day key "2026-07-26" — indexed. */
+  dayKey: string;
+  /** Free-form JSON detail, e.g. the interleave key sequence of a card session
+   *  (P0 acceptance: 交错调度可在日志中验证). Un-indexed. */
+  detail?: string;
+  createdAt: number;
+}
+
+/** Incrementally-maintained daily rollup so the streak never scans raw events. */
+export interface StudyDay {
+  /** `${language}|${dayKey}` */
+  id: string;
+  language: string;
+  dayKey: string;
+  msByActivity: Partial<Record<ActivityClass, number>>;
+  srsCardsGraded: number;
+  srsQueueCleared: boolean;
+  inputUnits: number;
+  outputUnits: number;
+  /** MVD (最低可行日) reached — derived + stored for cheap streak walks. */
+  mvd: boolean;
+  updatedAt: number;
+}
+
+/** Append-only per-review log. The ONLY data source for the M7 mature-card
+ *  retention report and a future per-user FSRS optimizer — cannot be backfilled,
+ *  which is why it ships in P0. */
+export interface ReviewLogEntry {
+  id: string;
+  /** sentenceId (deck "sentence") or cardId (deck "card"). */
+  cardId: string;
+  deck: "sentence" | "card";
+  language: string;
+  ts: number;
+  grade: "again" | "hard" | "good" | "easy";
+  verdict?: string;
+  /** Interval (days) that was scheduled when this review came due. */
+  scheduledInterval: number;
+  elapsedDays: number;
+}
+
+export type CurriculumPhase = "cold-start" | "main-build" | "exam-prep";
+
+/** Per-course singleton (`${language}.a1`). Phase is NEVER stored — it is
+ *  derived by src/lib/a1/phase.ts (zero-config, cannot desync). */
+export interface CurriculumState {
+  id: string;
+  language: string;
+  course: "a1";
+  startedAt: number;
+  /** The one user-entered fact; drives exam-prep (≤10 days out). */
+  examDate: number | null;
+  /** M2 if-then implementation intention: "___之后，我就在___做 20 分钟德语". */
+  intention?: { trigger: string; place: string; createdAt: number };
+  // M4 length-ladder state (rides backup for free):
+  diktatLevel: number;
+  diktatUpStreak: number;
+  diktatDownStreak: number;
+  updatedAt: number;
+}
+
 /** Lightweight per-question progress — mistake tracking, NOT dated SR scheduling. */
 export interface QuizProgress {
   questionId: number;

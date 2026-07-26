@@ -1,0 +1,7610 @@
+{
+ "language": "de",
+ "version": 1,
+ "lexemes": [
+  {
+   "lemma": "Hallo",
+   "pos": "phrase",
+   "zh": "你好（非正式）",
+   "example": "Hallo, wie geht's?",
+   "example_zh": "你好，最近怎么样？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Guten Morgen",
+   "pos": "phrase",
+   "zh": "早上好",
+   "example": "Guten Morgen, Frau Müller!",
+   "example_zh": "早上好，米勒女士！",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Guten Tag",
+   "pos": "phrase",
+   "zh": "你好（白天问候）",
+   "example": "Guten Tag, mein Name ist Anna.",
+   "example_zh": "您好，我叫安娜。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Guten Abend",
+   "pos": "phrase",
+   "zh": "晚上好",
+   "example": "Guten Abend, Herr Weber!",
+   "example_zh": "晚上好，韦伯先生！",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Gute Nacht",
+   "pos": "phrase",
+   "zh": "晚安",
+   "example": "Gute Nacht, schlaf gut!",
+   "example_zh": "晚安，睡个好觉！",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Auf Wiedersehen",
+   "pos": "phrase",
+   "zh": "再见（正式）",
+   "example": "Auf Wiedersehen, bis morgen!",
+   "example_zh": "再见，明天见！",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Tschüs",
+   "pos": "phrase",
+   "zh": "再见（非正式）",
+   "example": "Tschüs, bis bald!",
+   "example_zh": "拜拜，回头见！",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Danke",
+   "pos": "phrase",
+   "zh": "谢谢",
+   "example": "Danke für die Hilfe!",
+   "example_zh": "谢谢你的帮助！",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Bitte",
+   "pos": "phrase",
+   "zh": "请；不客气",
+   "example": "Bitte, kein Problem.",
+   "example_zh": "不客气，没问题。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Entschuldigung",
+   "pos": "phrase",
+   "zh": "对不起；打扰一下",
+   "example": "Entschuldigung, wo ist die Toilette?",
+   "example_zh": "打扰一下，洗手间在哪里？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Wie geht es Ihnen?",
+   "pos": "phrase",
+   "zh": "您好吗？",
+   "example": "Wie geht es Ihnen heute?",
+   "example_zh": "您今天好吗？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Herzlichen Glückwunsch",
+   "pos": "phrase",
+   "zh": "衷心祝贺",
+   "example": "Herzlichen Glückwunsch zum Geburtstag!",
+   "example_zh": "生日快乐！",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Name",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Namen",
+   "zh": "名字；姓名",
+   "example": "Mein Name ist Thomas.",
+   "example_zh": "我的名字是托马斯。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Vorname",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Vornamen",
+   "zh": "名（不含姓）",
+   "example": "Mein Vorname ist Lisa.",
+   "example_zh": "我的名是丽莎。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Familienname",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Familiennamen",
+   "zh": "姓",
+   "example": "Mein Familienname ist Schmidt.",
+   "example_zh": "我姓施密特。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Adresse",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Adressen",
+   "zh": "地址",
+   "example": "Wie ist Ihre Adresse?",
+   "example_zh": "您的地址是什么？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Telefonnummer",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Telefonnummern",
+   "zh": "电话号码",
+   "example": "Meine Telefonnummer ist neu.",
+   "example_zh": "我的电话号码是新的。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Land",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Länder",
+   "zh": "国家",
+   "example": "Aus welchem Land kommen Sie?",
+   "example_zh": "您来自哪个国家？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Sprache",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Sprachen",
+   "zh": "语言",
+   "example": "Ich lerne eine neue Sprache.",
+   "example_zh": "我在学一门新语言。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Alter",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "年龄",
+   "example": "Das Alter ist nicht wichtig.",
+   "example_zh": "年龄不重要。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Beruf",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Berufe",
+   "zh": "职业",
+   "example": "Was sind Sie von Beruf?",
+   "example_zh": "您是做什么工作的？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Herr",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Herren",
+   "zh": "先生",
+   "example": "Herr Braun wohnt hier.",
+   "example_zh": "布劳恩先生住在这里。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "heißen",
+   "pos": "verb",
+   "zh": "叫作；名叫",
+   "example": "Ich heiße Maria.",
+   "example_zh": "我叫玛丽亚。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "kommen",
+   "pos": "verb",
+   "zh": "来；来自",
+   "example": "Ich komme aus China.",
+   "example_zh": "我来自中国。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "wohnen",
+   "pos": "verb",
+   "zh": "居住",
+   "example": "Wir wohnen in Berlin.",
+   "example_zh": "我们住在柏林。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "leben",
+   "pos": "verb",
+   "zh": "生活；居住",
+   "example": "Sie lebt in Deutschland.",
+   "example_zh": "她生活在德国。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "sprechen",
+   "pos": "verb",
+   "zh": "说（语言）；讲话",
+   "example": "Ich spreche ein bisschen Deutsch.",
+   "example_zh": "我会说一点德语。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "verstehen",
+   "pos": "verb",
+   "zh": "理解；听懂",
+   "example": "Ich verstehe das nicht.",
+   "example_zh": "我不明白这个。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "fragen",
+   "pos": "verb",
+   "zh": "问",
+   "example": "Darf ich etwas fragen?",
+   "example_zh": "我可以问点事吗？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "antworten",
+   "pos": "verb",
+   "zh": "回答",
+   "example": "Er antwortet nicht.",
+   "example_zh": "他不回答。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "buchstabieren",
+   "pos": "verb",
+   "zh": "拼写",
+   "example": "Buchstabieren Sie bitte Ihren Namen.",
+   "example_zh": "请拼一下您的名字。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "kennen",
+   "pos": "verb",
+   "zh": "认识；知道",
+   "example": "Ich kenne ihn gut.",
+   "example_zh": "我很了解他。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "alt",
+   "pos": "adj",
+   "zh": "老的；……岁的",
+   "example": "Wie alt bist du?",
+   "example_zh": "你多大了？",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "jung",
+   "pos": "adj",
+   "zh": "年轻的",
+   "example": "Meine Schwester ist noch jung.",
+   "example_zh": "我妹妹还年轻。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "groß",
+   "pos": "adj",
+   "zh": "大的；高的",
+   "example": "Mein Bruder ist sehr groß.",
+   "example_zh": "我哥哥个子很高。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "klein",
+   "pos": "adj",
+   "zh": "小的；矮的",
+   "example": "Das Kind ist noch klein.",
+   "example_zh": "这孩子还小。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "ledig",
+   "pos": "adj",
+   "zh": "单身的",
+   "example": "Ich bin ledig.",
+   "example_zh": "我是单身。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "verheiratet",
+   "pos": "adj",
+   "zh": "已婚的",
+   "example": "Sie ist verheiratet.",
+   "example_zh": "她已婚。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "geboren",
+   "pos": "adj",
+   "zh": "出生的",
+   "example": "Ich bin 1990 geboren.",
+   "example_zh": "我1990年出生。",
+   "topics": [
+    "person"
+   ]
+  },
+  {
+   "lemma": "Familie",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Familien",
+   "zh": "家庭",
+   "example": "Meine Familie ist groß.",
+   "example_zh": "我的家庭很大。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Eltern",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "父母（复数）",
+   "example": "Meine Eltern wohnen in Hamburg.",
+   "example_zh": "我父母住在汉堡。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Vater",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Väter",
+   "zh": "父亲",
+   "example": "Mein Vater arbeitet viel.",
+   "example_zh": "我父亲工作很多。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Mutter",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Mütter",
+   "zh": "母亲",
+   "example": "Meine Mutter kocht gern.",
+   "example_zh": "我母亲喜欢做饭。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Kind",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Kinder",
+   "zh": "孩子",
+   "example": "Das Kind spielt im Garten.",
+   "example_zh": "孩子在花园里玩。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Sohn",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Söhne",
+   "zh": "儿子",
+   "example": "Mein Sohn ist fünf Jahre alt.",
+   "example_zh": "我儿子五岁了。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Tochter",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Töchter",
+   "zh": "女儿",
+   "example": "Meine Tochter geht zur Schule.",
+   "example_zh": "我女儿在上学。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Bruder",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Brüder",
+   "zh": "兄弟",
+   "example": "Ich habe einen Bruder.",
+   "example_zh": "我有一个兄弟。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Schwester",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Schwestern",
+   "zh": "姐妹",
+   "example": "Meine Schwester heißt Julia.",
+   "example_zh": "我姐姐叫尤利娅。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Geschwister",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "兄弟姐妹（复数）",
+   "example": "Hast du Geschwister?",
+   "example_zh": "你有兄弟姐妹吗？",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Großmutter",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Großmütter",
+   "zh": "祖母；外婆",
+   "example": "Meine Großmutter ist achtzig.",
+   "example_zh": "我奶奶八十岁了。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Großvater",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Großväter",
+   "zh": "祖父；外公",
+   "example": "Mein Großvater liest gern.",
+   "example_zh": "我爷爷喜欢读书。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Großeltern",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "祖父母（复数）",
+   "example": "Meine Großeltern leben auf dem Land.",
+   "example_zh": "我的祖父母住在乡下。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Oma",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Omas",
+   "zh": "奶奶；外婆（口语）",
+   "example": "Meine Oma backt einen Kuchen.",
+   "example_zh": "我奶奶在烤蛋糕。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Opa",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Opas",
+   "zh": "爷爷；外公（口语）",
+   "example": "Mein Opa erzählt gern Geschichten.",
+   "example_zh": "我爷爷喜欢讲故事。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Junge",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Jungen",
+   "zh": "男孩",
+   "example": "Der Junge spielt Fußball.",
+   "example_zh": "这个男孩在踢足球。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Mädchen",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Mädchen",
+   "zh": "女孩",
+   "example": "Das Mädchen singt schön.",
+   "example_zh": "这个女孩唱歌很好听。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Baby",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Babys",
+   "zh": "婴儿",
+   "example": "Das Baby schläft jetzt.",
+   "example_zh": "宝宝现在在睡觉。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Freund",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Freunde",
+   "zh": "朋友；男朋友",
+   "example": "Mein Freund kommt heute.",
+   "example_zh": "我的朋友今天来。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Freundin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Freundinnen",
+   "zh": "女性朋友；女朋友",
+   "example": "Meine Freundin wohnt in München.",
+   "example_zh": "我的女朋友住在慕尼黑。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Leute",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "人们（复数）",
+   "example": "Viele Leute sind hier.",
+   "example_zh": "这里有很多人。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Mensch",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Menschen",
+   "zh": "人",
+   "example": "Er ist ein netter Mensch.",
+   "example_zh": "他是个很好的人。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Person",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Personen",
+   "zh": "人；人员",
+   "example": "Ein Tisch für vier Personen, bitte.",
+   "example_zh": "请给一张四人桌。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Nachbar",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Nachbarn",
+   "zh": "邻居（男）",
+   "example": "Mein Nachbar ist sehr freundlich.",
+   "example_zh": "我的邻居很友好。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Nachbarin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Nachbarinnen",
+   "zh": "邻居（女）",
+   "example": "Meine Nachbarin hat zwei Kinder.",
+   "example_zh": "我的女邻居有两个孩子。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Mann",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Männer",
+   "zh": "男人；丈夫",
+   "example": "Der Mann dort ist mein Vater.",
+   "example_zh": "那边那个男人是我父亲。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Frau",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Frauen",
+   "zh": "女人；妻子；女士",
+   "example": "Die Frau liest ein Buch.",
+   "example_zh": "那位女士在读一本书。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "heiraten",
+   "pos": "verb",
+   "zh": "结婚",
+   "example": "Sie heiraten im Mai.",
+   "example_zh": "他们五月结婚。",
+   "topics": [
+    "familie"
+   ]
+  },
+  {
+   "lemma": "Kopf",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Köpfe",
+   "zh": "头",
+   "example": "Mein Kopf tut weh.",
+   "example_zh": "我头疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Arm",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Arme",
+   "zh": "手臂",
+   "example": "Mein Arm tut weh.",
+   "example_zh": "我的手臂疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Bein",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Beine",
+   "zh": "腿",
+   "example": "Sein Bein ist kaputt.",
+   "example_zh": "他的腿受伤了。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Bauch",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Bäuche",
+   "zh": "肚子",
+   "example": "Mein Bauch tut weh.",
+   "example_zh": "我肚子疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Auge",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Augen",
+   "zh": "眼睛",
+   "example": "Ihre Augen sind blau.",
+   "example_zh": "她的眼睛是蓝色的。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Ohr",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Ohren",
+   "zh": "耳朵",
+   "example": "Mein Ohr tut weh.",
+   "example_zh": "我耳朵疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Nase",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Nasen",
+   "zh": "鼻子",
+   "example": "Das Kind hat eine kleine Nase.",
+   "example_zh": "这孩子鼻子小小的。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Mund",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Münder",
+   "zh": "嘴",
+   "example": "Mach bitte den Mund auf.",
+   "example_zh": "请张开嘴。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Hand",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Hände",
+   "zh": "手",
+   "example": "Meine Hände sind kalt.",
+   "example_zh": "我的手很冷。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Fuß",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Füße",
+   "zh": "脚",
+   "example": "Mein Fuß tut weh.",
+   "example_zh": "我的脚疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Haar",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Haare",
+   "zh": "头发",
+   "example": "Sie hat lange Haare.",
+   "example_zh": "她有一头长发。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Zahn",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Zähne",
+   "zh": "牙齿",
+   "example": "Mein Zahn tut weh.",
+   "example_zh": "我牙疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Arzt",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Ärzte",
+   "zh": "医生（男）",
+   "example": "Ich gehe heute zum Arzt.",
+   "example_zh": "我今天去看医生。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Ärztin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Ärztinnen",
+   "zh": "医生（女）",
+   "example": "Die Ärztin ist sehr nett.",
+   "example_zh": "这位女医生很和善。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Krankenhaus",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Krankenhäuser",
+   "zh": "医院",
+   "example": "Er ist im Krankenhaus.",
+   "example_zh": "他在医院里。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Apotheke",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Apotheken",
+   "zh": "药店",
+   "example": "Die Apotheke ist um die Ecke.",
+   "example_zh": "药店就在拐角处。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Medikament",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Medikamente",
+   "zh": "药；药品",
+   "example": "Ich brauche ein Medikament.",
+   "example_zh": "我需要一种药。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Termin",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Termine",
+   "zh": "预约；约定时间",
+   "example": "Ich habe morgen einen Termin.",
+   "example_zh": "我明天有个预约。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Gesundheit",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "健康",
+   "example": "Gesundheit ist sehr wichtig.",
+   "example_zh": "健康非常重要。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Schmerz",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Schmerzen",
+   "zh": "疼痛",
+   "example": "Ich habe Schmerzen im Rücken.",
+   "example_zh": "我背疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Fieber",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "发烧",
+   "example": "Das Kind hat Fieber.",
+   "example_zh": "孩子发烧了。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "krank",
+   "pos": "adj",
+   "zh": "生病的",
+   "example": "Ich bin heute krank.",
+   "example_zh": "我今天病了。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "gesund",
+   "pos": "adj",
+   "zh": "健康的",
+   "example": "Obst ist gesund.",
+   "example_zh": "水果很健康。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "wehtun",
+   "pos": "verb",
+   "zh": "疼；使疼痛",
+   "example": "Mein Kopf tut weh.",
+   "example_zh": "我的头很疼。",
+   "topics": [
+    "gesundheit"
+   ]
+  },
+  {
+   "lemma": "Kleidung",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "衣服；服装",
+   "example": "Die Kleidung ist neu.",
+   "example_zh": "这些衣服是新的。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Hemd",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Hemden",
+   "zh": "衬衫",
+   "example": "Das Hemd ist weiß.",
+   "example_zh": "这件衬衫是白色的。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Hose",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Hosen",
+   "zh": "裤子",
+   "example": "Die Hose ist zu lang.",
+   "example_zh": "这条裤子太长了。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Rock",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Röcke",
+   "zh": "裙子（半身裙）",
+   "example": "Der Rock ist sehr schön.",
+   "example_zh": "这条裙子很漂亮。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Kleid",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Kleider",
+   "zh": "连衣裙",
+   "example": "Sie trägt ein rotes Kleid.",
+   "example_zh": "她穿着一条红色连衣裙。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Jacke",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Jacken",
+   "zh": "夹克；外套",
+   "example": "Meine Jacke ist warm.",
+   "example_zh": "我的外套很暖和。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Mantel",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Mäntel",
+   "zh": "大衣",
+   "example": "Im Winter trage ich einen Mantel.",
+   "example_zh": "冬天我穿大衣。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Schuh",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Schuhe",
+   "zh": "鞋",
+   "example": "Die Schuhe sind zu klein.",
+   "example_zh": "这双鞋太小了。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Pullover",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Pullover",
+   "zh": "毛衣",
+   "example": "Der Pullover ist aus Wolle.",
+   "example_zh": "这件毛衣是羊毛的。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "T-Shirt",
+   "pos": "noun",
+   "article": "das",
+   "plural": "T-Shirts",
+   "zh": "T恤",
+   "example": "Ich kaufe ein neues T-Shirt.",
+   "example_zh": "我买一件新T恤。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Bluse",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Blusen",
+   "zh": "女式衬衫",
+   "example": "Die Bluse gefällt mir.",
+   "example_zh": "我喜欢这件女式衬衫。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Brille",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Brillen",
+   "zh": "眼镜",
+   "example": "Wo ist meine Brille?",
+   "example_zh": "我的眼镜在哪里？",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "Größe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Größen",
+   "zh": "尺码；大小",
+   "example": "Welche Größe haben Sie?",
+   "example_zh": "您穿什么尺码？",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "tragen",
+   "pos": "verb",
+   "zh": "穿；戴；搬",
+   "example": "Er trägt eine blaue Jacke.",
+   "example_zh": "他穿着一件蓝色夹克。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "anziehen",
+   "pos": "verb",
+   "zh": "穿上",
+   "example": "Ich ziehe den Mantel an.",
+   "example_zh": "我穿上大衣。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "passen",
+   "pos": "verb",
+   "zh": "合身；合适",
+   "example": "Die Hose passt gut.",
+   "example_zh": "这条裤子很合身。",
+   "topics": [
+    "kleidung"
+   ]
+  },
+  {
+   "lemma": "gut",
+   "pos": "adj",
+   "zh": "好的",
+   "example": "Der Film ist sehr gut.",
+   "example_zh": "这部电影非常好。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "schlecht",
+   "pos": "adj",
+   "zh": "坏的；糟糕的",
+   "example": "Das Wetter ist heute schlecht.",
+   "example_zh": "今天天气很糟。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "schön",
+   "pos": "adj",
+   "zh": "美丽的；美好的",
+   "example": "Das Kleid ist sehr schön.",
+   "example_zh": "这条裙子很漂亮。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "glücklich",
+   "pos": "adj",
+   "zh": "幸福的；高兴的",
+   "example": "Ich bin sehr glücklich.",
+   "example_zh": "我非常幸福。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "traurig",
+   "pos": "adj",
+   "zh": "悲伤的",
+   "example": "Warum bist du traurig?",
+   "example_zh": "你为什么难过？",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "müde",
+   "pos": "adj",
+   "zh": "疲倦的",
+   "example": "Ich bin heute sehr müde.",
+   "example_zh": "我今天很累。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "allein",
+   "pos": "adj",
+   "zh": "独自的；单独",
+   "example": "Sie wohnt allein.",
+   "example_zh": "她一个人住。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "nett",
+   "pos": "adj",
+   "zh": "友好的；和善的",
+   "example": "Die Lehrerin ist sehr nett.",
+   "example_zh": "这位老师很和善。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "freundlich",
+   "pos": "adj",
+   "zh": "友好的",
+   "example": "Die Leute hier sind freundlich.",
+   "example_zh": "这里的人很友好。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "lustig",
+   "pos": "adj",
+   "zh": "有趣的；好笑的",
+   "example": "Der Film ist sehr lustig.",
+   "example_zh": "这部电影很好笑。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "langweilig",
+   "pos": "adj",
+   "zh": "无聊的",
+   "example": "Das Buch ist langweilig.",
+   "example_zh": "这本书很无聊。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "interessant",
+   "pos": "adj",
+   "zh": "有趣的；有意思的",
+   "example": "Der Kurs ist sehr interessant.",
+   "example_zh": "这门课很有意思。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "wichtig",
+   "pos": "adj",
+   "zh": "重要的",
+   "example": "Das ist sehr wichtig.",
+   "example_zh": "这非常重要。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "richtig",
+   "pos": "adj",
+   "zh": "正确的",
+   "example": "Die Antwort ist richtig.",
+   "example_zh": "这个答案是正确的。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "falsch",
+   "pos": "adj",
+   "zh": "错误的",
+   "example": "Die Nummer ist falsch.",
+   "example_zh": "这个号码是错的。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "leicht",
+   "pos": "adj",
+   "zh": "容易的；轻的",
+   "example": "Die Aufgabe ist leicht.",
+   "example_zh": "这个任务很容易。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "schwer",
+   "pos": "adj",
+   "zh": "难的；重的",
+   "example": "Deutsch ist nicht so schwer.",
+   "example_zh": "德语没那么难。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "super",
+   "pos": "adj",
+   "zh": "极好的；棒的",
+   "example": "Das Essen ist super!",
+   "example_zh": "这饭菜棒极了！",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "toll",
+   "pos": "adj",
+   "zh": "很棒的",
+   "example": "Das ist eine tolle Idee!",
+   "example_zh": "这是个很棒的主意！",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "gern",
+   "pos": "adv",
+   "zh": "乐意地；喜欢",
+   "example": "Ich trinke gern Tee.",
+   "example_zh": "我喜欢喝茶。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "lieben",
+   "pos": "verb",
+   "zh": "爱",
+   "example": "Ich liebe meine Familie.",
+   "example_zh": "我爱我的家人。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "mögen",
+   "pos": "verb",
+   "zh": "喜欢",
+   "example": "Ich mag Musik.",
+   "example_zh": "我喜欢音乐。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "gefallen",
+   "pos": "verb",
+   "zh": "使喜欢；中意",
+   "example": "Die Stadt gefällt mir.",
+   "example_zh": "我喜欢这座城市。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "lachen",
+   "pos": "verb",
+   "zh": "笑",
+   "example": "Die Kinder lachen laut.",
+   "example_zh": "孩子们大声笑着。",
+   "topics": [
+    "gefuehle"
+   ]
+  },
+  {
+   "lemma": "Zeit",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Zeiten",
+   "zh": "时间",
+   "example": "Ich habe heute keine Zeit.",
+   "example_zh": "我今天没有时间。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Uhr",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Uhren",
+   "zh": "钟表；……点钟",
+   "example": "Es ist acht Uhr.",
+   "example_zh": "现在八点了。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Stunde",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Stunden",
+   "zh": "小时",
+   "example": "Der Kurs dauert zwei Stunden.",
+   "example_zh": "这门课持续两个小时。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Minute",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Minuten",
+   "zh": "分钟",
+   "example": "Der Bus kommt in zehn Minuten.",
+   "example_zh": "公交车十分钟后到。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Tag",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Tage",
+   "zh": "天；日",
+   "example": "Der Tag ist schön.",
+   "example_zh": "今天天气很好。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Woche",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Wochen",
+   "zh": "星期；周",
+   "example": "Nächste Woche habe ich Urlaub.",
+   "example_zh": "下周我休假。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Monat",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Monate",
+   "zh": "月份；月",
+   "example": "Ein Monat hat vier Wochen.",
+   "example_zh": "一个月有四个星期。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Jahr",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Jahre",
+   "zh": "年",
+   "example": "Ich bin dreißig Jahre alt.",
+   "example_zh": "我三十岁了。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Wochenende",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Wochenenden",
+   "zh": "周末",
+   "example": "Am Wochenende schlafe ich lange.",
+   "example_zh": "周末我睡懒觉。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Morgen",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Morgen",
+   "zh": "早晨",
+   "example": "Am Morgen trinke ich Kaffee.",
+   "example_zh": "早上我喝咖啡。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Vormittag",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Vormittage",
+   "zh": "上午",
+   "example": "Am Vormittag arbeite ich.",
+   "example_zh": "上午我工作。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Mittag",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Mittage",
+   "zh": "中午",
+   "example": "Am Mittag esse ich zu Hause.",
+   "example_zh": "中午我在家吃饭。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Nachmittag",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Nachmittage",
+   "zh": "下午",
+   "example": "Am Nachmittag lerne ich Deutsch.",
+   "example_zh": "下午我学德语。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Abend",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Abende",
+   "zh": "晚上",
+   "example": "Am Abend sehe ich fern.",
+   "example_zh": "晚上我看电视。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Nacht",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Nächte",
+   "zh": "夜晚",
+   "example": "In der Nacht schlafe ich.",
+   "example_zh": "夜里我睡觉。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Geburtstag",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Geburtstage",
+   "zh": "生日",
+   "example": "Wann hast du Geburtstag?",
+   "example_zh": "你什么时候过生日？",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Montag",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "星期一",
+   "example": "Am Montag arbeite ich.",
+   "example_zh": "星期一我上班。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Dienstag",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "星期二",
+   "example": "Am Dienstag habe ich einen Kurs.",
+   "example_zh": "星期二我有课。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Mittwoch",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "星期三",
+   "example": "Am Mittwoch gehe ich schwimmen.",
+   "example_zh": "星期三我去游泳。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Donnerstag",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "星期四",
+   "example": "Am Donnerstag kommt meine Mutter.",
+   "example_zh": "星期四我妈妈来。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Freitag",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "星期五",
+   "example": "Am Freitag gehen wir essen.",
+   "example_zh": "星期五我们出去吃饭。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Samstag",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "星期六",
+   "example": "Am Samstag kaufe ich ein.",
+   "example_zh": "星期六我去购物。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Sonntag",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "星期日",
+   "example": "Am Sonntag schlafe ich lange.",
+   "example_zh": "星期天我睡懒觉。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Januar",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "一月",
+   "example": "Im Januar ist es kalt.",
+   "example_zh": "一月很冷。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Februar",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "二月",
+   "example": "Im Februar habe ich Geburtstag.",
+   "example_zh": "我二月过生日。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "März",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "三月",
+   "example": "Im März beginnt der Frühling.",
+   "example_zh": "三月春天开始了。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "April",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "四月",
+   "example": "Im April regnet es oft.",
+   "example_zh": "四月经常下雨。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Mai",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "五月",
+   "example": "Im Mai ist das Wetter schön.",
+   "example_zh": "五月天气很好。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Juni",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "六月",
+   "example": "Im Juni fahren wir nach Berlin.",
+   "example_zh": "六月我们去柏林。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Juli",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "七月",
+   "example": "Im Juli ist es sehr warm.",
+   "example_zh": "七月非常热。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "August",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "八月",
+   "example": "Im August habe ich Urlaub.",
+   "example_zh": "八月我休假。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "September",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "九月",
+   "example": "Im September beginnt die Schule.",
+   "example_zh": "九月开学。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Oktober",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "十月",
+   "example": "Im Oktober ist es oft windig.",
+   "example_zh": "十月经常刮风。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "November",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "十一月",
+   "example": "Im November regnet es viel.",
+   "example_zh": "十一月雨水很多。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Dezember",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "十二月",
+   "example": "Im Dezember ist Weihnachten.",
+   "example_zh": "十二月有圣诞节。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "heute",
+   "pos": "adv",
+   "zh": "今天",
+   "example": "Heute ist Montag.",
+   "example_zh": "今天是星期一。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "morgen",
+   "pos": "adv",
+   "zh": "明天",
+   "example": "Morgen habe ich frei.",
+   "example_zh": "明天我休息。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "gestern",
+   "pos": "adv",
+   "zh": "昨天",
+   "example": "Gestern war ich zu Hause.",
+   "example_zh": "昨天我在家。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "jetzt",
+   "pos": "adv",
+   "zh": "现在",
+   "example": "Ich muss jetzt gehen.",
+   "example_zh": "我现在得走了。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "dann",
+   "pos": "adv",
+   "zh": "然后；那么",
+   "example": "Zuerst esse ich, dann lerne ich.",
+   "example_zh": "我先吃饭，然后学习。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "immer",
+   "pos": "adv",
+   "zh": "总是",
+   "example": "Er kommt immer zu spät.",
+   "example_zh": "他总是迟到。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "oft",
+   "pos": "adv",
+   "zh": "经常",
+   "example": "Wir kochen oft zusammen.",
+   "example_zh": "我们经常一起做饭。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "manchmal",
+   "pos": "adv",
+   "zh": "有时",
+   "example": "Manchmal gehe ich ins Kino.",
+   "example_zh": "我有时去看电影。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "nie",
+   "pos": "adv",
+   "zh": "从不",
+   "example": "Ich trinke nie Kaffee.",
+   "example_zh": "我从不喝咖啡。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "bald",
+   "pos": "adv",
+   "zh": "不久；很快",
+   "example": "Bis bald!",
+   "example_zh": "回头见！",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "früh",
+   "pos": "adv",
+   "zh": "早",
+   "example": "Ich stehe früh auf.",
+   "example_zh": "我起得早。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "spät",
+   "pos": "adv",
+   "zh": "晚；迟",
+   "example": "Wie spät ist es?",
+   "example_zh": "现在几点了？",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "pünktlich",
+   "pos": "adj",
+   "zh": "准时的",
+   "example": "Der Zug ist pünktlich.",
+   "example_zh": "火车很准时。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "Farbe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Farben",
+   "zh": "颜色",
+   "example": "Welche Farbe magst du?",
+   "example_zh": "你喜欢什么颜色？",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "rot",
+   "pos": "adj",
+   "zh": "红色的",
+   "example": "Der Apfel ist rot.",
+   "example_zh": "这个苹果是红色的。",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "blau",
+   "pos": "adj",
+   "zh": "蓝色的",
+   "example": "Der Himmel ist blau.",
+   "example_zh": "天空是蓝色的。",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "grün",
+   "pos": "adj",
+   "zh": "绿色的",
+   "example": "Das Gras ist grün.",
+   "example_zh": "草是绿色的。",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "gelb",
+   "pos": "adj",
+   "zh": "黄色的",
+   "example": "Die Banane ist gelb.",
+   "example_zh": "香蕉是黄色的。",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "schwarz",
+   "pos": "adj",
+   "zh": "黑色的",
+   "example": "Meine Schuhe sind schwarz.",
+   "example_zh": "我的鞋是黑色的。",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "weiß",
+   "pos": "adj",
+   "zh": "白色的",
+   "example": "Das Hemd ist weiß.",
+   "example_zh": "这件衬衫是白色的。",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "braun",
+   "pos": "adj",
+   "zh": "棕色的",
+   "example": "Die Tasche ist braun.",
+   "example_zh": "这个包是棕色的。",
+   "topics": [
+    "farben"
+   ]
+  },
+  {
+   "lemma": "Zahl",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Zahlen",
+   "zh": "数字",
+   "example": "Die Zahl ist zu groß.",
+   "example_zh": "这个数字太大了。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "Nummer",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Nummern",
+   "zh": "号码",
+   "example": "Wie ist deine Nummer?",
+   "example_zh": "你的号码是多少？",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "null",
+   "pos": "num",
+   "zh": "零",
+   "example": "Es ist null Grad.",
+   "example_zh": "现在零度。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "eins",
+   "pos": "num",
+   "zh": "一",
+   "example": "Es ist eins.",
+   "example_zh": "现在一点了。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "zwei",
+   "pos": "num",
+   "zh": "二",
+   "example": "Ich habe zwei Brüder.",
+   "example_zh": "我有两个兄弟。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "drei",
+   "pos": "num",
+   "zh": "三",
+   "example": "Wir sind drei Personen.",
+   "example_zh": "我们三个人。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "vier",
+   "pos": "num",
+   "zh": "四",
+   "example": "Das Haus hat vier Zimmer.",
+   "example_zh": "这房子有四个房间。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "fünf",
+   "pos": "num",
+   "zh": "五",
+   "example": "Mein Sohn ist fünf.",
+   "example_zh": "我儿子五岁。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "sechs",
+   "pos": "num",
+   "zh": "六",
+   "example": "Ich stehe um sechs auf.",
+   "example_zh": "我六点起床。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "sieben",
+   "pos": "num",
+   "zh": "七",
+   "example": "Die Woche hat sieben Tage.",
+   "example_zh": "一周有七天。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "acht",
+   "pos": "num",
+   "zh": "八",
+   "example": "Der Kurs beginnt um acht.",
+   "example_zh": "课程八点开始。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "neun",
+   "pos": "num",
+   "zh": "九",
+   "example": "Das Kind ist neun Jahre alt.",
+   "example_zh": "这孩子九岁了。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "zehn",
+   "pos": "num",
+   "zh": "十",
+   "example": "Der Bus kommt um zehn.",
+   "example_zh": "公交车十点到。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "elf",
+   "pos": "num",
+   "zh": "十一",
+   "example": "Es ist schon elf Uhr.",
+   "example_zh": "已经十一点了。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "zwölf",
+   "pos": "num",
+   "zh": "十二",
+   "example": "Das Jahr hat zwölf Monate.",
+   "example_zh": "一年有十二个月。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "zwanzig",
+   "pos": "num",
+   "zh": "二十",
+   "example": "Sie ist zwanzig Jahre alt.",
+   "example_zh": "她二十岁。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "hundert",
+   "pos": "num",
+   "zh": "一百",
+   "example": "Das kostet hundert Euro.",
+   "example_zh": "这个要一百欧元。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "tausend",
+   "pos": "num",
+   "zh": "一千",
+   "example": "Das Auto kostet tausend Euro.",
+   "example_zh": "这辆车要一千欧元。",
+   "topics": [
+    "zahlen"
+   ]
+  },
+  {
+   "lemma": "Essen",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "食物；饭菜",
+   "example": "Das Essen ist sehr gut.",
+   "example_zh": "这饭菜很好吃。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Brot",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Brote",
+   "zh": "面包",
+   "example": "Ich kaufe ein Brot.",
+   "example_zh": "我买一个面包。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Brötchen",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Brötchen",
+   "zh": "小面包",
+   "example": "Zwei Brötchen, bitte.",
+   "example_zh": "请给我两个小面包。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Wasser",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "水",
+   "example": "Ich trinke gern Wasser.",
+   "example_zh": "我喜欢喝水。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Kaffee",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "咖啡",
+   "example": "Der Kaffee ist heiß.",
+   "example_zh": "咖啡很烫。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Tee",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "茶",
+   "example": "Möchtest du Tee?",
+   "example_zh": "你想喝茶吗？",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Milch",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "牛奶",
+   "example": "Die Milch ist im Kühlschrank.",
+   "example_zh": "牛奶在冰箱里。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Obst",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "水果",
+   "example": "Ich esse viel Obst.",
+   "example_zh": "我吃很多水果。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Gemüse",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "蔬菜",
+   "example": "Gemüse ist gesund.",
+   "example_zh": "蔬菜很健康。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Fleisch",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "肉",
+   "example": "Ich esse kein Fleisch.",
+   "example_zh": "我不吃肉。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Fisch",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Fische",
+   "zh": "鱼",
+   "example": "Der Fisch schmeckt gut.",
+   "example_zh": "这鱼很好吃。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Ei",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Eier",
+   "zh": "鸡蛋",
+   "example": "Ich esse ein Ei.",
+   "example_zh": "我吃一个鸡蛋。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Käse",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "奶酪",
+   "example": "Ich mag Käse.",
+   "example_zh": "我喜欢奶酪。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Butter",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "黄油",
+   "example": "Die Butter ist frisch.",
+   "example_zh": "黄油很新鲜。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Zucker",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "糖",
+   "example": "Kaffee mit Zucker, bitte.",
+   "example_zh": "请给我加糖的咖啡。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Salz",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "盐",
+   "example": "Die Suppe braucht Salz.",
+   "example_zh": "这汤需要放盐。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Apfel",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Äpfel",
+   "zh": "苹果",
+   "example": "Der Apfel ist süß.",
+   "example_zh": "这苹果很甜。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Banane",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Bananen",
+   "zh": "香蕉",
+   "example": "Ich esse eine Banane.",
+   "example_zh": "我吃一根香蕉。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Orange",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Orangen",
+   "zh": "橙子",
+   "example": "Die Orangen sind billig.",
+   "example_zh": "这些橙子很便宜。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Kartoffel",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Kartoffeln",
+   "zh": "土豆",
+   "example": "Wir essen heute Kartoffeln.",
+   "example_zh": "我们今天吃土豆。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Tomate",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Tomaten",
+   "zh": "西红柿",
+   "example": "Die Tomaten sind rot.",
+   "example_zh": "这些西红柿很红。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Salat",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Salate",
+   "zh": "沙拉；生菜",
+   "example": "Ich nehme einen Salat.",
+   "example_zh": "我要一份沙拉。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Nudel",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Nudeln",
+   "zh": "面条",
+   "example": "Die Kinder essen gern Nudeln.",
+   "example_zh": "孩子们喜欢吃面条。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Suppe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Suppen",
+   "zh": "汤",
+   "example": "Die Suppe ist warm.",
+   "example_zh": "汤是热的。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Kuchen",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Kuchen",
+   "zh": "蛋糕",
+   "example": "Der Kuchen schmeckt super.",
+   "example_zh": "这蛋糕特别好吃。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Schokolade",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "巧克力",
+   "example": "Ich mag Schokolade sehr.",
+   "example_zh": "我很喜欢巧克力。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Eis",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "冰淇淋；冰",
+   "example": "Im Sommer esse ich Eis.",
+   "example_zh": "夏天我吃冰淇淋。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Reis",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "米饭；大米",
+   "example": "Ich koche heute Reis.",
+   "example_zh": "我今天煮米饭。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Wurst",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Würste",
+   "zh": "香肠",
+   "example": "Die Wurst kommt aus Deutschland.",
+   "example_zh": "这香肠产自德国。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Bier",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "啤酒",
+   "example": "Ein Bier, bitte.",
+   "example_zh": "请来一杯啤酒。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Wein",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "葡萄酒",
+   "example": "Trinken Sie Wein?",
+   "example_zh": "您喝葡萄酒吗？",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Saft",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Säfte",
+   "zh": "果汁",
+   "example": "Das Kind trinkt Saft.",
+   "example_zh": "孩子在喝果汁。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Frühstück",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "早餐",
+   "example": "Das Frühstück ist um acht.",
+   "example_zh": "早餐八点开始。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Mittagessen",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "午餐",
+   "example": "Was gibt es zum Mittagessen?",
+   "example_zh": "午餐吃什么？",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Abendessen",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "晚餐",
+   "example": "Das Abendessen ist fertig.",
+   "example_zh": "晚餐做好了。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Hunger",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "饿；饥饿",
+   "example": "Ich habe Hunger.",
+   "example_zh": "我饿了。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Durst",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "渴",
+   "example": "Hast du Durst?",
+   "example_zh": "你渴吗？",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Restaurant",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Restaurants",
+   "zh": "餐厅",
+   "example": "Wir essen heute im Restaurant.",
+   "example_zh": "我们今天在餐厅吃饭。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Café",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Cafés",
+   "zh": "咖啡馆",
+   "example": "Das Café ist sehr schön.",
+   "example_zh": "这家咖啡馆很漂亮。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Speisekarte",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Speisekarten",
+   "zh": "菜单",
+   "example": "Die Speisekarte, bitte.",
+   "example_zh": "请给我菜单。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Rechnung",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Rechnungen",
+   "zh": "账单",
+   "example": "Die Rechnung, bitte.",
+   "example_zh": "请结账。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Glas",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Gläser",
+   "zh": "玻璃杯",
+   "example": "Ein Glas Wasser, bitte.",
+   "example_zh": "请来一杯水。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Flasche",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Flaschen",
+   "zh": "瓶子",
+   "example": "Ich kaufe eine Flasche Wasser.",
+   "example_zh": "我买一瓶水。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Tasse",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Tassen",
+   "zh": "杯子（有柄）",
+   "example": "Eine Tasse Kaffee, bitte.",
+   "example_zh": "请来一杯咖啡。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "Teller",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Teller",
+   "zh": "盘子",
+   "example": "Der Teller ist leer.",
+   "example_zh": "盘子空了。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "essen",
+   "pos": "verb",
+   "zh": "吃",
+   "example": "Was isst du gern?",
+   "example_zh": "你喜欢吃什么？",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "trinken",
+   "pos": "verb",
+   "zh": "喝",
+   "example": "Ich trinke einen Kaffee.",
+   "example_zh": "我喝一杯咖啡。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "kochen",
+   "pos": "verb",
+   "zh": "做饭；煮",
+   "example": "Meine Mutter kocht heute.",
+   "example_zh": "今天我妈妈做饭。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "bestellen",
+   "pos": "verb",
+   "zh": "点（菜）；订购",
+   "example": "Ich bestelle eine Pizza.",
+   "example_zh": "我点一份披萨。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "bezahlen",
+   "pos": "verb",
+   "zh": "付款",
+   "example": "Ich möchte bezahlen, bitte.",
+   "example_zh": "我想买单。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "schmecken",
+   "pos": "verb",
+   "zh": "尝起来（好吃）",
+   "example": "Die Pizza schmeckt sehr gut.",
+   "example_zh": "披萨很好吃。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "lecker",
+   "pos": "adj",
+   "zh": "美味的",
+   "example": "Der Kuchen ist lecker.",
+   "example_zh": "这蛋糕很好吃。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "süß",
+   "pos": "adj",
+   "zh": "甜的",
+   "example": "Der Tee ist zu süß.",
+   "example_zh": "这茶太甜了。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "frisch",
+   "pos": "adj",
+   "zh": "新鲜的",
+   "example": "Das Brot ist frisch.",
+   "example_zh": "面包很新鲜。",
+   "topics": [
+    "essen"
+   ]
+  },
+  {
+   "lemma": "einkaufen",
+   "pos": "verb",
+   "zh": "购物；采购",
+   "example": "Wir kaufen heute ein.",
+   "example_zh": "我们今天去购物。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "kaufen",
+   "pos": "verb",
+   "zh": "买",
+   "example": "Ich kaufe ein neues Handy.",
+   "example_zh": "我买一部新手机。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "verkaufen",
+   "pos": "verb",
+   "zh": "卖",
+   "example": "Er verkauft sein Auto.",
+   "example_zh": "他要卖掉他的车。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "kosten",
+   "pos": "verb",
+   "zh": "花费；价钱是",
+   "example": "Was kostet das Brot?",
+   "example_zh": "这面包多少钱？",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "brauchen",
+   "pos": "verb",
+   "zh": "需要",
+   "example": "Ich brauche Milch und Eier.",
+   "example_zh": "我需要牛奶和鸡蛋。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Geschäft",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Geschäfte",
+   "zh": "商店",
+   "example": "Das Geschäft ist heute offen.",
+   "example_zh": "这家商店今天营业。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Supermarkt",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Supermärkte",
+   "zh": "超市",
+   "example": "Ich gehe in den Supermarkt.",
+   "example_zh": "我去超市。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Markt",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Märkte",
+   "zh": "市场；集市",
+   "example": "Auf dem Markt gibt es Obst.",
+   "example_zh": "集市上有水果。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Bäckerei",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Bäckereien",
+   "zh": "面包店",
+   "example": "Die Bäckerei öffnet um sieben.",
+   "example_zh": "面包店七点开门。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Preis",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Preise",
+   "zh": "价格",
+   "example": "Der Preis ist gut.",
+   "example_zh": "这个价格不错。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Geld",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "钱",
+   "example": "Ich habe kein Geld dabei.",
+   "example_zh": "我身上没带钱。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Euro",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Euros",
+   "zh": "欧元",
+   "example": "Das kostet zehn Euro.",
+   "example_zh": "这个十欧元。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Kasse",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Kassen",
+   "zh": "收银台",
+   "example": "Bitte zahlen Sie an der Kasse.",
+   "example_zh": "请到收银台付款。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Tasche",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Taschen",
+   "zh": "包；袋子",
+   "example": "Die Tasche ist schwer.",
+   "example_zh": "这个包很重。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Verkäufer",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Verkäufer",
+   "zh": "售货员",
+   "example": "Der Verkäufer ist sehr nett.",
+   "example_zh": "这位售货员很友好。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Kilo",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Kilos",
+   "zh": "公斤",
+   "example": "Ein Kilo Äpfel, bitte.",
+   "example_zh": "请给我一公斤苹果。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Liter",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Liter",
+   "zh": "升",
+   "example": "Ich kaufe einen Liter Milch.",
+   "example_zh": "我买一升牛奶。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Stück",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Stücke",
+   "zh": "块；个；件",
+   "example": "Ein Stück Kuchen, bitte.",
+   "example_zh": "请来一块蛋糕。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "teuer",
+   "pos": "adj",
+   "zh": "贵的",
+   "example": "Das Hotel ist zu teuer.",
+   "example_zh": "这家酒店太贵了。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "billig",
+   "pos": "adj",
+   "zh": "便宜的",
+   "example": "Die Bananen sind heute billig.",
+   "example_zh": "今天香蕉很便宜。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "günstig",
+   "pos": "adj",
+   "zh": "实惠的；划算的",
+   "example": "Der Preis ist sehr günstig.",
+   "example_zh": "这个价格很实惠。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "geöffnet",
+   "pos": "adj",
+   "zh": "营业中的；开着的",
+   "example": "Der Supermarkt ist bis acht geöffnet.",
+   "example_zh": "超市营业到八点。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "geschlossen",
+   "pos": "adj",
+   "zh": "关门的；停业的",
+   "example": "Sonntags ist das Geschäft geschlossen.",
+   "example_zh": "商店周日不营业。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Wohnung",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Wohnungen",
+   "zh": "住宅；公寓",
+   "example": "Die Wohnung ist klein.",
+   "example_zh": "这套公寓很小。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Haus",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Häuser",
+   "zh": "房子",
+   "example": "Das Haus hat einen Garten.",
+   "example_zh": "这栋房子有个花园。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Zimmer",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Zimmer",
+   "zh": "房间",
+   "example": "Mein Zimmer ist hell.",
+   "example_zh": "我的房间很明亮。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Küche",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Küchen",
+   "zh": "厨房",
+   "example": "Die Küche ist neu.",
+   "example_zh": "厨房是新的。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Bad",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Bäder",
+   "zh": "浴室",
+   "example": "Das Bad ist sehr klein.",
+   "example_zh": "浴室很小。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Schlafzimmer",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Schlafzimmer",
+   "zh": "卧室",
+   "example": "Das Schlafzimmer ist oben.",
+   "example_zh": "卧室在楼上。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Balkon",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Balkone",
+   "zh": "阳台",
+   "example": "Die Wohnung hat einen Balkon.",
+   "example_zh": "这套公寓有阳台。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Garten",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Gärten",
+   "zh": "花园",
+   "example": "Die Kinder spielen im Garten.",
+   "example_zh": "孩子们在花园里玩。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Tür",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Türen",
+   "zh": "门",
+   "example": "Die Tür ist offen.",
+   "example_zh": "门开着。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Fenster",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Fenster",
+   "zh": "窗户",
+   "example": "Das Fenster ist groß.",
+   "example_zh": "窗户很大。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Tisch",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Tische",
+   "zh": "桌子",
+   "example": "Das Buch liegt auf dem Tisch.",
+   "example_zh": "书在桌子上。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Stuhl",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Stühle",
+   "zh": "椅子",
+   "example": "Der Stuhl ist kaputt.",
+   "example_zh": "这把椅子坏了。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Bett",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Betten",
+   "zh": "床",
+   "example": "Ich gehe jetzt ins Bett.",
+   "example_zh": "我现在去睡觉。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Schrank",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Schränke",
+   "zh": "柜子；衣柜",
+   "example": "Die Kleider sind im Schrank.",
+   "example_zh": "衣服在衣柜里。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Sofa",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Sofas",
+   "zh": "沙发",
+   "example": "Wir sitzen auf dem Sofa.",
+   "example_zh": "我们坐在沙发上。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Lampe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Lampen",
+   "zh": "灯",
+   "example": "Die Lampe ist an.",
+   "example_zh": "灯开着。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Kühlschrank",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Kühlschränke",
+   "zh": "冰箱",
+   "example": "Der Kühlschrank ist leer.",
+   "example_zh": "冰箱空了。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Dusche",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Duschen",
+   "zh": "淋浴",
+   "example": "Das Zimmer hat eine Dusche.",
+   "example_zh": "房间里有淋浴。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Toilette",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Toiletten",
+   "zh": "厕所",
+   "example": "Wo ist die Toilette, bitte?",
+   "example_zh": "请问厕所在哪里？",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Waschmaschine",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Waschmaschinen",
+   "zh": "洗衣机",
+   "example": "Die Waschmaschine ist neu.",
+   "example_zh": "洗衣机是新的。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Fernseher",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Fernseher",
+   "zh": "电视机",
+   "example": "Der Fernseher ist im Wohnzimmer.",
+   "example_zh": "电视机在客厅里。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Miete",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Mieten",
+   "zh": "房租",
+   "example": "Die Miete ist sehr hoch.",
+   "example_zh": "房租很高。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Schlüssel",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Schlüssel",
+   "zh": "钥匙",
+   "example": "Ich finde meinen Schlüssel nicht.",
+   "example_zh": "我找不到我的钥匙。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Treppe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Treppen",
+   "zh": "楼梯",
+   "example": "Die Treppe ist links.",
+   "example_zh": "楼梯在左边。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Aufzug",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Aufzüge",
+   "zh": "电梯",
+   "example": "Das Haus hat keinen Aufzug.",
+   "example_zh": "这栋楼没有电梯。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Heizung",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Heizungen",
+   "zh": "暖气",
+   "example": "Die Heizung ist kaputt.",
+   "example_zh": "暖气坏了。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "mieten",
+   "pos": "verb",
+   "zh": "租（房、车）",
+   "example": "Wir mieten eine Wohnung.",
+   "example_zh": "我们租一套公寓。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "hell",
+   "pos": "adj",
+   "zh": "明亮的",
+   "example": "Die Küche ist schön hell.",
+   "example_zh": "厨房很明亮。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "dunkel",
+   "pos": "adj",
+   "zh": "黑暗的",
+   "example": "Das Zimmer ist zu dunkel.",
+   "example_zh": "这个房间太暗了。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "neu",
+   "pos": "adj",
+   "zh": "新的",
+   "example": "Wir haben eine neue Wohnung.",
+   "example_zh": "我们有了一套新公寓。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "kaputt",
+   "pos": "adj",
+   "zh": "坏了的",
+   "example": "Die Lampe ist kaputt.",
+   "example_zh": "灯坏了。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Bahnhof",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Bahnhöfe",
+   "zh": "火车站",
+   "example": "Wo ist der Bahnhof?",
+   "example_zh": "火车站在哪里？",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Zug",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Züge",
+   "zh": "火车",
+   "example": "Der Zug kommt um zehn.",
+   "example_zh": "火车十点到。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Bahn",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Bahnen",
+   "zh": "铁路；轨道交通",
+   "example": "Ich fahre mit der Bahn.",
+   "example_zh": "我坐火车去。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "S-Bahn",
+   "pos": "noun",
+   "article": "die",
+   "plural": "S-Bahnen",
+   "zh": "城铁",
+   "example": "Die S-Bahn fährt alle zehn Minuten.",
+   "example_zh": "城铁每十分钟一班。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "U-Bahn",
+   "pos": "noun",
+   "article": "die",
+   "plural": "U-Bahnen",
+   "zh": "地铁",
+   "example": "Ich nehme die U-Bahn.",
+   "example_zh": "我坐地铁。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Bus",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Busse",
+   "zh": "公共汽车",
+   "example": "Der Bus kommt gleich.",
+   "example_zh": "公交车马上就到。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Haltestelle",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Haltestellen",
+   "zh": "（公交）车站",
+   "example": "Die Haltestelle ist dort drüben.",
+   "example_zh": "车站就在那边。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Auto",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Autos",
+   "zh": "汽车",
+   "example": "Wir fahren mit dem Auto.",
+   "example_zh": "我们开车去。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Taxi",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Taxis",
+   "zh": "出租车",
+   "example": "Wir nehmen ein Taxi.",
+   "example_zh": "我们打车去。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Fahrrad",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Fahrräder",
+   "zh": "自行车",
+   "example": "Ich fahre gern Fahrrad.",
+   "example_zh": "我喜欢骑自行车。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Flughafen",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Flughäfen",
+   "zh": "机场",
+   "example": "Wir fahren zum Flughafen.",
+   "example_zh": "我们去机场。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Flugzeug",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Flugzeuge",
+   "zh": "飞机",
+   "example": "Das Flugzeug ist pünktlich.",
+   "example_zh": "飞机准点。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Schiff",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Schiffe",
+   "zh": "船",
+   "example": "Das Schiff fährt nach Hamburg.",
+   "example_zh": "这艘船开往汉堡。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Fahrkarte",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Fahrkarten",
+   "zh": "车票",
+   "example": "Eine Fahrkarte nach München, bitte.",
+   "example_zh": "请给我一张去慕尼黑的车票。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Ticket",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Tickets",
+   "zh": "票",
+   "example": "Das Ticket kostet fünf Euro.",
+   "example_zh": "这张票五欧元。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Fahrplan",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Fahrpläne",
+   "zh": "时刻表",
+   "example": "Hier ist der Fahrplan.",
+   "example_zh": "时刻表在这里。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Abfahrt",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Abfahrten",
+   "zh": "出发；发车",
+   "example": "Die Abfahrt ist um neun Uhr.",
+   "example_zh": "九点发车。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Ankunft",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Ankünfte",
+   "zh": "到达",
+   "example": "Die Ankunft ist um zwölf.",
+   "example_zh": "十二点到达。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Verspätung",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Verspätungen",
+   "zh": "晚点；延误",
+   "example": "Der Zug hat zehn Minuten Verspätung.",
+   "example_zh": "火车晚点十分钟。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Parkplatz",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Parkplätze",
+   "zh": "停车场；车位",
+   "example": "Hier ist ein Parkplatz frei.",
+   "example_zh": "这里有个空车位。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Reise",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Reisen",
+   "zh": "旅行",
+   "example": "Gute Reise!",
+   "example_zh": "旅途愉快！",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Hotel",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Hotels",
+   "zh": "酒店",
+   "example": "Das Hotel liegt im Zentrum.",
+   "example_zh": "酒店位于市中心。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Urlaub",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Urlaube",
+   "zh": "假期；度假",
+   "example": "Wir machen Urlaub am Meer.",
+   "example_zh": "我们去海边度假。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Koffer",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Koffer",
+   "zh": "行李箱",
+   "example": "Mein Koffer ist schwer.",
+   "example_zh": "我的行李箱很重。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Gepäck",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "行李",
+   "example": "Ich habe viel Gepäck.",
+   "example_zh": "我行李很多。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Ausflug",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Ausflüge",
+   "zh": "郊游；短途旅行",
+   "example": "Wir machen morgen einen Ausflug.",
+   "example_zh": "我们明天去郊游。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Gast",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Gäste",
+   "zh": "客人",
+   "example": "Heute kommen viele Gäste.",
+   "example_zh": "今天来了很多客人。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Tourist",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Touristen",
+   "zh": "游客",
+   "example": "Viele Touristen besuchen Berlin.",
+   "example_zh": "很多游客来柏林游览。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "fahren",
+   "pos": "verb",
+   "zh": "驾驶；乘（车）去",
+   "example": "Wir fahren nach Hamburg.",
+   "example_zh": "我们去汉堡。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "fliegen",
+   "pos": "verb",
+   "zh": "飞；乘飞机",
+   "example": "Ich fliege nach Spanien.",
+   "example_zh": "我坐飞机去西班牙。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "reisen",
+   "pos": "verb",
+   "zh": "旅行",
+   "example": "Sie reist gern.",
+   "example_zh": "她喜欢旅行。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "abfahren",
+   "pos": "verb",
+   "zh": "出发；发车",
+   "example": "Der Zug fährt gleich ab.",
+   "example_zh": "火车马上发车。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "ankommen",
+   "pos": "verb",
+   "zh": "到达",
+   "example": "Wann kommt der Bus an?",
+   "example_zh": "公交车什么时候到？",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "einsteigen",
+   "pos": "verb",
+   "zh": "上车",
+   "example": "Bitte schnell einsteigen!",
+   "example_zh": "请快点上车！",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "aussteigen",
+   "pos": "verb",
+   "zh": "下车",
+   "example": "Ich steige hier aus.",
+   "example_zh": "我在这里下车。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "umsteigen",
+   "pos": "verb",
+   "zh": "换乘",
+   "example": "In München müssen wir umsteigen.",
+   "example_zh": "我们要在慕尼黑换乘。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "parken",
+   "pos": "verb",
+   "zh": "停车",
+   "example": "Hier darf man nicht parken.",
+   "example_zh": "这里不许停车。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "buchen",
+   "pos": "verb",
+   "zh": "预订",
+   "example": "Ich buche ein Hotelzimmer.",
+   "example_zh": "我预订一间酒店客房。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "reservieren",
+   "pos": "verb",
+   "zh": "预约；预留",
+   "example": "Ich reserviere einen Tisch.",
+   "example_zh": "我订一张桌子。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "schnell",
+   "pos": "adj",
+   "zh": "快的",
+   "example": "Der Zug ist sehr schnell.",
+   "example_zh": "这趟火车非常快。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "langsam",
+   "pos": "adj",
+   "zh": "慢的",
+   "example": "Der Bus fährt langsam.",
+   "example_zh": "公交车开得很慢。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "frei",
+   "pos": "adj",
+   "zh": "空闲的；空着的",
+   "example": "Ist der Platz noch frei?",
+   "example_zh": "这个位子还空着吗？",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "zu Fuß",
+   "pos": "phrase",
+   "zh": "步行",
+   "example": "Ich gehe zu Fuß zur Arbeit.",
+   "example_zh": "我步行去上班。",
+   "topics": [
+    "verkehr"
+   ]
+  },
+  {
+   "lemma": "Stadt",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Städte",
+   "zh": "城市",
+   "example": "Die Stadt ist sehr groß.",
+   "example_zh": "这座城市很大。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Dorf",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Dörfer",
+   "zh": "村庄",
+   "example": "Meine Oma wohnt im Dorf.",
+   "example_zh": "我奶奶住在村里。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Straße",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Straßen",
+   "zh": "街道；马路",
+   "example": "Die Straße ist sehr lang.",
+   "example_zh": "这条街很长。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Platz",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Plätze",
+   "zh": "广场；位子",
+   "example": "Der Platz ist im Zentrum.",
+   "example_zh": "广场在市中心。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Weg",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Wege",
+   "zh": "路；路途",
+   "example": "Der Weg ist nicht weit.",
+   "example_zh": "路不远。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Zentrum",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Zentren",
+   "zh": "中心；市中心",
+   "example": "Wir wohnen im Zentrum.",
+   "example_zh": "我们住在市中心。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Kirche",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Kirchen",
+   "zh": "教堂",
+   "example": "Die Kirche ist sehr alt.",
+   "example_zh": "这座教堂很古老。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Museum",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Museen",
+   "zh": "博物馆",
+   "example": "Das Museum ist montags geschlossen.",
+   "example_zh": "博物馆周一闭馆。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Post",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "邮局；邮件",
+   "example": "Die Post ist neben der Bank.",
+   "example_zh": "邮局在银行旁边。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Bank",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Banken",
+   "zh": "银行",
+   "example": "Ich gehe zur Bank.",
+   "example_zh": "我去银行。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Park",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Parks",
+   "zh": "公园",
+   "example": "Wir gehen in den Park.",
+   "example_zh": "我们去公园。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Kino",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Kinos",
+   "zh": "电影院",
+   "example": "Gehen wir heute ins Kino?",
+   "example_zh": "我们今天去看电影吗？",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Schwimmbad",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Schwimmbäder",
+   "zh": "游泳馆",
+   "example": "Das Schwimmbad öffnet um neun.",
+   "example_zh": "游泳馆九点开门。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Eingang",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Eingänge",
+   "zh": "入口",
+   "example": "Der Eingang ist rechts.",
+   "example_zh": "入口在右边。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Ausgang",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Ausgänge",
+   "zh": "出口",
+   "example": "Wo ist der Ausgang?",
+   "example_zh": "出口在哪里？",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "besuchen",
+   "pos": "verb",
+   "zh": "拜访；参观",
+   "example": "Wir besuchen das Museum.",
+   "example_zh": "我们去参观博物馆。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "links",
+   "pos": "adv",
+   "zh": "在左边；向左",
+   "example": "Die Post ist links.",
+   "example_zh": "邮局在左边。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "rechts",
+   "pos": "adv",
+   "zh": "在右边；向右",
+   "example": "Gehen Sie hier rechts.",
+   "example_zh": "您在这里右转。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "geradeaus",
+   "pos": "adv",
+   "zh": "一直往前",
+   "example": "Gehen Sie immer geradeaus.",
+   "example_zh": "您一直往前走。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "hier",
+   "pos": "adv",
+   "zh": "这里",
+   "example": "Hier ist der Bahnhof.",
+   "example_zh": "火车站就在这里。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "dort",
+   "pos": "adv",
+   "zh": "那里",
+   "example": "Dort ist die Haltestelle.",
+   "example_zh": "车站在那里。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "oben",
+   "pos": "adv",
+   "zh": "在上面；在楼上",
+   "example": "Das Bad ist oben.",
+   "example_zh": "浴室在楼上。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "unten",
+   "pos": "adv",
+   "zh": "在下面；在楼下",
+   "example": "Die Küche ist unten.",
+   "example_zh": "厨房在楼下。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "weit",
+   "pos": "adv",
+   "zh": "远",
+   "example": "Ist der Bahnhof weit?",
+   "example_zh": "火车站远吗？",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "nah",
+   "pos": "adv",
+   "zh": "近",
+   "example": "Der Supermarkt ist ganz nah.",
+   "example_zh": "超市离这里很近。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "neben",
+   "pos": "prep",
+   "zh": "在……旁边",
+   "example": "Die Bank ist neben der Post.",
+   "example_zh": "银行在邮局旁边。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "gegenüber",
+   "pos": "prep",
+   "zh": "在……对面",
+   "example": "Das Café ist gegenüber dem Bahnhof.",
+   "example_zh": "咖啡馆在火车站对面。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Wetter",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "天气",
+   "example": "Das Wetter ist heute schön.",
+   "example_zh": "今天天气很好。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Sonne",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "太阳",
+   "example": "Die Sonne scheint heute.",
+   "example_zh": "今天阳光明媚。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Regen",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "雨",
+   "example": "Morgen kommt Regen.",
+   "example_zh": "明天有雨。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Schnee",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "雪",
+   "example": "Im Winter gibt es Schnee.",
+   "example_zh": "冬天会下雪。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Wind",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "风",
+   "example": "Heute ist viel Wind.",
+   "example_zh": "今天风很大。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Wolke",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Wolken",
+   "zh": "云",
+   "example": "Am Himmel sind viele Wolken.",
+   "example_zh": "天上有很多云。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Himmel",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "天空",
+   "example": "Der Himmel ist blau.",
+   "example_zh": "天空是蓝色的。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Frühling",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "春天",
+   "example": "Im Frühling ist es warm.",
+   "example_zh": "春天很暖和。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Sommer",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Sommer",
+   "zh": "夏天",
+   "example": "Im Sommer fahren wir ans Meer.",
+   "example_zh": "夏天我们去海边。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Herbst",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "秋天",
+   "example": "Im Herbst regnet es oft.",
+   "example_zh": "秋天经常下雨。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Winter",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Winter",
+   "zh": "冬天",
+   "example": "Der Winter ist sehr kalt.",
+   "example_zh": "冬天非常冷。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Meer",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Meere",
+   "zh": "大海",
+   "example": "Das Meer ist heute ruhig.",
+   "example_zh": "今天海面很平静。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "See",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Seen",
+   "zh": "湖",
+   "example": "Wir schwimmen im See.",
+   "example_zh": "我们在湖里游泳。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Berg",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Berge",
+   "zh": "山",
+   "example": "Der Berg ist sehr hoch.",
+   "example_zh": "这座山很高。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Wald",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Wälder",
+   "zh": "森林",
+   "example": "Wir gehen im Wald spazieren.",
+   "example_zh": "我们去森林里散步。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Baum",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Bäume",
+   "zh": "树",
+   "example": "Der Baum ist sehr alt.",
+   "example_zh": "这棵树很老了。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Blume",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Blumen",
+   "zh": "花",
+   "example": "Ich kaufe Blumen für Oma.",
+   "example_zh": "我给奶奶买花。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Strand",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Strände",
+   "zh": "海滩",
+   "example": "Wir gehen an den Strand.",
+   "example_zh": "我们去海滩。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Natur",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "大自然",
+   "example": "Ich liebe die Natur.",
+   "example_zh": "我热爱大自然。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Regenschirm",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Regenschirme",
+   "zh": "雨伞",
+   "example": "Nimm den Regenschirm mit!",
+   "example_zh": "带上雨伞！",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "regnen",
+   "pos": "verb",
+   "zh": "下雨",
+   "example": "Es regnet heute den ganzen Tag.",
+   "example_zh": "今天下了一整天雨。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "schneien",
+   "pos": "verb",
+   "zh": "下雪",
+   "example": "Es schneit seit gestern.",
+   "example_zh": "从昨天开始一直在下雪。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "scheinen",
+   "pos": "verb",
+   "zh": "（太阳）照耀",
+   "example": "Die Sonne scheint den ganzen Tag.",
+   "example_zh": "太阳照了一整天。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "warm",
+   "pos": "adj",
+   "zh": "暖和的",
+   "example": "Heute ist es warm.",
+   "example_zh": "今天很暖和。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "kalt",
+   "pos": "adj",
+   "zh": "冷的",
+   "example": "Im Winter ist es kalt.",
+   "example_zh": "冬天很冷。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "heiß",
+   "pos": "adj",
+   "zh": "炎热的；烫的",
+   "example": "Im Sommer ist es sehr heiß.",
+   "example_zh": "夏天非常热。",
+   "topics": [
+    "wetter"
+   ]
+  },
+  {
+   "lemma": "Arbeit",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Arbeiten",
+   "zh": "工作",
+   "example": "Die Arbeit beginnt um acht.",
+   "example_zh": "工作八点开始。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Firma",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Firmen",
+   "zh": "公司",
+   "example": "Die Firma ist in Berlin.",
+   "example_zh": "这家公司在柏林。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Kollege",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Kollegen",
+   "zh": "（男）同事",
+   "example": "Mein Kollege ist sehr nett.",
+   "example_zh": "我的同事人很好。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Kollegin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Kolleginnen",
+   "zh": "（女）同事",
+   "example": "Meine Kollegin kommt aus Polen.",
+   "example_zh": "我的女同事来自波兰。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Chef",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Chefs",
+   "zh": "（男）老板，上司",
+   "example": "Der Chef ist heute nicht da.",
+   "example_zh": "老板今天不在。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Chefin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Chefinnen",
+   "zh": "（女）老板，上司",
+   "example": "Meine Chefin heißt Frau Müller.",
+   "example_zh": "我的女上司叫穆勒女士。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Lehrer",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Lehrer",
+   "zh": "（男）老师",
+   "example": "Der Lehrer erklärt die Übung.",
+   "example_zh": "老师讲解练习。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Lehrerin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Lehrerinnen",
+   "zh": "（女）老师",
+   "example": "Die Lehrerin spricht langsam.",
+   "example_zh": "女老师说得很慢。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Verkäuferin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Verkäuferinnen",
+   "zh": "（女）售货员",
+   "example": "Die Verkäuferin hilft mir.",
+   "example_zh": "女售货员帮我。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Student",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Studenten",
+   "zh": "（男）大学生",
+   "example": "Er ist Student in München.",
+   "example_zh": "他在慕尼黑上大学。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Studentin",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Studentinnen",
+   "zh": "（女）大学生",
+   "example": "Sie ist Studentin.",
+   "example_zh": "她是大学生。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Stelle",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Stellen",
+   "zh": "职位，岗位",
+   "example": "Er sucht eine neue Stelle.",
+   "example_zh": "他在找新工作岗位。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Job",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Jobs",
+   "zh": "工作，活儿",
+   "example": "Ich habe einen neuen Job.",
+   "example_zh": "我有一份新工作。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Büro",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Büros",
+   "zh": "办公室",
+   "example": "Sie arbeitet im Büro.",
+   "example_zh": "她在办公室工作。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Praktikum",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Praktika",
+   "zh": "实习",
+   "example": "Er macht ein Praktikum.",
+   "example_zh": "他在做实习。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "arbeiten",
+   "pos": "verb",
+   "zh": "工作",
+   "example": "Ich arbeite in Berlin.",
+   "example_zh": "我在柏林工作。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "verdienen",
+   "pos": "verb",
+   "zh": "挣（钱）",
+   "example": "Sie verdient gut.",
+   "example_zh": "她挣得不错。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "arbeitslos",
+   "pos": "adj",
+   "zh": "失业的",
+   "example": "Er ist leider arbeitslos.",
+   "example_zh": "很遗憾他失业了。",
+   "topics": [
+    "arbeit"
+   ]
+  },
+  {
+   "lemma": "Schule",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Schulen",
+   "zh": "学校",
+   "example": "Die Kinder gehen zur Schule.",
+   "example_zh": "孩子们去上学。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Kurs",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Kurse",
+   "zh": "课程，班",
+   "example": "Der Kurs beginnt am Montag.",
+   "example_zh": "课程周一开始。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Deutsch",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "德语",
+   "example": "Ich lerne Deutsch.",
+   "example_zh": "我在学德语。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Prüfung",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Prüfungen",
+   "zh": "考试",
+   "example": "Die Prüfung ist am Freitag.",
+   "example_zh": "考试在周五。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Übung",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Übungen",
+   "zh": "练习",
+   "example": "Die Übung ist leicht.",
+   "example_zh": "这个练习很简单。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Wort",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Wörter",
+   "zh": "词，单词",
+   "example": "Was bedeutet dieses Wort?",
+   "example_zh": "这个词是什么意思？",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Frage",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Fragen",
+   "zh": "问题",
+   "example": "Ich habe eine Frage.",
+   "example_zh": "我有一个问题。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Antwort",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Antworten",
+   "zh": "回答，答案",
+   "example": "Die Antwort ist richtig.",
+   "example_zh": "答案是对的。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Satz",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Sätze",
+   "zh": "句子",
+   "example": "Lesen Sie bitte den Satz.",
+   "example_zh": "请读这个句子。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Beispiel",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Beispiele",
+   "zh": "例子",
+   "example": "Hier ist ein Beispiel.",
+   "example_zh": "这里有一个例子。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Schüler",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Schüler",
+   "zh": "（中小学）学生",
+   "example": "Die Schüler lernen Englisch.",
+   "example_zh": "学生们在学英语。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Hausaufgabe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Hausaufgaben",
+   "zh": "家庭作业",
+   "example": "Ich mache meine Hausaufgaben.",
+   "example_zh": "我在做家庭作业。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Test",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Tests",
+   "zh": "测验",
+   "example": "Der Test war leicht.",
+   "example_zh": "测验很简单。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Universität",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Universitäten",
+   "zh": "大学",
+   "example": "Sie studiert an der Universität.",
+   "example_zh": "她在大学读书。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Fehler",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Fehler",
+   "zh": "错误",
+   "example": "Das ist ein kleiner Fehler.",
+   "example_zh": "这是一个小错误。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "lernen",
+   "pos": "verb",
+   "zh": "学习",
+   "example": "Wir lernen zusammen Deutsch.",
+   "example_zh": "我们一起学德语。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "wiederholen",
+   "pos": "verb",
+   "zh": "重复，复习",
+   "example": "Können Sie das wiederholen?",
+   "example_zh": "您能重复一遍吗？",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "üben",
+   "pos": "verb",
+   "zh": "练习",
+   "example": "Ich übe jeden Tag.",
+   "example_zh": "我每天练习。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "erklären",
+   "pos": "verb",
+   "zh": "解释",
+   "example": "Der Lehrer erklärt das Wort.",
+   "example_zh": "老师解释这个词。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "studieren",
+   "pos": "verb",
+   "zh": "上大学，攻读",
+   "example": "Er studiert in Hamburg.",
+   "example_zh": "他在汉堡上大学。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "bedeuten",
+   "pos": "verb",
+   "zh": "意思是",
+   "example": "Was bedeutet das?",
+   "example_zh": "这是什么意思？",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Telefon",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Telefone",
+   "zh": "电话",
+   "example": "Das Telefon klingelt.",
+   "example_zh": "电话响了。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Handy",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Handys",
+   "zh": "手机",
+   "example": "Mein Handy ist neu.",
+   "example_zh": "我的手机是新的。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "E-Mail",
+   "pos": "noun",
+   "article": "die",
+   "plural": "E-Mails",
+   "zh": "电子邮件",
+   "example": "Ich schreibe eine E-Mail.",
+   "example_zh": "我在写一封电子邮件。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Brief",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Briefe",
+   "zh": "信",
+   "example": "Der Brief ist von Oma.",
+   "example_zh": "这封信是奶奶寄来的。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Internet",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "互联网",
+   "example": "Ich suche im Internet.",
+   "example_zh": "我在网上搜索。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Computer",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Computer",
+   "zh": "电脑",
+   "example": "Der Computer ist alt.",
+   "example_zh": "这台电脑很旧。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Nachricht",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Nachrichten",
+   "zh": "消息，短讯",
+   "example": "Ich schicke dir eine Nachricht.",
+   "example_zh": "我给你发一条消息。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Information",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Informationen",
+   "zh": "信息",
+   "example": "Ich brauche mehr Informationen.",
+   "example_zh": "我需要更多信息。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Postkarte",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Postkarten",
+   "zh": "明信片",
+   "example": "Ich schreibe eine Postkarte.",
+   "example_zh": "我在写一张明信片。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "anrufen",
+   "pos": "verb",
+   "zh": "打电话给",
+   "example": "Ich rufe dich morgen an.",
+   "example_zh": "我明天给你打电话。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "schreiben",
+   "pos": "verb",
+   "zh": "写",
+   "example": "Sie schreibt einen Brief.",
+   "example_zh": "她在写一封信。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "schicken",
+   "pos": "verb",
+   "zh": "寄，发送",
+   "example": "Ich schicke dir ein Foto.",
+   "example_zh": "我给你发一张照片。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "telefonieren",
+   "pos": "verb",
+   "zh": "打电话",
+   "example": "Er telefoniert mit seiner Mutter.",
+   "example_zh": "他在和妈妈打电话。",
+   "topics": [
+    "kommunikation"
+   ]
+  },
+  {
+   "lemma": "Hobby",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Hobbys",
+   "zh": "爱好",
+   "example": "Mein Hobby ist Musik.",
+   "example_zh": "我的爱好是音乐。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Musik",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "音乐",
+   "example": "Ich höre gern Musik.",
+   "example_zh": "我喜欢听音乐。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Film",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Filme",
+   "zh": "电影",
+   "example": "Der Film ist super.",
+   "example_zh": "这部电影很棒。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Buch",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Bücher",
+   "zh": "书",
+   "example": "Ich lese ein Buch.",
+   "example_zh": "我在读一本书。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Fußball",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Fußbälle",
+   "zh": "足球",
+   "example": "Wir spielen Fußball im Park.",
+   "example_zh": "我们在公园踢足球。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Fernsehen",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "电视（节目）",
+   "example": "Was gibt es im Fernsehen?",
+   "example_zh": "电视上有什么节目？",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Zeitung",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Zeitungen",
+   "zh": "报纸",
+   "example": "Er liest die Zeitung.",
+   "example_zh": "他在看报纸。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Foto",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Fotos",
+   "zh": "照片",
+   "example": "Das Foto ist schön.",
+   "example_zh": "这张照片很好看。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Spiel",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Spiele",
+   "zh": "游戏，比赛",
+   "example": "Das Spiel macht Spaß.",
+   "example_zh": "这个游戏很有趣。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Sport",
+   "pos": "noun",
+   "article": "der",
+   "plural": null,
+   "zh": "体育运动",
+   "example": "Ich mache viel Sport.",
+   "example_zh": "我经常运动。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Radio",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Radios",
+   "zh": "收音机，广播",
+   "example": "Ich höre Radio am Morgen.",
+   "example_zh": "我早上听广播。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Party",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Partys",
+   "zh": "聚会，派对",
+   "example": "Kommst du zur Party?",
+   "example_zh": "你来参加派对吗？",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Ball",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Bälle",
+   "zh": "球",
+   "example": "Der Ball ist rot.",
+   "example_zh": "这个球是红色的。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Freizeit",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "业余时间",
+   "example": "Was machst du in deiner Freizeit?",
+   "example_zh": "你业余时间做什么？",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Konzert",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Konzerte",
+   "zh": "音乐会",
+   "example": "Das Konzert beginnt um acht.",
+   "example_zh": "音乐会八点开始。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "lesen",
+   "pos": "verb",
+   "zh": "读，阅读",
+   "example": "Ich lese gern Bücher.",
+   "example_zh": "我喜欢读书。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "spielen",
+   "pos": "verb",
+   "zh": "玩，踢（球），演奏",
+   "example": "Die Kinder spielen im Garten.",
+   "example_zh": "孩子们在花园里玩。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "schwimmen",
+   "pos": "verb",
+   "zh": "游泳",
+   "example": "Ich schwimme jeden Sonntag.",
+   "example_zh": "我每周日游泳。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "tanzen",
+   "pos": "verb",
+   "zh": "跳舞",
+   "example": "Sie tanzt sehr gern.",
+   "example_zh": "她很喜欢跳舞。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "fernsehen",
+   "pos": "verb",
+   "zh": "看电视",
+   "example": "Abends sehen wir fern.",
+   "example_zh": "晚上我们看电视。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "wandern",
+   "pos": "verb",
+   "zh": "远足，徒步",
+   "example": "Wir wandern am Wochenende.",
+   "example_zh": "我们周末去远足。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "singen",
+   "pos": "verb",
+   "zh": "唱歌",
+   "example": "Sie singt sehr schön.",
+   "example_zh": "她唱得很好听。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "fotografieren",
+   "pos": "verb",
+   "zh": "拍照",
+   "example": "Er fotografiert gern.",
+   "example_zh": "他喜欢拍照。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "sein",
+   "pos": "verb",
+   "zh": "是",
+   "example": "Ich bin müde.",
+   "example_zh": "我累了。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "haben",
+   "pos": "verb",
+   "zh": "有",
+   "example": "Ich habe zwei Kinder.",
+   "example_zh": "我有两个孩子。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "werden",
+   "pos": "verb",
+   "zh": "变得，成为",
+   "example": "Es wird kalt.",
+   "example_zh": "天变冷了。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "können",
+   "pos": "verb",
+   "zh": "能，会",
+   "example": "Ich kann gut schwimmen.",
+   "example_zh": "我很会游泳。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "müssen",
+   "pos": "verb",
+   "zh": "必须",
+   "example": "Ich muss jetzt gehen.",
+   "example_zh": "我现在必须走了。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "wollen",
+   "pos": "verb",
+   "zh": "想要",
+   "example": "Wir wollen nach Hause.",
+   "example_zh": "我们想回家。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "möchten",
+   "pos": "verb",
+   "zh": "想要（客气）",
+   "example": "Ich möchte einen Kaffee.",
+   "example_zh": "我想要一杯咖啡。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "dürfen",
+   "pos": "verb",
+   "zh": "可以，允许",
+   "example": "Darf ich hier sitzen?",
+   "example_zh": "我可以坐这儿吗？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "sollen",
+   "pos": "verb",
+   "zh": "应该",
+   "example": "Du sollst mehr schlafen.",
+   "example_zh": "你应该多睡觉。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "machen",
+   "pos": "verb",
+   "zh": "做",
+   "example": "Was machst du heute?",
+   "example_zh": "你今天做什么？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "gehen",
+   "pos": "verb",
+   "zh": "走，去",
+   "example": "Wir gehen nach Hause.",
+   "example_zh": "我们回家。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "geben",
+   "pos": "verb",
+   "zh": "给",
+   "example": "Gib mir bitte das Buch.",
+   "example_zh": "请把书给我。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "nehmen",
+   "pos": "verb",
+   "zh": "拿，乘坐，选",
+   "example": "Ich nehme den Bus.",
+   "example_zh": "我坐公交车。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "sehen",
+   "pos": "verb",
+   "zh": "看见",
+   "example": "Ich sehe dich morgen.",
+   "example_zh": "我明天见你。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "hören",
+   "pos": "verb",
+   "zh": "听",
+   "example": "Hörst du die Musik?",
+   "example_zh": "你听到音乐了吗？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "sagen",
+   "pos": "verb",
+   "zh": "说",
+   "example": "Was sagst du?",
+   "example_zh": "你说什么？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "wissen",
+   "pos": "verb",
+   "zh": "知道",
+   "example": "Ich weiß es nicht.",
+   "example_zh": "我不知道。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "finden",
+   "pos": "verb",
+   "zh": "找到；觉得",
+   "example": "Ich finde meinen Schlüssel nicht.",
+   "example_zh": "我找不到我的钥匙。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "suchen",
+   "pos": "verb",
+   "zh": "找，寻找",
+   "example": "Ich suche meine Brille.",
+   "example_zh": "我在找我的眼镜。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "helfen",
+   "pos": "verb",
+   "zh": "帮助",
+   "example": "Kannst du mir helfen?",
+   "example_zh": "你能帮我吗？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "warten",
+   "pos": "verb",
+   "zh": "等待",
+   "example": "Wir warten auf den Bus.",
+   "example_zh": "我们在等公交车。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "beginnen",
+   "pos": "verb",
+   "zh": "开始",
+   "example": "Der Film beginnt um acht.",
+   "example_zh": "电影八点开始。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "anfangen",
+   "pos": "verb",
+   "zh": "开始",
+   "example": "Der Kurs fängt morgen an.",
+   "example_zh": "课程明天开始。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "aufhören",
+   "pos": "verb",
+   "zh": "停止",
+   "example": "Der Regen hört auf.",
+   "example_zh": "雨停了。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "öffnen",
+   "pos": "verb",
+   "zh": "打开",
+   "example": "Bitte öffnen Sie die Tür.",
+   "example_zh": "请打开门。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "schließen",
+   "pos": "verb",
+   "zh": "关闭",
+   "example": "Wir schließen um sechs.",
+   "example_zh": "我们六点关门。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "bleiben",
+   "pos": "verb",
+   "zh": "停留，待在",
+   "example": "Wir bleiben heute zu Hause.",
+   "example_zh": "我们今天待在家里。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "laufen",
+   "pos": "verb",
+   "zh": "跑，走",
+   "example": "Das Kind läuft schnell.",
+   "example_zh": "这孩子跑得快。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "stehen",
+   "pos": "verb",
+   "zh": "站，立着",
+   "example": "Er steht an der Tür.",
+   "example_zh": "他站在门口。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "sitzen",
+   "pos": "verb",
+   "zh": "坐",
+   "example": "Wir sitzen im Café.",
+   "example_zh": "我们坐在咖啡馆里。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "liegen",
+   "pos": "verb",
+   "zh": "躺，平放",
+   "example": "Das Buch liegt auf dem Tisch.",
+   "example_zh": "书放在桌子上。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "bringen",
+   "pos": "verb",
+   "zh": "带来，送去",
+   "example": "Bringst du mir Wasser?",
+   "example_zh": "你给我拿点水好吗？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "zeigen",
+   "pos": "verb",
+   "zh": "指给……看",
+   "example": "Zeigen Sie mir bitte den Weg.",
+   "example_zh": "请给我指一下路。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "glauben",
+   "pos": "verb",
+   "zh": "相信，认为",
+   "example": "Ich glaube, er kommt.",
+   "example_zh": "我想他会来。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "denken",
+   "pos": "verb",
+   "zh": "想，思考",
+   "example": "Ich denke oft an dich.",
+   "example_zh": "我常常想你。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "bekommen",
+   "pos": "verb",
+   "zh": "得到，收到",
+   "example": "Ich bekomme einen Brief.",
+   "example_zh": "我收到一封信。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "vergessen",
+   "pos": "verb",
+   "zh": "忘记",
+   "example": "Vergiss deinen Schlüssel nicht!",
+   "example_zh": "别忘了你的钥匙！",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "treffen",
+   "pos": "verb",
+   "zh": "碰面，遇见",
+   "example": "Wir treffen uns um sieben.",
+   "example_zh": "我们七点见面。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "einladen",
+   "pos": "verb",
+   "zh": "邀请",
+   "example": "Ich lade dich ein.",
+   "example_zh": "我请你（做客）。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "lang",
+   "pos": "adj",
+   "zh": "长的",
+   "example": "Der Film ist sehr lang.",
+   "example_zh": "这部电影很长。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "kurz",
+   "pos": "adj",
+   "zh": "短的",
+   "example": "Die Pause ist kurz.",
+   "example_zh": "休息时间很短。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "allein",
+   "pos": "adv",
+   "zh": "独自",
+   "example": "Er wohnt allein.",
+   "example_zh": "他一个人住。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "zusammen",
+   "pos": "adv",
+   "zh": "一起",
+   "example": "Wir lernen zusammen.",
+   "example_zh": "我们一起学习。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "viel",
+   "pos": "adv",
+   "zh": "多",
+   "example": "Ich arbeite viel.",
+   "example_zh": "我工作很多。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wenig",
+   "pos": "adv",
+   "zh": "少",
+   "example": "Ich habe wenig Zeit.",
+   "example_zh": "我时间很少。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "sehr",
+   "pos": "adv",
+   "zh": "很，非常",
+   "example": "Das ist sehr gut.",
+   "example_zh": "这非常好。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "auch",
+   "pos": "adv",
+   "zh": "也",
+   "example": "Ich komme auch.",
+   "example_zh": "我也来。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "nur",
+   "pos": "adv",
+   "zh": "只，仅",
+   "example": "Ich habe nur zehn Euro.",
+   "example_zh": "我只有十欧元。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "schon",
+   "pos": "adv",
+   "zh": "已经",
+   "example": "Er ist schon da.",
+   "example_zh": "他已经到了。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "noch",
+   "pos": "adv",
+   "zh": "还，仍然",
+   "example": "Ich bin noch im Büro.",
+   "example_zh": "我还在办公室。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "vielleicht",
+   "pos": "adv",
+   "zh": "也许",
+   "example": "Vielleicht komme ich morgen.",
+   "example_zh": "也许我明天来。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wieder",
+   "pos": "adv",
+   "zh": "又，再",
+   "example": "Er kommt morgen wieder.",
+   "example_zh": "他明天再来。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "leider",
+   "pos": "adv",
+   "zh": "可惜，遗憾地",
+   "example": "Leider habe ich keine Zeit.",
+   "example_zh": "可惜我没有时间。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "natürlich",
+   "pos": "adv",
+   "zh": "当然",
+   "example": "Natürlich helfe ich dir.",
+   "example_zh": "我当然帮你。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "ich",
+   "pos": "pron",
+   "zh": "我",
+   "example": "Ich heiße Anna.",
+   "example_zh": "我叫安娜。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "du",
+   "pos": "pron",
+   "zh": "你",
+   "example": "Woher kommst du?",
+   "example_zh": "你从哪里来？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "er",
+   "pos": "pron",
+   "zh": "他",
+   "example": "Er wohnt in Köln.",
+   "example_zh": "他住在科隆。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "sie",
+   "pos": "pron",
+   "zh": "她；他们",
+   "example": "Sie ist meine Schwester.",
+   "example_zh": "她是我的姐妹。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "es",
+   "pos": "pron",
+   "zh": "它",
+   "example": "Es regnet heute.",
+   "example_zh": "今天下雨。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wir",
+   "pos": "pron",
+   "zh": "我们",
+   "example": "Wir lernen Deutsch.",
+   "example_zh": "我们学德语。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "ihr",
+   "pos": "pron",
+   "zh": "你们",
+   "example": "Habt ihr Zeit?",
+   "example_zh": "你们有时间吗？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "mein",
+   "pos": "pron",
+   "zh": "我的",
+   "example": "Das ist mein Bruder.",
+   "example_zh": "这是我的哥哥。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "dein",
+   "pos": "pron",
+   "zh": "你的",
+   "example": "Ist das dein Buch?",
+   "example_zh": "这是你的书吗？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "sein",
+   "pos": "pron",
+   "zh": "他的",
+   "example": "Das ist sein Auto.",
+   "example_zh": "这是他的车。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "unser",
+   "pos": "pron",
+   "zh": "我们的",
+   "example": "Unser Haus ist klein.",
+   "example_zh": "我们的房子很小。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "euer",
+   "pos": "pron",
+   "zh": "你们的",
+   "example": "Ist das euer Auto?",
+   "example_zh": "这是你们的车吗？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "man",
+   "pos": "pron",
+   "zh": "人们（泛指）",
+   "example": "Hier spricht man Deutsch.",
+   "example_zh": "这里说德语。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "etwas",
+   "pos": "pron",
+   "zh": "一些东西",
+   "example": "Möchtest du etwas trinken?",
+   "example_zh": "你想喝点什么吗？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "nichts",
+   "pos": "pron",
+   "zh": "什么也没有",
+   "example": "Das kostet nichts.",
+   "example_zh": "这不要钱。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "alles",
+   "pos": "pron",
+   "zh": "一切",
+   "example": "Alles ist gut.",
+   "example_zh": "一切都好。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "jeder",
+   "pos": "pron",
+   "zh": "每个人，每个",
+   "example": "Das weiß jeder.",
+   "example_zh": "这个每个人都知道。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "dieser",
+   "pos": "pron",
+   "zh": "这个",
+   "example": "Dieser Mann ist mein Lehrer.",
+   "example_zh": "这位男士是我的老师。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wer",
+   "pos": "pron",
+   "zh": "谁",
+   "example": "Wer ist das?",
+   "example_zh": "这是谁？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "was",
+   "pos": "pron",
+   "zh": "什么",
+   "example": "Was machst du?",
+   "example_zh": "你在做什么？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "welcher",
+   "pos": "pron",
+   "zh": "哪个",
+   "example": "Welcher Bus fährt zum Bahnhof?",
+   "example_zh": "哪路公交车去火车站？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wo",
+   "pos": "adv",
+   "zh": "在哪里",
+   "example": "Wo wohnst du?",
+   "example_zh": "你住在哪里？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wann",
+   "pos": "adv",
+   "zh": "什么时候",
+   "example": "Wann kommst du?",
+   "example_zh": "你什么时候来？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wie",
+   "pos": "adv",
+   "zh": "怎么样，如何",
+   "example": "Wie geht es dir?",
+   "example_zh": "你好吗？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "warum",
+   "pos": "adv",
+   "zh": "为什么",
+   "example": "Warum lernst du Deutsch?",
+   "example_zh": "你为什么学德语？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wohin",
+   "pos": "adv",
+   "zh": "去哪里",
+   "example": "Wohin fährst du?",
+   "example_zh": "你要去哪里？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "woher",
+   "pos": "adv",
+   "zh": "从哪里来",
+   "example": "Woher kommt sie?",
+   "example_zh": "她从哪里来？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "in",
+   "pos": "prep",
+   "zh": "在……里；到……里",
+   "example": "Ich wohne in Berlin.",
+   "example_zh": "我住在柏林。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "an",
+   "pos": "prep",
+   "zh": "在……旁；靠着",
+   "example": "Das Bild hängt an der Wand.",
+   "example_zh": "画挂在墙上。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "auf",
+   "pos": "prep",
+   "zh": "在……上",
+   "example": "Die Tasse steht auf dem Tisch.",
+   "example_zh": "杯子在桌子上。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "aus",
+   "pos": "prep",
+   "zh": "从……（来自）",
+   "example": "Ich komme aus China.",
+   "example_zh": "我来自中国。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "bei",
+   "pos": "prep",
+   "zh": "在……那里；在……附近",
+   "example": "Er wohnt bei seinen Eltern.",
+   "example_zh": "他住在父母家。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "mit",
+   "pos": "prep",
+   "zh": "和……一起；用",
+   "example": "Ich fahre mit dem Bus.",
+   "example_zh": "我坐公交车去。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "nach",
+   "pos": "prep",
+   "zh": "去（地名）；在……之后",
+   "example": "Wir fahren nach Hamburg.",
+   "example_zh": "我们去汉堡。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "von",
+   "pos": "prep",
+   "zh": "从；……的",
+   "example": "Das Geschenk ist von Anna.",
+   "example_zh": "这份礼物是安娜送的。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "zu",
+   "pos": "prep",
+   "zh": "到……那里去",
+   "example": "Ich gehe zu meiner Oma.",
+   "example_zh": "我去奶奶家。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "für",
+   "pos": "prep",
+   "zh": "为了，给",
+   "example": "Das Geschenk ist für dich.",
+   "example_zh": "这份礼物是给你的。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "ohne",
+   "pos": "prep",
+   "zh": "没有，不带",
+   "example": "Ich trinke Kaffee ohne Zucker.",
+   "example_zh": "我喝咖啡不加糖。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "über",
+   "pos": "prep",
+   "zh": "在……上方；关于",
+   "example": "Die Lampe hängt über dem Tisch.",
+   "example_zh": "灯挂在桌子上方。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "unter",
+   "pos": "prep",
+   "zh": "在……下面",
+   "example": "Die Katze liegt unter dem Stuhl.",
+   "example_zh": "猫躺在椅子下面。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "vor",
+   "pos": "prep",
+   "zh": "在……前面；……之前",
+   "example": "Ich warte vor der Schule.",
+   "example_zh": "我在学校门前等。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "zwischen",
+   "pos": "prep",
+   "zh": "在……之间",
+   "example": "Der Tisch steht zwischen den Stühlen.",
+   "example_zh": "桌子在椅子之间。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "seit",
+   "pos": "prep",
+   "zh": "自……以来",
+   "example": "Ich lerne seit einem Jahr Deutsch.",
+   "example_zh": "我学德语一年了。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "bis",
+   "pos": "prep",
+   "zh": "直到",
+   "example": "Der Kurs geht bis zwölf Uhr.",
+   "example_zh": "课上到十二点。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "und",
+   "pos": "other",
+   "zh": "和",
+   "example": "Ich nehme Kaffee und Kuchen.",
+   "example_zh": "我要咖啡和蛋糕。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "oder",
+   "pos": "other",
+   "zh": "或者",
+   "example": "Möchtest du Tee oder Kaffee?",
+   "example_zh": "你想要茶还是咖啡？",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "aber",
+   "pos": "other",
+   "zh": "但是",
+   "example": "Ich komme, aber etwas später.",
+   "example_zh": "我会来，但是稍晚一点。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "denn",
+   "pos": "other",
+   "zh": "因为",
+   "example": "Ich bleibe zu Hause, denn ich bin krank.",
+   "example_zh": "我待在家里，因为我病了。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "dass",
+   "pos": "other",
+   "zh": "（引导从句）……这件事",
+   "example": "Ich glaube, dass er kommt.",
+   "example_zh": "我相信他会来。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "weil",
+   "pos": "other",
+   "zh": "因为",
+   "example": "Ich lerne Deutsch, weil ich in Berlin wohne.",
+   "example_zh": "我学德语，因为我住在柏林。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "wenn",
+   "pos": "other",
+   "zh": "如果；当……时",
+   "example": "Wenn es regnet, bleibe ich zu Hause.",
+   "example_zh": "如果下雨，我就待在家里。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "ja",
+   "pos": "other",
+   "zh": "是，对",
+   "example": "Ja, das stimmt.",
+   "example_zh": "是的，没错。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "nein",
+   "pos": "other",
+   "zh": "不，不是",
+   "example": "Nein, danke.",
+   "example_zh": "不，谢谢。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "nicht",
+   "pos": "other",
+   "zh": "不（否定）",
+   "example": "Ich verstehe das nicht.",
+   "example_zh": "我不明白。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "kein",
+   "pos": "other",
+   "zh": "没有（否定冠词）",
+   "example": "Ich habe kein Auto.",
+   "example_zh": "我没有车。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "bitte",
+   "pos": "other",
+   "zh": "请；不客气",
+   "example": "Ein Wasser, bitte.",
+   "example_zh": "请来一杯水。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "danke",
+   "pos": "other",
+   "zh": "谢谢",
+   "example": "Danke für deine Hilfe.",
+   "example_zh": "谢谢你的帮助。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "doch",
+   "pos": "other",
+   "zh": "（反驳否定）不，是的",
+   "example": "Doch, das stimmt.",
+   "example_zh": "不，那是对的。",
+   "topics": [
+    "funktionswoerter"
+   ]
+  },
+  {
+   "lemma": "Ausland",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "国外",
+   "example": "Er wohnt im Ausland.",
+   "example_zh": "他住在国外。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Ausweis",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Ausweise",
+   "zh": "证件",
+   "example": "Hier ist mein Ausweis.",
+   "example_zh": "这是我的证件。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Bild",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Bilder",
+   "zh": "图片；画",
+   "example": "Das Bild ist schön.",
+   "example_zh": "这幅画很漂亮。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Formular",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Formulare",
+   "zh": "表格",
+   "example": "Bitte füllen Sie das Formular aus.",
+   "example_zh": "请填写这份表格。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Geschenk",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Geschenke",
+   "zh": "礼物",
+   "example": "Danke für das Geschenk!",
+   "example_zh": "谢谢你的礼物！",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Glück",
+   "pos": "noun",
+   "article": "das",
+   "plural": null,
+   "zh": "运气；幸福",
+   "example": "Viel Glück bei der Prüfung!",
+   "example_zh": "祝你考试好运！",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Gruppe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Gruppen",
+   "zh": "小组",
+   "example": "Unsere Gruppe hat fünf Leute.",
+   "example_zh": "我们小组有五个人。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Hilfe",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Hilfen",
+   "zh": "帮助",
+   "example": "Ich brauche Hilfe.",
+   "example_zh": "我需要帮助。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Karte",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Karten",
+   "zh": "卡片；地图；票",
+   "example": "Ich kaufe eine Karte.",
+   "example_zh": "我买一张票。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Kindergarten",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Kindergärten",
+   "zh": "幼儿园",
+   "example": "Mein Sohn geht in den Kindergarten.",
+   "example_zh": "我儿子上幼儿园。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Klasse",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Klassen",
+   "zh": "班级",
+   "example": "Unsere Klasse ist klein.",
+   "example_zh": "我们班很小。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Kunde",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Kunden",
+   "zh": "顾客",
+   "example": "Der Kunde wartet schon.",
+   "example_zh": "顾客已经在等了。",
+   "topics": [
+    "einkaufen"
+   ]
+  },
+  {
+   "lemma": "Licht",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Lichter",
+   "zh": "灯；光",
+   "example": "Mach bitte das Licht an.",
+   "example_zh": "请开灯。",
+   "topics": [
+    "wohnen"
+   ]
+  },
+  {
+   "lemma": "Lied",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Lieder",
+   "zh": "歌曲",
+   "example": "Das Lied gefällt mir.",
+   "example_zh": "我喜欢这首歌。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Mitte",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "中间",
+   "example": "Der Tisch steht in der Mitte.",
+   "example_zh": "桌子放在中间。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Moment",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Momente",
+   "zh": "片刻",
+   "example": "Einen Moment, bitte.",
+   "example_zh": "请稍等。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Ordnung",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "秩序；正常",
+   "example": "Alles in Ordnung?",
+   "example_zh": "一切都好吗？",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Papier",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Papiere",
+   "zh": "纸；证件",
+   "example": "Ich brauche ein Papier und einen Stift.",
+   "example_zh": "我需要一张纸和一支笔。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Pause",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Pausen",
+   "zh": "休息；课间",
+   "example": "Wir machen eine Pause.",
+   "example_zh": "我们休息一下。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Polizei",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "警察",
+   "example": "Die Polizei ist da.",
+   "example_zh": "警察来了。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Problem",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Probleme",
+   "zh": "问题",
+   "example": "Das ist kein Problem.",
+   "example_zh": "这不是问题。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Rathaus",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Rathäuser",
+   "zh": "市政厅",
+   "example": "Das Rathaus ist in der Stadtmitte.",
+   "example_zh": "市政厅在市中心。",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Schild",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Schilder",
+   "zh": "牌子；标志",
+   "example": "Was steht auf dem Schild?",
+   "example_zh": "牌子上写着什么？",
+   "topics": [
+    "stadt"
+   ]
+  },
+  {
+   "lemma": "Seite",
+   "pos": "noun",
+   "article": "die",
+   "plural": "Seiten",
+   "zh": "页；边",
+   "example": "Lesen Sie Seite zehn.",
+   "example_zh": "请读第十页。",
+   "topics": [
+    "lernen"
+   ]
+  },
+  {
+   "lemma": "Teil",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Teile",
+   "zh": "部分",
+   "example": "Ein Teil der Gruppe kommt später.",
+   "example_zh": "小组的一部分人晚点来。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Tier",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Tiere",
+   "zh": "动物",
+   "example": "Hast du ein Tier zu Hause?",
+   "example_zh": "你家里养动物吗？",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Verein",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Vereine",
+   "zh": "协会；俱乐部",
+   "example": "Er ist in einem Verein.",
+   "example_zh": "他在一个俱乐部里。",
+   "topics": [
+    "freizeit"
+   ]
+  },
+  {
+   "lemma": "Welt",
+   "pos": "noun",
+   "article": "die",
+   "plural": null,
+   "zh": "世界",
+   "example": "Die Welt ist groß.",
+   "example_zh": "世界很大。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Wunsch",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Wünsche",
+   "zh": "愿望",
+   "example": "Haben Sie noch einen Wunsch?",
+   "example_zh": "您还有什么需要吗？",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Zettel",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Zettel",
+   "zh": "便条；小纸片",
+   "example": "Ich schreibe dir einen Zettel.",
+   "example_zh": "我给你写张便条。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Anfang",
+   "pos": "noun",
+   "article": "der",
+   "plural": "Anfänge",
+   "zh": "开始",
+   "example": "Am Anfang war es schwer.",
+   "example_zh": "一开始很难。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "Ende",
+   "pos": "noun",
+   "article": "das",
+   "plural": "Enden",
+   "zh": "结束；末尾",
+   "example": "Am Ende der Straße links.",
+   "example_zh": "在街的尽头左转。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "danken",
+   "pos": "verb",
+   "zh": "感谢",
+   "example": "Ich danke dir für die Hilfe.",
+   "example_zh": "谢谢你的帮助。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "erlauben",
+   "pos": "verb",
+   "zh": "允许",
+   "example": "Rauchen ist hier nicht erlaubt.",
+   "example_zh": "这里不允许吸烟。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "fehlen",
+   "pos": "verb",
+   "zh": "缺少；缺席",
+   "example": "Zwei Schüler fehlen heute.",
+   "example_zh": "今天有两个学生缺席。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "feiern",
+   "pos": "verb",
+   "zh": "庆祝",
+   "example": "Wir feiern morgen Geburtstag.",
+   "example_zh": "我们明天庆祝生日。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "gehören",
+   "pos": "verb",
+   "zh": "属于",
+   "example": "Das Buch gehört mir.",
+   "example_zh": "这本书是我的。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "gratulieren",
+   "pos": "verb",
+   "zh": "祝贺",
+   "example": "Ich gratuliere dir zum Geburtstag.",
+   "example_zh": "祝你生日快乐。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "holen",
+   "pos": "verb",
+   "zh": "去取；拿来",
+   "example": "Ich hole schnell Brot.",
+   "example_zh": "我快去买个面包。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "hoffen",
+   "pos": "verb",
+   "zh": "希望",
+   "example": "Ich hoffe, es geht dir gut.",
+   "example_zh": "我希望你一切都好。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "klingeln",
+   "pos": "verb",
+   "zh": "按铃；响铃",
+   "example": "Das Telefon klingelt.",
+   "example_zh": "电话响了。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "legen",
+   "pos": "verb",
+   "zh": "放（平放）",
+   "example": "Ich lege das Buch auf den Tisch.",
+   "example_zh": "我把书放到桌上。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "meinen",
+   "pos": "verb",
+   "zh": "认为；指的是",
+   "example": "Was meinst du?",
+   "example_zh": "你觉得呢？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "mitbringen",
+   "pos": "verb",
+   "zh": "带来",
+   "example": "Bringst du Brot mit?",
+   "example_zh": "你带面包来吗？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "passieren",
+   "pos": "verb",
+   "zh": "发生",
+   "example": "Was ist passiert?",
+   "example_zh": "发生什么事了？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "rauchen",
+   "pos": "verb",
+   "zh": "吸烟",
+   "example": "Hier bitte nicht rauchen.",
+   "example_zh": "这里请不要吸烟。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "schenken",
+   "pos": "verb",
+   "zh": "赠送",
+   "example": "Ich schenke ihr Blumen.",
+   "example_zh": "我送她花。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "setzen",
+   "pos": "verb",
+   "zh": "坐下；放置",
+   "example": "Setzen Sie sich, bitte.",
+   "example_zh": "请坐。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "stellen",
+   "pos": "verb",
+   "zh": "放（竖放）；提出",
+   "example": "Ich stelle die Flasche in die Küche.",
+   "example_zh": "我把瓶子放到厨房。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "stimmen",
+   "pos": "verb",
+   "zh": "正确；对",
+   "example": "Das stimmt nicht.",
+   "example_zh": "这不对。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "tun",
+   "pos": "verb",
+   "zh": "做",
+   "example": "Was kann ich für Sie tun?",
+   "example_zh": "我能为您做什么？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "vermieten",
+   "pos": "verb",
+   "zh": "出租",
+   "example": "Sie vermietet ein Zimmer.",
+   "example_zh": "她出租一个房间。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "versuchen",
+   "pos": "verb",
+   "zh": "尝试",
+   "example": "Ich versuche es noch einmal.",
+   "example_zh": "我再试一次。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "wechseln",
+   "pos": "verb",
+   "zh": "更换；兑换",
+   "example": "Können Sie zehn Euro wechseln?",
+   "example_zh": "您能换开十欧元吗？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "wünschen",
+   "pos": "verb",
+   "zh": "祝愿；想要",
+   "example": "Ich wünsche dir alles Gute.",
+   "example_zh": "祝你一切顺利。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "zumachen",
+   "pos": "verb",
+   "zh": "关上",
+   "example": "Mach bitte das Fenster zu.",
+   "example_zh": "请把窗户关上。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "aufmachen",
+   "pos": "verb",
+   "zh": "打开",
+   "example": "Kannst du die Tür aufmachen?",
+   "example_zh": "你能把门打开吗？",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "ausfüllen",
+   "pos": "verb",
+   "zh": "填写",
+   "example": "Füllen Sie bitte das Formular aus.",
+   "example_zh": "请填写表格。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "abholen",
+   "pos": "verb",
+   "zh": "接；取",
+   "example": "Ich hole dich am Bahnhof ab.",
+   "example_zh": "我去火车站接你。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "anmelden",
+   "pos": "verb",
+   "zh": "报名；登记",
+   "example": "Ich melde mich für den Kurs an.",
+   "example_zh": "我报名参加这个课程。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "bitten",
+   "pos": "verb",
+   "zh": "请求",
+   "example": "Ich bitte Sie um Hilfe.",
+   "example_zh": "我请您帮忙。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "dauern",
+   "pos": "verb",
+   "zh": "持续",
+   "example": "Der Film dauert zwei Stunden.",
+   "example_zh": "电影持续两个小时。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "erzählen",
+   "pos": "verb",
+   "zh": "讲述",
+   "example": "Erzähl mir von deiner Reise.",
+   "example_zh": "给我讲讲你的旅行。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "sich freuen",
+   "pos": "verb",
+   "zh": "高兴；期待",
+   "example": "Ich freue mich auf das Wochenende.",
+   "example_zh": "我期待周末。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "führen",
+   "pos": "verb",
+   "zh": "带领；通往",
+   "example": "Diese Straße führt zum Bahnhof.",
+   "example_zh": "这条路通往火车站。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "gewinnen",
+   "pos": "verb",
+   "zh": "赢",
+   "example": "Unser Team gewinnt heute.",
+   "example_zh": "我们队今天会赢。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "grillen",
+   "pos": "verb",
+   "zh": "烧烤",
+   "example": "Wir grillen am Samstag im Garten.",
+   "example_zh": "我们周六在花园烧烤。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "hängen",
+   "pos": "verb",
+   "zh": "挂",
+   "example": "Das Bild hängt an der Wand.",
+   "example_zh": "画挂在墙上。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "kennenlernen",
+   "pos": "verb",
+   "zh": "结识",
+   "example": "Ich möchte dich kennenlernen.",
+   "example_zh": "我想认识你。",
+   "topics": [
+    "verben"
+   ]
+  },
+  {
+   "lemma": "fertig",
+   "pos": "adj",
+   "zh": "完成的；准备好的",
+   "example": "Das Essen ist fertig.",
+   "example_zh": "饭做好了。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "laut",
+   "pos": "adj",
+   "zh": "大声的",
+   "example": "Die Musik ist zu laut.",
+   "example_zh": "音乐太吵了。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "leise",
+   "pos": "adj",
+   "zh": "轻声的",
+   "example": "Bitte sei leise.",
+   "example_zh": "请小声点。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "offen",
+   "pos": "adj",
+   "zh": "开着的",
+   "example": "Das Fenster ist offen.",
+   "example_zh": "窗户开着。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "sauber",
+   "pos": "adj",
+   "zh": "干净的",
+   "example": "Die Küche ist sauber.",
+   "example_zh": "厨房很干净。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "schmutzig",
+   "pos": "adj",
+   "zh": "脏的",
+   "example": "Meine Schuhe sind schmutzig.",
+   "example_zh": "我的鞋子脏了。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "voll",
+   "pos": "adj",
+   "zh": "满的",
+   "example": "Der Bus ist voll.",
+   "example_zh": "公交车满了。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "leer",
+   "pos": "adj",
+   "zh": "空的",
+   "example": "Die Flasche ist leer.",
+   "example_zh": "瓶子空了。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "vorne",
+   "pos": "adv",
+   "zh": "在前面",
+   "example": "Ich sitze gern vorne.",
+   "example_zh": "我喜欢坐在前面。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "hinten",
+   "pos": "adv",
+   "zh": "在后面",
+   "example": "Die Toilette ist hinten links.",
+   "example_zh": "卫生间在后面左边。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "draußen",
+   "pos": "adv",
+   "zh": "在外面",
+   "example": "Die Kinder spielen draußen.",
+   "example_zh": "孩子们在外面玩。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "drinnen",
+   "pos": "adv",
+   "zh": "在里面",
+   "example": "Bei Regen bleiben wir drinnen.",
+   "example_zh": "下雨时我们待在里面。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "danach",
+   "pos": "adv",
+   "zh": "之后",
+   "example": "Zuerst essen wir, danach gehen wir.",
+   "example_zh": "我们先吃饭，然后再走。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "zuerst",
+   "pos": "adv",
+   "zh": "首先",
+   "example": "Zuerst mache ich die Hausaufgaben.",
+   "example_zh": "我先做作业。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "endlich",
+   "pos": "adv",
+   "zh": "终于",
+   "example": "Endlich ist Wochenende!",
+   "example_zh": "终于到周末了！",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "gleich",
+   "pos": "adv",
+   "zh": "马上",
+   "example": "Ich komme gleich.",
+   "example_zh": "我马上来。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "sofort",
+   "pos": "adv",
+   "zh": "立刻",
+   "example": "Wir fahren sofort los.",
+   "example_zh": "我们立刻出发。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "übermorgen",
+   "pos": "adv",
+   "zh": "后天",
+   "example": "Übermorgen habe ich frei.",
+   "example_zh": "后天我休息。",
+   "topics": [
+    "zeit"
+   ]
+  },
+  {
+   "lemma": "wirklich",
+   "pos": "adv",
+   "zh": "真的",
+   "example": "Das ist wirklich gut.",
+   "example_zh": "这真的很好。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "zurück",
+   "pos": "adv",
+   "zh": "回来；返回",
+   "example": "Ich bin um sechs zurück.",
+   "example_zh": "我六点回来。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "besonders",
+   "pos": "adv",
+   "zh": "特别",
+   "example": "Der Kuchen schmeckt besonders gut.",
+   "example_zh": "这个蛋糕特别好吃。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "fast",
+   "pos": "adv",
+   "zh": "几乎",
+   "example": "Es ist fast zwölf Uhr.",
+   "example_zh": "快十二点了。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "genug",
+   "pos": "adv",
+   "zh": "足够",
+   "example": "Wir haben genug Zeit.",
+   "example_zh": "我们有足够的时间。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "ein bisschen",
+   "pos": "phrase",
+   "zh": "一点儿",
+   "example": "Ich spreche ein bisschen Deutsch.",
+   "example_zh": "我会说一点儿德语。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "es gibt",
+   "pos": "phrase",
+   "zh": "有；存在",
+   "example": "Hier gibt es einen Supermarkt.",
+   "example_zh": "这里有一家超市。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "zu Hause",
+   "pos": "phrase",
+   "zh": "在家",
+   "example": "Ich bin heute zu Hause.",
+   "example_zh": "我今天在家。",
+   "topics": [
+    "alltag"
+   ]
+  },
+  {
+   "lemma": "nach Hause",
+   "pos": "phrase",
+   "zh": "回家",
+   "example": "Ich gehe jetzt nach Hause.",
+   "example_zh": "我现在回家。",
+   "topics": [
+    "alltag"
+   ]
+  }
+ ]
+}

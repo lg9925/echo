@@ -9,6 +9,7 @@
     "serve": "node scripts/serve-out.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "gen:ipa": "node scripts/generate-ipa.mjs",
     "gen:icons": "node scripts/generate-icons.mjs"
   },
@@ -32,6 +33,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.10"
   }
 }

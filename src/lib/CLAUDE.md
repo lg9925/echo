@@ -12,12 +12,15 @@ Pure TypeScript modules. **No React, no JSX, no Next.js imports.** Everything he
 - `settings.ts` — user settings in `localStorage`: the API `apiToken` and optional API base override. `DEFAULT_API_BASE` is inlined at build time from `NEXT_PUBLIC_API_URL`. **The frontend never holds vendor keys — only the one token the server checks.**
 - `speech.ts` — browser speech-to-text via the Web Speech API. Feature-detected; callers hide the mic when unsupported.
 - `types.ts` — shared types, incl. `InboxItem` / `AudioCacheEntry` (Dexie v2 stores).
+- `a1/` — the A1 课程 (Goethe A1) module: `loader.ts` (wordlist seed → card expansion, noun article/plural invariant enforced at load), `deck.ts` (due queue + daily new-card throttle by phase + tag-interleaved ordering), `cloze.ts` (deterministic cloze derivation from recalled island sentences), `charDiff.ts` (LCS char diff + accuracy + error classification), `diktat.ts` (听写 length ladder + sentence-pool pick), `numbers.ts` (phone/price/time generators), `errorCards.ts` (shared mistake→card pipeline, deterministic ids), `phase.ts` (derived curriculum phase — never stored), `nextAction.ts` (P0 next-action heuristic; replaced by the P1 composer).
+- `studyLog.ts` — the ONLY instrumentation entry point: `logActivity()` (event + StudyDay rollup + MVD flag) and `logReview()` (append-only review log). Components never write these tables directly.
+- `streak.ts` — pure `computeStreak()` fold over StudyDay rows (2 grace days/month, retroactive freeze). No mutable streak state exists anywhere.
 
 ## Contracts (treat as stable, don't break callers)
 
 ### `db.ts` — Dexie instance
-- Schema v1: `islands`, `sentences`, `reviews`.
-- `reviews` is keyed by `sentenceId` and indexed on `due` and `[language+due]` — never wipe it when re-seeding.
+- Schema v1: `islands`, `sentences`, `reviews`. v6 adds the A1 tables: `cards`, `cardReviews`, `dictationAttempts`, `studyLog`, `studyDays`, `reviewLog`, `curriculum` — all in `backup.ts` (three places).
+- `reviews` is keyed by `sentenceId` and indexed on `due` and `[language+due]` — never wipe it when re-seeding. `cardReviews` (keyed `cardId`) is the A1 deck's FSRS state — same by-absence "new card" convention, never wiped by the wordlist loader.
 - Export query helpers (`listIslands(language)`, `listSentencesByIsland(islandId)`, `dueReviews(language, now)`) so components never construct Dexie queries themselves.
 
 ### `seedLoader.ts` — One-time JSON → IndexedDB
@@ -26,7 +29,7 @@ Pure TypeScript modules. **No React, no JSX, no Next.js imports.** Everything he
 - Add `audio: null` to each sentence; the field is reserved for future pre-generated MP3.
 
 ### `sr.ts` — FSRS scheduler (`ts-fsrs`, default weights)
-- Pure function: `schedule(state: ReviewState, grade: Grade, now: Date): ReviewState`, where `Grade = "again" | "hard" | "good" | "easy"`. Wraps `ts-fsrs` (`enable_short_term: false`, `request_retention: 0.9`, library default weights — no hand-tuned magic numbers; per-user optimizer tuning deferred). See `docs/srs-error-deck.md` §3.
+- Pure function, generic over the FSRS field subset: `schedule<T extends SrFields>(state: T, grade: Grade, now: Date): T`, where `Grade = "again" | "hard" | "good" | "easy"`. One scheduler serves both `ReviewState` (sentences) and `CardReviewState` (A1 cards — enter via `freshCardState()`). Wraps `ts-fsrs` (`enable_short_term: false`, `request_retention: 0.9`, library default weights — no hand-tuned magic numbers; per-user optimizer tuning deferred). See `docs/srs-error-deck.md` §3.
 - FSRS memory lives on `ReviewState` as optional fields (`stability`/`difficulty`/`lapses`/`fsrsState`); `due`/`interval`/`repetitions` are mirrored from the FSRS card so the `due` index + every `db.ts` query + the hub badges keep working unchanged. Legacy SM-2-only rows (no `stability`) are initialised lazily on their first FSRS review — no Dexie migration, `ease` is now vestigial.
 - The UI only ever offers **again/good** (原则一: the system picks difficulty, never the user). `verdictToGrade(uiAction, verdict)` derives the FSRS grade: `again`→Again, `good`+`close`→Hard, `good`+correct/offline→Good; `easy` is reserved for 7.3.
 - Interface (`schedule`/`freshState`) stays the swap point; call sites (`ReviewSession`) don't construct cards.

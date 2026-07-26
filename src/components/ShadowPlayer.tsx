@@ -35,6 +35,7 @@ import {
   sleep,
 } from "@/lib/player";
 import { NATIVE_LANG_BCP47, targetBcp47 } from "@/lib/lang";
+import { logActivity } from "@/lib/studyLog";
 import type { Sentence } from "@/lib/types";
 import { TargetTokenized } from "./TargetTokenized";
 import { KeywordExtractor } from "./KeywordExtractor";
@@ -104,6 +105,28 @@ export function ShadowPlayer({
   useEffect(() => {
     settingsRef.current = settings;
   }, [settings]);
+
+  // M2/M7 instrumentation: each sentence advance while playing = one shadowed
+  // input unit (MVD's 可理解输入 leg). Duration = time on the previous sentence,
+  // capped so a backgrounded tab can't log an hour on one sentence.
+  const shadowTickRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (!isPlaying) {
+      shadowTickRef.current = null;
+      return;
+    }
+    const now = Date.now();
+    if (shadowTickRef.current !== null) {
+      const elapsed = Math.min(now - shadowTickRef.current, 60_000);
+      logActivity({
+        language,
+        source: "shadow",
+        durationMs: elapsed,
+        units: 1,
+      }).catch(() => {});
+    }
+    shadowTickRef.current = now;
+  }, [idx, isPlaying, language]);
 
   // Load sentences once.
   useEffect(() => {
