@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { tts } from "../tts";
+import type { TtsProvider } from "../config";
 import type { TtsRequest } from "../contracts";
 
 const route = new Hono();
@@ -21,6 +22,9 @@ route.post("/", async (c) => {
       lang: body.lang,
       voice: body.voice,
       rate: body.rate,
+      // Explicit vendor (e.g. "edge" for multi-speaker HVPT voices) — an Edge
+      // voice id sent to another provider would 404.
+      provider: body.provider as TtsProvider | undefined,
     });
     // Buffer → fresh ArrayBuffer slice so Hono streams the exact bytes.
     const ab = audio.buffer.slice(

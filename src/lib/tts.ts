@@ -95,6 +95,14 @@ export interface SpeakOptions {
   lang: string;
   rate?: number;
   voice?: SpeechSynthesisVoice;
+  /** Server-side voice id (e.g. an Edge "de-DE-ConradNeural") for the neural
+   *  path — enables multi-speaker audio (HVPT). Omitted → the server's
+   *  per-language preset; cache keys stay on the "default" bucket so existing
+   *  cached clips remain valid. */
+  serverVoice?: string;
+  /** Vendor for serverVoice ("edge" for Edge voice ids) — an Edge voice sent
+   *  to the globally-routed provider (e.g. gemini) would 404. */
+  serverProvider?: string;
   signal?: AbortSignal;
 }
 
@@ -145,21 +153,36 @@ function speakViaSynthesis(text: string, opts: SpeakOptions): Promise<void> {
 
 let currentAudio: HTMLAudioElement | null = null;
 
-// Fetch (if needed) and cache the clip for (text, lang, rate). Returns the blob.
+// Fetch (if needed) and cache the clip for (text, lang, rate, voice). Returns
+// the blob. `voice` (a server voice id) keys its own cache bucket; omitted →
+// "default" bucket, so pre-existing cached clips stay valid.
 async function ensureCachedAudio(
   text: string,
   lang: string,
   rate: number,
   signal?: AbortSignal,
+  voice?: string,
+  provider?: string,
 ): Promise<Blob> {
   const { bucket, serverRate } = rateBucketFor(rate);
-  const key = audioKey({ lang, voiceBucket: "default", rateBucket: bucket, text });
+  const key = audioKey({
+    lang,
+    voiceBucket: voice ?? "default",
+    rateBucket: bucket,
+    text,
+  });
 
   const hit = await getCachedAudio(key);
   if (hit) return hit.blob;
 
   // Throws (no token / offline / server error) → speak() falls back.
-  const blob = await apiFetchBlob("/v1/tts", { text, lang, rate: serverRate }, signal);
+  const blob = await apiFetchBlob(
+    "/v1/tts",
+    voice
+      ? { text, lang, rate: serverRate, voice, ...(provider ? { provider } : {}) }
+      : { text, lang, rate: serverRate },
+    signal,
+  );
   await putCachedAudio({
     key,
     blob,
@@ -185,9 +208,11 @@ export async function fetchClipBlob(
   lang: string,
   rate = 1,
   signal?: AbortSignal,
+  voice?: string,
+  provider?: string,
 ): Promise<ClipResult> {
   const { serverRate } = rateBucketFor(rate);
-  const blob = await ensureCachedAudio(text, lang, rate, signal);
+  const blob = await ensureCachedAudio(text, lang, rate, signal, voice, provider);
   return { blob, effectiveRate: rate / serverRate };
 }
 
@@ -250,6 +275,8 @@ export async function speak(text: string, opts: SpeakOptions): Promise<void> {
         opts.lang,
         rate,
         opts.signal,
+        opts.serverVoice,
+        opts.serverProvider,
       );
       await playBlob(blob, effectiveRate, opts.signal);
       return;
@@ -262,9 +289,15 @@ export async function speak(text: string, opts: SpeakOptions): Promise<void> {
 }
 
 /** Generate + cache a clip without playing (e.g. when an inbox card is added). */
-export async function prewarmAudio(text: string, lang: string, rate = 1): Promise<void> {
+export async function prewarmAudio(
+  text: string,
+  lang: string,
+  rate = 1,
+  voice?: string,
+  provider?: string,
+): Promise<void> {
   try {
-    await ensureCachedAudio(text, lang, rate);
+    await ensureCachedAudio(text, lang, rate, undefined, voice, provider);
   } catch {
     // Best-effort; first real playback will generate it instead.
   }

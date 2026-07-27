@@ -348,6 +348,7 @@ export interface StudyLogEvent {
     | "quiz"
     | "outputTask"
     | "hvpt"
+    | "speaking"
     | "checkpoint";
   durationMs: number;
   /** Cards graded / sentences dictated / clips shadowed … */
@@ -411,6 +412,33 @@ export interface CurriculumState {
   diktatUpStreak: number;
   diktatDownStreak: number;
   updatedAt: number;
+}
+
+// --- P2: HVPT 感知训练 + 检查点 — Dexie v8 ---
+
+/** Per-pair HVPT discrimination stats (mirrors QuizProgress: streak ≥ 3 =
+ *  mastered, the drill resamples unseen → wrong → rest). Perception errors do
+ *  NOT create SRS cards — the weighted resampling IS the loop. */
+export interface HvptProgress {
+  pairId: string;
+  attempts: number;
+  correct: number;
+  wrong: number;
+  /** Consecutive correct; reset on a wrong answer. ≥3 = mastered. */
+  streak: number;
+  updatedAt: number;
+}
+
+/** M7 checkpoint: one full Goethe A1 digital mock exam's section scores. */
+export interface CheckpointRecord {
+  id: string;
+  language: string;
+  kind: "mock-exam";
+  takenAt: number;
+  scores: { hoeren: number; lesen: number; schreiben: number; sprechen: number };
+  /** /100, Goethe digital scale (pass ≥60, internal target ≥75). */
+  total: number;
+  note?: string;
 }
 
 // --- M5 每日产出任务 (output loop) — Dexie v7 ---

@@ -51,3 +51,6 @@ Do not import from `src/lib/db.ts`, `src/lib/tts.ts`, etc. directly in a server 
 | `/[locale]/a1/cards/` | A1 interleaved card session (word/cloze/dictation cards) |
 | `/[locale]/a1/diktat/` | 听写 (Diktat) — sentences with length ladder + number sub-modes |
 | `/[locale]/a1/output/` | M5 每日产出任务 — daily production + explicit LLM correction (job queue) |
+| `/[locale]/a1/hvpt/` | M6 语音辨听 (HVPT) — minimal-pair AB drills, 6 Edge voices |
+| `/[locale]/a1/speaking/` | M6 口语 — shadow → retell → 4/3/2, feedback after the last round |
+| `/[locale]/a1/stats/` | M7 仪表盘 — 7-class hours vs budget, retention, adherence, checkpoints |

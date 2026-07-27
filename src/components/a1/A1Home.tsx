@@ -225,6 +225,24 @@ export function A1Home({
         >
           {t("entryOutput")}
         </a>
+        <a
+          href={`/${uiLocale}/a1/hvpt/`}
+          className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm"
+        >
+          {t("entryHvpt")}
+        </a>
+        <a
+          href={`/${uiLocale}/a1/speaking/`}
+          className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm"
+        >
+          {t("entrySpeaking")}
+        </a>
+        <a
+          href={`/${uiLocale}/a1/stats/`}
+          className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm"
+        >
+          {t("entryStats")}
+        </a>
       </section>
     </main>
   );

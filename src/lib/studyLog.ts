@@ -30,6 +30,7 @@ const SOURCE_TO_ACTIVITY: Record<StudySource, ActivityClass> = {
   quiz: "exam",
   outputTask: "output",
   hvpt: "hvpt",
+  speaking: "output",
   checkpoint: "exam",
 };
 

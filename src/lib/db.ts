@@ -3,8 +3,10 @@ import type {
   AudioCacheEntry,
   CardRecord,
   CardReviewState,
+  CheckpointRecord,
   CurriculumState,
   DictationAttempt,
+  HvptProgress,
   InboxItem,
   Island,
   OutputDraft,
@@ -37,6 +39,8 @@ class EchoDB extends Dexie {
   reviewLog!: EntityTable<ReviewLogEntry, "id">;
   curriculum!: EntityTable<CurriculumState, "id">;
   outputDrafts!: EntityTable<OutputDraft, "id">;
+  hvptProgress!: EntityTable<HvptProgress, "pairId">;
+  checkpoints!: EntityTable<CheckpointRecord, "id">;
 
   constructor() {
     super("echo");
@@ -96,6 +100,13 @@ class EchoDB extends Dexie {
     // after reload (inbox pattern).
     this.version(7).stores({
       outputDrafts: "&id, language, [language+dayKey], status, updatedAt",
+    });
+    // v8 adds the P2 tables — additive, no migration. hvptProgress mirrors
+    // quizProgress (per-pair streak stats, never wiped by content updates);
+    // checkpoints holds the 3 mock-exam section scores (M7).
+    this.version(8).stores({
+      hvptProgress: "&pairId, updatedAt",
+      checkpoints: "&id, [language+takenAt]",
     });
   }
 }
@@ -430,5 +441,51 @@ export async function listRecentOutputDrafts(
     .between([language, Dexie.minKey], [language, Dexie.maxKey])
     .reverse()
     .limit(limit)
+    .toArray();
+}
+
+// --- P2 (Dexie v8) helpers ---
+
+export async function listHvptProgress(): Promise<HvptProgress[]> {
+  return getDb().hvptProgress.toArray();
+}
+
+/** Record one AB answer, folding into existing stats (recordQuizAnswer pattern). */
+export async function recordHvptAnswer(
+  pairId: string,
+  isCorrect: boolean,
+  nowMs: number = Date.now(),
+): Promise<HvptProgress> {
+  const db = getDb();
+  const prev = await db.hvptProgress.get(pairId);
+  const next: HvptProgress = {
+    pairId,
+    attempts: (prev?.attempts ?? 0) + 1,
+    correct: (prev?.correct ?? 0) + (isCorrect ? 1 : 0),
+    wrong: (prev?.wrong ?? 0) + (isCorrect ? 0 : 1),
+    streak: isCorrect ? (prev?.streak ?? 0) + 1 : 0,
+    updatedAt: nowMs,
+  };
+  await db.hvptProgress.put(next);
+  return next;
+}
+
+export async function listCheckpoints(
+  language: string,
+): Promise<CheckpointRecord[]> {
+  return getDb()
+    .checkpoints.where("[language+takenAt]")
+    .between([language, Dexie.minKey], [language, Dexie.maxKey])
+    .toArray();
+}
+
+export async function addCheckpoint(record: CheckpointRecord): Promise<void> {
+  await getDb().checkpoints.add(record);
+}
+
+export async function listReviewLog(language: string): Promise<ReviewLogEntry[]> {
+  return getDb()
+    .reviewLog.where("[language+ts]")
+    .between([language, Dexie.minKey], [language, Dexie.maxKey])
     .toArray();
 }
